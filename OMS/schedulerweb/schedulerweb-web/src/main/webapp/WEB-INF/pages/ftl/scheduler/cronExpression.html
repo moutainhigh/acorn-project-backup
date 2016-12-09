@@ -1,0 +1,441 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>cron表达式生成器</title>
+<script language="javascript" type="text/javascript" src="${staticFileRoot}/js/My97DatePicker/WdatePicker.js"></script>
+<link href="${staticFileRoot}/css/css.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="${staticFileRoot}/css/Spinner.css">
+<script type="text/javascript" src="${staticFileRoot}/js/hashmap.js"></script>
+<script type="text/javascript" src="${staticFileRoot}/js/cron.js"></script>
+<script type="text/javascript" src="${staticFileRoot}/js/jquery-1.9.1.min.js"></script>
+<style type="text/css">
+	.sec{cursor:pointer;}
+	.DG-spinner{width:60px;}
+	.STYLE1 {color: #FF0000}
+    body {margin:0;}       
+    .timewrap{background-color:#f2f2f2;padding:10px;color:#333;font-size:12px;}
+    .timewrap div{text-align:left;line-height:26px;}
+    ul.nav-tabs{list-style:none;display:block;height:29px;margin::0;border-bottom: 1px solid #ddd;padding-left:10px;-webkit-margin-before:0;-webkit-margin-after: 0;}
+    ul.nav-tabs>li{float:left;}
+    ul.nav-tabs>li>a {
+		margin-right: 2px;
+		font-size:12px;
+		line-height: 1.42857143;
+		border: 1px solid transparent;
+		border-radius: 4px 4px 0 0;
+		position: relative;
+		display: block;
+		padding: 5px 15px;
+		text-decoration:none;
+	}
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+		color: #555;
+		cursor: default;
+		background-color: #fff;
+		border: 1px solid #ddd;
+		border-bottom-color: transparent;
+	}
+	.mainTable tr td{line-height:20px;}
+	.checkboxGroup:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+	.checkboxGroup label,.radioGroup label{white-space:nowrap;}
+	.checkboxGroup input,.radioGroup input{position:relative;top:2px;}	
+	.timewrap div.selectRadio{text-align:center;}
+	.panel-primary {border-color: #d6e9c6;}
+	.panel {margin-bottom:15px;background-color: #fff;border: 1px solid #d6e9c6;border-radius: 4px;-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);box-shadow: 0 1px 1px rgba(0,0,0,.05);clear:both;}
+	.panel-heading {padding: 0 15px;	border-bottom: 1px solid transparent;border-top-left-radius: 3px;border-top-right-radius: 3px;}
+	.panel-primary .panel-heading {color: #3c763d;background-color: #dff0d8;border-color: #d6e9c6;}
+	.panel-primary .panel-content{padding:0 3px;}
+	.btn-group {position: relative;display: inline-block;vertical-align: middle;margin-bottom:15px;float:left;}
+	.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {border-top-right-radius: 0;	border-bottom-right-radius: 0;}
+	.btn-group>.btn, .btn-group-vertical>.btn {position: relative;float: left;}
+	.btn {display: inline-block;padding: 3px 6px;margin-bottom: 0;font-size: 10px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;	background-image: none;	border: 1px solid transparent;border-radius: 4px;}
+	.btn-success {color: #fff;background-color: #5cb85c;border-color: #4cae4c;}
+	.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open>.dropdown-toggle.btn-success {color: #fff;background-color: #449d44;border-color: #398439;}
+	.btn>input[type=radio], [data-toggle=buttons]>.btn>input[type=checkbox] {position: absolute;z-index: -1;filter: alpha(opacity=0);opacity: 0;}
+	.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {border-radius: 0;}
+	.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {r-bottom-right-radius: 0;}
+	.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {border-top-left-radius: 0;border-bottom-left-radius: 0;}
+	input.allCheck{-webkit-appearance: radio;}
+</style>
+<script  language="JavaScript" type="text/javascript">	
+	jQuery(function(){
+		jQuery(".sec").each(function(ind,elem){
+			jQuery(elem).click(function(){	
+				jQuery(this).addClass("active").siblings().removeClass("active");
+				jQuery(".timewrap").eq(ind).show().siblings(".timewrap").hide();				
+			});
+		});	
+		jQuery(".allCheck").parent().mousedown(function(){
+			var checkboxGroup=jQuery(this).siblings(".checkbox-inline").find("input");					
+			if(!jQuery(this).children(".allCheck").get(0).checked){
+				checkboxGroup.each(function(){
+					$(this).get(0).checked=true;
+				});
+			}else{
+				checkboxGroup.each(function(){
+					$(this).get(0).checked=false;
+				});
+			}		
+			return false;
+		});	
+		
+		jQuery(".btn-success01").click(function(){		
+			$(this).addClass("active").siblings().removeClass("active");
+			jQuery(".groupDay").show();	
+			jQuery(".groupWeek").hide();
+			return false;
+		});			
+		jQuery(".btn-success02").click(function(){		
+			$(this).addClass("active").siblings().removeClass("active");
+			jQuery(".groupDay").hide();	
+			jQuery(".groupWeek").show();	
+			return false;
+		});
+		
+		jQuery(".radio-inline").mousedown(function(){
+			var total=jQuery(this).siblings(".checkbox-inline").children("input[class!='allCheck']"),val=jQuery(this).children().attr("split");			
+			total.each(function(ind){
+				jQuery(this).get(0).checked=false;
+				if(ind%val==0){
+					jQuery(this).get(0).checked=true;					
+				}
+			})
+			return false;
+		});		
+	})	
+</script>
+</head>
+<BODY>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="solid-bottom">
+  <tr>
+    <td width="100%" height="20"><table  border="0"  cellpadding="0"  cellspacing="0"  id="secTable">
+      <tr>
+      	<td height="25" width="100" align="center"  class="sec active">快速设置模式</td>
+      	<td width="100" align="center"  class="sec">标准设置模式</td>       
+      </tr>
+    </table>
+	</td>
+  </tr>
+</table>
+<div class="timewrap">	
+	<div class="radioGroup panel panel-primary">
+		<div class="panel-heading">分钟</div>
+		<div class="panel-content">
+			<label class="checkbox-inline"><input class="allCheck" type="checkbox">全选&nbsp;</label>
+			<label class="radio-inline"><input type="radio" split="2" name="split" value="隔2分钟">隔2分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" split="3" name="split" value="隔3分钟">隔3分钟&nbsp;</label>			
+			<label class="radio-inline"><input type="radio" split="4" name="split" value="隔4分钟">隔4分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" split="5" name="split" value="隔5分钟">隔5分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" split="6" name="split" value="隔6分钟">隔6分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" split="10" name="split" value="隔10分钟" checked>隔10分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" split="12" name="split" value="隔12分钟">隔12分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" split="15" name="split" value="隔15分钟">隔15分钟&nbsp;</label><br>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="0" checked>0&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="1">1&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="2">2&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="3">3&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="4">4&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="5">5&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="6">6&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="7">7&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="8">8&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="9">9&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="10" checked>10&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="11">11&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="12">12&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="13">13&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="14">14&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="15">15&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="16">16&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="17">17&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="18">18&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="19">19&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="20" checked>20&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="21">21&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="22">22&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="23">23&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="24">24&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="25">25&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="26">26&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="27">27&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="28">28&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="29">29&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="30" checked>30&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="31">31&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="32">32&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="33">33&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="34">34&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="35">35&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="36">36&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="37">37&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="38">38&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="39">39&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="40" checked>40&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="41">41&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="42">42&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="43">43&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="44">44&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="45">45&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="46">46&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="47">47&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="48">48&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="49">49&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="50" checked>50&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="51">51&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="52">52&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="53">53&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="54">54&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="55">55&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="56">56&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="57">57&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="58">58&nbsp;</label>
+			<label class="checkbox-inline"><input name="quickMinutes" type="checkbox" value="59">59&nbsp;</label>
+		</div>			
+	</div>		
+</div>
+<div class="timewrap" style="display:none;">	
+	<div class="checkboxGroup panel panel-primary">
+		<div class="panel-heading">月</div>
+		<div class="panel-content">
+			<label class="checkbox-inline"><input class="allCheck" type="checkbox" checked>全选&nbsp;</label><br/>
+			<label class="checkbox-inline"><input name="months" value="1" type="checkbox" checked>一月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="2" type="checkbox" checked>二月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="3" type="checkbox" checked>三月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="4" type="checkbox" checked>四月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="5" type="checkbox" checked>五月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="6" type="checkbox" checked>六月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="7" type="checkbox" checked>七月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="8" type="checkbox" checked>八月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="9" type="checkbox" checked>九月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="10" type="checkbox" checked>十月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="11" type="checkbox" checked>十一月&nbsp;</label>
+			<label class="checkbox-inline"><input name="months" value="12" type="checkbox" checked>十二月&nbsp;</label>
+		</div>
+	</div>		
+	<div class="btn-group" data-toggle="buttons">
+	  <label class="btn btn-success btn-success01 active"><input type="checkbox" checked>日期 </label>
+	  <label class="btn btn-success btn-success02"><input type="checkbox">星期</label>	
+	</div>
+	<div class="checkboxGroup panel panel-primary groupDay">
+		<div class="panel-heading">日期</div>
+		<div class="panel-content">
+			<label class="checkbox-inline"><input class="allCheck" type="checkbox" checked>全选&nbsp;</label><br/>
+			<label class="checkbox-inline"><input name="days" value="1" type="checkbox" checked>1&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="2" type="checkbox" checked>2&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="3" type="checkbox" checked>3&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="4" type="checkbox" checked>4&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="5" type="checkbox" checked>5&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="6" type="checkbox" checked>6&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="7" type="checkbox" checked>7&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="8" type="checkbox" checked>8&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="9" type="checkbox" checked>9&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="10" type="checkbox" checked>10&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="11" type="checkbox" checked>11&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="12" type="checkbox" checked>12&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="13" type="checkbox" checked>13&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="14" type="checkbox" checked>14&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="15" type="checkbox" checked>15&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="16" type="checkbox" checked>16&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="17" type="checkbox" checked>17&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="18" type="checkbox" checked>18&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="19" type="checkbox" checked>19&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="20" type="checkbox" checked>20&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="21" type="checkbox" checked>21&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="22" type="checkbox" checked>22&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="23" type="checkbox" checked>23&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="24" type="checkbox" checked>24&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="25" type="checkbox" checked>25&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="26" type="checkbox" checked>26&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="27" type="checkbox" checked>27&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="28" type="checkbox" checked>28&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="29" type="checkbox" checked>29&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="30" type="checkbox" checked>30&nbsp;</label>
+			<label class="checkbox-inline"><input name="days" value="31" type="checkbox" checked>31&nbsp;</label>
+		</div>
+	</div>	
+ 	<div class="checkboxGroup panel panel-primary groupWeek" style="display:none;">
+ 		<div class="panel-heading">星期</div>
+ 		<div class="panel-content">
+			<label class="checkbox-inline"><input class="allCheck" checked type="checkbox">全选&nbsp;</label><br/>
+			<label class="checkbox-inline"><input name="weeks" value="1" type="checkbox" checked>周一&nbsp;</label>
+			<label class="checkbox-inline"><input name="weeks" value="2" type="checkbox" checked>周二&nbsp;</label>
+			<label class="checkbox-inline"><input name="weeks" value="3" type="checkbox" checked>周三&nbsp;</label>
+			<label class="checkbox-inline"><input name="weeks" value="4" type="checkbox" checked>周四&nbsp;</label>
+			<label class="checkbox-inline"><input name="weeks" value="5" type="checkbox" checked>周五&nbsp;</label>
+			<label class="checkbox-inline"><input name="weeks" value="6" type="checkbox" checked>周六&nbsp;</label>
+			<label class="checkbox-inline"><input name="weeks" value="7" type="checkbox" checked>周七&nbsp;</label>
+		</div>	
+	</div>
+	<div class="checkboxGroup panel panel-primary">
+ 		<div class="panel-heading">小时</div>
+ 		<div class="panel-content">
+			<label class="checkbox-inline"><input class="allCheck" type="checkbox" checked>全选&nbsp;</label><br/>
+			<label class="checkbox-inline"><input name="hours" value="0" type="checkbox" checked>0&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="1" type="checkbox" checked>1&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="2" type="checkbox" checked>2&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="3" type="checkbox" checked>3&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="4" type="checkbox" checked>4&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="5" type="checkbox" checked>5&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="6" type="checkbox" checked>6&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="7" type="checkbox" checked>7&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="8" type="checkbox" checked>8&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="9" type="checkbox" checked>9&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="10" type="checkbox" checked>10&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="11" type="checkbox" checked>11&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="12" type="checkbox" checked>12&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="13" type="checkbox" checked>13&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="14" type="checkbox" checked>14&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="15" type="checkbox" checked>15&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="16" type="checkbox" checked>16&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="17" type="checkbox" checked>17&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="18" type="checkbox" checked>18&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="19" type="checkbox" checked>19&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="20" type="checkbox" checked>20&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="21" type="checkbox" checked>21&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="22" type="checkbox" checked>22&nbsp;</label>
+			<label class="checkbox-inline"><input name="hours" value="23" type="checkbox" checked>23&nbsp;</label>
+		</div>		
+	</div>	
+	<div class="radioGroup panel panel-primary">
+		<div class="panel-heading">分钟</div>
+		<div class="panel-content">
+			<label class="checkbox-inline"><input class="allCheck" type="checkbox">全选&nbsp;</label>
+			<label class="radio-inline"><input type="radio" name="split02" split="2" value="隔2分钟">隔2分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" name="split02" split="3" value="隔3分钟">隔3分钟&nbsp;</label>			
+			<label class="radio-inline"><input type="radio" name="split02" split="4" value="隔4分钟">隔4分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" name="split02" split="5" value="隔5分钟">隔5分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" name="split02" split="6" value="隔6分钟">隔6分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" name="split02" split="10" value="隔10分钟" checked>隔10分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" name="split02" split="12" value="隔12分钟">隔12分钟&nbsp;</label>
+			<label class="radio-inline"><input type="radio" name="split02" split="15" value="隔15分钟">隔15分钟&nbsp;</label>	<br/>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="0" checked>0&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="1">1&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="2">2&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="3">3&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="4">4&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="5">5&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="6">6&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="7">7&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="8">8&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="9">9&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="10" checked>10&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="11">11&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="12">12&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="13">13&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="14">14&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="15">15&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="16">16&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="17">17&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="18">18&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="19">19&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="20" checked>20&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="21">21&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="22">22&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="23">23&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="24">24&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="25">25&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="26">26&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="27">27&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="28">28&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="29">29&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="30" checked>30&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="31">31&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="32">32&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="33">33&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="34">34&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="35">35&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="36">36&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="37">37&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="38">38&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="39">39&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="40" checked>40&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="41">41&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="42">42&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="43">43&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="44">44&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="45">45&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="46">46&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="47">47&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="48">48&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="49">49&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="50" checked>50&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="51">51&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="52">52&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="53">53&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="54">54&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="55">55&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="56">56&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="57">57&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="58">58&nbsp;</label>
+			<label class="checkbox-inline"><input name="minutes" type="checkbox" value="59">59&nbsp;</label>
+		</div>		
+	</div>	
+	<div class="checkboxGroup panel panel-primary">
+		<div class="panel-heading">秒</div>
+		<div class="panel-content">
+			<label class="checkbox-inline"><input name="seconds" class="allCheck" type="checkbox">全选&nbsp;</label><br/>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="0">0&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="1">1&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="2">2&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="3">3&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="4">4&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="5">5&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="6">6&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="7">7&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="8">8&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="9">9&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="10">10&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="11">11&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="12">12&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="13">13&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="14">14&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="15">15&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="16">16&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="17">17&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="18">18&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="19">19&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="20">20&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="21">21&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="22">22&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="23">23&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="24">24&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="25">25&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="26">26&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="27">27&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="28">28&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="29">29&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="30">30&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="31">31&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="32">32&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="33">33&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="34">34&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="35">35&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="36">36&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="37">37&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="38">38&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="39">39&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="40">40&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="41">41&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="42">42&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="43">43&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="44">44&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="45">45&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="46">46&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="47">47&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="48">48&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="49">49&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="50">50&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="51">51&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="52">52&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="53">53&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="54">54&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="55">55&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="56">56&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="57">57&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="58">58&nbsp;</label>
+			<label class="checkbox-inline"><input name="seconds" type="checkbox" value="59">59&nbsp;</label>
+		</div>
+	</div>	
+</div>
+</BODY>
+</HTML>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.dal.oms.dao.PreTradeDao">
+
+	<select id="findByOpsId" parameterType="PreTrade" resultType="PreTrade">
+		select * from acoapp_oms.pre_trade p where p.ops_trade_id = #{opsTradeId} and p.source_id = #{sourceId}
+	</select>
+	
+	<select id="queryListByLotId" parameterType="java.lang.String" resultType="PreTrade">
+		select * from acoapp_oms.pre_trade p where p.pre_trade_lot_id = #{preTradeLotId}
+	</select>
+
+    <select id="findByTradeIdOrOpsId" parameterType="PreTrade" resultType="PreTrade">
+		select * from acoapp_oms.pre_trade p where p.trade_id = #{tradeId} or p.ops_trade_id = #{opsTradeId}
+	</select>
+
+    <select id="findByTradeId" parameterType="java.lang.String" resultType="PreTrade">
+		select * from acoapp_oms.pre_trade p where p.trade_id = #{tradeId}
+	</select>
+
+	<insert id="insert" parameterType="PreTrade">
+		<selectKey resultType="Long" keyProperty="id" order="BEFORE">
+			select ACOAPP_OMS.PRE_TRADE_SEQ.NEXTVAL from dual
+		</selectKey>
+		insert into acoapp_oms.pre_trade
+		  (id, crdt, trade_id, ops_trade_id, alipay_trade_id, buyer_alipay_id, customer_id, trade_type, trade_from, 
+		  	shipping_type, tms_code, out_crdt, invoice_comment, invoice_title, buyer_id, buyer_nick, receiver_name, 
+		  	receiver_province, receiver_city, receiver_area, receiver_county, receiver_address, receiver_mobile, 
+		  	receiver_phone, receiver_post_code, shipping_fee, payment, imp_user, imp_date, imp_status, 
+		  	imp_status_remark, shipment_id, discount_fee, buyer_message, seller_message, adv_fee, comisssion_fee, 
+		  	credit_fee, jhs_fee, plateform_commission_fee, retailer_commission_fee, revenue, pre_trade_lot_id, 
+		  	err_msg, source_id, is_valid, feedback_status, feedback_status_remark, feedback_user, feedback_date, 
+		  	fromanddate, info, remark, ordermoney, receiverarea, sendinfo, feedback_submission_id, feedback_message_id, 
+		  	create_date, version, is_stat, refund_status, refund_date, is_approval, refund_status_confirm, 
+		  	refund_status_confirm_date, refund_status_confirm_user, paytype, feedback_retry_count, mail_type, 
+		  	split_flag, part_trade_id)
+		values
+		  (#{id, jdbcType=BIGINT}, #{crdt, jdbcType=TIMESTAMP}, #{tradeId, jdbcType=VARCHAR}, #{opsTradeId, jdbcType=VARCHAR}, 
+		  #{alipayTradeId, jdbcType=VARCHAR}, #{buyerAlipayId, jdbcType=VARCHAR}, #{customerId, jdbcType=VARCHAR}, 
+		  #{tradeType, jdbcType=VARCHAR}, #{tradeFrom, jdbcType=VARCHAR}, #{shippingType, jdbcType=VARCHAR}, 
+		  #{tmsCode, jdbcType=VARCHAR}, #{outCrdt, jdbcType=TIMESTAMP}, #{invoiceComment, jdbcType=VARCHAR}, 
+		  #{invoiceTitle, jdbcType=VARCHAR}, #{buyerId, jdbcType=VARCHAR}, #{buyerNick, jdbcType=VARCHAR}, 
+		  #{receiverName, jdbcType=VARCHAR}, #{receiverProvince, jdbcType=VARCHAR}, #{receiverCity, jdbcType=VARCHAR}, 
+		  #{receiverArea, jdbcType=VARCHAR}, #{receiverCounty, jdbcType=VARCHAR}, #{receiverAddress, jdbcType=VARCHAR}, 
+		  #{receiverMobile, jdbcType=VARCHAR}, #{receiverPhone, jdbcType=VARCHAR}, #{receiverPostCode, jdbcType=VARCHAR}, 
+		  #{shippingFee, jdbcType=DOUBLE}, #{payment, jdbcType=DOUBLE}, 
+		  #{impUser, jdbcType=VARCHAR}, #{impDate, jdbcType=TIMESTAMP}, #{impStatus, jdbcType=VARCHAR}, 
+		  #{impStatusRemark, jdbcType=VARCHAR}, #{shipmentId, jdbcType=VARCHAR}, #{discountFee, jdbcType=DOUBLE}, 
+		  #{buyerMessage, jdbcType=VARCHAR}, #{sellerMessage, jdbcType=VARCHAR}, #{advFee, jdbcType=DOUBLE}, 
+		  #{comisssionFee, jdbcType=DOUBLE}, #{creditFee, jdbcType=DOUBLE}, #{jhsFee, jdbcType=DOUBLE}, 
+		  #{plateformCommissionFee, jdbcType=DOUBLE}, #{retailerCommissionFee, jdbcType=DOUBLE}, #{revenue, jdbcType=DOUBLE}, 
+		  #{preTradeLotId}, #{errMsg, jdbcType=VARCHAR}, #{sourceId, jdbcType=BIGINT}, #{isValid, jdbcType=INTEGER}, 
+		  #{feedbackStatus, jdbcType=VARCHAR}, 
+		  #{feedbackStatusRemark, jdbcType=VARCHAR}, #{feedbackUser, jdbcType=VARCHAR}, #{feedbackDate, jdbcType=TIMESTAMP}, 
+		  #{fromanddate, jdbcType=VARCHAR}, #{info, jdbcType=VARCHAR}, #{remark, jdbcType=VARCHAR}, #{ordermoney, jdbcType=VARCHAR}, 
+		  #{receiverarea, jdbcType=VARCHAR}, #{sendinfo, jdbcType=VARCHAR}, #{feedbackSubmissionId, jdbcType=VARCHAR}, 
+		  #{feedbackMessageId, jdbcType=VARCHAR}, sysdate, 0, #{isStat, jdbcType=INTEGER}, #{refundStatus, jdbcType=INTEGER}, 
+		  #{refundDate, jdbcType=TIMESTAMP}, #{isApproval, jdbcType=INTEGER}, #{refundStatusConfirm, jdbcType=INTEGER}, 
+		  #{refundStatusConfirmDate, jdbcType=TIMESTAMP}, #{refundStatusConfirmUser, jdbcType=VARCHAR}, #{paytype, jdbcType=VARCHAR}, 
+		  #{feedbackRetryCount, jdbcType=INTEGER}, #{mailType, jdbcType=VARCHAR}, 
+		  #{splitFlag, jdbcType=INTEGER}, #{partTradeId, jdbcType=VARCHAR})
+				
+	</insert>
+
+    <update id="updatePreTrade" parameterType="PreTrade">
+          update    acoapp_oms.pre_trade
+          <set>
+              <if test="impStatus !=null and impStatus !='' ">
+                  IMP_STATUS =#{impStatus} ,
+              </if>
+              <if test="impStatusRemark != null and impStatusRemark !='' ">
+                  IMP_STATUS_REMARK =#{impStatusRemark} ,
+              </if>
+              <if test="sellerMessage != null and sellerMessage !='' ">
+                  SELLER_MESSAGE =#{sellerMessage} ,
+              </if>
+          </set>
+        where   id=#{id}
+    </update>
+</mapper>

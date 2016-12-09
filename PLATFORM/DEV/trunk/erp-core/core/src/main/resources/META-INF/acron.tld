@@ -1,0 +1,26 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+	<description>计算文件MD5值的Tag</description>
+	
+	<tlib-version>1.0</tlib-version>
+    <short-name>acron</short-name>
+    <uri>http://www.chinadrtv.com/acron/tags</uri>
+    
+    <tag>
+    	<name>md5</name>
+        <tag-class>com.chinadrtv.erp.tags.Md5Tag</tag-class>
+        <body-content>JSP</body-content>
+
+        <attribute>
+        	<description>
+        		需要计算md5的文件路径,不需要ServletPath
+        	</description>
+            <name>path</name>
+            <required>true</required>
+        </attribute>
+    	
+    </tag>
+</taglib>

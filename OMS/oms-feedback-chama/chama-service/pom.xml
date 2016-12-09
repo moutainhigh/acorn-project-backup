@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.chinadrtv.chama</groupId>
+        <artifactId>chama</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.chinadrtv.chama.service</groupId>
+    <artifactId>chama-service</artifactId>
+    <packaging>jar</packaging>
+    <name>chama-service</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.chinadrtv.runtime</groupId>
+            <artifactId>runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chinadrtv.chama.common.dal</groupId>
+            <artifactId>chama-common-dal</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chinadrtv.chama.common.integration</groupId>
+            <artifactId>chama-common-integration</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chinadrtv.chama.common.facade</groupId>
+            <artifactId>chama-common-facade</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.apache.cxf</groupId>-->
+        <!--<artifactId>cxf-rt-transports-http-jetty</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>com.chama</groupId>
+            <artifactId>chama-sdk-java-online_standard-20121205</artifactId>
+            <version>20121205</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.milyn</groupId>
+            <artifactId>milyn-smooks-all</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.chinadrtv.oms</groupId>
+            <artifactId>oms-common-model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.chinadrtv.oms</groupId>
+            <artifactId>oms-common-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazon.thirdparty</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazon.thirdparty</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.2</version>
+        </dependency>
+
+    </dependencies>
+</project>

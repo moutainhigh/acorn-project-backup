@@ -1,0 +1,35 @@
+/*
+ * @(#)ShipmentRefundServiceTest.java 1.0 2013-4-24下午4:31:58
+ *
+ * 橡果国际-系统集成部
+ * Copyright (c) 2012-2013 ACORN, Inc. All rights reserved.
+ */
+package com.chinadrtv.erp.oms.service;
+
+import org.junit.Test;
+
+import com.chinadrtv.erp.test.SpringTest;
+
+/**
+ * <dl>
+ *    <dt><b>Title:</b></dt>
+ *    <dd>
+ *    	none
+ *    </dd>
+ *    <dt><b>Description:</b></dt>
+ *    <dd>
+ *    	<p>none
+ *    </dd>
+ * </dl>
+ *
+ * @author andrew
+ * @version 1.0
+ * @since 2013-4-24 下午4:31:58 
+ * 
+ */
+public class ShipmentRefundServiceTest extends SpringTest {
+
+	@Test
+	public void testInit(){
+	}
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinadrtv.logistics.dal.bak.dao.MenberliveDao">
+    <select id="queryMenberlive"  parameterType="java.lang.String" resultType="com.chinadrtv.logistics.dal.model.Menberlive">
+         <![CDATA[
+                    select a.contactid,
+                           a.memberlevelid,
+                           nvl(b.memberlevel, '未知会员级别') memberlevel
+                      from iagent2.customer_chenxu a
+                      left join iagent2.memberservice b
+                        on a.memberlevelid = b.memberlevelid
+                       where a.contactid = #{contactid}
+             ]]>
+    </select>
+</mapper>

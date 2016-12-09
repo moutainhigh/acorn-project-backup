@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.wms2iag.sync.dal.wms.dao.WmsOrderExtDao">
+
+    <select id="findOrders"  parameterType="java.util.Date" resultType="com.chinadrtv.wms2iag.sync.dal.model.OrderExt">
+        select a.scm_shipment_num as orderId,
+        <![CDATA[
+         case  when TRAILING_STS = '900' then N'已出库，快递商接收'
+         when TRAILING_STS = '100' then N'等待仓库处理'
+         when TRAILING_STS = '200' then N'正在加入处理列表'
+         when TRAILING_STS = '300' then N'分配拣货'
+         when TRAILING_STS = '400' then N'拣货完成，等待包装'
+         when TRAILING_STS = '401' then N'包装中'
+         when TRAILING_STS = '700' and USER_DEF1 is null then  N'等待出库扫描'
+         when TRAILING_STS = '700' and CHARINDEX('SCANED', USER_DEF1) > 0 then  N'出库扫描完成，等待快递商交接'
+         else N'等待仓库处理'
+         end WMSDESC ,
+         case when TRAILING_STS = '900' then N'9'
+         when TRAILING_STS = '200' then N'2'
+         when TRAILING_STS = '100' then N'1'
+         when TRAILING_STS = '300' then N'3'
+         when TRAILING_STS = '400' then N'4'
+         when TRAILING_STS = '401' then N'5'
+         when TRAILING_STS = '700' and USER_DEF1 is null then  N'7'
+         when TRAILING_STS = '700' and USER_DEF1 is not null then  N'8'
+         else N'1'
+         end WMSSTATUS, a.DATE_TIME_STAMP as 'update', a.CARRIER, a.ERP_ORDER, a.USER_DEF1, a.PROCESS_TYPE
+         from (
+         select a.shipment_id, len(a.SHIPMENT_ID) p, charindex('V', a.SHIPMENT_ID, 1) p1,
+         case when charindex('V', a.SHIPMENT_ID) > 0 then
+         SUBSTRING(a.SHIPMENT_ID, 1, charindex('V', a.SHIPMENT_ID, 1) - 1) else a.SHIPMENT_ID end scm_shipment_num,
+            a.LEADING_STS, a.TRAILING_STS, a.DATE_TIME_STAMP, a.CARRIER, a.ERP_ORDER, a.USER_DEF1, a.PROCESS_TYPE
+         from  SHIPMENT_HEADER a (nolock)
+         where a.SHIPMENT_ID not in (select WMS_SHIPMENT_ID from SHIPMENT_HEADER2 a (nolock) where a.Cancel_date is not null)
+         and a.PROCESS_TYPE in (N'1', N'2') and a.CARRIER <> N'一般货运公司'
+         and a.DATE_TIME_STAMP >= #{startDate, jdbcType=TIMESTAMP}
+         ) a order by a.DATE_TIME_STAMP asc
+        ]]>
+    </select>
+
+
+</mapper>

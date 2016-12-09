@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory> 
+  <!--短信发送  -->
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsAnswer"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsSend"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsSendDetail"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsBatch"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsSendVar"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsTemplate"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsBlackList"/>
+     <mapping class="com.chinadrtv.erp.smsapi.model.OrderTypeTemplateRelation"/>
+     <mapping class="com.chinadrtv.erp.smsapi.model.SmsTemplate"/>
+ </session-factory>
+</hibernate-configuration>

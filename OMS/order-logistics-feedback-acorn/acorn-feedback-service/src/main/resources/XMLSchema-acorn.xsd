@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="root" type="roottype">
+	</xs:element>
+	<xs:complexType name="roottype">
+		<xs:sequence>
+			<xs:element name="UpdateInfo" type="UpdateInfotype"
+				maxOccurs="unbounded">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UpdateInfotype">
+		<xs:sequence>
+			<xs:element name="LogisticProviderID" type="xs:integer">
+			</xs:element>
+			<xs:element name="BillNo" type="xs:string">
+			</xs:element>
+			<xs:element name="OperaType" type="xs:string">
+			</xs:element>
+			<xs:element name="OperaDate" type="xs:dateTime">
+			</xs:element>
+			<xs:element name="Station" type="xs:string">
+			</xs:element>
+			<xs:element name="Operator" type="xs:string">
+			</xs:element>
+			<xs:element name="RefuseReason" type="xs:string">
+			</xs:element>
+			<xs:element name="ProblemReason" type="xs:string">
+			</xs:element>
+			<xs:element name="Remark" type="xs:string">
+			</xs:element>
+			<xs:element name="Update_time" type="xs:dateTime">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

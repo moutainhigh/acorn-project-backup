@@ -1,0 +1,87 @@
+/*-------------------------------------------------------------------------------------
+marketing layout 
+-------------------------------------------------------------------------------------*/
+.fl_w50{float:left;width:50%;}
+.clearfix:after{clear: both;
+    content: " ";
+    display: block;
+    height: 0;}
+.layout-panel-south .layout-body{text-align:center!important;}
+a.i-btn{padding:0 5px 0 20px;color:#3E8F00;margin:0 5px;border:1px #fff solid;}
+a.i-btn:hover{border-radius:5px;border:1px #3E8F00 solid;}
+.tab-toolbar{font-size:12px;padding-bottom:2px;}
+.spacing_tb textarea{position:inherit!important;}
+#condition {
+    background-color: #F1F1F1;
+    border: 1px solid #999999;
+    border-radius: 10px 10px 10px 10px;
+    margin:0 10px 10px 10px;
+    padding:10px 0;
+    font-size:12px;
+    box-shadow:0 1px 3px #999;
+    -webkit-box-shadow:0 1px 3px #999;
+}
+
+#condition div {
+    padding: 2px;
+}
+
+#condition .btnBar{
+	text-align: center;
+}
+
+#condition label {
+	
+	display: inline-block;
+	text-align: left;
+	padding: 5px;
+	vertical-align: middle;	
+	
+}
+
+
+.baseLayout {
+	padding: 0px;
+}
+
+.baseLayout .btnBar{
+	width: 100%;
+	text-align: center;
+}
+
+.baseLayout label {
+	width: 110px;
+	display: inline-block;
+	padding: 5px;
+	color:#313131;
+	vertical-align: middle;
+	}
+.baseLayout label.ra{display:inline-block;width:auto;}
+.baseLayout .inputSpan {
+
+	width: 150px;
+	display: inline-block;
+	padding: 5px;
+
+}
+.baseLayout  .dateSpan {
+	font-weight:bold;
+	display: inline-block;
+	padding: 5px;
+	color: #313131;
+}
+.baseLayout textarea{
+
+    margin: 5px;
+}
+
+.baseLayout fieldset{
+	width: 400px;
+}
+.ml20{margin-left:20px;}
+.sm-tem{width:250px;height:75px;font-size:12px;background-color:#f1f1f1;border:1px #999999 solid;padding:5px;color:#000;margin:5px 0 0;}
+#templateSize{height:0;text-align:right;color:red;font-size:10px;}
+.important{z-index:9999!important}
+table.sendList{width:300px;line-height:1.5em;border:1px #999 solid;padding:0}
+table.sendList td{padding:0 5px;}
+#p1{font-size:14px;background:#f1f1f1;color:#999999;text-align:center;}

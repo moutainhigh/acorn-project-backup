@@ -1,0 +1,44 @@
+import com.chinadrtv.erp.util.*;
+import com.chinadrtv.erp.model.*;
+import java.util.*;
+    List rList = new ArrayList() ;
+
+    PromotionRuleResult freeProdResult = new PromotionRuleResult_FreeProduct(PROMOTION_NAME,"","","",0);
+    String optionProds = "";
+    boolean isMatched = false;
+    if ((amount5 != null) && (SUM_AMOUNT  >= amount5)){
+        optionProds += MvelUtil.getProductJson(prod5,sku5,sku5Name,qty5) + ",";
+        freeProdResult.setSkuCode(sku5);
+        freeProdResult.setUnitNumber(qty5);
+        isMatched = true;
+    }else
+    if ((amount4 != null) && (SUM_AMOUNT  >= amount4)){
+        optionProds += MvelUtil.getProductJson(prod4,sku4,sku4Name,qty4) + ",";
+        freeProdResult.setSkuCode(sku4);
+        freeProdResult.setUnitNumber(qty4);
+        isMatched = true;
+    }else
+    if ((amount3 != null) && (SUM_AMOUNT  >= amount3)){
+        optionProds += MvelUtil.getProductJson(prod3,sku3,sku3Name,qty3) + ",";
+        freeProdResult.setSkuCode(sku3);
+        freeProdResult.setUnitNumber(qty3);
+        isMatched = true;
+    }else
+    if ((amount2 != null) && (SUM_AMOUNT  >= amount2)){
+        optionProds += MvelUtil.getProductJson(prod2,sku2,sku2Name,qty2) + ",";
+        freeProdResult.setSkuCode(sku2);
+        freeProdResult.setUnitNumber(qty2);
+        isMatched = true;
+    }else
+    if ((amount1 != null) && (SUM_AMOUNT  >= amount1)){
+        optionProds += MvelUtil.getProductJson(prod1,sku1,sku1Name,qty1) + ",";
+        freeProdResult.setSkuCode(sku1);
+        freeProdResult.setUnitNumber(qty1);
+        isMatched = true;
+    }
+    if (isMatched) {
+        optionProds =  MvelUtil.getSetString(optionProds);
+        freeProdResult.setOptionProducts(optionProds);
+        rList.add(freeProdResult);
+    }
+    return rList;

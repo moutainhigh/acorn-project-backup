@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+     <mapping class="com.chinadrtv.erp.core.model.client.EntityFieldView"/>
+     <mapping class="com.chinadrtv.erp.core.model.client.EntityView"/>
+     <mapping class="com.chinadrtv.erp.core.model.client.EntityGridView"/>
+     <mapping class="com.chinadrtv.erp.core.model.client.Search"/>
+     <mapping class="com.chinadrtv.erp.core.model.client.SearchField"/>
+     <mapping class="com.chinadrtv.erp.user.model.AgentUser"/>
+     <mapping class="com.chinadrtv.erp.user.model.AgentRole"/>
+     <!--  
+     <mapping class="com.chinadrtv.erp.user.model.UserGroup"/>
+     -->
+     <mapping class="com.chinadrtv.erp.model.PreTrade"/>
+     <mapping class="com.chinadrtv.erp.model.PreTradeDetail"/>
+     <mapping class="com.chinadrtv.erp.model.PreTradeLot"/>
+     <mapping class="com.chinadrtv.erp.model.PreTradeCard"/>
+     <mapping class="com.chinadrtv.erp.model.PreTradeLotRequest"/>
+     <mapping class="com.chinadrtv.erp.model.PreTradeCompany"/>
+       
+     <mapping class="com.chinadrtv.erp.model.Company"/>
+     <mapping class="com.chinadrtv.erp.model.AddressExt"/>
+     <mapping class="com.chinadrtv.erp.model.CompanyConfig"/>
+     <mapping class="com.chinadrtv.erp.model.Orderhist"/>
+     <mapping class="com.chinadrtv.erp.model.Orderdet"/>
+     <mapping class="com.chinadrtv.erp.model.OrderExt"/>
+     <mapping class="com.chinadrtv.erp.model.OrderhistAssignLog"/>
+     
+     <mapping class="com.chinadrtv.erp.model.agent.Product"/>
+     <mapping class="com.chinadrtv.erp.model.agent.Province"/>
+     <mapping class="com.chinadrtv.erp.model.agent.CountyAll"/>
+     <mapping class="com.chinadrtv.erp.model.agent.CityAll"/>
+     <mapping class="com.chinadrtv.erp.model.agent.AreaAll"/>
+     <mapping class="com.chinadrtv.erp.model.Names"/>
+     <mapping class="com.chinadrtv.erp.model.Ems"/>
+     <mapping class="com.chinadrtv.erp.model.Contact"/>
+     <mapping class="com.chinadrtv.erp.model.OmsBackorder"/>
+     <mapping class="com.chinadrtv.erp.model.EsbAuditLog"/>
+     <mapping class="com.chinadrtv.erp.model.EdiClear"/>
+     <mapping class="com.chinadrtv.erp.model.OrderSettlement"/>
+     <mapping class="com.chinadrtv.erp.model.OrderSettlementType"/>
+     <mapping class="com.chinadrtv.erp.model.PreItemInventory"/>
+     <mapping class="com.chinadrtv.erp.core.model.AuditLog"/>
+     <mapping class="com.chinadrtv.erp.model.trade.ShipmentHeader"/>
+     <mapping class="com.chinadrtv.erp.model.trade.ShipmentDetail"/>
+     <mapping class="com.chinadrtv.erp.model.trade.ShipmentChangeHis"/>
+     <mapping class="com.chinadrtv.erp.model.trade.ShipmentSettlement"/>
+     <mapping class="com.chinadrtv.erp.model.Warehouse"/>
+     <mapping class="com.chinadrtv.erp.model.Cardtype"/>
+     <mapping class="com.chinadrtv.erp.model.CardAuthorization"/>
+
+     <mapping class="com.chinadrtv.erp.model.OrderAssignRule"/>
+     <mapping class="com.chinadrtv.erp.model.AreaGroup"/>
+     <mapping class="com.chinadrtv.erp.model.OrderChannel"/>
+     <mapping class="com.chinadrtv.erp.model.ChannelType"/>
+     <mapping class="com.chinadrtv.erp.model.AreaGroupDetail"/>
+     <mapping class="com.chinadrtv.erp.model.OrderPayType"/>
+     <mapping class="com.chinadrtv.erp.model.OrderType"/>
+     <mapping class="com.chinadrtv.erp.model.PayType"/>
+
+     <mapping class="com.chinadrtv.erp.model.CompanyContract"/>
+     <mapping class="com.chinadrtv.erp.model.LogisticsFeeRule"/>
+     <mapping class="com.chinadrtv.erp.model.LogisticsFeeRuleDetail"/>
+     <mapping class="com.chinadrtv.erp.model.LogisticsPriceRuleDetail"/>
+     <mapping class="com.chinadrtv.erp.model.LogisticsWeightRuleDetail"/>
+     <mapping class="com.chinadrtv.erp.model.Warehouse"/>
+     <mapping class="com.chinadrtv.erp.model.trade.ShipmentHeader"/>
+	 <mapping class="com.chinadrtv.erp.model.trade.ShipmentRefund"/>
+	 <mapping class="com.chinadrtv.erp.model.trade.ShipmentRefundDetail"/>
+	 <mapping class="com.chinadrtv.erp.model.trade.OrderPaymentConfirm"/>
+     <mapping class="com.chinadrtv.erp.model.Phone"/>
+	 <mapping class="com.chinadrtv.erp.model.CompanyPayment"/>
+	 <mapping class="com.chinadrtv.erp.model.CompanyAccount"/>
+     <mapping class="com.chinadrtv.erp.model.CompanyPaymentSettle"/>
+     <mapping class="com.chinadrtv.erp.model.Address"/>
+
+	<mapping class="com.chinadrtv.erp.model.agent.OrderDetail" />
+	<mapping class="com.chinadrtv.erp.model.agent.Order" />
+	<mapping class="com.chinadrtv.erp.model.agent.OrderdetHistory" />
+	<mapping class="com.chinadrtv.erp.model.agent.OrderHistory" />
+	<mapping class="com.chinadrtv.erp.model.agent.Product" />
+
+	<mapping class="com.chinadrtv.erp.model.inventory.PlubasInfo" />
+	<mapping class="com.chinadrtv.erp.model.trade.RefundHead"/>
+
+
+     <mapping class="com.chinadrtv.erp.model.trade.ShipmentTotalPriceAdj"/>
+     <mapping class="com.chinadrtv.erp.model.trade.ShipmentTotalPriceAdjDetail"/>
+ </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.chama.dal.dao.TradeFeedbackDao">
+
+    <select id="findByOpsId" parameterType="java.util.List" resultType="TradeFeedback">
+         select a.Trade_Id as opsTradeId,
+       c.MapCode as tmsCode,
+       b.mailId as tmsLogisiticsIds,
+       b.ConfirmExpDt as createDat
+       from Pre_Trade a
+       join orderhist b
+       on a.Shipment_Id = b.OrderId
+       join Company_Map c
+       on b.EntityId = c.CompanyId
+       and b.OrderType = c.OrderType
+       left join Company d
+       on c.CompanyId = d.CompanyId
+       where b.ConfirmExpDt Is Not Null
+       and b.mailid is not null
+       and b.entityid is not null
+       and a.Feedback_Status = '0'
+       and a.Trade_Type in (
+        <foreach collection="list" separator="," item="item">
+            #{item}
+        </foreach>
+       )
+	</select>
+
+    <update id="updateOrderFeedbackStatus" parameterType="com.chinadrtv.model.oms.PreTrade">
+        update ACOAPP_OMS.Pre_Trade a
+        set a.Feedback_Status = case when #{feedbackStatus} = '4' and nvl(a.feedback_retry_count, 0) &lt; 3 then '0' else #{feedbackStatus} end,
+        a.Feedback_Status_Remark = #{feedbackStatusRemark},
+        a.Feedback_User = #{feedbackUser},
+        a.Feedback_Date = #{feedbackDate,jdbcType=TIMESTAMP},
+        a.feedback_retry_count = nvl(a.feedback_retry_count, 0) + 1
+        where a.trade_id =#{tradeId,jdbcType=VARCHAR}
+    </update>
+
+</mapper>

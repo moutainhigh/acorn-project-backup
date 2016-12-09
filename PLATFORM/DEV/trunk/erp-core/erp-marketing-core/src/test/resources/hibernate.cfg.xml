@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="com.chinadrtv.erp.model.PreTrade" />
+		<mapping class="com.chinadrtv.erp.model.PreTradeDetail" />
+		<mapping class="com.chinadrtv.erp.model.PreTradeLot" />
+		<mapping class="com.chinadrtv.erp.model.PreTradeLotRequest" />
+		<mapping class="com.chinadrtv.erp.model.PreTradeCard" />
+		<mapping class="com.chinadrtv.erp.model.Company" />
+		<mapping class="com.chinadrtv.erp.model.Address" />
+		<mapping class="com.chinadrtv.erp.model.AddressExt" />
+		<mapping class="com.chinadrtv.erp.model.agent.Province" />
+		<mapping class="com.chinadrtv.erp.model.agent.CityAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.CountyAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.AreaAll" />
+		<mapping class="com.chinadrtv.erp.model.CompanyConfig" />
+		<mapping class="com.chinadrtv.erp.model.Orderhist" />
+		<mapping class="com.chinadrtv.erp.model.Orderdet" />
+		<mapping class="com.chinadrtv.erp.model.OrderExt" />
+		<mapping class="com.chinadrtv.erp.model.OrderhistAssignLog" />
+		<mapping class="com.chinadrtv.erp.model.agent.Province" />
+		<mapping class="com.chinadrtv.erp.model.agent.CountyAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.CityAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.AreaAll" />
+		<mapping class="com.chinadrtv.erp.model.AreaMapping" />
+		<mapping class="com.chinadrtv.erp.model.CountryMapping" />
+		<mapping class="com.chinadrtv.erp.model.CityMapping" />
+		<mapping class="com.chinadrtv.erp.model.ProvinceMapping" />
+		<mapping class="com.chinadrtv.erp.model.Names" />
+		<mapping class="com.chinadrtv.erp.model.Phone" />
+		<mapping class="com.chinadrtv.erp.model.PotentialContactPhone" />
+		<mapping class="com.chinadrtv.erp.model.Ems" />
+		<mapping class="com.chinadrtv.erp.model.inventory.PlubasInfo" />
+		<mapping class="com.chinadrtv.erp.model.inventory.ProductGrpId"/>
+        <mapping class="com.chinadrtv.erp.model.inventory.ProductGrpChannel"/>
+        <mapping class="com.chinadrtv.erp.model.inventory.ProductGrpLimit"/>
+		<mapping class="com.chinadrtv.erp.model.Promotion" />
+		<mapping class="com.chinadrtv.erp.model.PromotionRule" />
+		<mapping class="com.chinadrtv.erp.model.PromotionRuleResult" />
+		<mapping class="com.chinadrtv.erp.model.PromotionRuleOption" />
+		<mapping class="com.chinadrtv.erp.model.PromotionOption" />
+		<mapping class="com.chinadrtv.erp.model.OrderFeedback" />
+		<mapping class="com.chinadrtv.erp.model.OrderSettlement" />
+		<mapping class="com.chinadrtv.erp.model.OrderSettlementType" />
+		<mapping class="com.chinadrtv.erp.model.PreItemInventory" />
+		<mapping class="com.chinadrtv.erp.model.Contact" />
+		<mapping class="com.chinadrtv.erp.model.ContactChange" />
+		<mapping class="com.chinadrtv.erp.model.PhoneChange" />
+		<mapping class="com.chinadrtv.erp.model.AddressChange" />
+		<mapping class="com.chinadrtv.erp.model.AddressExtChange" />
+		<mapping class="com.chinadrtv.erp.model.OrderChange" />
+		<mapping class="com.chinadrtv.erp.model.OrderdetChange" />
+		<mapping class="com.chinadrtv.erp.model.PotentialContact" />
+		<mapping class="com.chinadrtv.erp.model.OmsBackorder" />
+		<mapping class="com.chinadrtv.erp.model.EdiClear" />
+		<mapping class="com.chinadrtv.erp.model.PreTradeCompany" />
+		<mapping class="com.chinadrtv.erp.model.EsbAuditLog" />
+		<mapping class="com.chinadrtv.erp.model.BaseType" />
+		<mapping class="com.chinadrtv.erp.model.ChannelType" />
+		<mapping class="com.chinadrtv.erp.model.agent.Card" />
+		<mapping class="com.chinadrtv.erp.model.Cardtype" />
+		<mapping class="com.chinadrtv.erp.model.agent.MemberType" />
+		<mapping class="com.chinadrtv.erp.model.agent.MemberLevel" />
+		<mapping class="com.chinadrtv.erp.model.agent.ProblematicOrder" />
+
+		<mapping class="com.chinadrtv.erp.model.agent.Product" />
+		<mapping class="com.chinadrtv.erp.model.agent.Grp" />
+		<mapping class="com.chinadrtv.erp.model.agent.JobsRelation" />
+		<mapping class="com.chinadrtv.erp.model.agent.ObQueues" />
+		<!-- 客户外呼 -->
+		<mapping class="com.chinadrtv.erp.model.agent.ObContact" />
+		<mapping class="com.chinadrtv.erp.model.agent.ObContactHist" />
+		<!-- 座席取数-->
+		<mapping class="com.chinadrtv.erp.model.agent.ObAssignHist" />
+		<!-- be -->
+		<!-- 客户群管理model -->
+		<mapping class="com.chinadrtv.erp.model.marketing.CustomerBatch" />
+		<mapping class="com.chinadrtv.erp.model.marketing.CustomerBatchDetail" />
+		<mapping class="com.chinadrtv.erp.model.marketing.CustomerGroup" />
+		<mapping class="com.chinadrtv.erp.model.marketing.CustomerSqlSource" />
+		<mapping class="com.chinadrtv.erp.model.marketing.CustomerSqlSourceHis" />
+		<mapping class="com.chinadrtv.erp.model.marketing.CustomerRecovery" />
+		<!-- BaseConfig -->
+		<mapping class="com.chinadrtv.erp.model.marketing.BaseConfig" />
+
+
+		<mapping class="com.chinadrtv.erp.model.marketing.Campaign" />
+		<mapping class="com.chinadrtv.erp.model.marketing.CampaignType" />
+		<mapping class="com.chinadrtv.erp.model.marketing.CampaignTypeParams" />
+		<mapping class="com.chinadrtv.erp.model.marketing.CampaignTypeValue" />
+		<mapping class="com.chinadrtv.erp.model.marketing.LeadType" />
+		<mapping class="com.chinadrtv.erp.model.marketing.CampaignBatch" />
+		<!-- 销售计划 -->
+		<mapping class="com.chinadrtv.erp.model.marketing.Lead" />
+		<mapping class="com.chinadrtv.erp.model.marketing.LeadTask" />
+		<mapping class="com.chinadrtv.erp.model.marketing.UserBpmTask" />
+		<mapping class="com.chinadrtv.erp.model.marketing.LeadInteraction" />
+		<mapping class="com.chinadrtv.erp.model.marketing.LeadInteractionOrder" />	
+		<mapping class="com.chinadrtv.erp.model.marketing.UserBpm" />
+
+
+		<mapping class="com.chinadrtv.erp.model.ShoppingCart" />
+		<mapping class="com.chinadrtv.erp.model.ShoppingCartProduct" />
+
+		<mapping class="com.chinadrtv.erp.model.agent.Order" />
+		<mapping class="com.chinadrtv.erp.model.agent.OrderDetail" />
+		<mapping class="com.chinadrtv.erp.model.agent.Product" />
+        <mapping class="com.chinadrtv.erp.model.agent.Conpointuse" />
+		<mapping class="com.chinadrtv.erp.model.agent.Conpointcr" />
+		<mapping class="com.chinadrtv.erp.model.agent.OldContactex" />
+
+        <mapping class="com.chinadrtv.erp.model.trade.ShipmentHeader"/>
+        <mapping class="com.chinadrtv.erp.model.trade.ShipmentDetail"/>
+        <mapping class="com.chinadrtv.erp.model.trade.ShipmentChangeHis"/>
+        <mapping class="com.chinadrtv.erp.model.agent.OrderHistory"/>
+        <mapping class="com.chinadrtv.erp.model.agent.OrderdetHistory"/>
+        
+              <!-- security  -->
+      <mapping class="com.chinadrtv.erp.model.security.RolePermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.DataView"/>
+      <mapping class="com.chinadrtv.erp.model.security.DataViewPermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.Domain"/>
+      <mapping class="com.chinadrtv.erp.model.security.Filter"/>
+      <mapping class="com.chinadrtv.erp.model.security.FilterPermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.FilterValue"/>
+      <mapping class="com.chinadrtv.erp.model.security.FieldPermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.ViewField"/>
+
+        <mapping class="com.chinadrtv.erp.model.GrpOrderType"/>
+
+        <mapping class="com.chinadrtv.erp.model.agent.Cases"/>
+        <mapping class="com.chinadrtv.erp.model.agent.Casetype"/>
+        <mapping class="com.chinadrtv.erp.model.agent.Cmpfback"/>
+        <mapping class="com.chinadrtv.erp.model.agent.MediaDnis"/>
+        <mapping class="com.chinadrtv.erp.model.SysMessage"/>
+        <mapping class="com.chinadrtv.erp.model.CardChange"/>
+        <mapping class="com.chinadrtv.erp.model.cntrpbank.OrderUrgentApplication"/>
+        <mapping class="com.chinadrtv.erp.model.cntrpbank.OrderUrgentInput"/>
+        <mapping class="com.chinadrtv.erp.model.marketing.Callback" />
+        <mapping class="com.chinadrtv.erp.model.marketing.CallbackLog" />
+        <mapping class="com.chinadrtv.erp.model.OrderCheck" />
+        <mapping class="com.chinadrtv.erp.model.Urgentorderhist"/>
+        <mapping class="com.chinadrtv.erp.model.marketing.CampaignReceiver"/>
+        <mapping class="com.chinadrtv.erp.model.marketing.ContactAssignHist"/>
+        
+		<mapping class="com.chinadrtv.erp.model.agent.Telephone" />
+    </session-factory>
+</hibernate-configuration>

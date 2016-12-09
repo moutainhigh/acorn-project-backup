@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<smooks-resource-list
+        xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+        xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd">
+
+    <resource-config selector="global-parameters">
+		<param name="stream.filter.type">SAX</param>
+	</resource-config>
+	
+	<jb:bean beanId="responseHeadDto" class="com.chinadrtv.oms.suning.dto.ResponseHeadDto" createOnElement="/sn_responseContent/sn_head">
+		<jb:value data="/sn_responseContent/sn_head/pageNo" property="pageNo"/>
+		<jb:value data="/sn_responseContent/sn_head/pageTotal" property="pageTotal"/>
+		<jb:value data="/sn_responseContent/sn_head/returnMessage" property="returnMessage"/>
+	</jb:bean>
+    
+    <jb:bean beanId="tradeList" class="java.util.ArrayList" createOnElement="/sn_responseContent/sn_body/orderQuery">
+        <jb:wiring beanIdRef="preTrade"/>
+    </jb:bean>
+
+    <jb:bean beanId="preTrade" class="com.chinadrtv.model.oms.dto.PreTradeDto" createOnElement="/sn_responseContent/sn_body/orderQuery">
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/orderCode" property="opsTradeId"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/orderCode" property="tradeId"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/userName" decoder="String" property="buyerId"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/customerName" property="receiverName"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/mobNum" property="receiverMobile"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/provinceName" property="receiverProvince"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/customerAddress" property="receiverAddress"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/cityName" property="receiverCity"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/districtName" property="receiverCounty"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/payAmount" property="payment"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/invoice" property="invoiceComment"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/invoiceHead" property="invoiceTitle"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/buyerOrdRemark" property="buyerMessage"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/sellerOrdRemark" property="buyerMessage"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/invoiceType" property="invoiceType"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/orderSaleTime" decoder="Date" property="outCrdt">
+            <jb:decodeParam name="format">yyyy-MM-dd HH:mm:ss</jb:decodeParam>
+            <jb:decodeParam name="locale">sv_SE</jb:decodeParam>
+        </jb:value>
+        <jb:wiring beanIdRef="preTradeDetails" property="preTradeDetails"/>
+    </jb:bean>
+
+    <jb:bean beanId="preTradeDetails" class="java.util.ArrayList" createOnElement="/sn_responseContent/sn_body/orderQuery/orderDetail">
+        <jb:wiring beanIdRef="preTradeDetail"/>
+    </jb:bean>
+
+    <jb:bean beanId="preTradeDetail" class="com.chinadrtv.oms.suning.dto.PreTradeDetailDto" createOnElement="/sn_responseContent/sn_body/orderQuery/orderDetail">
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/orderDetail/saleNum" property="qty"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/orderDetail/unitPrice" decoder="Double" property="upPrice"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/orderDetail/itemCode" property="outSkuId"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/orderDetail/transportFee" decoder="Double" property="shippingFee"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/orderDetail/payAmount" decoder="Double" property="payAmount"/>
+        <jb:value data="/sn_responseContent/sn_body/orderQuery/orderDetail/productName" property="productName"/>
+    </jb:bean>
+    
+    <!-- feedback -->
+    <jb:bean beanId="feedbackResultList" class="java.util.ArrayList" createOnElement="/sn_responseContent/sn_body/orderDelivery">
+        <jb:wiring beanIdRef="feedback"/>
+    </jb:bean>
+    
+    <jb:bean beanId="feedback" class="com.chinadrtv.oms.suning.dto.FeedbackResponseDto" createOnElement="/sn_responseContent/sn_body/orderDelivery/sendDetail">
+        <jb:value data="/sn_responseContent/sn_body/orderDelivery/sendDetail" property="sendresult"/>
+        <jb:value data="/sn_responseContent/sn_body/orderDelivery/sendDetail" property="orderCode"/>
+        <jb:value data="/sn_responseContent/sn_body/orderDelivery/sendDetail" property="productCode"/>
+        <jb:value data="/sn_responseContent/sn_body/orderDelivery/sendDetail" property="orderLineNumber"/>
+    </jb:bean>    
+    
+</smooks-resource-list>

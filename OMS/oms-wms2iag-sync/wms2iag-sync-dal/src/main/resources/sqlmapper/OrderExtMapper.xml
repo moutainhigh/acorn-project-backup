@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.wms2iag.sync.dal.iagent.dao.OrderExtDao">
+
+    <resultMap id="OrderExtMap" type="com.chinadrtv.wms2iag.sync.dal.model.OrderExt">
+        <id column="ORDERID" jdbcType="VARCHAR" property="orderId" />
+        <result column="WMSSTATUS" jdbcType="VARCHAR" property="wmsStatus" />
+    </resultMap>
+
+    <select id="findOrderIds" parameterType="java.util.List" resultMap="OrderExtMap">
+        select ORDERID,WMSSTATUS from iagent.orderext where
+        <foreach collection="list" separator="or" item="item">
+            orderid=#{item}
+        </foreach>
+    </select>
+
+    <insert id="insertData"  parameterType="com.chinadrtv.wms2iag.sync.dal.model.OrderExt">
+        insert into iagent.orderext(orderid,wmsstatus,wmsdesc,updat)
+        values (#{orderId},#{wmsStatus},#{wmsDesc},#{upDate,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="updateData" parameterType="com.chinadrtv.wms2iag.sync.dal.model.OrderExt">
+        update iagent.orderext set wmsstatus=#{wmsStatus},wmsdesc=#{wmsDesc},updat=#{upDate,jdbcType=TIMESTAMP}
+        where orderid=#{orderId}
+    </update>
+
+</mapper>

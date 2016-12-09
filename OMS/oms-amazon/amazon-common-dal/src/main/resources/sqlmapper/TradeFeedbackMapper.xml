@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.amazon.common.dal.dao.TradeFeedbackDao">
+
+    <resultMap id="TradeFeedbackMap" type="Amazon_TradeFeedback">
+        <id column="tradeId" jdbcType="VARCHAR" property="tradeId" />
+        <result column="companyCode" jdbcType="VARCHAR" property="companyCode" />
+        <result column="mailId" jdbcType="VARCHAR" property="mailId" />
+        <result column="orderId" jdbcType="VARCHAR" property="orderId" />
+
+        <result column="companyName" jdbcType="VARCHAR" property="companyName" />
+        <result column="outDate" jdbcType="TIMESTAMP" property="outDate" />
+    </resultMap>
+
+
+    <select id="findFeedbacks"  parameterType="java.lang.String" resultMap="TradeFeedbackMap">
+        select /*+ index(b PK_ORDERHIST_ORDERID) */ a.OPS_TRADE_ID as tradeId, c.MapCode as companyCode, b.mailId, b.orderId, nvl(c.MapName, d.Name) as companyName, b.ConfirmExpDt as outDate
+        from ACOAPP_OMS.Pre_Trade a
+        join iagent.orderhist b on a.Shipment_Id = b.OrderId
+        join ACOAPP_OMS.Company_Map c on b.EntityId = c.CompanyId and b.OrderType = c.OrderType
+        left join iagent.Company d on c.CompanyId = d.CompanyId
+        where b.ConfirmExpDt Is Not Null and b.mailid is not null and b.entityid is not null and a.Feedback_Status = '0'
+        and a.Trade_Type = #{orderType}
+    </select>
+
+    <select id="findFeedbackResults" parameterType="String" resultType="String">
+        select /*+ index(b PK_ORDERHIST_ORDERID) */ distinct FEEDBACK_SUBMISSION_ID
+        from ACOAPP_OMS.Pre_Trade a
+        join iagent.orderhist b on a.Shipment_Id = b.OrderId
+        join ACOAPP_OMS.Company_Map c on b.EntityId = c.CompanyId and b.OrderType = c.OrderType
+        where b.ConfirmExpDt Is Not Null and b.mailid is not null and b.entityid is not null and a.Feedback_Status = '3'
+        and a.Trade_Type = #{orderType}
+    </select>
+
+    <update id="updateOrderFeedbackStatus" parameterType="com.chinadrtv.model.oms.PreTrade">
+        update ACOAPP_OMS.Pre_Trade a
+        set a.Feedback_Status = #{feedbackStatus},
+        a.Feedback_Status_Remark =  #{feedbackStatusRemark},
+        a.Feedback_User = #{feedbackUser},
+        a.Feedback_Date = #{feedbackDate,jdbcType=TIMESTAMP},
+        a.Feedback_Submission_Id = #{feedbackSubmissionId},
+        a.Feedback_Message_Id = #{feedbackMessageId}
+        where nvl(a.Feedback_Status, '0') = '0' and a.Ops_Trade_Id =#{tradeId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateOrderFeedbackResultStatus" parameterType="com.chinadrtv.model.oms.PreTrade">
+        update ACOAPP_OMS.Pre_Trade a
+        set a.Feedback_Status = #{feedbackStatus},
+        a.Feedback_Status_Remark =  #{feedbackStatusRemark},
+        a.Feedback_User = #{feedbackUser},
+        a.Feedback_Date = #{feedbackDate,jdbcType=TIMESTAMP}
+        where nvl(a.Feedback_Status, '0') = '3'
+        and a.Feedback_Message_Id = #{feedbackMessageId} and a.Feedback_Submission_Id =#{feedbackSubmissionId}
+    </update>
+
+    <update id="updateOrderFeedbackResultSuccess" parameterType="com.chinadrtv.model.oms.PreTrade">
+        update ACOAPP_OMS.Pre_Trade a
+        set a.Feedback_Status = #{feedbackStatus},
+        a.Feedback_Status_Remark =  #{feedbackStatusRemark},
+        a.Feedback_User = #{feedbackUser},
+        a.Feedback_Date = #{feedbackDate,jdbcType=TIMESTAMP}
+        where nvl(a.Feedback_Status, '0') = '3'
+        and a.Feedback_Submission_Id =#{feedbackSubmissionId}
+    </update>
+
+</mapper>

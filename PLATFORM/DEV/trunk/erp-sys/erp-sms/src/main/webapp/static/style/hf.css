@@ -1,0 +1,223 @@
+
+body{ margin:0; padding:0; background-color:#fff; text-align:center; font:12px/18px "微软雅黑", "宋体", Tahoma, "Arial Unicode MS"; color:#444}
+img{ border:0}
+input,select{ vertical-align:middle}
+.clearfix{overflow:auto;_height:1%}
+
+
+
+a{ outline:none}
+a{ color:#666; text-decoration:none}
+a:hover{ color:#29880A; text-decoration:none}
+
+input::-moz-focus-inner{ border:0; padding:0; margin:0; }
+
+/* ---------------------------------------------------------------
+header
+-------------------------------------------------------------------- */
+.header{ margin:0; padding:0; width:100%; background:url(/static/images/index/bg_body.jpg) repeat-x top;}
+.w{ width:1000px; margin:auto; text-align:left}
+.w_95{ width:95px}
+.w_160{ width:160px}
+
+
+
+
+.flt{ float:left}
+.flr{ float:right}
+#last{ background-image:none}
+.lspc3{ letter-spacing:3px}
+.m_t10{ margin-top:10px}
+.h{ overflow:hidden}
+.m_b8{ margin-bottom:8px}
+.m_l8{ margin-left:8px}
+.m_t8{ margin-top:8px}
+
+.txtshadow{   filter:
+        Dropshadow(offx=1,offy=0,color=white)
+        Dropshadow(offx=0,offy=1,color=white)
+        Dropshadow(offx=0,offy=-1,color=white)
+        Dropshadow(offx=-1,offy=0,color=white);
+text-shadow:0 0 1px #fff;  }
+
+.myBox {
+    border: 1px solid #ccc;
+    /* Do rounding (native in Opera, Firefox and Safari) */
+    border-radius:3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+	 display:inline-block;
+    behavior: url(/static/images/customer/PIE.htc);
+	 
+}
+
+
+
+.top_lftnav{ width:40%;overflow: hidden}
+.top_lftnav li{ padding:0 10px;display: inline;  background:url(/static/images/index/line_y.gif) no-repeat center right;}
+.top_lftnav li a{ padding-bottom:5px; font:12px/25px "微软雅黑", "宋体", Tahoma, "Arial Unicode MS"; color:#666; text-decoration:none}
+.top_lftnav li a:hover{background:url(/static/images/index/arrow_up.png) no-repeat center bottom; font:12px/25px "微软雅黑", "宋体", Tahoma, "Arial Unicode MS"; color:#666; text-decoration:none}
+
+.top_lftphoto{ width:11px; height:16px; display:block; float:left; margin-top:4px;background:url(/static/images/index/index.png) no-repeat  0 -187px; }
+
+.top_rignav{  width:60%;overflow:hidden; text-align: right}
+.top_rignav li{  display:inline; line-height:25px;}
+.top_rignav li a{padding:0 5px; color:#666; text-decoration:none}
+.top_rignav li a:hover{ color:#666; text-decoration: none}
+
+ .arrownav a { position:relative; width:70px; height:25px; display:block; float: right; padding-left:10px; text-align:left }
+ .arrownav a b {
+     border-width:4px 4px 0px 4px;
+     border-color:transparent;
+     border-style:solid;
+     border-top-color:#5FB83D;
+     width:0; height:0; position:absolute; top:10px;    left:60px;
+ }
+ .arrownav a:hover b {
+     -moz-animation:rotation 0.5s 1;
+     -webkit-animation:rotation 0.5s 1;
+     animation:rotation 0.5s 1;
+     border-width:0px 4px 4px 4px;
+     border-bottom-color:#5FB83D;
+ }
+ @-moz-keyframes rotation {
+     0% { -moz-transform:rotate(180deg); }
+     100%{ -moz-transform:rotate(360deg); }
+ }
+ @-webkit-keyframes rotation {
+     0% { -webkit-transform:rotate(180deg); }
+     100% { -webkit-transform:rotate(360deg); }
+ }
+ @keyframes rotation {
+     0% { transform:rotate(180deg); }
+     100% { transform:rotate(360deg); }
+ }
+
+.logo{ width:230px; height:68px; }
+
+.search{ width:390px; float:left; margin-left:30px; padding-top:20px}
+.sc_form{  padding:5px; background-color:#d9d9d9;}
+#q{ width:300px; height:23px; float:left; border:0; padding:2px 2px 2px 25px;background:#fff url(/static/images/index/icon_search.png) no-repeat 2% 50%; line-height:22px;}
+.sc_btn{ width:50px; height:27px; line-height:26px;  *line-height:24px; _line-height:28px; float:right; border:0;background:url(/static/images/index/bg_search.jpg) repeat-x; color:#fff;}
+
+.sc_hotxt{ padding:2px}
+.sc_hotxt a{ font:12px/18px; color:#666; text-decoration:none}
+.sc_hotxt a:hover{font:12px/18px; color:#666; text-decoration: none}
+
+
+.sptoptel{ width:300px; float:right; text-align:right}
+.toptel{ width:160px; height:35px; padding-left:52px; padding-top:15px; text-align:left;background:url(/static/images/index/index.png) no-repeat 0 -78px; font-size:22px; line-height:35px; font-weight:bold; color:#c00;}
+
+/*a.topbtn1:link{ display:block; padding:2px 12px; float:left; margin-left:10px; position:relative; background:url(/static/images/shopcart/btn_bg.gif) repeat-x;  text-align:center;color:#026a40; text-decoration:none; cursor:pointer; position: relative; line-height:18px;}*/
+/*a.topbtn1:visited{  display:block; padding:2px 12px;float:left;margin-left:10px;background:url(/static/images/shopcart/btn_bg.gif) repeat-x;color:#026a40; text-decoration:none;}*/
+/*a.topbtn1:hover{display:block; padding:2px 12px; float:left;margin-left:10px; background:url(/static/images/shopcart/btn_bg.gif) repeat-x;color:#026a40; text-decoration: none;}*/
+/*a.topbtn1:active{display:block; padding:2px 12px;float:left;margin-left:10px;background:url(/static/images/shopcart/btn_bg.gif) repeat-x; color:#026a40; text-decoration:none;}*/
+
+
+a.topbtn1:link{ display:block; height:22px; padding:0 12px;float:left; margin-left:70px; _margin-left: 30px; background:url(/static/images/shopcart/btn_bg.gif) repeat-x bottom; border:1px solid #ddd;   text-align:center;color:#026a40; text-decoration:none; cursor:pointer; line-height:22px; }
+a.topbtn1:visited{  display:block; height:22px; padding:0 12px;float:left;margin-left:70px;_margin-left: 30px; background:url(/static/images/shopcart/btn_bg.gif) repeat-x bottom; border:1px solid #ddd;   text-align:center;color:#026a40; text-decoration:none; cursor:pointer; line-height:22px;}
+a.topbtn1:hover{display:block; height:22px; padding:0 12px;float:left; margin-left:70px;_margin-left: 30px;background:url(/static/images/shopcart/btn_bg.gif) repeat-x bottom; border:1px solid #ddd;   text-align:center;color:#026a40; text-decoration:none; cursor:pointer; line-height:22px;}
+a.topbtn1:active{display:block; height:22px; padding:0 12px;float:left;margin-left:70px;_margin-left: 30px; background:url(/static/images/shopcart/btn_bg.gif) repeat-x bottom; border:1px solid #ddd;   text-align:center;color:#026a40; text-decoration:none; cursor:pointer; line-height:22px;}
+
+
+.menulft{ width:140px; height:39px; display:block; float:left; padding-left:24px;background:url(/static/images/index/index.png) no-repeat 0 -138px; font-size:13px; font-weight:bold; line-height:39px;color:#fff;position:relative}
+.menulft h1 a{ color:#fff}
+.menulft h1 a:hover{ color:#ffff00}
+.menulft .slide_navall{ display:none; z-index:15000 !important; position:absolute; top:39px; left:0;width:160px; padding:0; margin:0; text-align:left; font-weight:normal; line-height:18px; background-color:#fff; font-size:12px;}
+.menulft .slide_navall a{ color:#666;}
+.menulft .slide_navall a:hover{ color:#29880A;}
+.menulfton .slide_navall{ display:block; z-index:5000; }
+
+
+
+
+.menurig{ width:836px; height:35px; float:left; margin-top:4px; background:url(/static/images/index/bg_menu01.png) repeat-x  left bottom; z-index: 3000 }
+
+.menutv{ width:60px; height:35px; display:block; float:right; padding-left:35px; background:url(/static/images/index/index.png) no-repeat -174px -142px; font-size:13px; font-weight:bold; line-height:35px; color:#fff;}
+.menutv a{ font-size:13px; color:#fff; text-decoration:none}
+.menutv a:hover{ font-size:13px; color:#fff; text-decoration:underline}
+
+.menugif{ width:203px; height:35px;  float: left; padding-left:12px; background: url(/static/images/index/bg_menu02.png) repeat-x; font-weight:bold; line-height:35px;}
+.menugif a{ padding:0 15px; _padding: 0 12px;  font-size:12px; color:#fff; text-decoration:none;}
+.menugif a:hover{ font-size:12px; color:#ffff00; text-decoration:none}
+/*.menugif a span{ _margin:8px 0; _vertical-align:middle}*/
+/*.menugificon{ width:14px; height:16px; display: inline-block; margin: auto 5px auto auto;background:url(/static/images/index/index.png) no-repeat -21px -187px;}*/
+
+.menugifico{ background:url(/static/images/icon/icon_gif.png) no-repeat left center; padding-left:18px !important;}
+
+
+
+/*index menu js*/
+.menu {width:526px; height:35px; float:left;position:relative; z-index: 1500 !important;}
+.idxmenu{ margin:0; padding:0; list-style:none;}
+.idxmenu li{ float:left;display:inline-block;}
+.idxmenu li a{display:block;  background:url(/static/images/index/menu.png) no-repeat; text-decoration:none;}
+
+.idxmenu li.idxmenu1 a{ width:75px; height:35px;background-position:0 0}
+.idxmenu li.idxmenu2 a{width:75px; height:35px;background-position:-75px 0}
+.idxmenu li.idxmenu3 a{width:75px; height:35px; background-position:-150px 0}
+.idxmenu li.idxmenu4 a{width:75px; height:35px;background-position:-225px 0}
+.idxmenu li.idxmenu5 a{width:75px; height:35px; background-position:-300px 0}
+.idxmenu li.idxmenu6 a{width:75px; height:35px;background-position:-375px 0}
+.idxmenu li.idxmenu7 a{width:75px; height:35px;background-position:-450px 0}
+
+.idxmenu li.ozingcurrent a{ background:url(/static/images/index/menu.png) no-repeat -75px -70px}
+.idxmenu li.aoyacurrent a{ background:url(/static/images/index/menu.png) no-repeat -150px -70px}
+.idxmenu li.yierjiancurrent a{ background:url(/static/images/index/menu.png) no-repeat -225px -70px}
+.idxmenu li.babakacurrent a{ background:url(/static/images/index/menu.png) no-repeat -300px -70px}
+.idxmenu li.zihuancurrent a{ background:url(/static/images/index/menu.png) no-repeat -375px -70px}
+.idxmenu li.yanglidecurrent a{ background:url(/static/images/index/menu.png) no-repeat -450px -70px}
+
+.idxmenu li.idxmenu1 a:hover{ background-position:0 -70px}
+.idxmenu li.idxmenu2 a:hover{ background-position:-75px -35px}
+.idxmenu li.idxmenu3 a:hover{ background-position:-150px -35px}
+.idxmenu li.idxmenu4 a:hover{ background-position:-225px -35px}
+.idxmenu li.idxmenu5 a:hover{ background-position:-300px -35px}
+.idxmenu li.idxmenu6 a:hover{ background-position:-375px -35px}
+.idxmenu li.idxmenu7 a:hover{ background-position:-450px -35px}
+
+
+.idxmenu li ul{ display:none; position: absolute;_width:400px; margin:0;padding:0;background:#FBFDF8 !important;border:1px solid #C0E3A1; overflow: hidden; }
+
+.idxmenu li ul li{  padding:5px;height:18px;overflow: hidden; }
+.idxmenu li ul li a{display:inline-block; float: left; width:auto !important; height:auto !important; overflow: hidden; padding:0 10px; background:#FBFDF8;color:#666; text-decoration:none; line-height:18px !important;font-size: 12px}
+.idxmenu li ul li a:hover{color:#29880A; text-decoration:none;line-height:18px}
+/**html .idxmenu ul {margin:0 0 0 -2px; background:#FBFDF8  !important  }*/
+
+
+
+
+
+
+/* ---------------------------------------------------------------
+footer
+-------------------------------------------------------------------- */
+.fot_BZ ul li{ width:157px; display:inline; float:left; margin:auto 4px;}
+.fot_bottom{ padding-bottom:50px; background: url(/static/images/index/f_bg.png) repeat;}
+.fot_bottom h1{ height:15px; margin-bottom:10px; background:url(/static/images/index/f_linebg.png) repeat;}
+
+.fot_bottomDY{ width:272px; height:143px; float:left; margin-left:5px; background:url(/static/images/index/foot_dg.png) no-repeat;}
+.fot_bottomDY p{ padding:45px 0 0 16px; height:50px}
+.fot_btnDY{width:70px; padding:0 10px; height:27px;  border:0;background:url(/static/images/index/bg_search.jpg) repeat-x; color:#fff;}
+.fot_iptDY{ border:0; background:transparent; background-color:#E3E3E4; padding:2px; height:22px; color:#888}
+
+.fot_nav{ width:720px; _width:700px; float:right; color:#646464; }
+.fot_nav dl{ width:100px; float:left; padding-left:40px;}
+.fot_nav dt{ font-weight:bold}
+.fot_nav dd{ text-align:left}
+.fot_nav  ul li{ display:block; padding:3px 0; font-weight:normal;}
+
+
+.foticon{ display:block; width:31px; height:29px; margin-bottom:5px; background:url(/static/images/index/index.png) no-repeat}
+.foticon01{ background-position:0 -469px;}
+.foticon02{ background-position:-41px -469px }
+.foticon03{ background-position:-79px -469px}
+.foticon04{ background-position:-119px -469px}
+.foticon05{ background-position:-154px -469px}
+
+.fot_navX{ margin:10px auto;padding:5px; text-align:center; background-color:#d7d7d7}
+.fot_navX a{ padding:0 5px; color:#666; text-decoration:none}
+.fot_navX a:hover{ color:#29880A; text-decoration: none}
+
+.foot{ padding-top:10px}
+.foot ul li{ margin-right:15px; display:inline; float: right}

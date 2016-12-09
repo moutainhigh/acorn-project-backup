@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.yuantong.common.dal.dao.WmsShipmentHeaderDao">
+
+    <select id="findShipmentHeader" resultType="WmsShipmentHeader">
+             select SC.CONTAINER_ID as containerId,
+               SH.SHIPMENT_ID as shipmentId,
+               SH2.SCM_SHIPMENT_ID as scmShipmentId,
+               SH.CUSTOMER as customer,
+               SH.SHIP_TO_ADDRESS1 as shipToAddress,
+               SH.CUSTOMER_PHONE_NUM as customerPhoneNum,
+               SC.WEIGHT as weight,
+               SH2.SHIP_TO_PROVINCENAME as shipToProvinceName,
+               SH2.SHIP_TO_CITYNAME as shipToCityName,
+               SH.ACTUAL_SHIP_DATE_TIME as actualShipDate,
+               SH.CARRIER as carrier,
+               SH2.value_shipped AS goodsValue,
+               SH2.value_shipped AS totalValue,
+              CASE WHEN SH.CARRIER = N'上海圆通' THEN 0
+              ELSE 1 END AS orderType
+          from SHIPMENT_HEADER SH, SHIPMENT_HEADER2 SH2, SHIPPING_CONTAINER SC
+         WHERE SH.SHIPMENT_ID = SH2.WMS_SHIPMENT_ID
+           AND SH.INTERNAL_SHIPMENT_NUM = SC.INTERNAL_SHIPMENT_NUM
+           AND SC.CONTAINER_ID IS NOT NULL
+           AND SH.CARRIER IN (N'上海圆通快递',N'CBG-圆通快递',N'上海售后-圆通',N'信用卡分期发货',N'上海圆通')
+           AND SH.BOL_NUM_ALPHA IS NULL
+           AND SH.LEADING_STS = 900
+    </select>
+
+    <update id="updateShipmentHeader" parameterType="java.lang.String">
+        UPDATE SHIPMENT_HEADER set BOL_NUM_ALPHA = 'yes' where SHIPMENT_ID = #{shipmentId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="findDetails" parameterType="java.lang.String" resultType="WmsDetail">
+        select KITS as kits, TOTAL_QTY as totalQty, UNIT_PRICE as unitPrice
+          from SHIPMENT_DETAIL2
+         where SHIPMENT_ID = #{shipmentId,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+            http://www.springframework.org/schema/context    
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+            http://www.springframework.org/schema/aop    
+            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd   
+            http://www.springframework.org/schema/tx    
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd   
+            http://www.springframework.org/schema/mvc    
+            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd   
+            http://www.springframework.org/schema/context    
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- <context:property-placeholder location="classpath:mq.properties" /> -->
+	<!-- 主题 接收配置 文件 -->
+
+    <bean id="systemConfig" class="com.chinadrtv.common.context.SystemContext">
+        <property name="SystemMap">
+            <map>
+                <entry key="brokerURL" value="${env_jms_server_url}"/>
+            </map>
+        </property>
+    </bean>
+	
+	<bean id="jmsQueueReceive" class="com.chinadrtv.runtime.jms.receive.JmsReceiver">
+		<property name="connectionFactory" ref="jmsFactoryReceive" />
+		<property name="destinationName" value="${env_amazon_input_destination}" />
+
+		<property name="messageListener">
+			<bean class="com.chinadrtv.amazon.biz.jms.OrderImportTopicListener" >
+                <property name="amazonOrderConfigList">
+                    <ref local="cfgList" />
+                </property>
+			</bean>
+		</property>
+	</bean>
+
+    <bean id="jmsQueueReceive2" class="com.chinadrtv.runtime.jms.receive.JmsReceiver">
+        <property name="connectionFactory" ref="jmsFactoryReceive" />
+        <property name="destinationName" value="${env_amazon_feedback_destination}" />
+
+        <property name="messageListener">
+            <bean class="com.chinadrtv.amazon.biz.jms.OrderFeedbackTopicListener" >
+                <property name="amazonOrderConfigList">
+                    <ref local="cfgList" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="sourceConfigure" class="com.chinadrtv.amazon.biz.SourceConfigure">
+        <property name="amazonOrderConfigList">
+            <ref local="cfgList" />
+        </property>
+    </bean>
+
+    <bean id="cfgList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <bean class="com.chinadrtv.amazon.model.AmazonOrderConfig">
+                    <property name="configstr" value="https://mws.amazonservices.com.cn/Orders/2011-01-01"/>
+                    <property name="accessKeyId" value="AKIAJYV5WAU6N4JJTKUQ"/>
+                    <property name="secretAccessKey" value="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"/>
+                    <property name="sellerId" value="A2LMERIUFWLP7M"/>
+                    <property name="marketplaceId" value="AAHKV2X7AFYLW"/>
+                    <property name="applicationName" value="datasync"/>
+                    <property name="applicationVersion" value="1.0"/>
+                    <!--<property name="customerId" value="\u5353\u8d8a\u4e9a\u9a6c\u900a"/>-->
+                    <property name="customerId" value="卓越亚马逊"/>
+                    <property name="tmsCode" value="117"/>
+                    <property name="tradeFrom" value="AMAZON"/>
+
+                    <property name="tradeType" value="124"/>
+                    <property name="sourceId" value="8"/>
+                    <property name="tradeTypeName" value="AFN"/>
+                </bean>
+
+                <bean class="com.chinadrtv.amazon.model.AmazonOrderConfig">
+                    <property name="configstr" value="https://mws.amazonservices.com.cn/Orders/2011-01-01"/>
+                    <property name="accessKeyId" value="AKIAJYV5WAU6N4JJTKUQ"/>
+                    <property name="secretAccessKey" value="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"/>
+                    <property name="sellerId" value="A2LMERIUFWLP7M"/>
+                    <property name="marketplaceId" value="AAHKV2X7AFYLW"/>
+                    <property name="applicationName" value="datasync"/>
+                    <property name="applicationVersion" value="1.0"/>
+                    <!--<property name="customerId" value="\u5353\u8d8a\u4e9a\u9a6c\u900a"/>-->
+                    <property name="customerId" value="卓越亚马逊"/>
+                    <property name="tmsCode" value="117"/>
+                    <property name="tradeFrom" value="AMAZON"/>
+                    <property name="tradeType" value="123"/>
+                    <property name="sourceId" value="4"/>
+                    <property name="tradeTypeName" value="MFN"/>
+                    <property name="feedbackUrl" value="https://mws.amazonservices.com.cn"/>
+                </bean>
+
+				<bean class="com.chinadrtv.amazon.model.AmazonOrderConfig">
+                    <property name="configstr" value="https://mws.amazonservices.com.cn/Orders/2011-01-01"/>
+                    <property name="accessKeyId" value="AKIAI7LUJG24HM3JTQAQ"/>
+                    <property name="secretAccessKey" value="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"/>
+                    <property name="sellerId" value="AUZC62F81CLD9"/>
+                    <property name="marketplaceId" value="AAHKV2X7AFYLW"/>
+                    <property name="applicationName" value="datasync"/>
+                    <property name="applicationVersion" value="1.0"/>
+                    <property name="customerId" value="卓越亚马逊"/>
+                    <property name="tmsCode" value="117"/>
+                    <property name="tradeFrom" value="AMAZON"/>
+                    <property name="tradeType" value="243"/>
+                    <property name="sourceId" value="8"/>
+                    <property name="tradeTypeName" value="AFN"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="orderBizHandler" class="com.chinadrtv.amazon.biz.impl.OrderBizHandlerImpl"/>
+</beans>

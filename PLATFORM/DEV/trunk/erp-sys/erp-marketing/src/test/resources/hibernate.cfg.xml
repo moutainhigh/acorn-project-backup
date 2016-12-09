@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory> 
+      <mapping class="com.chinadrtv.erp.user.model.AgentUser"/>
+     <mapping class="com.chinadrtv.erp.user.model.AgentRole"/>
+  
+     <!-- 部门model -->
+     <mapping class="com.chinadrtv.erp.model.Names"/>
+     <mapping class="com.chinadrtv.erp.model.agent.Product"/>
+      <mapping class="com.chinadrtv.erp.model.agent.Grp"/>
+     <!-- 客户群管理model -->
+     <mapping class="com.chinadrtv.erp.model.marketing.CustomerBatch"/>
+     <mapping class="com.chinadrtv.erp.model.marketing.CustomerBatchDetail"/>
+     <mapping class="com.chinadrtv.erp.model.marketing.CustomerGroup"/>
+     <mapping class="com.chinadrtv.erp.model.marketing.CustomerSqlSource"/>
+     <mapping class="com.chinadrtv.erp.model.marketing.CustomerSqlSourceHis"/>
+     <mapping class="com.chinadrtv.erp.model.marketing.CustomerRecovery"/>
+     <mapping class="com.chinadrtv.erp.model.agent.JobsRelation"/>
+     <mapping class="com.chinadrtv.erp.model.agent.ObQueues"/>
+          <!-- 客户获取产品推荐 -->
+      <mapping class="com.chinadrtv.erp.model.agent.ObContact"/>
+      <!--  BaseConfig   -->
+      <mapping class="com.chinadrtv.erp.model.marketing.BaseConfig"/>
+      
+      <mapping class="com.chinadrtv.erp.model.marketing.LeadTypeParams"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.LeadTypeValue"/>
+     
+     <!--短信发送  -->
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsAnswer"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsSend"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsSendDetail"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsBatch"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsSendVar"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsTemplate"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsBlackList"/>
+      
+      
+      <mapping class="com.chinadrtv.erp.model.Contact"/>
+      
+            <!-- security  -->
+      <mapping class="com.chinadrtv.erp.model.security.RolePermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.DataView"/>
+      <mapping class="com.chinadrtv.erp.model.security.DataViewPermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.Domain"/>
+      <mapping class="com.chinadrtv.erp.model.security.Filter"/>
+      <mapping class="com.chinadrtv.erp.model.security.FilterPermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.FilterValue"/>
+      <mapping class="com.chinadrtv.erp.model.security.FieldPermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.ViewField"/>
+      
+      
+   
+ </session-factory>
+</hibernate-configuration>

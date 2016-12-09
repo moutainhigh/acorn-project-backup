@@ -1,0 +1,47 @@
+import com.chinadrtv.erp.util.*;
+import com.chinadrtv.erp.model.*;
+import java.util.*;
+    List rList = new ArrayList() ;
+    PromotionRuleResult matchProdResult = new PromotionRuleResult_MatchProduct(PROMOTION_NAME,"","","",0);
+	List mList = new ArrayList();
+    boolean isMatched = false;
+    if ( qty3 != null && qty3  > 0){
+		 PromotionRuleResult_MatchProduct pm3 = new PromotionRuleResult_MatchProduct(PROMOTION_NAME,"","","",0);
+	     pm3.setParentResult(matchProdResult);
+		 pm3.setProductId(prod3);
+		 pm3.setSkuCode(sku3);
+		 pm3.setProductName(sku3Name);
+		 pm3.setUnitNumber(qty3);
+		 pm3.setDiscount(discount3);
+		 pm3.setIsPer(isPer3);
+		 mList.add(pm3);
+         isMatched = true;
+    }else if (qty2 != null && qty2 > 0){
+		PromotionRuleResult_MatchProduct pm2 = new PromotionRuleResult_MatchProduct(PROMOTION_NAME,"","","",0);
+	     pm2.setParentResult(matchProdResult);
+		 pm2.setProductId(prod2);
+		 pm2.setSkuCode(sku2);
+		 pm2.setProductName(sku2Name);
+		 pm2.setUnitNumber(qty2);
+		 pm2.setDiscount(discount2);
+		 pm2.setIsPer(isPer2);
+		 mList.add(pm2);
+         isMatched = true;
+    }else if (qty1 != null && qty1 > 0){
+		 PromotionRuleResult_MatchProduct pm1 = new PromotionRuleResult_MatchProduct(PROMOTION_NAME,"","","",0);
+	     pm1.setParentResult(matchProdResult);
+		 pm1.setProductId(prod1);
+		 pm1.setSkuCode(sku1);
+		 pm1.setProductName(sku1Name);
+		 pm1.setUnitNumber(qty1);
+		 pm1.setDiscount(discount1);
+		 pm1.setIsPer(isPer1);
+		 mList.add(pm1);
+         isMatched = true;
+    }
+    if (isMatched) {
+		matchProdResult.setChildResult(mList);
+        rList.add(matchProdResult);
+    }
+    return rList;
+	

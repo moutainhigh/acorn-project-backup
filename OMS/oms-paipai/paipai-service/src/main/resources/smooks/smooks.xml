@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<smooks-resource-list
+        xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+        xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd">
+
+    <resource-config selector="global-parameters">
+		<param name="stream.filter.type">SAX</param>
+	</resource-config>
+	
+	<jb:bean beanId="responseHeadDto" class="com.chinadrtv.oms.paipai.dto.ResponseHeadDto" createOnElement="/sellerSearchDealList">
+		<jb:value data="/sellerSearchDealList/errorCode" property="errorCode"/>
+		<jb:value data="/sellerSearchDealList/errorMessage" property="errorMessage"/>
+		<jb:value data="/sellerSearchDealList/pageIndex" property="pageIndex"/>
+		<jb:value data="/sellerSearchDealList/pageTotal" property="pageTotal"/>
+		<jb:value data="/sellerSearchDealList/countTotal" property="countTotal"/>
+	</jb:bean>
+	
+	<jb:bean beanId="tradeDtolist" class="java.util.ArrayList" createOnElement="/sellerSearchDealList/dealList">
+        <jb:wiring beanIdRef="preTrade"/>
+    </jb:bean>
+    
+    <jb:bean beanId="preTrade" class="com.chinadrtv.model.oms.dto.PreTradeDto" createOnElement="/sellerSearchDealList/dealList/dealInfo">
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/dealCode" property="opsTradeId"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/dealCode" property="tradeId"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/buyerUin" decoder="String" property="buyerId"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/receiverName" property="receiverName"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/receiverMobile" property="receiverMobile"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/receiverPhone" property="receiverPhone"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/receiverAddress" property="receiverAddress"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/freight" property="shippingFee"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/totalCash" property="payment"/>
+        <!-- <jb:value data="/sellerSearchDealList/dealList/dealInfo" property="invoiceComment"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo" property="invoiceTitle"/> 
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo" property="invoiceType"/> -->
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/comboInfo" property="buyerMessage"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/dealPayType" property="remark"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/createTime" decoder="Date" property="outCrdt">
+            <jb:decodeParam name="format">yyyy-MM-dd HH:mm:ss</jb:decodeParam>
+            <jb:decodeParam name="locale">sv_SE</jb:decodeParam>
+        </jb:value>
+        <jb:wiring beanIdRef="preTradeDetails" property="preTradeDetails"/>
+    </jb:bean>
+
+    <jb:bean beanId="preTradeDetails" class="java.util.ArrayList" createOnElement="/sellerSearchDealList/dealList/dealInfo/itemListNew">
+        <jb:wiring beanIdRef="preTradeDetail"/>
+    </jb:bean>
+    
+    <jb:bean beanId="preTradeDto" class="com.chinadrtv.model.oms.dto.PreTradeDto" createOnElement="/getDealDetail">
+    	<jb:value data="/getDealDetail/dealCode" property="tradeId"/>
+    	<jb:value data="/getDealDetail/receiverAddress" property="receiverAddress"/>
+    </jb:bean>
+
+	<!-- feedback -->
+    <jb:bean beanId="preTradeDetail" class="com.chinadrtv.oms.paipai.dto.PreTradeDetailDto" createOnElement="/sellerSearchDealList/dealList/dealInfo/itemListNew/itemInfo">
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/itemListNew/itemInfo/itemDealCount" property="qty"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/itemListNew/itemInfo/itemRetailPrice" decoder="Double" property="upPrice"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/itemListNew/itemInfo/stockLocalCode" property="outSkuId"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/itemListNew/itemInfo/itemDealPrice" decoder="Double" property="payAmount"/>
+        <jb:value data="/sellerSearchDealList/dealList/dealInfo/itemListNew/itemInfo/itemName" property="productName"/>
+    </jb:bean>
+    
+    <jb:bean beanId="feedback" class="com.chinadrtv.oms.paipai.dto.FeedbackResponseDto" createOnElement="/sellerConsignDealItem">
+        <jb:value data="/sellerConsignDealItem/errorCode" property="errorCode"/>
+        <jb:value data="/sellerConsignDealItem/errorMessage" property="errorMessage"/>
+        <jb:value data="/sellerConsignDealItem/dealCode" property="dealCode"/>
+    </jb:bean>    
+    
+</smooks-resource-list>

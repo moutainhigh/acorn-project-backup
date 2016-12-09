@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>调度任务TOPIC</title>
+<script type="text/javascript">
+	$().ready(function(){
+		$common.initResultMsg();
+	   	$('#btnAdd').click(function(){
+	   		window.location.href = '${rc.contextPath}/scheduler/addSchedulerData';
+	   	 });
+	   	
+	   	$('#queryAdd').click(function(){
+	   		mmg.load();
+	   	});
+
+		 var cols = [
+		 	{ title:'系统名称', name:'jobSystem' ,width:80, align:'center'},
+	        { title:'任务名称', name:'jobName' ,width:80, align:'center'},
+	        { title:'Cron表达式', name:'jobCronExpression' ,width:100, align:'center'},
+	        { title:'任务Topic', name:'jobTopic' ,width:80, align:'center'},
+	        { title:'任务说明', name:'jobDescription' ,width:80, align:'center'},
+	        { title:'发送状态', name:'jobStatus' ,width:80, align:'center',
+	        		renderer:function(val){if(val==1) return "已发送"; else return "未发送";}},
+	    	{ title:'操作', name:'jobStatus' ,width:80, align:'center', renderer:function(val)
+	        	{
+	    		if(val==0) 
+	        		return '<button id="playAdd" class="btn btn-success"><i class="icon-play icon-white"></i>运行</button>'; 
+	    		 else 
+	    			return '<button id="stopAdd" class="btn btn-danger"><i class="icon-off icon-white"></i>停止</button>';
+	    		}
+	        }
+	     ];
+		 var mmg = $('.mmg').mmGrid({
+	        cols: cols,
+	        height: 500,
+	        root:'list',
+	       	multiSelect: true,
+	       	nowrap: true,
+	       	params:function(){
+	       		return {jobSystem:$('#jobSystem').val(),jobName:$('#jobName').val()};
+	       	},
+	       	//checkCol: true,
+          fullWidthRows: true,
+          autoLoad: false,
+          url: '${rc.contextPath}/scheduler/listSchedulerData',
+          method: 'post',
+          plugins: [
+                  $('#pg').mmPaginator({limit:${page.pageSize},page:${page.currPage}})
+          ]
+	    });
+		 
+		 mmg.on('cellSelected', function(e, item, rowIndex, colIndex){
+			 console.log('cellSelected!');
+             console.log(this);
+             console.log(e);
+             console.log(item);
+             console.log(rowIndex);
+             console.log(colIndex);
+             //查看
+             if($(e.target).is('.btn-success')){
+                 e.stopPropagation();  //阻止事件冒泡
+                 
+                 $.ajax({
+                	 url:'${rc.contextPath}/scheduler/startScheduler',
+                	 data:{"id":item.id},
+                	 dataType:"json",
+                	 type:"POST",
+                	 success:function(data){//根据返回状态显示信息，重新加载页面
+                		 if(data.result == 1){
+                			 alert("发送运行操作成功！");
+                		 }else if(data.result == 0){
+                			 alert("调度任务TOPIC已经被删除！");
+                		 }else{
+                			 alert("发送运行操作失败，请重试！");
+                		 }
+                		 mmg.load();
+                	 }
+                 });
+             }else if($(e.target).is('.btn-danger') && confirm('你确定要停止该TOPIC任务吗?')){
+                 e.stopPropagation(); //阻止事件冒泡
+
+                 $.ajax({
+                	 url:'${rc.contextPath}/scheduler/stopScheduler',
+                	 data:{"id":item.id},
+                	 dataType:"json",
+                	 type:"POST",
+                	 success:function(data){//根据返回状态显示信息，重新加载页面
+                		 if(data.result == 1){
+                			 alert("发送停止操作成功！");
+                		 }else if(data.result == 0){
+                			 alert("调度任务TOPIC已经被删除！");
+                		 }else{
+                			 alert("发送停止操作失败，请重试！");
+                		 }
+                		 mmg.load();
+                	 }
+                 });
+             }
+         }).load();
+	});
+</script>
+</head>
+<body>
+	<div class="container" id="iframe">
+		<div class="action">
+			<button id="queryAdd" class="btn btn-primary">
+				<i class="icon-search icon-white"></i>查询
+			</button>
+			<button id="btnAdd" class="btn btn-success">
+				<i class="icon-plus icon-white"></i>新增
+			</button>
+		</div>
+		<div style="margin-bottom: 5px; text-align: left;">
+			<div class="input-prepend">
+				<span class="add-on">系统名称</span> <input class="span3" id="jobSystem"
+					name="jobSystem" type="text" value="${jobSystem!''}">
+			</div>
+			<div class="input-prepend">
+				<span class="add-on">任务名称</span> <input class="span3" id="jobName"
+					name="jobName" type="text" value="${jobName!''}">
+			</div>
+		</div>
+
+		<div class="alert alert-success" id="msg_success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<span class="success"></span><br />
+		</div>
+		<input type="hidden" id="action_msg" value="${success!''}" />
+
+		<table id="mmg" class="mmg">
+			<tr>
+				<th rowspan="" colspan=""></th>
+			</tr>
+		</table>
+		<div id="pg" style="text-align: right;"></div>
+	</div>
+</body>
+</html>

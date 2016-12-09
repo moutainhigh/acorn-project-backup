@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.oms.sfexpress.dal.dao.WmsShipmentHeaderDao">
+
+	<resultMap type="HASHMAP" id="headerMap">
+		<result column="orderid" property="orderid"/>
+		<result column="carrier" property="carrier"/>
+		<result column="express_type" property="express_type"/>
+		<result column="d_company" property="d_company"/>
+		<result column="d_contact" property="d_contact"/>
+		<result column="d_tel" property="d_tel"/>
+		<result column="d_mobile" property="d_mobile"/>
+		<result column="d_address" property="d_address"/>
+		<result column="parcel_quantity" property="parcel_quantity"/>
+		<result column="pay_method" property="pay_method"/>
+		<result column="remark" property="remark"/>
+		<result column="carrier" property="carrier"/>
+		<result column="goodsValue" property="goodsValue"/>
+		<result column="totalValue" property="totalValue"/>
+	</resultMap>
+
+    <select id="findShipmentHeader" resultMap="headerMap">
+		select SH.SHIPMENT_ID As orderid,
+			   SH.CARRIER carrier,	
+			   CASE
+		         WHEN SH.CARRIER = N'上海闵行顺丰标准快递' THEN
+		          1
+		         WHEN SH.CARRIER = N'上海华新顺丰标准快递' THEN
+		          1
+		         WHEN SH.CARRIER = N'上海闵行顺丰特惠快递' THEN
+		          3
+		         WHEN SH.CARRIER = N'上海华新顺丰特惠快递' THEN
+		          3
+		         ELSE
+		          1
+		       END AS express_type,
+		       SH.CUSTOMER as d_company,
+		       SH.CUSTOMER as d_contact,
+		       SH.CUSTOMER_PHONE_NUM as d_tel,
+		       SH.CUSTOMER_PHONE_NUM as d_mobile,
+		       SH.SHIP_TO_ADDRESS1 as d_address,
+		       1 as parcel_quantity,
+		       1 as pay_method,
+		       SH2.MEMO AS remark,
+		       SH.CARRIER as carrier,
+		       SH2.value_shipped AS goodsValue,
+		       SH2.value_shipped AS totalValue
+		  from SHIPMENT_HEADER SH, SHIPMENT_HEADER2 SH2
+		WHERE SH.SHIPMENT_ID = SH2.WMS_SHIPMENT_ID
+		   AND SH.CARRIER IN
+		       (N'上海闵行顺丰标准快递', N'上海闵行顺丰特惠快递', N'上海华新顺丰标准快递', N'上海华新顺丰特惠快递')
+		   AND SH.INTERMEDIATE_EMAIL_ADDRESS IS NULL
+		   AND SH.LEADING_STS = 100
+		   and SH.BOL_NUM_ALPHA IS NULL
+    </select>
+
+    <update id="updateShipmentHeader" parameterType="HashMap">
+        UPDATE SHIPMENT_HEADER 
+        set BOL_NUM_ALPHA = 'yes', 
+        	INTERMEDIATE_EMAIL_ADDRESS = #{mailNo} 
+        where SHIPMENT_ID = #{shipmentId}
+    </update>
+	
+    <select id="findDetails" parameterType="java.lang.String" resultType="WmsDetail">
+        select KITS as kits, TOTAL_QTY as totalQty, UNIT_PRICE as unitPrice
+          from SHIPMENT_DETAIL2
+         where SHIPMENT_ID = #{shipmentId,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

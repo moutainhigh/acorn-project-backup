@@ -1,0 +1,310 @@
+<style type="text/css">
+.clkIndex {display:none;}
+</style>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$("#testTable tr").live("click", function(){
+			trClick();
+		});
+		$("input[name='appendLine']").live("click", function(){
+			trAddLine();
+		});
+		$("input[name='insertLine']").live("click", function(){
+			trInsertLine();
+		});
+		$("input[name='deleteLine']").live("click", function(){
+			trDeleteLine();
+		});
+		$("input[name='moveUpLine']").live("click", function(){
+			trMoveUpLine();
+		});
+		$("input[name='moveDownLine']").live("click", function(){
+			trMoveDownLine();
+		});
+		
+	});
+	function trClick(){
+		var tableElement=$("#testTable");
+		var tableTrElement=$("#testTable").find("tr");
+		var trIndex;
+		var trBgcolor;
+		tableTrElement.click(function(){
+				trIndex=tableTrElement.index($(this));
+				if(trIndex<=0){
+					return;
+				}else{
+					trBgcolor=$(this).css("background-color");
+					if (trBgcolor=="#d1eeee"){
+						//tableTrElement.css("background-color","#FFF");
+						$(this).css("background-color","#FFF");
+						$("span.clkIndex").text("-1");
+					}else{
+						tableTrElement.css("background-color","#FFF");
+						$(this).css("background-color","#D1EEEE");
+						$("span.clkIndex").text(trIndex);
+					}
+				}
+		});
+		return trIndex;
+	}
+	function trAddLine(){
+		var Lines=10;
+		var trIndex=parseInt($("span.clkIndex").text());
+		var tableElement=$("#testTable");
+		var tableTrElement=$("#testTable").find("tr");
+		var trLen=tableTrElement.length;
+		if (trLen>Lines) {
+			alert("已达到"+Lines+"行的上限");
+			return false;
+		}else{
+			tableElement.append("<tr id=\"line"+trLen+"\"><td align=\"center\">"+trLen+"</td><td align=\"center\"><input name=\"txtInput[]\" type=\"text\" value=\"Line "+trLen+"\" /></td><td align=\"center\">尾部新增的的行"+trLen+"</td></tr>");
+			//alert(trLen);
+			if(trLen==Lines){
+				$("input[name='appendLine']").attr("disabled","disabled");
+				$("input[name='insertLine']").attr("disabled","disabled");
+			}
+		}
+		return true;
+	}
+	function trInsertLine(){
+		var Lines=10;
+		var trIndex=parseInt($("span.clkIndex").text());
+		var tableElement=$("#testTable");
+		var tableTrElement=$("#testTable").find("tr");
+		var trLen=tableTrElement.length;
+		var trNextIndex=trIndex+1;
+		var tempTrHtml;
+		if (trIndex<=0) {
+			alert("请选择要插入的行!");
+			return false;
+		}
+		if (trLen>Lines) {
+			alert("已达到"+Lines+"行的上限");
+			return false;
+		}else{
+			//tableTrElement.eq(trIndex).before("<tr id=\"line"+trIndex+"\"><td align=\"center\">"+trIndex+"</td><td align=\"center\"><input name=\"txtInput[]\" type=\"text\" value=\"Line "+trIndex+"\" /></td><td align=\"center\">新插入的新行"+trIndex+"</td></tr>");
+			
+			tableTrElement.eq(trIndex).after(
+			"<tr id=\"line"+trIndex+"\"><td>"+trIndex+"</td>"+
+					
+			
+					"<td>"+
+					"<input id=\"prod1-2\" type=\"text\" size=\"10\" value=\"\" name=\"prod1-2\">"+
+					"</td>"+
+				
+					"<td>"+
+					"<input id=\"sku1-2\" type=\"text\" size=\"6\" value=\"\" name=\"sku1-2\">"+
+					"</td>"+
+
+					"<td>"+
+					"<input id=\"sku1Name-2\" type=\"text\" size=\"10\" value=\"\" name=\"sku1Name-2\">"+
+					"</td>"+
+			
+					"<td>"+
+					"<input id=\"qty1-2\" type=\"text\" size=\"3\" value=\"\" name=\"qty1-2\">"+
+					"</td>"+
+					"<td>"+
+					"<input id=\"qty1-2\" type=\"text\" size=\"3\" value=\"\" name=\"qty1-2\">"+
+					"</td>"+
+					"</tr>"
+			);
+				
+			for(var i=trIndex;i<trLen;i++){
+				tempTrHtml=tableTrElement.eq(i).html();
+				tableTrElement.eq(i).replaceWith("<tr id=\"line"+(i+1)+"\">"+tempTrHtml+"</tr>");
+			}
+			$("span.clkIndex").text((trIndex+1));
+			//alert(trLen);
+			if(trLen==Lines){
+				$("input[name='appendLine']").attr("disabled","disabled");
+				$("input[name='insertLine']").attr("disabled","disabled");
+			}
+		}
+		//alert(tableElement.html());
+		return true;
+	}
+	function trDeleteLine(){
+		var Lines=15;
+		var trIndex=parseInt($("span.clkIndex").text());
+		var tableElement=$("#testTable");
+		var tableTrElement=$("#testTable").find("tr");
+		var trLen=tableTrElement.length;
+		var trNextIndex=trIndex+1;
+		var tempTrHtml;
+		if (trIndex<=0) {
+			alert("请选择要删除的行!");
+			return false;
+		}
+		if (trLen<=2) {
+			alert("至少要保留一行!");
+			return false;
+		}else{
+			tableTrElement.eq(trIndex).remove();
+			//alert(tempTrHtml);
+			for(var i=trNextIndex;i<trLen;i++){
+				tempTrHtml=tableTrElement.eq(i).html();
+				tableTrElement.eq(i).replaceWith("<tr id=\"line"+(i-1)+"\">"+tempTrHtml+"</tr>");
+			}
+			$("span.clkIndex").text("-1");
+			//alert(trLen);
+			if((trLen-2)<=Lines){
+				$("input[name='appendLine']").attr("disabled","");
+				$("input[name='insertLine']").attr("disabled","");
+			}
+		}
+		//alert(tableElement.html());
+		return true;
+	}
+	function trMoveUpLine(){
+		var trIndex=parseInt($("span.clkIndex").text());
+		var tableElement=$("#testTable");
+		var tableTrElement=$("#testTable").find("tr");
+		var trLen=tableTrElement.length;
+		var trNextIndex=trIndex+1;
+		var tempTrHtml;
+		if (trIndex<=0) {
+			alert("请选择要移动的行!");
+			return false;
+		}
+		if (trIndex==1) {
+			alert("已处于顶部，不能上移！");
+			return false;
+		}else{
+			var strA=tableTrElement.eq(trIndex-1).html();
+			var strB=tableTrElement.eq(trIndex).html();
+			tableTrElement.eq(trIndex-1).html(strB);
+			tableTrElement.eq(trIndex).html(strA);
+			tableTrElement.eq(trIndex-1).css("background-color","#D1EEEE");
+			tableTrElement.eq(trIndex).css("background-color","#FFF");
+			$("span.clkIndex").text(trIndex-1);
+		}
+		//alert(tableElement.html());
+		return true;
+	}
+	function trMoveDownLine(){
+		var trIndex=parseInt($("span.clkIndex").text());
+		var tableElement=$("#testTable");
+		var tableTrElement=$("#testTable").find("tr");
+		var trLen=tableTrElement.length;
+		var trNextIndex=trIndex+1;
+		var tempTrHtml;
+		if (trIndex<=0) {
+			alert("请选择要移动的行!");
+			return false;
+		}
+		if (trIndex==(trLen-1)) {
+			alert("已处于底部，不能下移！");
+			return false;
+		}else{
+			var strA=tableTrElement.eq(trIndex).html();
+			var strB=tableTrElement.eq(trIndex+1).html();
+			tableTrElement.eq(trIndex).html(strB);
+			tableTrElement.eq(trIndex+1).html(strA);
+			tableTrElement.eq(trIndex).css("background-color","#FFF");
+			tableTrElement.eq(trIndex+1).css("background-color","#D1EEEE");
+			$("span.clkIndex").text(trIndex+1);
+		}
+		//alert(tableElement.html());
+		return true;
+	}
+</script>
+
+
+<strong>说明：</strong><br />1.单击某行选中该行,再次单击该行则取消选择；<br />2.每一行的ID均按实际情况顺序改变，可以通过alert(tableElement.html());来查看，TD的值保持不变，可以在文本框里输入文字以查看效果。<br /><br />
+<input name="appendLine" type="button" value="增加一行" />
+<input name="insertLine" type="button" value="插入一行" />
+<input name="deleteLine" type="button" value="删除一行" />
+<input name="moveUpLine" type="button" value="上移一行" />
+<input name="moveDownLine" type="button" value="下移一行" />
+<table id="testTable" border="1" width="80%" align="center">
+	<tr>
+<td>
+<label >消费满:</label>
+</td>
+
+<td>
+<label >产品代码:</label>
+</td>
+
+<td>
+<label >SKU代码:</label>
+</td>
+
+<td>
+<label >赠品名称:</label>
+</td>
+
+<td>
+<label >数量:</label>
+</td>
+
+	</tr>
+	<tr id="line1">
+		
+<td>
+<input id="amount1-@{promotionRule.ruleId}" type="text" size="5" value="" name="amount1-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="prod1-@{promotionRule.ruleId}" type="text" size="10" value="" name="prod1-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="sku1-@{promotionRule.ruleId}" type="text" size="6" value="" name="sku1-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="sku1Name-@{promotionRule.ruleId}" type="text" size="10" value="" name="sku1Name-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="qty1-@{promotionRule.ruleId}" type="text" size="3" value="" name="qty2-@{promotionRule.ruleId}">
+</td>
+</tr>
+<tr id="line2">
+
+<td>
+<input id="amount2-@{promotionRule.ruleId}" type="text" size="5" value="" name="amount2-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="prod2-@{promotionRule.ruleId}" type="text" size="10" value="" name="prod2-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="sku2-@{promotionRule.ruleId}" type="text" size="6" value="" name="sku2-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="sku2Name-@{promotionRule.ruleId}" type="text" size="10" value="" name="sku2Name-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="qty2-@{promotionRule.ruleId}" type="text" size="3" value="" name="qty2-@{promotionRule.ruleId}">
+</td>
+</tr>
+	
+<tr id="line3">
+<td>
+<input id="amount3-@{promotionRule.ruleId}" type="text" size="5" value="" name="amount3-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="prod3-@{promotionRule.ruleId}" type="text" size="10" value="" name="prod3-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="sku3-@{promotionRule.ruleId}" type="text" size="6" value="" name="sku3-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="sku3Name-@{promotionRule.ruleId}" type="text" size="10" value="" name="sku3Name-@{promotionRule.ruleId}">
+</td>
+
+<td>
+<input id="qty3-@{promotionRule.ruleId}" type="text" size="3" value="" name="qty3-@{promotionRule.ruleId}">
+</td>
+</tr>
+<span class="clkIndex">-1</span>
+</table>

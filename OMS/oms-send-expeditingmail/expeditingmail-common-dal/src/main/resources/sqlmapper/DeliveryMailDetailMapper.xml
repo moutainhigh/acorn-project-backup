@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.expeditingmail.common.dal.dao.DeliveryMailDetailDao">
+
+    <resultMap type="DeliveryMailDetail" id="inv">
+        <result column="orderid" property="orderid"/>
+        <result column="mailid" property="mailid"/>
+        <result column="rfoutdat" property="rfoutdat"/>
+        <result column="roadday" property="roadday"/>
+        <result column="outDay" property="outDay"/>
+        <result column="warehouse" property="warehouse"/>
+    </resultMap>
+
+    <select id="execOmsProDeliveryOvertime" statementType="CALLABLE" parameterType="java.util.Map">
+	   {call omspro_delivery_overtime(#{p_companyid,mode=IN,jdbcType=INTEGER},#{p_flag,mode=IN,jdbcType=INTEGER},#{p_return,mode=OUT,jdbcType=INTEGER},#{p_cur,mode=OUT,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=inv})}
+	</select>
+
+    <update id="updateDeliveryMailDetail" parameterType="java.lang.String">
+        update iagent.delivery_mail_detail
+           set issend       = 2,
+               dsc          = '成功',
+               firstsenddat = decode(firstsenddat,
+                                     to_date('00010101', 'yyyymmdd'),
+                                     sysdate,
+                                     firstsenddat),
+               lastsenddat  = sysdate
+         where status = 2
+           and companyid = #{companyId}
+    </update>
+
+   <!-- <select id="findDeliveryMailDetail" parameterType="java.lang.String" resultType="DeliveryMailDetail">
+        select a.orderid as orderId,
+               a.mailid as mailId,
+               a.rfoutdat as rfoutdat,
+               a.roadday as roadday,
+               floor(trunc(sysdate) - trunc(a.rfoutdat) - a.roadday) as outRoadday,
+               a.warehouse as warehouse
+          from iagent.delivery_mail_detail a
+         where a.issend = 2
+           and a.status = 5
+           and nvl(a.customizestatus, '0') not in
+               ('5', '6', '7', '8', '9', '10', '13', '14', '16')
+           and a.companyid = #{companyid}
+           order by a.rfoutdat desc
+    </select>-->
+
+</mapper>

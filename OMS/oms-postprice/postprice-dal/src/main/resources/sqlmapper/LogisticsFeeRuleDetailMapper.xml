@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.postprice.dal.iagent.dao.LogisticsFeeRuleDetailDao">
+
+    <select id="matchLogisticsFeeRuleDetail" parameterType="com.chinadrtv.postprice.dal.iagent.model.PostPriceItem"
+            resultType="com.chinadrtv.postprice.dal.iagent.model.LogisticsFeeRuleDetail">
+        <![CDATA[
+            SELECT * FROM(
+                SELECT T.* FROM
+                    (
+                        (
+                            SELECT LFRD.* FROM ACOAPP_OMS.LOGISTICS_FEE_RULE_DETAIL LFRD
+                            LEFT JOIN ACOAPP_OMS.LOGISTICS_FEE_RULE LFR ON LFR.ID = LFRD.LOGISTICS_FEE_RULE_ID
+                            WHERE
+                            LFR.CONTRACT_ID=#{entityId} AND
+                            LFRD.RULE_TYPE='PRICE' AND
+                            (LFRD.AMOUNT_FLOOR IS NULL OR #{totlePrice}>=LFRD.AMOUNT_FLOOR) AND
+                            (LFRD.AMOUNT_CEIL IS NULL OR #{totlePrice}<LFRD.AMOUNT_CEIL)
+                        )
+                        UNION
+                        (
+                            SELECT LFRD.* FROM ACOAPP_OMS.LOGISTICS_FEE_RULE_DETAIL LFRD
+                            LEFT JOIN ACOAPP_OMS.LOGISTICS_FEE_RULE LFR ON LFR.ID = LFRD.LOGISTICS_FEE_RULE_ID
+                            LEFT JOIN	IAGENT.ORDERHIST OH ON OH.ORDERID = #{orderId}
+                            LEFT JOIN IAGENT.ADDRESS_EXT AE ON AE.ADDRESSID=OH.ADDRESSID
+                            WHERE
+                            LFR.CONTRACT_ID=#{entityId} AND
+                            LFRD.RULE_TYPE='WEIGHT' AND
+                            (LFRD.DESTINATION_PROVINCE IS NULL OR AE.PROVINCEID=LFRD.DESTINATION_PROVINCE) AND
+                            (LFRD.DESTINATION_CITY IS NULL OR AE.CITYID=LFRD.DESTINATION_CITY) AND
+                            (LFRD.DESTINATION_COUNTY IS NULL OR AE.COUNTYID=LFRD.DESTINATION_COUNTY) AND
+                            (LFRD.WEIGHT_FLOOR IS NULL OR #{weight}>=LFRD.WEIGHT_FLOOR) AND
+                            (LFRD.WEIGHT_CEIL IS NULL OR #{weight}<LFRD.WEIGHT_CEIL)
+                        )
+                    ) T
+                    ORDER BY T.DESTINATION_COUNTY,T.DESTINATION_CITY,T.DESTINATION_PROVINCE
+                ) where ROWNUM<2
+        ]]>
+    </select>
+
+</mapper>

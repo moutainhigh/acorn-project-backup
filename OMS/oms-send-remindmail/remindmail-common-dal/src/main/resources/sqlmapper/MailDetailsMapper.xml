@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.remindmail.common.dal.dao.MailDetailsDao">
+
+    <select id="findMailDetailsByAppDate" parameterType="java.util.Map" resultType="MailDetails">
+        select orderid as orderId,
+               usrid as userId,
+               usrname as userName,
+               orderstatus as orderStatus,
+               rfstatus as rfStatus,
+               orderclass as orderClass,
+               appdate as appDate,
+               applicationreason as applicationReason,
+               apppsn as appPsn,
+               companyname as companyName,
+               outhouse as outHouse,
+               mailid as mailId,
+               name as name,
+               senddt as sendDt,
+               ordertype as orderType,
+               address as address,
+               status as status,
+               chkreason as chkReason,
+               chkpsn as chkPsn,
+               chkdate as chkDate,
+               ' ' as finishUser,
+               ' ' as finishDate,
+               entityid as entityId
+          from (select a.orderid as orderid,
+                       d.usrid as usrid,
+                       d.name as usrname,
+                       (select dsc
+                          from iagent.names
+                         where tid = 'ORDERSTATUS'
+                           and id = a.status) as orderstatus,
+                       decode(nvl(a.customizestatus, '0'),
+                              '0',
+                              '正常',
+                              '1',
+                              '取消',
+                              '2',
+                              '出库',
+                              '4',
+                              '送货公司签收',
+                              '5',
+                              '投递完成',
+                              '6',
+                              '拒收在途',
+                              '7',
+                              '问题单',
+                              '其他') as rfstatus,
+                       decode(c.class, '1', '普通', '2', '加急', '3', '紧急', '') as orderclass,
+                       c.appdate as appdate,
+                       c.applicationreason as applicationreason,
+                       c.apppsn as apppsn,
+                       f.name as companyname,
+                       a.mailid as mailid,
+                       b.name as name,
+                       a.senddt as senddt,
+                       (select '[' || a.ordertype || ']' || dsc
+                          from iagent.names
+                         where tid = 'ORDERTYPE'
+                           and id = a.ordertype) as ordertype,
+                       substr(e.address, 1, length(e.address) - 8) as address,
+                       decode(c.status, 1, '待处理', 2, '处理中', 3, '已完成') as status,
+                       c.chkreason as chkreason,
+                       c.chkpsn as chkpsn,
+                       c.chkdate as chkdate,
+                       f.companyid as companyid,
+                       a.ordertype as ordertypeid,
+                       c.class as classid,
+                       c.status as statuid,
+                       f.to_warehouse as outhouse,
+                       a.entityid
+                  from iagent.orderhist a
+                  left outer join iagent.company f
+                    on (a.entityid = f.companyid), iagent.contact b,
+                 acoapp_cntrpbank.orderurgentapplication c, iagent.usr d,
+                 iagent.address e
+                 where a.orderid = c.orderid
+                   And a.contactid = b.contactid
+                   And a.crusr = d.usrid
+                   And a.addressid = e.addressid
+                   and c.status = 1
+                   and a.entityid = #{companyId}
+                   and c.appdate between to_date(#{startDate},'yyyy-MM-dd HH24:mi:ss') and to_date(#{endDate},'yyyy-MM-dd HH24:mi:ss'))
+    </select>
+
+    <update id="updateOrderurgentapplication" parameterType="java.util.Map">
+        update acoapp_cntrpbank.orderurgentapplication a
+           set a.status    = 2,
+               a.chkpsn    = '系统确认',
+               a.chkdate   = sysdate,
+               a.chkreason = '确认中'
+         where a.appdate between to_date(#{startDate},'yyyy-MM-dd HH24:mi:ss') and to_date(#{endDate},'yyyy-MM-dd HH24:mi:ss')
+           and a.status = 1
+           and (select b.entityid
+                  from iagent.orderhist b
+                 where b.orderid = a.orderid) = #{companyId}
+    </update>
+
+
+</mapper>

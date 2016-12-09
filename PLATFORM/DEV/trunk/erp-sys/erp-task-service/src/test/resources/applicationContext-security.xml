@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+    <http pattern="/_ah/**" security="none"/>
+    <http pattern="/static/**" security="none" />
+    <http pattern="/resources/**" security="none" />
+    <http pattern="/register" security="none" />
+    <http pattern="/signin" security="none" />
+    <http pattern="/favicon.ico" security="none" />
+    <http pattern="/welcome.jsp" security="none" />
+
+    <http pattern="/files/**" security="none"/>
+    <http pattern="/images/**" security="none"/>
+    <http pattern="/styles/**" security="none"/>
+    <http pattern="/scripts/**" security="none"/>
+    <http pattern="/api/**" security="none"/>
+	<http pattern="/agent/**" security="none"/>
+	<http pattern="/cti/**" security="none"/>
+	<http pattern="/stat" security="none"/>
+	<http pattern="/stat/**" security="none"/>
+	<http pattern="/getAU4" security="none"/>
+	<http pattern="/getAU4/**" security="none"/>
+	<http pattern="/getAUDTO/**" security="none"/>
+    <http pattern="/getAU/**" security="none"/>
+	<http pattern="/task/queryDistributionChangeQuery*" security="none"/>
+	<http pattern="/task/batchAction*" security="none"/>
+	<http pattern="/task/syncLeadWithTask*" security="none"/>
+	<http pattern="/task/clearInvalidPushTask*" security="none"/>
+	<http pattern="/user/getDepartment*" security="none"/>
+    <http pattern="/inventory/topsale*" security="none"/>
+	<http pattern="/security/modifyPwd4Iagent*" security="none"/>
+	<http pattern="/security/releaseLock*" security="none"/>
+	<http pattern="/cullingUserFromServer*" security="none"/>
+    <http pattern="/cullingUserAll" security="none"/>
+    <http pattern="/cullingUser*" security="none"/>
+    <http pattern="/ICBCCreditService/**" security="none"/>
+    <http pattern="/web_status" security="none"/>
+    <http pattern="/druid/**" security="none"/>
+    <http pattern="/monitor/**" security="none"/>
+    
+        <http auto-config="true" use-expressions="true">
+    	<intercept-url pattern="/index" access="hasAnyRole('INBOUND_AGENT','INBOUND_MANAGER','INBOUND_GROUP_MANAGER','OUTBOUND_AGENT','OUTBOUND_MANAGER','OUTBOUND_GROUP_MANAGER','ADMIN')"/>
+        <intercept-url pattern="/index/**" access="hasAnyRole('INBOUND_AGENT','INBOUND_MANAGER','INBOUND_GROUP_MANAGER','OUTBOUND_AGENT','OUTBOUND_MANAGER','OUTBOUND_GROUP_MANAGER','ADMIN')"/>
+        <!--
+        <intercept-url pattern="/userManagement/**" access="hasRole('CTI_SESSION_MANAGER')"/>
+        -->
+        <intercept-url pattern="/login/**" access="permitAll" />
+        <intercept-url pattern="/**" access="hasAnyRole('INBOUND_AGENT','INBOUND_MANAGER','INBOUND_GROUP_MANAGER','OUTBOUND_AGENT','OUTBOUND_MANAGER','OUTBOUND_GROUP_MANAGER','APPROVE_MANAGER','ASSIGN_TO_AGENT','CTI_SESSION_MANAGER','CALLBACK_AGENT','INSUREPROMPT','ADMIN')"/>
+        <access-denied-handler error-page="/errors/403"/>
+
+        <form-login login-page="/login" authentication-failure-url="/login?error=true" 
+        authentication-failure-handler-ref="customeAuthFailureHandler"
+        authentication-success-handler-ref="customeAuthSuccessHandler"
+        login-processing-url="/j_security_check"  default-target-url="/"/>
+        <remember-me user-service-ref="userDao" key="e37f4b31-0c45-11dd-bd0b-0800200c9a66"/>
+        <session-management invalid-session-url="/login?error=true">
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" session-registry-ref="sessionRegistry"  expired-url="/login?error=true"/>
+    </session-management>
+    	<custom-filter ref="savePasswordFilter" before="FORM_LOGIN_FILTER" />
+
+    </http>
+	<beans:bean id="customeAuthFailureHandler" class="com.chinadrtv.erp.user.handle.CustomeAuthenticationFailureHandler">
+		<beans:property name="defaultFailureUrl" value="/login"/>
+	</beans:bean>
+	<beans:bean id="customeAuthSuccessHandler" class="com.chinadrtv.erp.user.handle.CustomeAuthenticationSuccessHandler">
+	</beans:bean>
+    <!--
+    <beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl"/>
+        -->
+    <beans:bean id="sessionRegistry" class="com.chinadrtv.erp.user.handle.SalesSessionRegistry"></beans:bean>
+<!--      -->
+    <beans:bean id="salesSessionService" class="com.chinadrtv.erp.user.service.impl.SalesSessionServiceImpl"></beans:bean>
+
+    <beans:bean id="currentControllerStrategy"
+                class="com.chinadrtv.erp.user.handle.SalesConcurrentSessionControlStrategy">
+        <beans:constructor-arg ref="sessionRegistry"/>
+        <beans:property name="exceptionIfMaximumExceeded" value="true"/>
+    </beans:bean>
+    
+    <beans:bean id="savePasswordFilter" class="com.chinadrtv.erp.user.filter.SaveBase64PasswordFilter">
+    	<beans:property name="filterProcessesUrl" value="/j_security_check" />
+    </beans:bean>
+
+    <authentication-manager>
+    	<!-- 
+        <authentication-provider user-service-ref="userDao">
+            <password-encoder ref="passwordEncoder"/>
+        </authentication-provider>
+         -->
+         <authentication-provider ref="ldapAuthenticationProvider"/>
+    </authentication-manager>
+
+    <!-- Override the default password-encoder (SHA) by uncommenting the following and changing the class -->
+    <!-- <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"/> -->
+
+    <global-method-security>
+        <protect-pointcut expression="execution(* *..service.UserManager.getUsers(..))" access="ADMIN"/>
+        <protect-pointcut expression="execution(* *..service.UserManager.removeUser(..))" access="ADMIN"/>
+    </global-method-security>
+</beans:beans>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Reference Manual http://logback.qos.ch/manual/index.html -->
+
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%d	%-6p	%logger{50}	%m	%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/acorn/data/oms/acorn_feedback_logs/acorn_feedback.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="rollingDataFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/acorn/data/oms/acorn_feedback_logs/acorn_feedback_data.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%msg%n
+            </pattern>
+        </encoder>
+
+        <!--<layout class="ch.qos.logback.classic.PatternLayout">
+            &lt;!&ndash;格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符&ndash;&gt;
+            <pattern>>%d	%-6p	%l	%m	%n
+            </pattern>
+        </layout>-->
+    </appender>
+
+    <logger name="com.chinadrtv">
+        <level value="INFO" />
+    </logger>
+
+    <logger name="com.chinadrtv.acorn.service.impl.XmlLogServiceImpl"  level="INFO" additivity="false">
+        <appender-ref ref="rollingDataFile"/>
+    </logger>
+
+    <root> <!-- 定义级别为 ,INFo  -->
+        <level value="DEBUG" />
+        <appender-ref ref="stdout" />
+        <appender-ref ref="rollingFile" />
+    </root>
+</configuration>

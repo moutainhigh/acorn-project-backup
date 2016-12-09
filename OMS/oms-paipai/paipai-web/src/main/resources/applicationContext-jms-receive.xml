@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+            http://www.springframework.org/schema/context    
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+            http://www.springframework.org/schema/aop    
+            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd   
+            http://www.springframework.org/schema/tx    
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd   
+            http://www.springframework.org/schema/mvc    
+            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd   
+            http://www.springframework.org/schema/context    
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="systemConfig" class="com.chinadrtv.common.context.SystemContext">
+        <property name="SystemMap">
+            <map>
+                <entry key="brokerURL" value="${env_jms_server_url}"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="jmsQueueReceiverFeedback" class="com.chinadrtv.runtime.jms.receive.JmsReceiver">
+        <property name="connectionFactory" ref="jmsFactoryReceive" />
+        <property name="destinationName" value="${feedback_topic}" />
+        <property name="messageListener">
+            <bean class="com.chinadrtv.oms.paipai.biz.FeedbackTopicListener">
+            	<property name="configList" ref="configList"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="jmsQueueReceiverOrderImport" class="com.chinadrtv.runtime.jms.receive.JmsReceiver">
+        <property name="connectionFactory" ref="jmsFactoryReceive" />
+        <property name="destinationName" value="${import_topic}" />
+        <property name="messageListener">
+            <bean class="com.chinadrtv.oms.paipai.biz.OrderImportTopicListener">
+            	<property name="configList" ref="configList"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean id="jmsQueueReceiverOrderUpdate" class="com.chinadrtv.runtime.jms.receive.JmsReceiver">
+        <property name="connectionFactory" ref="jmsFactoryReceive" />
+        <property name="destinationName" value="${update_topic}" />
+        <property name="messageListener">
+            <bean class="com.chinadrtv.oms.paipai.biz.OrderUpdateTopicListener">
+            	<property name="configList" ref="configList"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean id="configList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <bean class="com.chinadrtv.oms.paipai.dto.OrderConfig">
+                    <property name="url" value="http://api.paipai.com"/>
+                    <property name="appkey" value="700224314"/>
+                    <property name="appSecret" value="z4JZCG4gFaMrU3E4"/>
+                    <property name="sessionKey" value="6bad4017582a5b5b15ed98dfc9b24360"/>
+                    <property name="uin" value="3127800156"/>
+                    <property name="customerId" value="橡果国际拍拍旗舰店"/>
+                    <property name="tradeType" value="268"/>
+                    <property name="tmsCode" value="12345"/>
+                    <property name="sourceId" value="26"/>
+                    <property name="pageSize" value="20"/>
+                </bean>
+                <bean class="com.chinadrtv.oms.paipai.dto.OrderConfig">
+                    <property name="url" value="http://api.paipai.com"/>
+                    <property name="appkey" value="700226598"/>
+                    <property name="appSecret" value="7ETKeoEcq9JI5tJe"/>
+                    <property name="sessionKey" value="f4cee489b40460277ccacaeb9f2e25d4"/>
+                    <property name="uin" value="3175228094"/>
+                    <property name="customerId" value="背背佳拍拍店"/>
+                    <property name="tradeType" value="269"/>
+                    <property name="tmsCode" value="12345"/>
+                    <property name="sourceId" value="26"/>
+                    <property name="pageSize" value="20"/>
+                </bean>
+    		</list>
+    	</constructor-arg>	
+    </bean>
+</beans>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+    <bean id="quartzInventoryScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzInventoryTime" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzInventoryTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobInventory" />
+        </property>
+        <property name="cronExpression">
+            <value>${cronInventory}</value>
+        </property>
+    </bean>
+
+    <bean id="jobInventory" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.ic.util.InventoryQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="itemInventoryTransactionService"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+    <!--定时抓取快照-->
+    <bean id="quartzSnapshotScheduler"
+class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzSnapshotTime" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzSnapshotTime"
+class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobSnapshot" />
+        </property>
+        <property name="cronExpression">
+            <value>${cronSnapshot}</value>
+        </property>
+    </bean>
+
+    <bean id="jobSnapshot" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.ic.util.SnapshotQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="itemInventorySnapshotService"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!--定时收货通知-->
+    <bean id="quartzReceiptWMSScheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzReceiptWMSTime" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzReceiptWMSTime"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobReceiptWMS" />
+        </property>
+        <property name="cronExpression">
+            <value>${cronReceiptWMS}</value>
+        </property>
+    </bean>
+
+    <bean id="jobReceiptWMS"
+          class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.ic.util.ReceiptWMSQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="itemInventoryTransactionService"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!--定时收货通知-->
+    <bean id="quartzReceiptSCMScheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzReceiptSCMTime" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzReceiptSCMTime"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobReceiptSCM" />
+        </property>
+        <property name="cronExpression">
+            <value>${cronReceiptSCM}</value>
+        </property>
+    </bean>
+
+    <bean id="jobReceiptSCM"
+          class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.ic.util.ReceiptSCMQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="itemInventoryTransactionService"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 定时wms出库单 -->
+    <bean id="quartzWmsOutOrderScheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzWmsOutOrderTime" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzWmsOutOrderTime"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobWmsOutOrder" />
+        </property>
+        <property name="cronExpression">
+            <value>${cronWmsOutOrder}</value>
+        </property>
+    </bean>
+
+    <bean id="jobWmsOutOrder"
+          class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.ic.util.WmsOutOrderQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="wmsOutOrderService"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <!--定时scm出库通知单-->
+    <bean id="quartzScmOutNoticeScheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzScmOutNoticeTime" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzScmOutNoticeTime"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobScmOutNotice" />
+        </property>
+        <property name="cronExpression">
+            <value>${cronScmOutNotice}</value>
+        </property>
+    </bean>
+
+    <bean id="jobScmOutNotice" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.ic.util.ScmShipmentQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="shipmentHeaderHisServiceImpl"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!--定时库存状态变化-->
+    <bean id="quartzRecountISScheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzRecountISTime" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzRecountISTime"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobRecountIS" />
+        </property>
+        <property name="cronExpression">
+            <value>${cronRecountIS}</value>
+        </property>
+    </bean>
+
+    <bean id="jobRecountIS"
+          class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.ic.util.RecountISQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="itemInventoryTransactionService"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!--定时库存调整-->
+    <bean id="quartzRecountIAScheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzRecountIATime" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzRecountIATime"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobRecountIA" />
+        </property>
+        <property name="cronExpression">
+            <value>${cronRecountIA}</value>
+        </property>
+    </bean>
+
+    <bean id="jobRecountIA"
+          class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.ic.util.RecountIAQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="itemInventoryTransactionService"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 定时wms出库取消 -->
+    <bean id="quartzCloseScheduler"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzCloseTime" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzCloseTime"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobClose" />
+        </property>
+        <property name="cronExpression">
+            <value>${cornCloseWMS}</value>
+        </property>
+    </bean>
+
+    <bean id="jobClose" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.ic.util.CloseWMSQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="scmCloseShipmentService"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+</beans>

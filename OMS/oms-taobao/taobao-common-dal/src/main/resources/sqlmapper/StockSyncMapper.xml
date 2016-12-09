@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.taobao.common.dal.dao.StockSyncDao">
+	
+	<select id="querySuiteInfoBySuiteId" parameterType="java.lang.String" resultType="ProductSuiteDto">
+		select aa.prodsuitescmid, aa.prodscmid, prodnum
+		   from iagent.productsuitetype aa, acoapp_oms.pre_trade_inventory bb
+		  where aa.prodsuitescmid = bb.outer_id
+		  and bb.outer_id = #{suiteId}
+	</select>
+	
+		
+	<select id="queryUnConfirmedStockByItem" parameterType="java.lang.String" resultType="java.lang.Long">
+		select nvl(sum(bb.qty), 0)
+		  from pre_trade aa, pre_trade_detail bb
+		 where aa.trade_id = bb.trade_id
+		   and shipment_id is null
+		   and trade_type in ('111', '127', '98')
+		   and bb.out_sku_id = #{itemId}
+		   and aa.imp_status is null
+	</select>
+	
+	<select id="checkItemExistance" parameterType="java.lang.String" resultType="java.lang.Boolean">
+		select 1 from plubasinfo p
+		where p.plucode = #{itemId}
+	</select>
+
+</mapper>

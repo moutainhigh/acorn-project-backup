@@ -1,0 +1,78 @@
+@charset "utf-8";
+/* CSS Document */
+ul,li{
+	padding:0;
+	margin:0 auto;
+	list-style:none;
+}
+
+
+#leftside{
+   position: relative;
+    background:#7fbc2e;
+    padding-bottom:40px;
+    border:1px solid #29880a;
+	border-radius: 8px;
+	text-align:center;
+	 box-shadow: inset #d2ee53 0px 1px 1px;
+    behavior: url(/static/images/customer/PIE.htc);
+	font-size:12px;
+	font-family:"微软雅黑", "宋体", Tahoma, "Arial Unicode MS";
+	overflow:hidden;
+}
+#leftside a:link,#leftside a:visited{
+	color:#FFF;
+	display:block;
+	height:22px;
+	line-height:22px;
+	text-decoration:none;
+	border:1px solid #7fbc2e;
+	overflow:hidden;
+}
+#leftside a:hover{border:1px solid #fff;}
+#leftside ul{ display:block; border-top:1px solid #acea5a; overflow:hidden;}
+#leftside li{ display:block; height:24px;}
+#leftside h3{ font-size:12px; color:#ffff00; margin:0; line-height:24px; background:#cc0000;font-weight:normal;}
+#leftside h3 span{ display:inline-block; width:90%; background:#29880a; border-left:1px solid #FFF; border-right:1px solid #fff; }
+#leftside .header{
+	 height:140px;
+	 margin-bottom:10px;
+	background: #7ebc2e;
+	border-radius: 8px 8px 0px 0px;
+	position:relative;
+	border-top:1px solid #acea5a;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#7ebc2e), to(#2a880a));
+	background: -webkit-linear-gradient(#7ebc2e, #2a880a);
+	background: -moz-linear-gradient(#7ebc2e, #2a880a);
+	background: -ms-linear-gradient(#7ebc2e, #2a880a);
+	background: -o-linear-gradient(#7ebc2e, #2a880a);
+	background: linear-gradient(#7ebc2e, #2a880a);
+	-pie-background: linear-gradient(#7ebc2e, #2a880a);
+	behavior: url(/static/images/customer/PIE.htc);
+	color:#FFF;
+}
+#leftside .xiangguologo{ background: url(/static/images/customer/xiangguologo.png) no-repeat center top; height:100px; -pie-png-fix:true;behavior: url(/static/images/customer/PIE.htc);}
+#leftside .header .ex01{ position:absolute; left:0; top:82px; margin:0; width:100%; font-size:14px;}
+#leftside .header .ex02{ position:absolute; left:0; top:120px; margin:0; width:100%;}
+#leftside .strong{ color:#ffff00;}
+
+
+/* 2012/8/14 left nav modify by zf*/
+#nav_left { margin:10px auto; }
+#nav_left ul li{ display:inline; float:left;width:56px; height:74px; overflow: hidden; margin-left:15px; padding-top:15px}
+#nav_left ul li a{  display:block; float:left; background:url(/static/images/customer/bg_menu.png) no-repeat top left; cursor:pointer;}
+
+#nav_left ul li#navuser a{width:56px; height:74px; border:0; background-position:-59px 0;}
+#nav_left ul li#navorders a{ width:56px; height:74px; border:0;background-position:-59px -79px}
+#nav_left ul li#navgift a{width:56px; height:74px; border:0; background-position:-59px -156px}
+#nav_left ul li#navlogistics a{ width:56px; height:74px; border:0;background-position:-59px -235px}
+
+#nav_left ul li#navuser a:hover{ background-position:0 0}
+#nav_left ul li#navorders a:hover{ background-position:0 -79px}
+#nav_left ul li#navgift a:hover{ background-position:0 -156px}
+#nav_left ul li#navlogistics a:hover{ background-position:0 -235px}
+
+#customer_detail #nav_left ul li#navuser a{ width:56px; height:74px; border:0; background-position:0 0;cursor:text;}
+#customer_order #nav_left ul li#navorders a{ background-position:0 -79px}
+#customer_coupon #nav_left ul li#navgift a{ background-position:0 -156px}
+#customer_logistics #nav_left ul li#navlogistics a{ background-position:0 -235px}

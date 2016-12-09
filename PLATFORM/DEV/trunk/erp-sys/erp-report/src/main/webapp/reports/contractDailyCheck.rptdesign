@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.2.v201301221637 Build &lt;4.2.2.v20130206-1509></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/first_report.gif</property>
+    <property name="cheatSheet">org.eclipse.birt.report.designer.ui.cheatsheet.firstreport</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="orderNo" id="471">
+            <text-property name="helpText">发包交接单号</text-property>
+            <text-property name="promptText">发包交接单号</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="startDate" id="476">
+            <text-property name="helpText">开始日期</text-property>
+            <text-property name="promptText">开始日期</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="endDate" id="477">
+            <text-property name="helpText">结束时间</text-property>
+            <text-property name="promptText">结束时间</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="entityId" id="478">
+            <text-property name="helpText">承运商ID</text-property>
+            <text-property name="promptText">承运商ID</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="wareHouse" id="479">
+            <text-property name="helpText">仓库</text-property>
+            <text-property name="promptText">仓库</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="284">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">oracle.jdbc.OracleDriver</property>
+            <property name="odaURL">jdbc:oracle:thin:@127.0.0.1:1521:test</property>
+            <property name="odaUser">system</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">cm9vdA==</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="数据集" id="357">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">ORDERNO</property>
+                    <property name="paramName">orderNo</property>
+                    <property name="nativeName">ORDERNO</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="constant">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">STARTDATE</property>
+                    <property name="paramName">startDate</property>
+                    <property name="nativeName">STARTDATE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">ENDDATE</property>
+                    <property name="paramName">endDate</property>
+                    <property name="nativeName">ENDDATE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">ENTITYID</property>
+                    <property name="paramName">entityId</property>
+                    <property name="dataType">string</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">WAREHOUSE</property>
+                    <property name="paramName">wareHouse</property>
+                    <property name="nativeName">WAREHOUSE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">5</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">V_RECORDSET</property>
+                    <property name="nativeName">V_RECORDSET</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-10</property>
+                    <property name="position">6</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">true</property>
+                    <property name="isOutput">true</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">k1</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">k2</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">k3</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">k4</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">k5</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">k6</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">k7</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">k8</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">k1</property>
+                    <property name="nativeName">k1</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">k2</property>
+                    <property name="nativeName">k2</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">k3</property>
+                    <property name="nativeName">k3</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">k4</property>
+                    <property name="nativeName">k4</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">k5</property>
+                    <property name="nativeName">k5</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">k6</property>
+                    <property name="nativeName">k6</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">k7</property>
+                    <property name="nativeName">k7</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">k8</property>
+                    <property name="nativeName">k8</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{ call system.report4_5_rf(?,?,?,?,?,?) }]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>ORDERNO</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="110">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="246">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="247">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="backgroundColor">#FFFFFF</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="480">
+            <property name="backgroundColor">#F3FFE6</property>
+            <column id="481">
+                <property name="width">2%</property>
+            </column>
+            <column id="482">
+                <property name="width">96%</property>
+            </column>
+            <column id="483">
+                <property name="width">2%</property>
+            </column>
+            <row id="496">
+                <cell id="497">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+                <cell id="498">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+                <cell id="499">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+            </row>
+            <row id="484">
+                <property name="height">0.5104166666666666in</property>
+                <cell id="485">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+                <cell id="486">
+                    <property name="backgroundColor">#FFFFFF</property>
+                    <property name="verticalAlign">middle</property>
+                    <label id="356">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">x-large</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">发包日报核对表</text-property>
+                    </label>
+                </cell>
+                <cell id="487">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+            </row>
+            <row id="488">
+                <cell id="489">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+                <cell id="490">
+                    <property name="backgroundColor">#FFFFFF</property>
+                    <table id="410">
+                        <property name="dataSet">数据集</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">k1</property>
+                                <text-property name="displayName">k1</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["k1"]</expression>
+                                <property name="dataType">date-time</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">k2</property>
+                                <text-property name="displayName">k2</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["k2"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">k3</property>
+                                <text-property name="displayName">k3</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["k3"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">k4</property>
+                                <text-property name="displayName">k4</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["k4"]</expression>
+                                <property name="dataType">decimal</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">k5</property>
+                                <text-property name="displayName">k5</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["k5"]</expression>
+                                <property name="dataType">float</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">k6</property>
+                                <text-property name="displayName">k6</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["k6"]</expression>
+                                <property name="dataType">float</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">k7</property>
+                                <text-property name="displayName">k7</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["k7"]</expression>
+                                <property name="dataType">float</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">k8</property>
+                                <text-property name="displayName">k8</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["k8"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">聚合</property>
+                                <text-property name="displayName">统计</text-property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">dataSetRow["k7"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">聚合_1</property>
+                                <text-property name="displayName">统计</text-property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">dataSetRow["k6"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">聚合_2</property>
+                                <text-property name="displayName">统计</text-property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">dataSetRow["k5"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">聚合_3</property>
+                                <text-property name="displayName">统计</text-property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">dataSetRow["k4"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="454">
+                            <property name="width">150px</property>
+                        </column>
+                        <column id="455"/>
+                        <column id="456"/>
+                        <column id="457">
+                            <property name="width">80px</property>
+                        </column>
+                        <column id="458"/>
+                        <column id="459"/>
+                        <column id="460"/>
+                        <header>
+                            <row id="411">
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                                <cell id="412">
+                                    <label id="462">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">12pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">发包出口日期</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="414">
+                                    <label id="463">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">12pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">发包交接单号</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="416">
+                                    <label id="464">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">12pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">承运商名称</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="418">
+                                    <label id="465">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">12pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">right</property>
+                                        <text-property name="text">包裹数量</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="420">
+                                    <label id="466">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">12pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">right</property>
+                                        <text-property name="text">应收款</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="422">
+                                    <label id="467">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">12pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">right</property>
+                                        <text-property name="text">预计投递费</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="424">
+                                    <label id="468">
+                                        <property name="fontFamily">sans-serif</property>
+                                        <property name="fontSize">12pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="textAlign">right</property>
+                                        <text-property name="text">应收款-投递费</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="428">
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">1px</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">1px</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">1px</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">1px</property>
+                                <cell id="429">
+                                    <data id="430">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <structure name="dateTimeFormat">
+                                            <property name="category">Long Date</property>
+                                            <property name="pattern">Long Date</property>
+                                            <property name="locale">zh_Hans_CN</property>
+                                        </structure>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">k1</property>
+                                    </data>
+                                </cell>
+                                <cell id="431">
+                                    <data id="432">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">k2</property>
+                                    </data>
+                                </cell>
+                                <cell id="433">
+                                    <data id="434">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">k3</property>
+                                    </data>
+                                </cell>
+                                <cell id="435">
+                                    <data id="436">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">k4</property>
+                                    </data>
+                                </cell>
+                                <cell id="437">
+                                    <data id="438">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">k5</property>
+                                    </data>
+                                </cell>
+                                <cell id="439">
+                                    <data id="440">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                            <property name="locale">zh_Hans_CN</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">k6</property>
+                                    </data>
+                                </cell>
+                                <cell id="441">
+                                    <data id="442">
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">k7</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="445">
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">2px</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">2px</property>
+                                <property name="borderRightStyle">solid</property>
+                                <property name="borderRightWidth">2px</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">2px</property>
+                                <cell id="446">
+                                    <label id="469">
+                                        <property name="fontSize">9pt</property>
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">合计：</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="447"/>
+                                <cell id="448">
+                                    <label id="503">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                    </label>
+                                </cell>
+                                <cell id="449">
+                                    <data id="502">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">聚合_3</property>
+                                    </data>
+                                </cell>
+                                <cell id="450">
+                                    <data id="501">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">¥###0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">聚合_2</property>
+                                    </data>
+                                </cell>
+                                <cell id="451">
+                                    <data id="500">
+                                        <property name="borderRightStyle">dotted</property>
+                                        <property name="borderRightWidth">1px</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">¥###0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">聚合_1</property>
+                                    </data>
+                                </cell>
+                                <cell id="452">
+                                    <data id="470">
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">¥###0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">聚合</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+                <cell id="491">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+            </row>
+            <row id="492">
+                <property name="backgroundColor">#FFFFFF</property>
+                <cell id="493">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+                <cell id="494">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+                <cell id="495">
+                    <property name="backgroundColor">#FFFFFF</property>
+                </cell>
+            </row>
+        </grid>
+    </body>
+</report>

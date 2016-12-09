@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>调度任务TOPIC</title>
+<script type="text/javascript">
+/** 
+* 时间对象的格式化 
+*/  
+Date.prototype.format = function(format)  
+{  
+	/* 
+	* format="yyyy-MM-dd hh:mm:ss"; 
+	*/  
+	var o = {  
+		"y+" : this.getFullYear(),
+		"M+" : this.getMonth() + 1,  
+		"d+" : this.getDate(),  
+		"h+" : this.getHours(),  
+		"m+" : this.getMinutes(),  
+		"s+" : this.getSeconds(),  
+		"q+" : Math.floor((this.getMonth() + 3) / 3),  
+		"S" : this.getMilliseconds()  
+	}  
+	  
+	if (/(y+)/.test(format))  
+	{  
+		format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4  
+		- RegExp.$1.length));  
+	}  
+	  
+	for (var k in o)  
+	{  
+		if (new RegExp("(" + k + ")").test(format))  
+		{  
+			format = format.replace(RegExp.$1, RegExp.$1.length == 1  
+			? o[k]  
+			: ("00" + o[k]).substr(("" + o[k]).length));  
+		}  
+	}  
+	return format;  
+}  
+
+
+	$().ready(function(){
+		$common.initResultMsg();
+	   	
+	   	$('#queryAdd').click(function(){
+	   		mmg.load();
+	   	});
+	   	
+	   	$("#queryRepeat").click(function(){
+	   		if(confirm("请确定立即执行调度任务？")){
+	   			$.ajax({
+               	 url:'${rc.contextPath}/scheduler/repeatScheduler',
+               	 data:{"id":$("#id").val()},
+               	 dataType:"json",
+               	 type:"POST",
+               	 success:function(data){//根据返回状态显示信息，重新加载页面
+               		 if(data.result == 1){
+               			 alert("手工触发JOB任务成功！");
+               		 }else{
+               			 alert("手工触发JOB任务失败，请重试！");
+               		 }
+               	 }
+                });
+	   		}
+	   	});
+
+		 var cols = [
+		 	{ title:'系统名称', name:'jobSystem' ,width:50, align:'center'},
+	        { title:'任务名称', name:'jobName' ,width:50, align:'center'},
+		 	{ title:'运行时间', name:'jobTime' ,width:50, align:'center',
+	        	renderer:function(val){var time = new Date(val); return time.format("yyyy-MM-dd hh:mm:ss");}},
+	        { title:'运行状态', name:'jobStatus' ,width:20, align:'center',
+	        	renderer:function(val){if(val==1) return "成功"; else return "失败";}},
+	        { title:'运行信息', name:'message' ,width:300, align:'center',
+	        		renderer:function(val){return "<span title='"+val+"'>"+val+"</span>";}}
+	     ];
+		 var mmg = $('.mmg').mmGrid({
+	        cols: cols,
+	        height: 500,
+	        root:'list',
+	       	multiSelect: true,
+	       	nowrap: true,
+	       	params:function(){
+	       		if($('#jobStatus').val()!=""){
+	       			return {jobStatus:$('#jobStatus').val(),jobId:$('#id').val()};
+	       		}else{
+		       		return {jobId:$('#id').val()};
+	       		}
+	       	},
+	       	//checkCol: true,
+          fullWidthRows: true,
+          autoLoad: false,
+          url: '${rc.contextPath}/console/listHistoryData',
+          method: 'post',
+          plugins: [
+                    $('#pg').mmPaginator({limit:${page.pageSize},page:${page.currPage}})
+          ]
+	    });
+		 
+		 mmg.load();
+	});
+</script>
+</head>
+<body>
+	<div class="container" id="iframe">
+		<div class="action">
+			<button id="queryAdd" class="btn btn-primary">
+				<i class="icon-refresh icon-white"></i>查询
+			</button>
+			<button id="queryRepeat" class="btn btn-danger">
+				<i class="icon-repeat icon-white"></i>执行任务
+			</button>
+		</div>
+		<div style="margin-bottom: 5px; text-align: left;">
+			<div class="input-prepend">
+				<input id="id" name="id" type="hidden" value="${(id!'')?c}">
+				<span class="add-on">执行状态</span> 
+				<select class="span3" id="jobStatus" name="jobStatus">
+					<option value="-1">全部</option>
+					<option value="1">成功</option>
+					<option value="0">失败</option>
+				</select>
+			</div>
+		</div>
+		<div class="alert alert-success" id="msg_success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<span class="success"></span><br />
+		</div>
+		<input type="hidden" id="action_msg" value="${success!''}" />
+
+		<table id="mmg" class="mmg">
+			<tr>
+				<th rowspan="" colspan=""></th>
+			</tr>
+		</table>
+		<div id="pg" style="text-align: right;"></div>
+	</div>
+</body>
+</html>

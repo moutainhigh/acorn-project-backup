@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"  
+       default-lazy-init="true">  
+  
+    <bean id="timerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">  
+        <property name="triggers">  
+            <list>  
+            </list>  
+        </property>  
+    </bean>  
+  
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="myJob"/>  
+        <property name="cronExpression" value="0 0 1 * * ?"></property>
+    </bean>  
+      
+    <bean id="myJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <!-- 调用的类  -->  
+        <property name="targetObject">  
+            <ref bean="syncStatusBean"/>  
+        </property>  
+        <!-- 调用类中的方法  -->  
+        <property name="targetMethod">  
+            <value>executeInternal</value>  
+        </property>  
+    </bean>
+
+	<bean id="syncStatusBean" class="com.chinadrtv.erp.sales.job.LeadSyncWithTask">
+		<property name="leadService">
+			<ref bean="leadService" />
+		</property>
+		<property name="bpmTaskService">
+			<ref bean="bpmTaskService" />
+		</property>
+		<property name="campaignReceiverService">
+			<ref bean="campaignReceiverService" />
+		</property>
+		<property name="jobRelationexService">
+			<ref bean="jobRelationexService" />
+		</property>
+	</bean>
+
+
+    <!-- 定时统计销售排行  -->
+    <bean id="orderSoldTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="orderSoldJob"/>
+        <property name="cronExpression" value="0 0 1 * * ?"></property>
+    </bean>
+
+    <bean id="orderSoldJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+
+        <property name="targetObject">
+            <ref bean="orderSoldBean"/>
+        </property>
+        <property name="targetMethod">
+            <value>executeInternal</value>
+        </property>
+    </bean>
+
+    <bean id="orderSoldBean" class="com.chinadrtv.erp.sales.job.OrderSoldJob">
+        <property name="orderSoldService">
+            <ref bean="orderSoldService" />
+        </property>
+    </bean>
+
+</beans> 

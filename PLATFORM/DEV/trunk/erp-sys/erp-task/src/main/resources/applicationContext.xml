@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <aop:aspectj-autoproxy />
+    <context:annotation-config/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:ds.properties</value>
+                <value>classpath:source.properties</value>
+                <value>classpath:mail.properties</value>
+                <value>classpath:task.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com.chinadrtv.erp">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	
+	<util:properties id="hibernateProperties" location="classpath:hibernate.properties" />
+	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+	<!-- JSR303 Validator定义 -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+
+	<!-- oms entityManager -->
+	<!-- Jpa Entity Manager 配置  -->
+	<bean id="entityManagerFactoryOms" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="omsDS" />
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+		<property name="packagesToScan" value="com.chinadrtv.erp.task.entity" />
+		<property name="jpaProperties" ref="hibernateProperties" />
+	</bean>
+	<!-- Spring Data Jpa配置-->
+	<jpa:repositories base-package="com.chinadrtv.erp.task.dao.oms"
+		transaction-manager-ref="transactionManagerOms"
+		entity-manager-factory-ref="entityManagerFactoryOms"  
+		factory-class="com.chinadrtv.erp.task.core.repository.jpa.BaseRepositoryFactoryBean" />
+	<!-- JPA 事务配置 -->
+	<bean id="transactionManagerOms" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactoryOms" />
+	</bean>
+	<!-- 使用annotation定义事务 -->
+	<tx:annotation-driven transaction-manager="transactionManagerOms" proxy-target-class="true" />
+	<!-- oms entityManager -->
+	
+	
+	<!-- 新增一个数据源及EntityManager需要按照这段代码添加配置 （一般简单的数据库查询，只需要配置dataSource，使用dataSource更加方便）-->
+	<!-- sales entityManager -->
+	<bean id="entityManagerFactorySales" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="salesDS" />
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+		<property name="packagesToScan" value="com.chinadrtv.erp.task.entity" />
+		<property name="jpaProperties" ref="hibernateProperties" />
+	</bean>
+	<jpa:repositories base-package="com.chinadrtv.erp.task.dao.sales"
+		transaction-manager-ref="transactionManagerSales"
+		entity-manager-factory-ref="entityManagerFactorySales"  
+		factory-class="com.chinadrtv.erp.task.core.repository.jpa.BaseRepositoryFactoryBean"/>
+	<bean id="transactionManagerSales" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactorySales" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManagerSales" proxy-target-class="true" />
+	<!-- sales entityManager -->
+	<!-- 新增一个数据源及EntityManager需要按照这段代码添加配置 （一般简单的数据库查询，只需要配置dataSource，使用dataSource更加方便）-->
+	
+	
+	<!-- cntrpbank entityManager -->
+	<bean id="entityManagerFactoryCtb" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="cntrpbankDS" />
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+		<property name="packagesToScan" value="com.chinadrtv.erp.task.entity" />
+		<property name="jpaProperties" ref="hibernateProperties" />
+	</bean>
+	<jpa:repositories base-package="com.chinadrtv.erp.task.dao.cntrpbank"
+		transaction-manager-ref="transactionManagerCtb"
+		entity-manager-factory-ref="entityManagerFactoryCtb"  
+		factory-class="com.chinadrtv.erp.task.core.repository.jpa.BaseRepositoryFactoryBean"/>
+	<bean id="transactionManagerCtb" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactoryCtb" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManagerCtb" proxy-target-class="true" />
+	<!-- cntrpbank entityManager -->
+	
+	
+	<import resource="classpath:applicationContext-ds.xml"/>
+	<import resource="classpath:applicationContext-security.xml"/>
+	<import resource="classpath:applicationContext-quartz.xml"/>
+	<import resource="classpath:applicationContext-mail.xml"/>
+	<import resource="classpath:applicationContext-batch.xml"/>
+	<import resource="classpath:applicationContext-cache.xml"/>
+
+    <bean class="com.google.code.ssm.Settings">
+        <property name="order" value="500" />
+    </bean>
+	
+</beans>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="com.chinadrtv.erp.model.AddressExt" />
+		<mapping class="com.chinadrtv.erp.model.agent.AreaAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.CityAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.CountyAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.Province" />
+		<mapping class="com.chinadrtv.erp.model.agent.Parameters" />
+
+		<mapping class="com.chinadrtv.erp.model.Address" />
+		<mapping class="com.chinadrtv.erp.model.Contact" />
+		<mapping class="com.chinadrtv.erp.model.Phone" />
+		<mapping class="com.chinadrtv.erp.model.PotentialContact" />
+		<mapping class="com.chinadrtv.erp.model.PotentialContactPhone" />
+		<mapping class="com.chinadrtv.erp.model.agent.Conpointuse" />
+		<mapping class="com.chinadrtv.erp.model.agent.Conpointcr" />
+		<mapping class="com.chinadrtv.erp.model.agent.Cases" />
+		<mapping class="com.chinadrtv.erp.model.agent.Casetype" />
+		<mapping class="com.chinadrtv.erp.model.marketing.Lead" />
+		<mapping class="com.chinadrtv.erp.model.marketing.LeadInteraction" />	
+		<mapping class="com.chinadrtv.erp.model.marketing.LeadType" />
+		<mapping class="com.chinadrtv.erp.model.marketing.LeadInteractionOrder" />	
+		
+		<mapping class="com.chinadrtv.erp.model.marketing.Campaign"/>
+		<mapping class="com.chinadrtv.erp.model.marketing.CustomerGroup"/>
+		<mapping class="com.chinadrtv.erp.model.marketing.CampaignType"/>
+		<mapping class="com.chinadrtv.erp.model.marketing.CustomerSqlSource"/>
+  
+		<mapping class="com.chinadrtv.erp.model.agent.OrderDetail" />
+		<mapping class="com.chinadrtv.erp.model.agent.Order" />
+		<mapping class="com.chinadrtv.erp.model.agent.OrderdetHistory" />
+		<mapping class="com.chinadrtv.erp.model.agent.OrderHistory" />
+		<mapping class="com.chinadrtv.erp.model.agent.Product" />
+		<mapping class="com.chinadrtv.erp.model.agent.CallHistLeadInteraction" />
+
+   
+        
+        <mapping class="com.chinadrtv.erp.model.trade.ShipmentHeader" />
+        <mapping class="com.chinadrtv.erp.model.trade.ShipmentDetail" />
+        
+        <mapping class="com.chinadrtv.erp.model.inventory.ProductType" />
+        <mapping class="com.chinadrtv.erp.model.inventory.ProductSuiteType" />
+        <mapping class="com.chinadrtv.erp.model.inventory.PlubasInfo" />
+        
+		<mapping class="com.chinadrtv.erp.model.agent.Card" />
+		<mapping class="com.chinadrtv.erp.model.agent.CallHist" />
+		
+		<mapping class="com.chinadrtv.erp.user.model.AgentUser" />
+		<mapping class="com.chinadrtv.erp.model.agent.Grp" />
+		<mapping class="com.chinadrtv.erp.model.ShoppingCart"/>
+        <mapping class="com.chinadrtv.erp.model.ShoppingCartProduct"/>
+        
+        <mapping class="com.chinadrtv.erp.model.marketing.Callback"/>
+        <mapping class="com.chinadrtv.erp.model.marketing.UserBpm"/>
+        <mapping class="com.chinadrtv.erp.model.marketing.UserBpmTask"/>
+		<mapping class="com.chinadrtv.erp.model.ContactChange" />
+		<mapping class="com.chinadrtv.erp.model.OrderChange" />
+		<mapping class="com.chinadrtv.erp.model.OrderdetChange" />
+		<mapping class="com.chinadrtv.erp.model.PhoneChange" />
+		<mapping class="com.chinadrtv.erp.model.AddressChange" />
+		<mapping class="com.chinadrtv.erp.model.AddressExtChange" />
+		<mapping class="com.chinadrtv.erp.model.CardChange" />
+		
+		<mapping class="com.chinadrtv.erp.model.agent.OldContactex" />
+		<mapping class="com.chinadrtv.erp.model.agent.ObContact" />
+		<mapping class="com.chinadrtv.erp.model.agent.MpZone" />
+
+        <mapping class="com.chinadrtv.erp.model.BlackList"/>
+        <mapping class="com.chinadrtv.erp.model.BlackPhone"/>
+        <mapping class="com.chinadrtv.erp.model.TransferBlackList"/>
+        <mapping class="com.chinadrtv.erp.model.marketing.Callback"/>
+
+        <mapping class="com.chinadrtv.erp.model.cntrpbank.AcdGroup"/>
+        <mapping class="com.chinadrtv.erp.model.agent.TCallhist"/>
+    </session-factory>
+</hibernate-configuration>

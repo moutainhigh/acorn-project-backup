@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>demo-添加</title>
+<script type="text/javascript">
+	$().ready(function() {
+
+		$('#submitBut').click(function() {
+			if ($("#adminForm").validator().data("validator").checkValidity()) {
+				$('#saveType').val('submitData');
+				$("#adminForm").submit();
+			}
+		});
+
+		$('#backBut').click(function() {
+			window.location.href = '${rc.contextPath}/demo/dataGrid';
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="widget">
+			<form class="form-horizontal" id="adminForm" method="post"
+				name="adminForm" action="${rc.contextPath}/demo/add">
+				<div class="widget-header">
+					<h5>用戶维护</h5>
+				</div>
+				<div class="row-fluid">
+					<div class="span6">
+						<div class="form-row">
+							<label class="field-name" for="username"><span
+								class="required">*</span>用户名:</label>
+							<div class="field">
+								<input type="text" name="userName" id="username"
+									required="required" value="" maxlength="30">
+							</div>
+						</div>
+					</div>
+
+					<div class="span6">
+						<div class="form-row">
+							<label class="field-name" for="password"><span
+								class="required">*</span>密码:</label>
+							<div class="field">
+								<input type="password" name="password" id="password"
+									 maxlength="30">
+							</div>
+						</div>
+					</div>
+				</div>
+
+		<div class="row-fluid">
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary" id="submitBut">保存</button>
+				<button type="button" class="btn" id="backBut">返回</button>
+			</div>
+		</div>
+		</form>
+	</div>
+</body>
+</html>

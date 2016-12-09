@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<configuration scan="true" scanPeriod="30 seconds">
+    <property name="LOG_HOME" value="/acorn/web/logs/" />
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+
+
+        <encoder charset="UTF-8">
+
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_DAY"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <Encoding>UTF-8</Encoding>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <FileNamePattern>/acorn/data/sales/sales.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>3</MaxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+            </pattern>
+        </layout>
+
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+
+   <!-- <logger name="org.springframework">
+        <level value="INFO" />
+    </logger>-->
+    <!--<logger name="org.hibernate">
+        <level value="INFO" />
+    </logger>-->
+  <logger name="org.hibernate.SQL">
+        <level value="DEBUG" />
+    </logger>
+        <logger name="org.hibernate.cache">
+        <level value="INFO" />
+    </logger>
+    	<logger name="com.chinadrtv.erp.oms.controller">
+        <level value="INFO" />
+    </logger>
+    <logger name="com.chinadrtv.erp">
+        <level value="DEBUG" />
+    </logger>
+    <logger name="com.chinadrtv.erp.pay.core">
+        <level value="WARN" />
+    </logger>
+
+    <logger name="com.chinadrtv.erp.sales.util.ControllerLogTracer">
+        <level value="DEBUG" />
+    </logger>
+
+    <!--<logger name="org.activiti">
+        <level value="DEBUG" />
+    </logger>-->
+
+    <root>
+        <level value="WARN" />
+        <appender-ref ref="stdout" />
+        <appender-ref ref="FILE_DAY" />
+    </root> 
+</configuration>

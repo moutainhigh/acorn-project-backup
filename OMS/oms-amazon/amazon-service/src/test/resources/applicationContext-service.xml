@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Application context definition. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+       default-autowire="byName">
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <context:annotation-config />
+
+    <context:component-scan base-package="com.chinadrtv.amazon.service;com.chinadrtv.dal.iagent;com.chinadrtv.dal.oms;com.chinadrtv.service"/>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <!--<property name="url" value="jdbc:oracle:thin:@//192.168.3.180:1521/tsdb3180.develop"></property>-->
+        <property name="url" value="jdbc:oracle:thin:@192.168.4.10:1521:testdb"></property>
+
+        <!--<property name="username" value="acoapp_oms"></property>
+        <property name="password" value="acorn.2013"></property>-->
+
+        <property name="username" value="acoapp_oms"></property>
+        <property name="password" value="oms.2012"></property>
+
+        <property name="defaultAutoCommit" value="false" />
+
+        <property name="timeBetweenEvictionRunsMillis" value="3600000" />
+        <property name="minEvictableIdleTimeMillis" value="3600000" />
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis-config-test.xml" />
+    </bean>
+
+	<!-- Transaction Manager -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.chinadrtv.dal.*.dao;com.chinadrtv.amazon.common.dal" />
+    </bean>
+
+</beans>

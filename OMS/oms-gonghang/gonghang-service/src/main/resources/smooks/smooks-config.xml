@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smooks-resource-list
+        xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+        xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd">
+        
+	<resource-config selector="global-parameters">
+		<param name="stream.filter.type">SAX</param>
+	</resource-config>        
+    
+    <!-- request order list -->
+    <jb:bean beanId="orderIdList" class="java.util.ArrayList" createOnElement="body/order_list">
+    	<jb:wiring beanIdRef="orderDto"/>
+    </jb:bean>
+    
+    <jb:bean beanId="orderDto" class="com.chinadrtv.gonghang.dal.dto.OrderHeaderDto" createOnElement="body/order_list/order">
+    	<jb:value data="body/order_list/order/order_id" property="orderId"/>
+    	<jb:value data="body/order_list/order/order_create_time" property="orderCreateTime" decoder="Date">
+    		<jb:decodeParam name="format">yyyy-MM-dd HH:mm:ss</jb:decodeParam>
+    	</jb:value>
+    	<jb:value data="body/order_list/order/order_modify_time" property="orderModifyTime" decoder="Date">
+    		<jb:decodeParam name="format">yyyy-MM-dd HH:mm:ss</jb:decodeParam>
+    	</jb:value>
+    	<jb:value data="body/order_list/order/order_status" property="orderStatus"/>
+    </jb:bean>
+
+	<!-- request order detail -->
+	<jb:bean beanId="orderHeaderDto" class="com.chinadrtv.gonghang.dal.dto.OrderHeaderDto" createOnElement="body/order_list/order">
+		<jb:value data="body/order_list/order/order_id" property="orderId"/>
+		<jb:value data="body/order_list/order/order_buyer_id" property="orderBuyerId"/>
+		<jb:value data="body/order_list/order/order_buyer_username" property="orderBuyerName"/>
+    	<jb:value data="body/order_list/order/order_create_time" property="orderCreateTime" decoder="Date">
+    		<jb:decodeParam name="format">yyyy-MM-dd HH:mm:ss</jb:decodeParam>
+    	</jb:value>
+    	<jb:value data="body/order_list/order/order_amount" property="orderAmount"/>
+    	<jb:value data="body/order_list/order/order_other_discount" property="orderOtherDiscount"/>
+    	<jb:value data="body/order_list/order/payment/order_freight" property="orderFreight"/>
+    	<jb:value data="body/order_list/order/payment/order_pay_amount" property="orderPayAmount"/>
+    	<jb:value data="body/order_list/order/order_status" property="orderStatus"/>
+    	<jb:value data="body/order_list/order/consignee/consignee_name" property="consigneeName"/>
+    	<jb:value data="body/order_list/order/consignee/consignee_province" property="consigneeProvince"/>
+    	<jb:value data="body/order_list/order/consignee/consignee_city" property="consigneeCity"/>
+    	<jb:value data="body/order_list/order/consignee/consignee_district" property="consigneeDistrict"/>
+    	<jb:value data="body/order_list/order/consignee/consignee_address" property="consigneeAddress"/>
+    	<jb:value data="body/order_list/order/consignee/consignee_zipcode" property="zipcode"/>
+    	<jb:value data="body/order_list/order/consignee/consignee_mobile" property="mobile"/>
+    	<jb:value data="body/order_list/order/consignee/consignee_phone" property="phone"/>
+    	<jb:value data="body/order_list/order/invoice/invoice_title" property="invoiceTitle"/>
+    	<jb:value data="body/order_list/order/invoice/invoice_content" property="invoiceContent"/>
+    	<jb:value data="body/order_list/order/order_buyer_remark" property="orderBuyerRemark"/>
+    	<jb:value data="body/order_list/order/order_credit_amount" property="orderCreditAmount"/>
+    	<jb:value data="body/order_list/order/order_coupon_amount" property="orderCouponAmount"/>
+    	
+    	<jb:wiring beanIdRef="orderDetails" property="orderDetails"/>
+	</jb:bean>
+	
+	<jb:bean beanId="orderDetails" class="java.util.ArrayList" createOnElement="body/order_list/order/products/product">
+		<jb:wiring beanIdRef="orderDetailDto"/>
+	</jb:bean>
+		
+	<jb:bean beanId="orderDetailDto" class="com.chinadrtv.gonghang.dal.dto.OrderDetailDto" createOnElement="body/order_list/order/products/product">
+		<jb:value data="body/order_list/order/products/product/product_id" property="productId"/>
+		<jb:value data="body/order_list/order/products/product/product_sku_id" property="productSkuId"/>
+		<jb:value data="body/order_list/order/products/product/product_code" property="productCode"/>
+		<jb:value data="body/order_list/order/products/product/product_name" property="productName"/>
+		<jb:value data="body/order_list/order/products/product/product_number" property="productNumber" decoder="Integer"/>
+		<jb:value data="body/order_list/order/products/product/product_price" property="productPrice" decoder="BigDecimal"/>
+		<jb:value data="body/order_list/order/products/product/product_discount" property="productDiscount" decoder="BigDecimal"/>
+	</jb:bean>
+	
+	<jb:bean beanId="responseHeader" class="com.chinadrtv.gonghang.dal.dto.ResponseHeaderDto" createOnElement="response/head">
+		<jb:value data="response/head/method" property="method"/>
+		<jb:value data="response/head/req_sid" property="reqSid"/>
+		<jb:value data="response/head/version" property="version"/>
+		<jb:value data="response/head/timestamp" property="timestamp"/>
+		<jb:value data="response/head/app_key" property="appKey"/>
+		<jb:value data="response/head/auth_code" property="authCode"/>
+		<jb:value data="response/head/ret_code" property="retCode"/>
+		<jb:value data="response/head/ret_msg" property="retMsg"/>
+		<jb:value data="response/head/sign" property="sign"/>
+	</jb:bean>
+</smooks-resource-list>

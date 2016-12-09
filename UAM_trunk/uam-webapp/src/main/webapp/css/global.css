@@ -1,0 +1,138 @@
+blockquote, body, button, dd, dl, dt,form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
+    margin: 0;
+    padding: 0
+}
+
+body, button, input, select, textarea {
+    font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', \5b8b\4f53, sans-serif
+}
+
+h1, h2, h3, h4, h5, h6 {
+    /*font-size: 100%*/
+}
+
+address, cite, dfn, em, var {
+    font-style: normal
+}
+
+code, kbd, pre, samp {
+    font-family: courier new, courier, monospace
+}
+
+small {
+    font-size: 12px
+}
+
+ol, ul {
+    list-style: none
+}
+
+a {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+sup {
+    vertical-align: text-top
+}
+
+sub {
+    vertical-align: text-bottom
+}
+
+legend {
+    color: #000
+}
+
+ img {
+    border: 0
+}
+
+button, input, select, textarea {
+    font-size: 100%
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+body{background-color: #eee;}
+.U_Wrap{
+    width:950px;
+    margin: 0 auto;
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.U-hd img{margin: 0 10px}
+.breadcrumb span{
+    display: none;
+}
+.breadcrumb {
+    height: 26px;
+    padding: 0 0 4px 6px;
+    overflow: hidden;
+    line-height: 20px;
+    vertical-align: baseline;
+}
+.breadcrumb strong, .breadcrumb h1 {
+    display: inline;
+    font-weight: 700;
+    line-height: 20px;
+    font-size: 18px;
+    font-family: "microsoft yahei";
+    color: #333;
+}
+.QueryWrap ul{
+
+}
+.QueryWrap ul:after{
+    content: '';
+    display: block;
+    clear: both;
+
+}
+.QueryWrap{ text-align: left;border-bottom: 1px #ddd solid;padding-bottom: 5px;margin-bottom: 5px;}
+.QueryWrap input.text{width:120px;padding:2px;border:1px #d3d3d3 solid;font-size: 12px;height:16px;line-height: 16px;}
+.QueryWrap li{ float: left;width:256px;height: 24px;line-height: 24px}
+.QueryWrap li label{ float: left; color: #575765; display: inline-block;width:80px;height: 24px; margin-right: 10px;}
+.QueryWrap li.fr{float: right;}
+.item1Wrap{margin-left: 10px;height:100%}
+.window .QueryWrap{border-bottom: 0;}
+.window .QueryWrap li{height: 30px; line-height: 30px}
+.window .QueryWrap  li label{width:120px; text-align: right;}
+
+.U-hd{background-color: #F8FAFC}
+
+a.window_btn {
+    display: inline-block;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    width: 75px;
+    /*padding:3px 0;*/
+    font-weight: bold;
+    /*height: 25px;*/
+    /*line-height: 25px;*/
+    border: 1px #126DAF solid;
+    border-radius: 3px;
+    /*background: -moz-linear-gradient(#1e81cb, #0360ad) repeat scroll 0 0*/
+    /*transparent;*/
+    /*background: -webkit-gradient(linear, 0 0, 0 100%, from(#1e81cb),*/
+    /*to(#0360ad) );*/
+    background-color: #3892D3;
+    background-image: -moz-linear-gradient(center top, #4B9CD7, #3892D3 50%, #358AC8 51%, #3892D3);
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, from(#4B9CD7), color-stop(0.5, #3892D3), color-stop(0.51, #358AC8), to(#3892D3));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = #4B9CD7, endColorstr = #3892D3);
+    text-shadow: none;
+}
+
+a.window_btn:hover {
+    background-color: #3386C2;
+    background-image: -moz-linear-gradient(center top, #4792C8, #3386C2 50%, #307FB8 51%, #3386C2);
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, from(#4792C8), color-stop(0.5, #3386C2), color-stop(0.51, #307FB8), to(#3386C2));
+    border-color: #157FCC;
+}

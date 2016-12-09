@@ -1,0 +1,79 @@
+/*-------------------------------------------------------------------------------------
+oms layout 
+-------------------------------------------------------------------------------------*/
+#condition,
+.condition{
+	padding: 5px;
+	border:1px #999999 solid;
+	border-radius:5px;
+	background-color:#f1f1f1;
+	margin:0 10px 10px 10px;
+	*margin:0 0 5px 5px;
+	*width:1135px;
+	box-shadow: 0 1px 3px #999999;
+	-webkit-box-shadow: 0 1px 4px #999999;
+}
+#condition div {
+	padding: 5px;
+	height: 20px;
+	
+}
+#condition input[type="radio"]{margin-top:0!important;vertical-align:-2px!important;}
+
+
+#condition .labelTitle {
+	width: 80px;
+	padding-right:8px;
+	float: left;
+	line-height:22px;
+}
+
+
+#condition .inputStyle {
+	width: 130px;
+	float: left;
+}
+
+#condition .floatStyle {
+	float: left;
+}
+
+#condition .btnBar{
+	width: 100%;
+	text-align: center;
+}
+
+#editTable{
+	
+}
+
+#editTable td{
+	padding:2px;
+}
+
+#editTable div{
+	vertical-align:top;
+}
+
+#editTable label{
+	padding-right: 10px;
+	float: left;
+	text-align: left;
+	white-space:nowrap;
+	font-weight:bold;
+	}
+#editTable td{padding:5px;}
+.input_one{
+    position:absolute;
+    top:187px;
+    width:127px;
+    vertical-align: middle;
+    z-index:20000;
+    }
+    .select_one{
+    width:138px;
+    }
+    
+
+  
+

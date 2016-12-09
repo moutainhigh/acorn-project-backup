@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>com.chinadrtv.erp</artifactId>
+        <groupId>acorn.erp</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>acorn.erp</groupId>
+    <artifactId>com.chinadrtv.erp.pay.core</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>com.chinadrtv.erp.pay.core</name>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+            	<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+		               <target>1.6</target>
+		               <source>1.6</source>
+		               <encoding>UTF-8</encoding>
+		           </configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>		    
+
+    <dependencies>
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>spring-deps</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <type>pom</type>
+            <scope>compile</scope>
+            <optional>false</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>hibernate-deps</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <type>pom</type>
+            <scope>compile</scope>
+            <optional>false</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>test-deps</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <type>pom</type>
+            <scope>compile</scope>
+            <optional>false</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>com.chinadrtv.erp.model</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>com.chinadrtv.erp.core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

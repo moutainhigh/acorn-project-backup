@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory> 
+  <!-- 客户标签 -->
+     <mapping class="com.chinadrtv.erp.marketing.model.bi.IdlCrmUsrFlag"/>
+     <mapping class="com.chinadrtv.erp.marketing.model.bi.IdlCrmPhoneRank"/>
+ </session-factory>
+</hibernate-configuration>

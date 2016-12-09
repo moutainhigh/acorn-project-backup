@@ -1,0 +1,69 @@
+ <beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:amq="http://activemq.apache.org/schema/core"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd  
+http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.8.0.xsd">
+    
+     <!-- 配置connectionFactory -->
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory"
+        destroy-method="stop">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL">
+                    <value>tcp://192.168.3.171:61616</value>
+                </property>
+            </bean>
+        </property>
+        <property name="maxConnections" value="50"></property>
+    </bean>
+    
+	 <!--创建连接工厂
+    <bean id="jmsConnectionFactory"
+        class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://192.168.3.171:61616"></property>
+    </bean>
+    -->
+	<!-- 使用Queue方式  定义主队列，通知服务端按照jobid创建queue-->
+	<amq:queue name="QUEUE-MAIN" physicalName="JMS-QUEUE-MAIN" />
+	
+	<!-- 使用Queue方式 补充数据监听-->
+	<amq:queue name="QUEUE-ADD-DATA" physicalName="JMS-QUEUE-ADD-DATA" />
+	
+	<!-- Spring JmsTemplate config -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<!-- lets wrap in a pool to avoid creating a connection per send -->
+			<bean class="org.springframework.jms.connection.SingleConnectionFactory">
+				<property name="targetConnectionFactory" ref="jmsConnectionFactory" />
+			</bean>
+		</property>
+		<property name="receiveTimeout" value="1000" />
+		<!-- custom MessageConverter -->
+		<!-- <property name="messageConverter" ref="defaultMessageConverter" /> -->
+	</bean>
+
+	<!-- converter -->
+	<!--<bean id="defaultMessageConverter" class="com.chinadrtv.erp.jms.message.DefaultMessageConverter" /> -->
+
+
+	<!-- POJO which send Message uses Spring JmsTemplate -->
+	<bean id="queueMessageProducer" class="com.chinadrtv.erp.marketing.core.jms.QueueMessageProducer">
+		<property name="template" ref="jmsTemplate" />
+		<property name="destination" ref="QUEUE-MAIN" />
+	</bean>
+	
+	<!-- POJO which send Message uses Spring JmsTemplate -->
+	<bean id="queueCountMessageProducer" class="com.chinadrtv.erp.marketing.core.jms.QueueCountMessageProducer">
+		<property name="template" ref="jmsTemplate" />
+		<property name="destination" ref="QUEUE-ADD-DATA" />
+	</bean>
+	
+	<!-- POJO which send Message uses Spring JmsTemplate -->
+	<bean id="queueConsumer" class="com.chinadrtv.erp.marketing.core.jms.QueueConsumer">
+		<property name="template" ref="jmsTemplate" />
+	</bean>
+	
+	
+</beans>

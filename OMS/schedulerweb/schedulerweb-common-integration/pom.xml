@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.chinadrtv.scheduler</groupId>
+		<artifactId>schedulerweb</artifactId>
+		<version>1.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<groupId>com.chinadrtv.scheduler.common.integration</groupId>
+	<artifactId>schedulerweb-common-integration</artifactId>
+	<packaging>jar</packaging>
+	<name>schedulerweb-common-integration</name>
+
+	<dependencies>
+		<!-- ====================logback======================== -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.chinadrtv.common</groupId>
+			<artifactId>common</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chinadrtv.runtime</groupId>
+			<artifactId>runtime</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.chinadrtv.scheduler.common.facade</groupId>
+			<artifactId>scheduler-common-facade</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.chinadrtv.scheduler.common.util</groupId>
+			<artifactId>schedulerweb-common-util</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+	</dependencies>
+	
+
+</project>

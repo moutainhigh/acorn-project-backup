@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Application context definition. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/jdbc
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd"
+	default-autowire="byName">
+	
+	<context:property-placeholder system-properties-mode="OVERRIDE" />
+
+    <!-- DataSource -->
+     <!--<bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+        &lt;!&ndash;<property name="url" value="jdbc:oracle:thin:@192.168.1.201:1521:orcl"></property>&ndash;&gt;
+         <property name="url" value="jdbc:oracle:thin:@192.168.3.180:1521:tserpdb"></property>
+        <property name="username" value="ACOAPP_CONFIG"></property>
+        <property name="password" value="acorn.2013"></property>
+    </bean>-->
+
+	<!-- DataSource -->
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/OmsScheduler" />
+        <property name="resourceRef" value="true"/>
+    </bean>
+
+
+	<!-- Mybatis session factory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:sqlmapper/*Mapper.xml" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="plugins">
+			<list>
+				<bean class="com.chinadrtv.common.log.LogInterceptor" />
+				<bean class="com.chinadrtv.common.pagination.PaginationInterceptor">
+					<property name="dialect">
+						<bean class="com.chinadrtv.common.pagination.OracleDialect" />
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="baseDao" class="com.chinadrtv.common.dal.BaseDaoImpl"
+		abstract="true" init-method="initialize">
+		<property name="sqlSessionTemplate" ref="sqlSession" />
+	</bean>
+
+	<bean id="schedulerDao" class="com.chinadrtv.scheduler.common.dal.dao.SchedulerDODaoImpl"
+		parent="baseDao">
+	</bean>
+	
+	<bean id="jobHistoryDao" class="com.chinadrtv.scheduler.common.dal.dao.JobHistoryDODaoImpl"
+		parent="baseDao">
+	</bean>
+
+</beans>

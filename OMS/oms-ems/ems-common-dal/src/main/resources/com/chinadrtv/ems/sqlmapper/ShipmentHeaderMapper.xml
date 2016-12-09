@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.ems.common.dal.dao.ShipmentHeaderDao">
+
+	<resultMap id="BaseResultMapShipmentHeader" type="ShipmentHeaderDO">
+		<id column="ID" property="id" />
+		<result column="ACCOUNT_TYPE" property="accountType" />
+		<result column="MAIL_ID" property="mailId" />
+		<result column="ENTITY_ID" property="entityId" />
+	</resultMap>
+
+	<sql id="Base_Column_List_ShipmentHeader">
+		ID, ACCOUNT_TYPE, MAIL_ID,ENTITY_ID
+	</sql>
+
+	<select id="queryForList" parameterType="java.lang.String" resultMap="BaseResultMapShipmentHeader">
+		select
+		<include refid="Base_Column_List_ShipmentHeader" />
+        from acoapp_oms.shipment_header
+        where ACCOUNT_TYPE = '1' and
+        MAIL_ID = #{mailId}
+	</select>
+
+</mapper>

@@ -1,0 +1,60 @@
+@charset "utf-8";
+/* CSS 清零*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,a,em,img,s,strong,b,u,center,dl,dt,dd,ol,ul,li,form,label,caption,tbody,tfoot,thead,tr,th,td,input{margin:0;padding:0;font:inherit;vertical-align:baseline; color:#333; }
+img{border:none;}
+body{line-height:1;text-align:center; font:12px '宋体',Arial, Helvetica, sans-serif; margin-bottom:30px;}
+ol,ul{list-style:none;}
+a{color:#333; text-decoration:none;}
+a:hover{color:#900; text-decoration:underline;}
+strong{font-weight:bold;}
+.f14{font-size:14px;}
+.tc{text-align:center;}
+.clear{clear:both;}
+
+/*整体布局*/
+#container{width:980px; margin:0px auto; margin-top:20px; text-align:left;}
+.btn,.title,.footer,.ipt{background-image:url(/images/bg_re_x.png); background-repeat:repeat-x;}
+
+/*头部*/
+.toplink{width:100%; background:#f0f0f0; height:30px; text-align:center;}
+.toplink p{width:980px; text-align:right; margin:0 auto; line-height:30px; color:#999;}
+.toplink p a{margin:0 1em;}
+.header{width:980px; height:82px;margin:0 auto;  font:30px/36px "微软雅黑", "宋体", Arial; text-align:left;border-bottom:#900 2px solid;}
+.header a{float:left;}
+.header span{padding:40px 0 0 10px; float:left;}
+
+
+/*底部*/
+.footer{clear:both;width:980px; background-position:0 -180px; height:168px; line-height:2.1; text-align:left; overflow:hidden;}
+div.footer{border:#ccc 1px solid; padding:10px 0 0 0; margin:0 auto; margin-top:20px; }
+.footer dl{width:300px; float:left; padding:0px 12px 0px 13px; border-right:#ccc 1px solid; position:relative; right:-3px;}
+.footer dl dt{border-bottom:1px solid #5EA618; font:bold 14px "宋体", Arial; text-indent:0.8em; line-height:2.1; margin-bottom:4px;}
+.footer dl dd{padding-left:1em; background:url(/images/bg_re_x.png) 4px -369px no-repeat;}
+
+/*翻页*/
+.page ul li.pre a,.page ul li.next a{background-image:url(/images/bg_nore.png); background-repeat:no-repeat;}
+.page{ position:relative; height:40px; }
+.page ul{position:absolute; top:5px; right:5px;}
+.page ul li{float:left; margin:0 2px; }
+.page ul li a{height:16px; line-height:16px; width:16px; border:#ccc 1px solid; text-align:center; background:#fff; display:block;}
+.page ul li.current{ background:#ffc44e; color:#fff; font-weight:bold; border:#ffc44e 1px solid;height:16px; line-height:16px; width:16px; text-align:center;}
+.page ul li.pre a{width:55px; text-indent:8px; background-position:-70px -76px; }
+.page ul li.next a{width:55px; text-indent:-8px; background-position:42px -76px;}
+.page ul li .btngray{height:20px;}
+
+.warn{color:red;}
+
+/* 页面整体框架控制 */
+#container { width:980px; height:auto; margin:0 auto; padding:0;}
+.wrapper{width:980px;margin:0 auto;padding:0;}
+.error{ width:700px; height:328px; background:url(../images/error.jpg) no-repeat; margin:0 auto; margin-top:60px; margin-bottom:196px;}
+.error_normal{ width:700px; height:328px; background:url(../images/error_normal.jpg) no-repeat; margin:0 auto; margin-top:60px; margin-bottom:196px;}
+.error .error_text{ width:405px; height:25px; line-height:25px; padding-left:295px; font-size:20px; font-family:"微软雅黑"; color:#333333; font-weight:bold; padding-top:65px;}
+.error .returntext{width:373px; height:22px; line-height:22px; padding-left:327px; padding-top:13px;}
+.error .returntext a{ color:#4484DB; text-decoration:underline;}
+.error .returntext a:hover{ color:#FF6600; text-decoration:underline;}
+.error_normal .error_text{ width:405px; height:25px; line-height:25px; padding-left:295px; font-size:20px; font-family:"微软雅黑"; color:#333333; font-weight:bold; padding-top:65px;}
+.error_normal .returntext{width:373px; height:22px; line-height:22px; padding-left:327px; padding-top:13px;}
+.error_normal .returntext a{ color:#4484DB; text-decoration:underline;}
+.error_normal .returntext a:hover{ color:#FF6600; text-decoration:underline;}
+.error_normal .errortext{ color:#666666; font-size:43px; font-family:Tahoma; font-weight:bold; padding-left:496px; margin-top:65px; line-height:85px;}

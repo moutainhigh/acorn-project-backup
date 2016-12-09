@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd"
+       default-lazy-init="true">
+
+    <!-- =================================================================== -->
+    <!-- AOP: Configuration and Aspects                                      -->
+    <!-- =================================================================== -->
+    <aop:config>
+        <aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.*(..))" order="0"/>
+        <aop:advisor id="auditLogTx" advice-ref="txAdvice" pointcut="execution(* *..aop.*Service.*(..))" order="1"/>
+    </aop:config>
+    
+    <!-- Enable @Transactional support -->
+    <tx:annotation-driven/>
+    
+    <!-- Enable @AspectJ support -->
+    <aop:aspectj-autoproxy/>
+
+    <!-- Activates scanning of @Autowired -->
+    <context:annotation-config/>
+    
+    <!-- Activates scanning of @Service -->
+    <context:component-scan base-package="com.chinadrtv.erp"/>
+
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <!-- Read-only commented out to make things easier for end-users -->
+            <tx:method name="build*" read-only="true" propagation="REQUIRED"/>
+            <tx:method name="get*" read-only="true" propagation="NESTED"/>
+            <tx:method name="calculate*" read-only="true" propagation="REQUIRED"/>
+            <tx:method name="query*" read-only="true" propagation="NOT_SUPPORTED"/>
+            <tx:method name="save*" propagation="REQUIRED" rollback-for="Throwable"/>
+            <tx:method name="*" rollback-for="Throwable"/>
+        </tx:attributes>
+    </tx:advice>
+
+
+    <!-- =================================================================== -->
+    <!-- Security class from Spring Security - used to configure Password    -->
+    <!-- Encryption in UserManagerImpl. Can override in security.xml.        -->
+    <!-- =================================================================== -->
+    
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.PlaintextPasswordEncoder"/>
+ 
+	    <import resource="classpath*:simplesm-context.xml" />
+
+    <bean class="com.google.code.ssm.Settings">
+        <property name="order" value="500" />
+    </bean>
+      
+    <bean name="cacheManager" class="com.google.code.ssm.spring.SSMCacheManager">
+        <property name="caches">
+            <set>
+                <bean name="firstCache" id="firstCache" class="com.google.code.ssm.spring.SSMCache">
+                    <constructor-arg name="cache" index="0" ref="defaultCache" />
+                    <constructor-arg name="expiration" index="1" value="300" />
+                    <constructor-arg name="allowClear" index="2" value="false" />
+                </bean>
+            </set>
+        </property>
+    </bean>
+    <bean name="defaultCache" class="com.google.code.ssm.CacheFactory">
+        <property name="cacheName" value="default" />
+        <property name="cacheClientFactory">
+            <bean name="cacheClientFactory" class="com.google.code.ssm.providers.spymemcached.MemcacheClientFactoryImpl" />
+        </property>
+        <property name="addressProvider">
+            <bean class="com.google.code.ssm.config.DefaultAddressProvider">
+                <property name="address" value="${MEMCACHE_SERVER}" />
+            </bean>
+        </property>
+        <property name="configuration">
+            <bean class="com.google.code.ssm.providers.CacheConfiguration">
+                <property name="consistentHashing" value="true" />
+            </bean>
+        </property>
+    </bean>
+    
+    <!-- druid.spring  -->
+  <bean id="druid-stat-interceptor"
+    class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+  </bean>
+
+  <bean id="druidStatPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut"
+    scope="prototype">
+    <property name="patterns">
+        <list>
+            <value>com.chinadrtv.erp.uc.service.*</value>
+            <value>com.chinadrtv.erp.uc.dao.*</value>
+            <value>com.chinadrtv.erp.ic.service.*</value>
+            <value>com.chinadrtv.erp.ic.dao.*</value>
+            <value>com.chinadrtv.erp.tc.service.*</value>
+            <value>com.chinadrtv.erp.tc.dao.*</value>
+            <value>com.chinadrtv.erp.marketing.core.service.*</value>
+            <value>com.chinadrtv.erp.marketing.core.dao.*</value>
+            <value>com.chinadrtv.erp.sales.core.service.*</value>
+            <value>com.chinadrtv.erp.sales.core.dao.*</value>
+            <value>com.chinadrtv.erp.bpm.service.*</value>
+            <value>com.chinadrtv.erp.bpm.dao.*</value>
+            <value>com.chinadrtv.erp.shipment.service.*</value>
+            <value>com.chinadrtv.erp.shipment.dao.*</value>
+            <value>com.chinadrtv.erp.smsapi.service.*</value>
+            <value>com.chinadrtv.erp.smsapi.dao.*</value>
+
+        </list>
+    </property>
+</bean>
+
+<aop:config>
+    <aop:advisor advice-ref="druid-stat-interceptor"
+                 pointcut="execution(* *..service.*Service.*(..))" />
+</aop:config>
+
+<bean id="springUtil" class="com.chinadrtv.erp.util.SpringUtil" lazy-init="false"/>
+
+    <bean id="ICBCCallServiceFactory" class="com.chinadrtv.erp.pay.core.icbc.service.impl.ICBCCallServiceFactoryImpl">
+        <lookup-method name="getICBCCallService" bean="ICBCCallServiceImpl"/>
+    </bean>
+</beans>

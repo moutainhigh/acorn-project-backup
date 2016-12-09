@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+	<!-- 不拦截静态资源 -->
+	<http pattern="/js/**" security="none" />
+	<http pattern="/css/**" security="none" />
+	<http pattern="/images/**" security="none" />
+	<http pattern="/login" security="none" />
+	<http pattern="/index.jsp" security="none" />
+	<http pattern="/service/**" security="none" />
+
+	<!--
+		| 拦截所有请求
+		| 如果访问资源的权限，将跳转至403页面，web.xml中已配置默认使用/WEB-INF/views/denied.jsp作为403页面
+		+-->
+	<http use-expressions="true" entry-point-ref="authenticationEntryPoint">
+		<logout logout-success-url="/login" />
+		<remember-me user-service-ref="userDetailsService" />
+		<access-denied-handler ref="accessDeniedHandler" />
+		<form-login login-page="/login" authentication-success-handler-ref="authenticationSuccessHandler" />
+		<custom-filter ref="uamSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR" />
+		
+		<session-management session-authentication-error-url="/login" />
+	</http>
+	
+	<!-- 自定义权限拦截器 -->
+	<beans:bean id="uamSecurityInterceptor" 
+		class="com.chinadrtv.uam.security.UamSecurityInterceptor">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="accessDecisionManager" ref="accessDecisionManager" />
+		<beans:property name="securityMetadataSource" ref="securityMetadataSource" />
+	</beans:bean>
+	
+	<!-- 授权管理 -->
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder hash="md5" />
+		</authentication-provider>
+	</authentication-manager>
+	
+	<!-- 角色及资源对应关系处理器 -->
+	<beans:bean id="securityMetadataSource" class="com.chinadrtv.uam.security.UamMetadataSource">
+		<beans:property name="resourceService" ref="resourceServiceImpl" />
+	</beans:bean>
+	
+	<!-- 权限管理器 -->
+	<beans:bean id="accessDecisionManager" class="com.chinadrtv.uam.security.UamAccessDecisionManager" />
+	
+	<!-- 用户服务 -->
+	<beans:bean id="userDetailsService" class="com.chinadrtv.uam.security.UserDetailsServiceImpl">
+		<beans:property name="sysUserDao" ref="sysUserDaoImpl" />
+	</beans:bean>
+	
+	<!-- 未登录的切入点 -->
+	<beans:bean id="authenticationEntryPoint" 
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:constructor-arg name="loginFormUrl" value="/WEB-INF/views/login.jsp" />
+		<beans:property name="useForward" value="true" />
+	</beans:bean>
+	
+	<!-- 登录成功后处理器 -->
+	<beans:bean id="authenticationSuccessHandler" 
+		class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<beans:property name="defaultTargetUrl" value="/index" />
+	</beans:bean>
+	
+	<!--
+		| 访问拒绝处理器
+		| 支持AJAX请求，如果AJAX请求被拒绝，将返回拒绝页面的html
+		+-->
+	<beans:bean id="accessDeniedHandler" class="com.chinadrtv.uam.security.UamAccessDeniedHandler">
+		<beans:property name="supportAjax" value="true" />
+		<beans:property name="errorPage" value="/WEB-INF/views/denied.jsp" />
+	</beans:bean>
+	
+</beans:beans>

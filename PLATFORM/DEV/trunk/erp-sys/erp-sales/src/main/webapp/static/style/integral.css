@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+/********** customer base info **********/
+.baseInfo{ margin:15px; padding:10px; border:1px #b5b5b5 solid; background:#fbfbfb;}
+.baseInfo table td{ padding:5px;}
+.searchbox{ background:url(../js/themes/default/images/searchbox_button.png) no-repeat; padding:0 0 0 16px; height:16px;}
+
+/********** easyui tabs css **********/
+
+.tabs-header {
+    border-style: solid;
+    width:auto;
+    boerder
+    overflow: hidden;
+    padding:10px 0 0;
+    position: relative;
+}
+.tabs-header,.tabs-tool{background-color:#ffffff;}
+.tabs-wrap {
+    left: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+.tabs {
+    border-style: solid;
+    border-width: 0 0 3px;
+	 border-color:#236fbd;
+	
+    height: 26px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0 0 4px;
+   
+}
+.tabs li {
+    border: 0 none;
+    display: inline-block;
+    float: left;
+    margin: 0 4px -1px 0;
+    padding: 0;
+    position: relative;
+}
+.tabs li a.tabs-inner {
+    border-radius: 5px 5px 0 0;
+    border-style: solid;
+    border-width: 1px 1px 0;
+	border-color:#e0e1e1;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    margin: 0;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    background: -moz-linear-gradient(center top , #eeeff0 0pt, #f9fafb 100%) repeat-x scroll 0 0 transparent;
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#eeeff0), to(#f9fafb));
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eeeff0,endColorstr=#f9fafb);
+	color: #666;
+}
+
+.tabs li.tabs-selected a.tabs-inner {
+    border-color: #236fbd;
+    background: -moz-linear-gradient(center top , #2064ab 0pt, #236fbd 100%) repeat-x scroll 0 0 transparent;
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#2064ab), to(#236fbd));
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#2064ab,endColorstr=#236fbd);
+	color: #ffffff;
+}
+.tabs-title {
+    font-size: 12px;
+}  
+
+
+/********** myOrder private **********/
+.submitBtns { padding:5px 0 ; text-align:center;}
+.submitBtns a {
+    color: #0f4f62;;
+    text-shadow: rgba(255, 255, 255, 0.496094) 0px 1px;
+    padding: 2px 30px;
+    border-width: 1px;
+    border-color: #57a9cb #2a93bf #2683aa #2a93bf ;
+    border-style:solid;
+
+    border-radius: 2px;
+    background: -moz-linear-gradient(#a2d8f7, #4eb4f0) repeat scroll 0 0 transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = #a2d8f7, endColorstr = #4eb4f0);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a2d8f7), color-stop(100%, #4eb4f0));
+    -webkit-box-shadow: rgba(255, 255, 255, 0.398438) 0px 1px 0px inset;
+}
+
+.submitBtns a:hover {
+    text-decoration: none;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #86cef7), color-stop(100%, #35abf0));
+}.submitBtns a:active {
+     text-decoration: none;
+     border-color: #4192aa;
+     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+     background:#4eb4f0;
+ }
+.tabs-form{ margin:15px;}
+.extendInfo table tr{ margin:5px 0;}
+.extendInfo table td{padding:5px;}
+.extendInfo label input{ vertical-align:middle; margin-left:0;}
+.underline{ border-bottom:1px #226fbf solid;}
+
+

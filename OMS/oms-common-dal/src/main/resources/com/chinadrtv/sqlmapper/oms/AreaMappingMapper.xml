@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.dal.oms.dao.AreaMappingDao">
+
+	<select id="findById" parameterType="java.lang.Integer" resultType="AreaMapping">
+		select * from acoapp_oms.area_mapping a where a.areaid = #{areaId}
+	</select>
+	
+	<select id="findByName" parameterType="java.lang.String" resultType="AreaMapping">
+		select * from acoapp_oms.area_mapping a where a.areaname = #{area}
+		<![CDATA[
+			and rownum<=1
+		]]>
+	</select>
+	
+</mapper>

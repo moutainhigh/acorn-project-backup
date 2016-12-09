@@ -1,0 +1,158 @@
+[
+    {
+        "id": 0,
+        "text": "导航",
+        "children": [
+            {
+                "id": 1,
+                "text": "首页",
+                "children": [
+                    {
+                        "id": 11,
+                        "iconCls":"icon-new",
+                        "text": "最新发布"
+                    },
+                    {
+                        "id": 12,
+                        "iconCls":"icon-collect",
+                        "text": "我的收藏"
+                    },
+                    {
+                        "id": 13,
+                        "iconCls":"icon-hot",
+                        "text": "收藏热门"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "text": "产品知识及话术",
+                 "attributes":{
+                    "isA":true
+                 },
+                "children": [
+                    {
+                        "id": 21,
+                        "text": "按系列",
+                        "attributes":{
+                            "isA":true
+                        },
+                        "children": [
+                            {
+                                "id": 211,
+                                "text": "3C产品",
+                                "iconCls":"icon-folder",
+                                "attributes":{
+                                    "isA":true
+                                },
+                                "children": [
+                                    {
+                                        "id": 212,
+                                        "text": "金立W360",
+                                        "attributes":{
+                                            "isA":false
+                                        }
+                                    },
+                                    {
+                                        "id": 213,
+                                        "text": "康佳W990",
+                                        "attributes":{
+                                            "isA":false
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "id": 112,
+                                "iconCls":"icon-folder",
+                                "attributes":{
+                                    "isA":true
+                                },
+                                "text": "美容产品"
+                            },
+                            {
+                                "id": 113,
+                                "iconCls":"icon-folder",
+                                "attributes":{
+                                    "isA":true
+                                },
+                                "text": "收藏品"
+                            },
+                            {
+                                "id": 114,
+                                "iconCls":"icon-folder",
+                                "attributes":{
+                                    "isA":true
+                                },
+                                "text": "目录产品"
+                            }
+                        ]
+                    },
+                    {
+                        "id": 22,
+                        "text": "按产品线",
+                        "attributes":{
+                            "isA":true
+                        },
+                        "children": [
+                            {
+                                "id": 221,
+                                "text": "直销产品",
+                                "attributes":{
+                                    "isA":false
+                                }
+                            },
+                            {
+                                "id": 222,
+                                "text": "综合产品",
+                                "attributes":{
+                                    "isA":false
+                                }
+                            },
+                            {
+                                "id": 223,
+                                "text": "背背佳" ,
+                                "attributes":{
+                                    "isA":false
+                                }
+                            },
+                            {
+                                "id": 224,
+                                "text": "安耐驰",
+                                "attributes":{
+                                    "isA":false
+                                }
+                            },
+                            {
+                                "id": 225,
+                                "text": "好记星",
+                                "checked": true ,
+                                "attributes":{
+                                    "isA":false
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "text": "常见问答",
+                "children": [
+                    {
+                        "id": 31,
+                        "text": "业务规则类"
+                    },
+                    {
+                        "id": 32,
+                        "text": "绩效考核类"
+                    },
+                    {
+                        "id": 33,
+                        "text": "业务技巧类"
+                    }
+                ]
+            }
+        ]
+    }
+]

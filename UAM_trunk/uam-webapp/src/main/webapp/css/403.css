@@ -1,0 +1,14 @@
+._403wrap{
+    height: 100%;
+}._403wrap img{
+    /*width: 400px;*/
+    /*height: 200px;*/
+    width: 884px;
+    height: 312px;
+    position: absolute;
+    /*top:180px;*/
+    top:100px;
+    left:50%;
+    /*margin-left: -200px;*/
+    margin-left: -442px;
+}

@@ -1,0 +1,43 @@
+ul.marquee {
+	/* required styles */
+	display: block;
+	padding:0 2px;
+	margin: 0;
+	list-style: none;
+	line-height: 1;
+	position: relative;
+	overflow: hidden;
+
+	/* optional styles for appearance */
+	/*width: 850px;*/
+	height: 25px; /* height should be included to reserve visual space for the marquee */
+
+	/*background-color: #f2f2ff;*/
+	background-color: #2068b0;
+    border-radius: 0 0 5px 0;
+    color: rgba(255,255,255,0.9);
+    text-shadow: none;
+	/*border: 1px solid #08084d; delete by xzk */
+}
+
+ul.marquee li {
+	/* required styles */
+	position: absolute;
+	top: -999em;
+	left: 0;
+	display: block;
+	white-space: nowrap; /* keep all text on a single line */
+
+	/* optional styles for appearance */
+	/*font: 11px Arial, Helvetica, sans-serif;*/
+    /*font-size: 12px;*/
+	padding: 0 5px;
+
+    height: 25px;
+    line-height: 25px;
+    /*font-weight: bold;*/
+
+}
+#msg_content {cursor: pointer;}
+#msg_content:hover{ color: #fff}
+#msg_content span{ margin-right: 10px;}

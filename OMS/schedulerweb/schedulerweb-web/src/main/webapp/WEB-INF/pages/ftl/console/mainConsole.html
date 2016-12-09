@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>任务调度TOPIC监控</title>
+<script type="text/javascript">
+	$().ready(function(){
+		$common.initResultMsg();
+
+		 var cols = [
+	        { title:'调度服务器', name:'hostName' ,width:500, align:'center'},
+	    	{ title:'操作', name:'operate' ,width:80, align:'center', renderer:function(val)
+	        	{
+	        		return '<button id="playAdd" class="btn btn-success"><i class="icon-search icon-white"></i>查看</button>'; 
+	    		}
+	        }
+	     ];
+		 var mmg = $('.mmg').mmGrid({
+		    indexCol: true,
+	        cols: cols,
+	        height: 600,
+	        root:'list',
+	       	multiSelect: true,
+	       	nowrap: true,
+            fullWidthRows: true,
+            autoLoad: false,
+            url: '${rc.contextPath}/console/listConsoleData',
+            method: 'post'
+	    });
+		 
+		 mmg.on('cellSelected', function(e, item, rowIndex, colIndex){
+             //查看
+             if($(e.target).is('.btn-success')){
+                 e.stopPropagation();  //阻止事件冒泡
+                 window.location.href = "${rc.contextPath}/console/searchSchedulerInfo?hostName="+item.hostName;
+             }
+         }).load();
+	});
+</script>
+</head>
+<body>
+	<div class="container" id="iframe">
+		<div class="alert alert-success" id="msg_success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<span class="success"></span><br />
+		</div>
+		<input type="hidden" id="action_msg" value="${success!''}" />
+
+		<table id="mmg" class="mmg">
+			<tr>
+				<th rowspan="" colspan=""></th>
+			</tr>
+		</table>
+		<div id="pg" style="text-align: right;"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+body{ margin:0; padding:0; text-align:center; font:12px/18px "微软雅黑", "宋体", Tahoma, "Arial Unicode MS"; color:#444;}
+img{ border:0;}
+input,select{ vertical-align:middle}
+textarea {font-size:12px;}
+.clearfix{overflow:auto;}
+a{ outline:none}
+a{ color:#666; text-decoration:none; cursor: pointer}b
+a:hover{  text-decoration:none}
+
+.w{margin:0 auto;  display: block; text-align: center;}
+.flt{ float:left;float:none\9;}
+.flr{ float:right}
+.ml10{ margin-left:10px}
+.mt10{ /*margin-top:10px;*/ margin: 10px auto; overflow-x:hidden;}
+.mt60{ margin-left:60px}
+.txt_r{ text-align: right}
+.txt_c{ text-align:center}
+.pt_10{ padding-top:10px}
+.pb_10{ padding-bottom:10px}
+
+/*==============login page==============*/
+.wrap{width:100%;position: absolute;background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("../images/login-bg.jpg");
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index:-1;}
+.dl_block{width:50%;}
+.dl_block span{ float:right;width:212px; height:197px; margin:80px 150px 0 0;background:url("../images/lock.png") no-repeat;}
+.dr_block{width:50%;}
+.do{float:left; margin:-109px 0 0 70px;width:354px;font-size:14px;}
+.do h1{width:354px;height:109px;background:url("../images/do_h.png") no-repeat;margin:0;}
+.do_b{width:503px;height:411px;font-family: "黑体"; background:url("../images/form-bg.png") no-repeat;margin: 0 auto;}
+
+.do_b p{margin:0; text-align:left;padding:10px 0;vertical-align: middle;}
+.do_b .head{padding:35px 23px 0 45px;height:62px; }
+.do_b span{float:left;color:#b5dab6; text-align:left;}
+.en_name{font-size:14px;height:24px;line-height: 24px; }
+.zh_name{font-size:22px;height:30px;line-height: 30px;}
+.f_body{padding:60px 25px 0 140px;font-size:16px;}
+.f_body .l_text{border-radius:2px;padding:2px;font-family: "黑体"; border:1px #416e46 solid;background-color:#e9fae9;}
+.f_body label{color:#1c5524; float: left;  vertical-align: middle;line-height: 1.5em;}
+span.logo{width:55px;height:56px;background:url("../images/logo.png") no-repeat;}
+.do_f{width:354px;height:60px;background:url("../images/do_f.png") no-repeat;}
+.l_Btn{width:72px;height:27px;float:right;margin-right:112px;background:url("../images/login_btn.png") no-repeat;border:none;}
+.l_Btn:hover{ cursor:pointer;background-position:0 -27px;}
+.rid{font-size:12px;padding: 5px 0 !important;}
+.icon{ vertical-align:-2px; }
+.reme{margin-top:8px;line-height: 1em\9;}
+.reme input{margin:2px 5px;}
+/*======================================*/
+
+.grid_260{ width:200px;height:auto!important;*height:100%;min-height:600px; float:left; text-align:left;background:url("/static/images/tr_b.png"); position:absolute;top:31px;*top:0;bottom:0;left:0;}
+.grid_260 .tree{width:200px; height:100%;overflow:hidden;float:left; }
+.grid_260 .handlebar{display:none; float:left;height:100%;width:6px;background:url(/static/images/hbar_bg.png) repeat-y;cursor:pointer;}
+.group{color:#ffffff;height:20px; text-align:center;font-size:24px;padding:20px;}
+.grid_700{ width:auto; float:left; text-align:left;position:absolute; top:31px;left:200px; bottom:0;}
+
+.logoc{ padding:10px; text-align: left}
+.slide01{ border:1px solid #d7d7d7;}
+.slide01 img{ width:698px;}
+
+/*====================================
+font
+=====================================*/
+.F_red{ color:#c00}
+.F_gay{ color:#999}
+/*====================================
+form
+=====================================*/
+.w_120{ width:280px;height:20px;padding:5px; background-color:#f1f1f1;border-radius:4px;border:1px #999999 solid;-moz-box-shadow:2px 2px 2px #999 inset;-webkit-box-shadow:2px 2px 2px #999 inset;box-shadow:2px 2px 2px #999 inset; }
+.h_200{ height:200px}
+.btn_login{  border:0; background:transparent; margin-right:5px;display:block; width:72px; height:21px; background:url(/static/images/unie_01.png) no-repeat 0 -55px; text-align:center; line-height:21px; color:#fff; letter-spacing:1pt; cursor: pointer}
+.area_280{ width:280px; height:80px; border:1px solid #d7d7d7; background:#fff; color:#666; padding:2px;}
+ .error{  color: #c00!important;float:right!important;margin-right:100px;height:18px; list-style: none;}
+
+/*====================================
+footer
+=====================================*/
+.footer{width:980px; background-position:0 -180px; height:168px; line-height:2.1; text-align:left; overflow:hidden;}
+div.footer{border:#ccc 1px solid; padding:10px 0 0 0; margin:0 auto; margin-top:20px; }
+.footer dl{width:300px; float:left; padding:0px 12px 0px 13px; border-right:#ccc 1px solid; position:relative; right:-3px;}
+.footer dl dt{border-bottom:1px solid #5EA618; font:bold 14px "宋体", Arial; text-indent:0.8em; line-height:2.1; margin-bottom:4px;}
+.footer dl dd{padding-left:1em; }

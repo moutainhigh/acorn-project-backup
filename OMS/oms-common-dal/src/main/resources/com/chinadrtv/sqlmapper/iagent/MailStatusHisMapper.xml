@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinadrtv.dal.iagent.dao.MailStatusHisDao" >
+
+	<insert id="insertBatch" parameterType="java.util.List" >
+		INSERT INTO IAGENT.MAIL_STATUS_HIS
+        	(RECORD_ID, SHIPMENT_ID, MAILID, STATUS_CODE, REASON_CODE, SIGN_RESULT, EMS_DATE_TIME_STAMP,
+         	IS_PROCESSED, DATE_TIME_STAMP, COMPANYID, OPERATYPE, OPERADATE, STATION, OPTOR, REFUSEREASON,
+          	PROBLEMREASON, REMARKS)
+		SELECT IAGENT.SEQ_MAILSTAT_HIS_RECID.NEXTVAL, A.* FROM (
+		<foreach collection="list" separator="UNION" item="item">	
+			SELECT 
+	  			#{item.shipmentId, jdbcType=VARCHAR}, #{item.mailid, jdbcType=VARCHAR}, 
+	  			#{item.statusCode, jdbcType=VARCHAR}, #{item.reasonCode, jdbcType=VARCHAR}, #{item.signResult, jdbcType=VARCHAR}, 
+	  			#{item.emsDateTimeStamp, jdbcType=TIMESTAMP}, #{item.isProcessed, jdbcType=VARCHAR}, sysdate, 
+	  			#{item.companyid, jdbcType=VARCHAR}, #{item.operatype, jdbcType=VARCHAR}, #{item.operadate, jdbcType=TIMESTAMP}, 
+	  			#{item.station, jdbcType=VARCHAR}, #{item.optor, jdbcType=VARCHAR}, #{item.refusereason, jdbcType=VARCHAR}, 
+	  			#{item.problemreason, jdbcType=VARCHAR}, #{item.remarks, jdbcType=VARCHAR}
+	  		FROM DUAL	
+  		</foreach>
+  		) A
+	</insert>
+
+
+	<select id="queryExceptDate" parameterType="MailStatusHis" resultType="java.lang.Boolean">
+		select 1 from iagent.mail_status_his m where 1=1 
+		  <![CDATA[	
+			and rownum<=1
+		  ]]>
+         <choose>
+             <when test="null != shipmentId">
+                 and m.shipment_id = #{shipmentId}
+             </when>
+             <otherwise>
+                 and m.shipment_id is null
+             </otherwise>
+         </choose>
+		  <if test="null != mailid">
+		  	and m.mailid = #{mailid}
+		  </if>
+        <choose>
+            <when test="null != statusCode">
+                and m.status_code = #{statusCode}
+            </when>
+            <otherwise>
+                and m.status_code is null
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="null != reasonCode">
+                and m.reason_code = #{reasonCode}
+            </when>
+            <otherwise>
+                and m.reason_code is null
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="null != signResult">
+                and m.sign_result = #{signResult}
+            </when>
+            <otherwise>
+                and m.sign_result is null
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="null != companyid">
+                and m.companyid = #{companyid}
+            </when>
+            <otherwise>
+                and m.companyid is null
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="null != operatype">
+                and m.operatype = #{operatype}
+            </when>
+            <otherwise>
+                and m.operatype is null
+            </otherwise>
+        </choose>
+
+        <choose>
+            <when test="null != station">
+                and m.station = #{station}
+            </when>
+            <otherwise>
+                and m.station is null
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="null != optor">
+                and m.optor = #{optor}
+            </when>
+            <otherwise>
+                and m.optor is null
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="null != refusereason">
+                and m.refusereason = #{refusereason}
+            </when>
+            <otherwise>
+                and m.refusereason is null
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="null != problemreason">
+                and m.problemreason = #{problemreason}
+            </when>
+            <otherwise>
+                and m.problemreason is null
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="null != remarks">
+                and m.remarks = #{remarks}
+            </when>
+            <otherwise>
+                and m.remarks is null
+            </otherwise>
+        </choose>
+	</select>
+</mapper>

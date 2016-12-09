@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>demo dataGrid</title>
+<script type="text/javascript">
+	$().ready(function(){
+		$common.initResultMsg();
+	   
+		 var cols = [
+	        { title:'用户名', name:'userName' ,width:100, align:'center'},
+	        { title:'用户id', name:'id' ,width:80, align:'center'},
+	        { title:'操作', name:'' ,width:150, align:'center', lockWidth:true, lockDisplay: true, renderer: function(val){
+                return '<button  class="btn btn-info">修改</button> <button  class="btn btn-danger">删除</button>'
+            }}
+	     ];
+		 var mmg = $('#mmg').mmGrid({
+	        cols: cols,
+	        height: 500,
+	        root:'list',
+	       	multiSelect: true,
+	       	params:function(){
+	       		return {userName:$('#userName').val()};
+	       	},
+	       	checkCol: true,
+            fullWidthRows: true,
+            url: '${rc.contextPath}/demo/list',
+            method: 'post',
+            plugins: [
+                    $('#pg').mmPaginator({limit:${page.pageSize},page:${page.currPage}})
+            ]
+	    });
+		 
+			$('#btnAdd').click(function(){
+		   		window.location.href = '${rc.contextPath}/demo/add_init';
+		   	 });
+		   	
+		   	$('#queryAdd').click(function(){
+		   		mmg.load();
+		   	});
+		   	
+		    mmg.on('cellSelected', function(e, item, rowIndex, colIndex){
+                //修改
+                if($(e.target).is('.btn-info, .btnPrice')){
+                    e.stopPropagation();  //阻止事件冒泡
+                    window.location.href = '${rc.contextPath}/demo/get_user/'+item.id;
+                }else if($(e.target).is('.btn-danger') && confirm('你确定要删除该行记录吗?')){
+                    e.stopPropagation(); //阻止事件冒泡
+                    window.location.href = '${rc.contextPath}/demo/del/'+item.id;
+                }
+            }).load();
+	   	 
+	});
+</script>
+</head>
+<body>
+	<div class="container" id="iframe">
+		<div class="action">
+			<button id="queryAdd" class="btn btn-primary">
+				<i class="icon-search icon-white"></i>查询
+			</button>
+			<button id="btnAdd" class="btn btn-success">
+				<i class="icon-plus icon-white"></i>添加
+			</button>
+			<button id="delAdd" class="btn btn-danger">
+				<i class="icon-trash icon-white"></i>删除
+			</button>
+		</div>
+		<div style="margin-bottom: 5px; text-align: left;">
+			<div class="input-prepend">
+				<span class="add-on">用戶名</span> <input class="span3" id="userName"
+					name="userName" type="text" value="${userName!''}">
+			</div>
+		</div>
+
+		<div class="alert alert-success" id="msg_success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<span class="success"></span><br />
+		</div>
+		<input type="hidden" id="action_msg" value="${success!''}" />
+
+		<table id="mmg" class="mmg">
+			<tr>
+				<th rowspan="" colspan=""></th>
+			</tr>
+		</table>
+		<div id="pg" style="text-align: right;"></div>
+	</div>
+</body>
+</html>

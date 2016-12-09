@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<configuration scan="true" scanPeriod="30 seconds">
+    <property name="LOG_HOME" value="/acorn/web/logs/" />
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+
+
+        <encoder charset="UTF-8">
+
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_DAY"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <Encoding>UTF-8</Encoding>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <FileNamePattern>${LOG_HOME}/sales/sales.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+            </pattern>
+        </layout>
+
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+
+    <appender name="FILE_20M" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/sales.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/tests.%i.log.zip</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>20MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework">
+        <level value="WARN" />
+    </logger>
+    <logger name="org.hibernate">
+        <level value="WARN" />
+    </logger>
+    <logger name="org.hibernate.SQL">
+        <level value="DEBUG" />
+    </logger>
+        <logger name="org.hibernate.cache">
+        <level value="WARN" />
+    </logger>
+    	<logger name="com.chinadrtv.erp.oms.controller">
+        <level value="WARN" />
+    </logger>
+    <logger name="com.chinadrtv.erp.sales">
+        <level value="WARN" />
+    </logger>
+    <logger name="com.chinadrtv.erp.pay.core">
+        <level value="WARN" />
+    </logger>
+    <root>
+        <level value="WARN" />
+        <appender-ref ref="stdout" />
+        <appender-ref ref="FILE_DAY" />
+    </root> 
+</configuration>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"  
+       default-lazy-init="true">  
+  
+     <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+     <bean id="startSynchWordQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+         <property name="triggers">
+             <list>            	
+                 <ref bean="doTimeWordFilter"/>
+             </list>
+         </property>
+     </bean>
+     
+    <bean id="doTimeWordFilter" class="org.springframework.scheduling.quartz.CronTriggerBean">   
+        <property name="jobDetail" ref="synchWordFilter"/>   
+        <property name="cronExpression" value="0 0/10 * * * ?"/>   
+    </bean>  
+    
+    
+    
+        <bean id="synchWordFilter" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.knowledge.util.QuartzWork
+            </value>
+        </property>
+    </bean>
+</beans> 

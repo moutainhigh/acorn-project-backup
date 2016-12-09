@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.chinadrtv.scheduler</groupId>
+		<artifactId>scheduler</artifactId>
+		<version>1.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<groupId>com.chinadrtv.scheduler.common.dal</groupId>
+	<artifactId>scheduler-common-dal</artifactId>
+	<packaging>jar</packaging>
+	<name>scheduler-common-dal</name>
+
+	<dependencies>
+		<dependency>
+		  <groupId>com.chinadrtv.common</groupId>
+		  <artifactId>common</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		
+		
+	<!-- 	<dependency>
+		  <groupId>oracle.jdbc.driver</groupId>
+		  <artifactId>ojdbc6</artifactId>
+		  <version>11.2.0</version>
+		</dependency> -->
+		
+		<dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc16</artifactId>
+            <version>11.2.0.1.0</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>false</optional>
+        </dependency>
+		
+		<!-- ====================logback======================== -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		
+		
+	</dependencies>
+	
+
+</project>

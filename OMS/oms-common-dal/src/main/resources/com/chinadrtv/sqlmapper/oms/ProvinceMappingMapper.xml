@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.dal.oms.dao.ProvinceMappingDao">
+
+	<select id="findById" parameterType="java.lang.Integer" resultType="ProvinceMapping">
+		select * from acoapp_oms.province_mapping p where p.provinceid = #{provinceId}
+	</select>
+	
+	<select id="findByName" parameterType="java.lang.String" resultType="ProvinceMapping">
+		select * from acoapp_oms.province_mapping p where p.provincename = #{province}
+		<![CDATA[
+			and rownum<=1
+		]]>
+	</select>
+	
+</mapper>

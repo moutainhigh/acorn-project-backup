@@ -1,0 +1,119 @@
+ <beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:amq="http://activemq.apache.org/schema/core"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd  
+http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.8.0.xsd">
+    
+	<!-- 使用spring的listenerContainer，消息用持久化保存，服务器重启不会丢失 -->
+	<!-- embedded ActiveMQ Broker -->
+	<amq:broker useJmx="true"  persistent="false" start="true">
+		<amq:persistenceAdapter>
+			<amq:amqPersistenceAdapter directory="${mq_data_directory}"/>
+		</amq:persistenceAdapter>
+		<amq:managementContext>
+        <amq:managementContext connectorPort="1100" jmxDomainName="org.apache.activemq"/>
+    	</amq:managementContext>
+		<amq:transportConnectors>
+			<amq:transportConnector uri="${mq_server}" />  
+            <!-- <amq:transportConnector uri="${mq_server2}" />  -->
+		</amq:transportConnectors>
+	</amq:broker>
+	<!-- 连接外部的activeMQ <amq:connectionFactory id="jmsConnectionFactory" brokerURL="tcp://localhost:61616?wireFormat.maxInactivityDuration=0" 
+		/> ActiveMQ connectionFactory -->
+	<!-- <amq:connectionFactory id="jmsConnectionFactory" brokerURL="tcp://localhost:61616" /> -->
+
+	<!-- 配置connectionFactory -->
+    <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory"
+        destroy-method="stop">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL">
+                    <value>${mq_server}</value>
+                </property>
+            </bean>
+        </property>
+        <property name="maxConnections" value="100"></property>
+    </bean>
+    
+	<!-- ActiveMQ destinations -->
+	<!-- 使用topic方式 -->
+	<!--<amq:topic name="TOPIC" physicalName="JMS-TEST-TOPIC" />  -->
+
+	<!-- 使用Queue方式 -->
+	<amq:queue name="QUEUE-MAIN" physicalName="JMS-QUEUE-MAIN" />
+	
+	<!-- 使用Queue方式 补充数据监听-->
+	<amq:queue name="QUEUE-ADD-DATA" physicalName="JMS-QUEUE-ADD-DATA" />
+	
+	<!-- Spring JmsTemplate config -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory">
+			<!-- lets wrap in a pool to avoid creating a connection per send -->
+			<bean class="org.springframework.jms.connection.SingleConnectionFactory">
+				<property name="targetConnectionFactory" ref="pooledConnectionFactory" />
+			</bean>
+		</property>
+		<!-- custom MessageConverter -->
+		<!-- <property name="messageConverter" ref="defaultMessageConverter" /> -->
+	</bean>
+
+	<!-- converter -->
+	<bean id="defaultMessageConverter" class="com.chinadrtv.erp.jms.message.DefaultMessageConverter" />
+
+
+	<!-- POJO which send Message uses Spring JmsTemplate -->
+	<bean id="queueMessageProducer" class="com.chinadrtv.erp.jms.message.QueueMessageProducer">
+		<property name="template" ref="jmsTemplate" />
+		<property name="destination" ref="QUEUE-MAIN" />
+	</bean>
+	<!-- Message Driven POJO (MDP) -->
+	<!-- consumer for queue -->
+	<bean id="queueConsumer" class="com.chinadrtv.erp.jms.message.QueueConsumer">
+		<property name="template" ref="jmsTemplate" />
+	</bean>
+	
+	<!-- Message Listener for -->
+	<bean id="queueListener"
+		class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<constructor-arg ref="queueConsumer" />
+		<property name="defaultListenerMethod" value="receive" />
+		<property name="messageConverter" ref="defaultMessageConverter" />
+	</bean>
+	
+	<!-- listener container，MDP无需实现接口 -->
+	<bean id="queueListenerContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="pooledConnectionFactory" />
+		<property name="destination" ref="QUEUE-MAIN" />
+		<property name="messageListener" ref="queueListener" />
+	</bean>
+	
+	<!-- Message Listener for -->
+	<bean id="queueCountListener"
+		class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<constructor-arg ref="queueConsumer" />
+		<property name="defaultListenerMethod" value="asynchReceive" />
+		<property name="messageConverter" ref="defaultMessageConverter" />
+	</bean>
+	
+	<!-- listener container，MDP无需实现接口 -->
+	<bean id="queueCountListenerContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="pooledConnectionFactory" />
+		<property name="destination" ref="QUEUE-ADD-DATA" />
+		<property name="messageListener" ref="queueCountListener" />
+	</bean>
+	
+	<bean class="org.springframework.jmx.support.MBeanServerConnectionFactoryBean" id="mbeanServerConnection">
+	  	<property name="serviceUrl" value="service:jmx:rmi:///jndi/rmi://localhost:1100/jmxrmi"/>
+	 </bean>
+ 
+	 <bean id="queueCounter" class="com.chinadrtv.erp.jms.message.QueueSizeCounter" >
+	  	<property name="mBeanServerConnection" ref="mbeanServerConnection"/>
+	 </bean>
+	<!--
+	<import resource="jetty-demo.xml"/>
+	  -->
+</beans>

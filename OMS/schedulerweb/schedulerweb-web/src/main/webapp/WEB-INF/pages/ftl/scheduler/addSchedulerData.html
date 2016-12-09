@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>任务TOPIC添加</title>
+<script type="text/javascript">
+	$().ready(function() {
+		$common.initResultMsg();
+
+		$('#submitBut').click(function() {
+			if ($("#adminForm").validator().data("validator").checkValidity()) {
+				$('#saveType').val('submitData');
+				$("#adminForm").submit();
+			}
+		});
+
+		$('#backBut').click(function() {
+			window.location.href = '${rc.contextPath}/scheduler/listScheduler';
+		});
+	});
+
+	function getvalues(){
+		$("#jobCronExpression").val($("#cron")[0].contentWindow.getvalues());
+	}
+
+	function reinitIframe(){
+        var iframe = document.getElementById("cron");
+        try{
+            //var bHeight = iframe.contentWindow.document.body.scrollHeight;
+            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+            //var height = Math.max(bHeight, dHeight);
+            iframe.height =  dHeight;
+        }catch (ex){}
+    }
+    window.setInterval("reinitIframe()", 200);
+</script>
+</head>
+<body>
+	<div class="container" id="iframe">
+		<div class="row-fluid">
+			<div class="widget">
+				<form class="form-horizontal" id="adminForm" method="post"
+					name="adminForm" action="${rc.contextPath}/scheduler/saveScheduler">
+					<div class="widget-header">
+						<h5>任务TOPIC添加</h5>
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="form-row">
+								<label class="field-name" for="jobSystem" style="width:100px;"><span
+									class="required">*</span>系统名称:</label>
+								<div class="field">
+									<select type="text" name="jobSystem" id="jobSystem" required="required" maxlength="30">
+										<#list systemNames as systemName>
+											<option value="${systemName!''}">${systemName!''}</option>
+										</#list>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="span6">
+							<div class="form-row">
+								<label class="field-name" for="jobDescription" style="width:100px;">
+									任务说明:
+								</label>
+								<div class="field">
+									<input type="text" id="jobDescription" name="jobDescription" maxlength="30"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="form-row">
+								<label class="field-name" for="jobName" style="width:100px;"><span
+									class="required">*</span>任务名称:</label>
+								<div class="field">
+									<input type="text" name="jobName" id="jobName"
+										required="required" value="" maxlength="30">
+								</div>
+							</div>
+						</div>
+
+						<div class="span6">
+							<div class="form-row">
+								<label class="field-name" for="jobTopic" style="width:100px;"><span
+									class="required">*</span>任务TOPIC:</label>
+								<div class="field">
+									<input type="text" name="jobTopic" id="jobTopic"
+										required="required" maxlength="30">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="form-row">
+								<label class="field-name" for="jobCronExpression" style="width:100px;"><span
+									class="required">*</span>CRON表达式:</label>
+								<div class="field">
+									<input type="text" name="jobCronExpression" id="jobCronExpression"
+										required="required" maxlength="200" readonly>
+								</div>
+							</div>
+						</div>
+
+						<div class="span6">
+							<div class="form-row">
+								<div class="field">
+									<input type="button" class="btn btn-success" value="获取CRON表达式" onclick="getvalues()"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span6" style="width:100%;">
+							<div class="form-row">
+								<iframe SCROLLING="no" frameborder="no" border="0" name="cron" id="cron"
+								src="${rc.contextPath}/scheduler/cronExpression" style="width:905px;">
+								</iframe>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="form-actions">
+							<button type="button" class="btn btn-primary" id="submitBut">保存</button>
+							<button type="button" class="btn" id="backBut">返回</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

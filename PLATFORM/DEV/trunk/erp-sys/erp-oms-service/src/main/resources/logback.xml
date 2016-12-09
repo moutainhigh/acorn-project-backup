@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Reference Manual http://logback.qos.ch/manual/index.html -->
+
+<configuration>
+
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/acorn/data/oms/oms_service_logs/oms_service.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+            </pattern>
+        </encoder>
+
+        <!--<layout class="ch.qos.logback.classic.PatternLayout">
+            &lt;!&ndash;格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符&ndash;&gt;
+            <pattern>>%d	%-6p	%l	%m	%n
+            </pattern>
+        </layout>-->
+    </appender>
+
+
+    <logger name="com.chinadrtv">
+        <level value="DEBUG" />
+    </logger>
+
+
+    <root> <!-- 定义级别为 ,INFo  -->
+        <level value="ERROR" />
+        <appender-ref ref="rollingFile" />
+    </root>
+</configuration>

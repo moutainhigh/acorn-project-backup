@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Application context definition. -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/jdbc
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+	http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd "
+	default-autowire="byName">
+	
+	<bean id="propertyConfigurerMessage" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:env.properties</value>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+   	<bean id="systemConfig" class="com.chinadrtv.common.context.SystemContext">
+        <property name="SystemMap">
+            <map>
+                <entry key="brokerURL" value="${brokerURL}"/>
+                <entry key="lose_pick_remind_emails" value="${lose_pick_remind_emails}"/>
+                <entry key="mail.from" value="${mail.from}"/>
+                <entry key="mail.host" value="${mail.host}"/>
+                <entry key="mail.smtp.auth" value="${mail.smtp.auth}"/>
+                <entry key="mail.username" value="${mail.username}"/>
+                <entry key="mail.password" value="${mail.password}"/>
+                <entry key="mail.smtp.timeout" value="${mail.smtp.timeout}"/>
+            </map>
+        </property>
+    </bean>
+    
+</beans>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smooks-resource-list
+        xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+        xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd">
+    <params>
+        <param name="stream.filter.type">SAX</param>
+        <param name="inputType">input.xml</param>
+    </params>
+    <jb:bean beanId="orderlist" class="java.util.ArrayList" createOnElement="ops_trade">
+        <jb:wiring beanIdRef="preTrade"/>
+    </jb:bean>
+    <jb:bean beanId="preTrade" class="com.chinadrtv.chama.bean.PreTrademap" createOnElement="ops_trade">
+        <jb:value data="/ops_trade/adv_fee" decoder="String" property="advFee"/>
+        <jb:value data="/ops_trade/commission_fee" decoder="String" property="commissionFee"/>
+        <jb:value data="/ops_trade/created" decoder="Date" property="crdt">
+            <jb:decodeParam name="format">yyyy-MM-dd HH:mm:ss</jb:decodeParam>
+            <jb:decodeParam name="locale">sv_SE</jb:decodeParam>
+        </jb:value>
+        <jb:value data="/ops_trade/tid" property="opsTradeId"/>
+        <jb:value data="/ops_trade/ops_trade_id" property="tradeId"/>
+        <jb:value data="/ops_trade/retailer_id" property="tradeType"/>
+        <jb:value data="/ops_trade/credit_fee" decoder="String" property="creditFee"/>
+        <jb:value data="/ops_trade/customer_id" property="buyerNick"/>
+        <jb:value data="/ops_trade/jhs_fee" decoder="String" property="jhsFee"/>
+        <jb:value data="/ops_trade/payment" decoder="String" property="payment"/>
+        <jb:value data="/ops_trade/platform_commission_fee" decoder="String" property="platformCommissionFee"/>
+        <jb:value data="/ops_trade/receiver_name" property="receiverName"/>
+        <jb:value data="/ops_trade/receiver_phone" property="receiverPhone"/>
+        <jb:value data="/ops_trade/receiver_mobile" property="receiverMobile"/>
+        <jb:value data="/ops_trade/receiver_province" property="receiverProvince"/>
+        <jb:value data="/ops_trade/receiver_address" property="receiverAddress"/>
+        <jb:value data="/ops_trade/receiver_city" property="receiverCity"/>
+        <jb:value data="/ops_trade/receiver_district" property="receiverCounty"/>
+        <jb:value data="/ops_trade/receiver_post_code" property="receiverPostCode"/>
+        <jb:value data="/ops_trade/receiver_province" property="receiverProvince"/>
+        <jb:value data="/ops_trade/invoice_comment" property="invoiceComment"/>
+        <jb:value data="/ops_trade/invoice_title" property="invoiceTitle"/>
+        <jb:value data="/ops_trade/post_fee" property="shippingFee"/>
+        <jb:value data="/ops_trade/retailer_commission_fee" decoder="String" property="retailerCommissionFee"/>
+        <jb:value data="/ops_trade/revenue" decoder="String" property="revenue"/>
+        <jb:value data="/ops_trade/tms_code" property="tmsCode"/>
+        <jb:value data="/ops_trade/trade_from" property="tradeFrom"/>
+        <jb:wiring beanIdRef="preTradeDetails" property="preTradeDetails"/>
+    </jb:bean>
+
+    <jb:bean beanId="preTradeDetails" class="java.util.HashSet" createOnElement="/ops_trade/skus">
+        <jb:wiring beanIdRef="preTradeDetail" />
+    </jb:bean>
+
+    <jb:bean beanId="preTradeDetail" class="com.chinadrtv.chama.bean.PreTradeDetailmap" createOnElement="/ops_trade/skus/sku">
+        <jb:value data="/ops_trade/skus/sku/number" decoder="Integer" property="qty"/>
+        <jb:value data="/ops_trade/skus/sku/price" decoder="String" property="price"/>
+        <jb:value data="/ops_trade/skus/sku/sku_code" property="outSkuId"/>
+    </jb:bean>
+</smooks-resource-list>

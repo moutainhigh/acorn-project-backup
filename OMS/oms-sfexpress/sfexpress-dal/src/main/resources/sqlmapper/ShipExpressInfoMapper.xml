@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.oms.sfexpress.dal.dao.ShipExpressInfoDao">
+
+	<insert id="insertData" parameterType="ShipExpressInfo">
+		insert into SHIP_EXPRESS_INFO
+			values(
+			#{shipmentId, jdbcType = VARCHAR}, 
+			#{mailNo, jdbcType = VARCHAR}, 
+			#{returnTrackingNo, jdbcType = VARCHAR}, 
+			#{agentMailNo, jdbcType = VARCHAR}, 
+			#{originCode, jdbcType = VARCHAR}, 
+			#{destCode, jdbcType = VARCHAR}, 
+			#{filterResult, jdbcType = BIGINT}, 
+			#{remark, jdbcType = VARCHAR})
+	</insert>
+
+	<select id="queryObjectByPK" parameterType="String" resultType="ShipExpressInfo">
+		select * from SHIP_EXPRESS_INFO where shipment_Id = #{shipmentId}
+	</select>
+</mapper>

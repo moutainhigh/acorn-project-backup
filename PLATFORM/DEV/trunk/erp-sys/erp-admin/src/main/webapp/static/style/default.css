@@ -1,0 +1,389 @@
+body {
+    background: #fff;
+    color: #333;
+    margin:0;
+    padding:0;
+}
+
+
+#yui-history-iframe {
+    position:absolute;
+    top:0; left:0;
+    width:1px; height:1px; /* avoid scrollbars */
+    visibility:hidden;
+}
+.yui-dt-hidden{
+    width: 0;
+    border-left: none!important;
+    border-right: none!important;
+}
+
+#bd fieldset {
+    border: 1px solid #cccccc;
+    margin-bottom: 10px;
+}
+
+
+.operator-btn  .yui-button button, .operator-btn  .yui-button a, .operator-btn  .yui-button a:visited{
+    color: #000000;
+    font-size: 93%;
+    line-height: 1.6;
+    min-height: 1.6em;
+    display: inline;
+}
+.operator-btn{
+    padding-top: 5px;
+}
+.operator-btn div{
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.edit-panel{
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.paging{
+    text-align: right;
+}
+
+.noborder_table {
+    border: none;
+}
+
+.noborder_table th {
+    border: none;
+    padding: .4em;
+    font-weight: bold;
+    text-align: right;
+}
+
+.noborder_table td {
+    border: none;
+    padding: .4em;
+    text-align: left;
+}
+
+.error {
+    background: #f8f7ef none repeat scroll 0 0;
+    border: medium none red;
+    border-left: 4px solid;
+    font-weight: bold;
+    margin: 10px 0;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.align_center {
+    text-align: center !important;
+}
+
+.yui-skin-sam .yui-dt table {
+    width: 100%
+}
+
+#footer {
+    text-align:center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    background: #fbfaf4;
+    min-width: 750px;
+    overflow: hidden;
+}
+
+/*yui rich text editor text_input_toolbar */
+#text_input_toolbar a:hover {
+    background-color: transparent !important;
+}
+
+
+/* collapse div for hide/show the grid_menu_right */
+.gc-collapsible {
+    background: #E5ECF9 none repeat scroll 0 0;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    width: 4px;
+    overflow: hidden;
+    position: absolute;
+}
+
+.gc-collapsible-arrow {
+    background: transparent url(/static/images/hide-arrow.gif) no-repeat scroll left top;
+    height: 12px;
+    width: 4px;
+    position: absolute;
+}
+
+.gc-collapsible-arrow-collapsed {
+    background: transparent url(/static/images/show-arrow.gif) no-repeat scroll left top !important;
+    height: 12px;
+    width: 4px;
+    position: absolute;
+}
+
+#imagetable .thumbnail {
+    background: white none repeat scroll 0 0;
+    border: 1px solid #cccccc;
+    padding: 0;
+}
+
+.timestamp-link {
+    color: #ff9966 !important;
+    font-weight: normal !important;
+}
+
+.comment-link {
+    color: #ff9966 !important;
+    font-weight: normal !important;
+    padding-left: 10px;
+}
+
+#login ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+#login ul li {
+    margin: 0 0 0.5em 0.5em;
+    padding: 0 0 0 5px;
+
+}
+
+#gravatar {
+    line-height: 48px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    vertical-align: middle;
+}
+
+#gravatar img {
+    border: 1px solid #999999;
+    float: left;
+    margin-right: 5px;
+    padding: 2px;
+}
+
+.avatar {
+    border: 1px solid #000000;
+    clear: both;
+    float: right;
+    height: 32px;
+    margin: 0 0 2px 2px;
+    padding: 2px;
+    width: 32px;
+}
+
+#userinfo {
+    text-align: right;
+}
+
+#logo {
+    background: #efefef;
+    border: 1px #cccccc solid;
+    height: 120px;
+    padding-right: 5px;
+    padding-top: 2px;
+    text-align: right;
+}
+
+.actionButtonSection{
+    padding: 15px;
+    height:30px;
+}
+.actionButtonSection button{
+    display: inline-block;
+}
+
+
+.ping-inline-block{
+    display: inline-block;
+}
+
+
+.yui-button#addContact button,
+.yui-button#addGroup button{
+    padding-left: 2em;
+    background: url(/static/images/add.gif) 10% 50% no-repeat;
+}
+.yui-button#refreshSmsThread button{
+    padding-left: 2em;
+    background: url(/static/images/refresh.png) 10% 50% no-repeat;
+}
+.yui-checkbox-button#selectSmsAll button{
+    padding-left: 2em;
+    background: url(/static/images/checkbox_no.png) 10% 50% no-repeat;
+}
+.yui-checkbox-button-checked#selectSmsAll{
+    background: url("http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/sprite.png") repeat-x scroll 0 0 transparent;
+    border-color: #808080;
+}
+.yui-checkbox-button-checked#selectSmsAll button{
+    padding-left: 2em;
+    background: url(/static/images/checkbox_yes.png) 10% 50% no-repeat;
+}
+
+.menu_top {
+    /*background: none repeat scroll 0 0 whiteSmoke;*/
+    padding-bottom: 16px;
+}
+
+#ft, .yui-layout-unit-bottom {
+    background-color: white;
+    border: none;
+}
+#nav, .yui-layout-unit-left {
+    background-color: white;
+    border: none;
+}
+#thread-appbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    vertical-align: middle;
+}
+
+.current-page{
+    width:180px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.promotions-operator-btn {
+    display: inline-block;
+}
+
+.current-page .current-page-label{
+    width:180px;
+    color: #DD4B39;
+    font-size: 20px;
+    font-weight: normal;
+    padding-left: 15px;
+    text-decoration: none;
+    border-bottom:none;
+}
+
+.table-checkbox{
+    padding-top: 5px;
+    vertical-align: top;
+    width: 20px;
+}
+
+.table-action{
+    padding-top: 5px;
+    vertical-align: top;
+    width: 20px;
+}
+
+.toolbar-control {
+    color: #999999 !important;
+    font-size: 12px;
+    outline: medium none;
+}
+.gc-message-icon-8{
+    background: url("/static/images/call_received.png") no-repeat scroll 0 50% transparent;
+}
+.gc-message-icon-9{
+    background: url("/static/images/call_placed.png") no-repeat scroll 0 50% transparent;
+}
+.gc-message-icon-0{
+    background: url("/static/images/missed_call.png") no-repeat scroll 0 50% transparent;
+}
+.gc-message-icon-10, .gc-message-icon-11 {
+    bottom: 1px;
+    height: 17px;
+    position: absolute;
+    width: 17px;
+    background: url("/static/images/sms-small.png") no-repeat scroll 0 50% transparent;
+    opacity: 0.7;
+}
+.gc-message-sms-more {
+    padding: 5px 0;
+}
+gc-message-player{
+    text-align: left;
+}
+.gc-message-sms-from {
+    color: #333333;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+.gc-message-sms-time {
+    color: #999999;
+}
+.gc-inbox-prev, .gc-inbox-next {
+    font-size: 13px;
+    font-weight: bold;
+}
+#quick-sms{
+    text-align: left;
+}
+#quick-call{
+    text-align: left;
+}
+
+#gc-quicksms-content{
+    width: 200px;
+}
+
+#gc-quickcall-content{
+    width: 200px;
+}
+.gc-message-sms-actions{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.gc-message-sms-ctrl{
+    padding-top: 5px;
+}
+
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-editcode span.yui-toolbar-icon {
+    background-image: url( /static/images/html_editor.gif );
+    background-position: 0 1px;
+    left: 5px;
+}
+.yui-skin-sam .yui-toolbar-container .yui-button-editcode-selected span.yui-toolbar-icon {
+    background-image: url( /static/images/html_editor.gif );
+    background-position: 0 1px;
+    left: 5px;
+}
+.editor-hidden {
+    visibility: hidden;
+    top: -9999px;
+    left: -9999px;
+    position: absolute;
+}
+#htmlcontent textarea {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+.yui-toolbar-group-insertitem {
+    *width: auto;
+}
+
+.promotion-title{
+    font-style:italic;
+    font-weight: bold;
+}
+.query_label{
+    font-style:italic;
+    color: red;
+}
+.ui-datepicker{ font-size: 80%; }
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.product-attributes-table td{
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+}

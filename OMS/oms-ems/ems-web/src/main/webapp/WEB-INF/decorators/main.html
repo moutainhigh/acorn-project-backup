@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<#include "../pages/ftl/includes/header.ftl"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>${title}</title> ${head}
+</head>
+<body data-spy="scroll">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active"><a href="${rc.contextPath}/demo/index">首页</a></li>
+						<li><a href="${rc.contextPath}/demo/view_f_tag">Freemarker
+								使用</a></li>
+						<li><a href="${rc.contextPath}/demo/dataGrid">DataGrid</a></li>
+						<li><a href="${rc.contextPath}/demo/add_init">Form</a></li>
+						<li><a href="${rc.contextPath}/certCenter/cert_code">验证中心</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">${body}</div>
+	</div>
+
+</body>
+</html>

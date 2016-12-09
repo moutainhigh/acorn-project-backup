@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="SchedulerDO">
+
+	<sql id="queryParam">
+		<if test="id != null and id != ''">
+				ID = #{id}
+		</if>
+		<if test="jobName != null and jobName != ''">
+				AND JOB_NAME LIKE '%'||'${jobName}'||'%'
+		</if>
+		<if test="jobTopic != null and jobTopic != ''">
+				AND JOB_TOPIC LIKE CONCAT('%','${jobTopic}','%' )
+		</if>
+		<if test="jobCronExpression != null and jobCronExpression != ''">
+				AND JOB_CRON_EXPRESSION = #{jobCronExpression}
+		</if>
+		<if test="jobStatus != null and jobStatus != ''">
+				AND JOB_STATUS = #{jobStatus}
+		</if>
+		<if test="jobDescription != null and jobDescription != ''">
+				AND JOB_DESCRIPTION = #{jobDescription}
+		</if>
+		<if test="jobSystem != null and jobSystem != ''">
+				AND JOB_SYSTEM = #{jobSystem}
+		</if>
+		<if test="jobStyle != null and jobStyle != ''">
+				AND JOB_STYLE = #{jobStyle}
+		</if>
+	</sql>
+
+	<!-- 新增任务 -->
+	<insert id="add" parameterType="com.chinadrtv.scheduler.common.dal.model.SchedulerDO">
+		INSERT INTO ACFF_SCHEDULER
+		(ID, JOB_NAME, JOB_TOPIC, JOB_CRON_EXPRESSION, JOB_STATUS, JOB_DESCRIPTION, JOB_SYSTEM, JOB_STYLE )
+		VALUES
+		(ID_ADD.NEXTVAL, #{jobName,jdbcType=VARCHAR}, #{jobTopic,jdbcType=VARCHAR}, #{jobCronExpression,jdbcType=VARCHAR},
+		#{jobStatus,jdbcType=NUMERIC}, #{jobDescription,jdbcType=VARCHAR}, #{jobSystem,jdbcType=VARCHAR}, #{jobStyle,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 删除任务 -->
+	<delete id="deleteByPK" parameterType="java.lang.Integer">
+		DELETE ACFF_SCHEDULER
+		WHERE  ID = #{ID}
+	</delete>
+
+	<select id="queryByPK" resultType="com.chinadrtv.scheduler.common.dal.model.SchedulerDO">
+		SELECT ID id,
+			   JOB_NAME jobName, 
+			   JOB_TOPIC jobTopic, 
+			   JOB_CRON_EXPRESSION jobCronExpression, 
+			   JOB_STATUS jobStatus, 
+			   JOB_DESCRIPTION jobDescription,
+			   JOB_SYSTEM jobSystem,
+			   JOB_STYLE jobStyle
+		  FROM ACFF_SCHEDULER
+		  WHERE ID = #{id}
+	</select>
+
+	<select id="query" resultType="com.chinadrtv.scheduler.common.dal.model.SchedulerDO">
+		SELECT ID id,
+			   JOB_NAME jobName, 
+			   JOB_TOPIC jobTopic, 
+			   JOB_CRON_EXPRESSION jobCronExpression, 
+			   JOB_STATUS jobStatus, 
+			   JOB_DESCRIPTION jobDescription,
+			   JOB_SYSTEM jobSystem,
+			   JOB_STYLE jobStyle
+		  FROM ACFF_SCHEDULER
+		 WHERE 1=1
+		<include refid="queryParam" />
+	</select>
+
+	<select id="queryAll" resultType="com.chinadrtv.scheduler.common.dal.model.SchedulerDO">
+		SELECT ID id,
+			   JOB_NAME jobName, 
+			   JOB_TOPIC jobTopic, 
+			   JOB_CRON_EXPRESSION jobCronExpression, 
+			   JOB_STATUS jobStatus, 
+			   JOB_DESCRIPTION jobDescription,
+			   JOB_SYSTEM jobSystem,
+			   JOB_STYLE jobStyle
+		  FROM ACFF_SCHEDULER
+	</select>
+	
+	<update id="update" parameterType="com.chinadrtv.scheduler.common.dal.model.SchedulerDO">
+		update ACFF_SCHEDULER
+		<set>
+			<if test="id != null and id != ''">
+					ID = #{id},
+			</if>
+			<if test="jobName != null and jobName != ''">
+					JOB_NAME = #{jobName},
+			</if>
+			<if test="jobTopic != null and jobTopic != ''">
+					JOB_TOPIC = #{jobTopic},
+			</if>
+			<if test="jobCronExpression != null and jobCronExpression != ''">
+					JOB_CRON_EXPRESSION = #{jobCronExpression},
+			</if>
+			<if test="jobStatus != null ">
+					JOB_STATUS = #{jobStatus},
+			</if>
+			<if test="jobDescription != null and jobDescription != ''">
+					JOB_DESCRIPTION = #{jobDescription},
+			</if>
+			<if test="jobSystem != null and jobSystem != ''">
+					JOB_SYSTEM = #{jobSystem},
+			</if>
+			<if test="jobStyle != null and jobStyle != ''">
+					JOB_STYLE = #{jobStyle},
+			</if>
+		</set> 
+		WHERE ID = #{id}
+	</update>
+
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ACFF_SCHEDULER WHERE 1=1
+		<include refid="queryParam" />
+	</select>
+</mapper>

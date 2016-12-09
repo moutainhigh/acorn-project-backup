@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Reference Manual http://logback.qos.ch/manual/index.html -->
+ 
+<configuration>
+    <property name="LOG_HOME" value="/acorn/web/logs/" />
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+
+             <!-- 日志输出格式 -->
+        <encoder charset="UTF-8">
+            <pattern>%d	%-6p	%l	%m	%n</pattern>
+        </encoder>
+       <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>>%t %d	%-6p	%l	%m	%n
+            </pattern>   
+       </layout> 
+    </appender> 
+ 
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+     <Encoding>UTF-8</Encoding>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/sales_logs/sales.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <!--  <minIndex>1</minIndex>-->
+            <!--<maxIndex>3</maxIndex>-->
+        </rollingPolicy>
+ 
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>5MB</maxFileSize>
+        </triggeringPolicy>
+ 
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+        
+         <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%m	%n
+            </pattern>   
+       </layout> 
+    </appender>
+    
+    <appender name="rollingFile2" class="ch.qos.logback.core.rolling.RollingFileAppender">
+     <Encoding>UTF-8</Encoding>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/sales_logs/sales.lead.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <!--  <minIndex>1</minIndex>-->
+            <!--<maxIndex>3</maxIndex>-->
+        </rollingPolicy>
+ 
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>5MB</maxFileSize>
+        </triggeringPolicy>
+ 
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+        
+         <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%m	%n
+            </pattern>   
+       </layout> 
+    </appender>
+ 
+
+    <logger name="com.chinadrtv.erp.sales.controller.CommonController">
+        <level value="ERROR" />
+    </logger>
+
+    <root> <!-- 定义级别为 ,INFo  -->
+        <level value="ERROR" />
+        <appender-ref ref="stdout" />
+        <appender-ref ref="rollingFile" />
+    </root> 
+</configuration>

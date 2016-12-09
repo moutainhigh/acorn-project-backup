@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+    <bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="dataSource" ref ="dataSource" />       
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+        <property name="configLocation" value="classpath:quartz.properties"/>
+    </bean>
+    
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.marketing.util.MyQuartzJobBean
+            </value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="simpleService">
+                    <ref bean="simpleService"/>	
+                </entry>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="commonJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.marketing.util.CommonJobBean
+            </value>
+        </property>
+    </bean>
+    
+    
+    
+    <bean id="synchBIJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.marketing.util.SynchBIJobBean
+            </value>
+        </property>
+    </bean>
+    
+    <bean id="synchPhoneRankJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.marketing.util.SynchBIPhoneRankJobBean
+            </value>
+        </property>
+    </bean>
+     <bean id="doPhoneRankJob" class="org.springframework.scheduling.quartz.CronTriggerBean">   
+        <property name="jobDetail" ref="synchPhoneRankJobDetail"/>   
+        <property name="cronExpression" value="0 30 23 4 * ?"/>   
+    </bean> 
+    
+    
+    <bean id="doTimeWordFilter" class="org.springframework.scheduling.quartz.CronTriggerBean">   
+        <property name="jobDetail" ref="synchWordFilter"/>   
+        <property name="cronExpression" value="0 0 12 * * ?"/>   
+    </bean>  
+    
+    
+    
+        <bean id="synchWordFilter" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>
+                com.chinadrtv.erp.marketing.util.SynchWordFilter
+            </value>
+        </property>
+    </bean>
+    
+    
+    <bean id="doTimeSynchBI" class="org.springframework.scheduling.quartz.CronTriggerBean">   
+        <property name="jobDetail" ref="synchBIJobDetail"/>   
+        <property name="cronExpression" value="0 0 22 * * ?"/>   
+    </bean> 
+
+     <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序-->
+     <bean id="startSynchBIQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+         <property name="triggers">
+             <list>
+                  <!-- 
+             	<ref bean="doTimeSynchBI"/>
+                  
+                 <ref bean="doPhoneRankJob"/>
+                   -->
+             </list>
+         </property>        
+         <property name="dataSource" ref ="dataSource" />       
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+        <property name="configLocation" value="classpath:quartz.properties"/>
+     </bean>   
+      <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序-->
+     <bean id="startSynchWordQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+         <property name="triggers">
+             <list>            	
+                 <ref bean="doTimeWordFilter"/>
+             </list>
+         </property>
+     </bean>
+
+</beans>

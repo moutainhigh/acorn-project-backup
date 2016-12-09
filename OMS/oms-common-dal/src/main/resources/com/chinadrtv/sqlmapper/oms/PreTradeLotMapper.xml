@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.dal.oms.dao.PreTradeLotDao">
+
+	<insert id="insert" parameterType="PreTradeLot">
+		<selectKey resultType="Long" keyProperty="id" order="BEFORE">
+			select acoapp_oms.PRE_TRADE_LOT_SEQ.Nextval from dual
+		</selectKey>
+		insert into acoapp_oms.pre_trade_lot
+		  (id, status, lot_dsc, crusr, crdt, dlusr, dldt, uploader, valid_count, err_count, total_count, source_id, err_msg)
+		values
+		  (#{id, jdbcType=BIGINT}, #{status, jdbcType=INTEGER}, #{lotDsc, jdbcType=VARCHAR}, #{crusr, jdbcType=VARCHAR}, 
+		  sysdate, #{dlusr, jdbcType=VARCHAR}, #{dldt, jdbcType=TIMESTAMP}, #{uploader, jdbcType=VARCHAR}, 
+		  #{validCount, jdbcType=INTEGER}, #{errCount, jdbcType=INTEGER}, #{totalCount, jdbcType=INTEGER}, 
+		  #{sourceId, jdbcType=BIGINT}, #{errMsg, jdbcType=VARCHAR})
+	</insert>
+</mapper>

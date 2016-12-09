@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>demo certCenter</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="12">
+				<#if status=='1'>
+				<div class="alert alert-success" style="display: block;">
+					<span class="success">验证成功</span><br />
+				</div>
+				<#elseif status=='0'>
+				<div class="alert alert-error" style="display: block;">
+					<span class="error">验证失败</span><br />
+				</div>
+				</#if>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

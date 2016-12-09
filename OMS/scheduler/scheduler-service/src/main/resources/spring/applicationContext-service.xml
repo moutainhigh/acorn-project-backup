@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Application context definition. -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/jdbc
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd"
+	default-autowire="byName">
+
+	<!-- Transaction Manager -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- Transaction Template -->
+	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+
+	<!-- Service -->
+	<bean id="schedulerService" class="com.chinadrtv.scheduler.service.impl.SchedulerServiceImpl">
+		<property name="transactionTemplate" ref="transactionTemplate" />
+		<property name="schedulerDao" ref="schedulerDao"/>
+	</bean>
+	<bean id="jobHistoryService" class="com.chinadrtv.scheduler.service.impl.JobHistoryServiceImpl">
+		<property name="transactionTemplate" ref="transactionTemplate" />
+		<property name="jobHistoryDao" ref="jobHistoryDao"/>
+	</bean>
+	
+	<bean id="databaseOperateService" class="com.chinadrtv.scheduler.service.dboperate.DatabaseOperateService">
+		<property name="schedulerService" ref="schedulerService"/>
+		<property name="jobHistoryService" ref="jobHistoryService"/>
+	</bean>
+	
+	<bean id="schedulerFactory" name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" depends-on="jobHistoryService,schedulerService,springContextHolder">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:quartz.properties"></property>
+	</bean>
+	
+	<bean id="quartzSchedulerService" class="com.chinadrtv.scheduler.service.quartz.QuartzSchedulerService">
+		<property name="scheduler" ref="schedulerFactory"/>
+		<property name="schedulerService" ref="schedulerService"/>
+	</bean>
+
+</beans>

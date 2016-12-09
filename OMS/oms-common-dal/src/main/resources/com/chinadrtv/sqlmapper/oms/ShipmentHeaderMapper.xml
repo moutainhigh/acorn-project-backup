@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.dal.oms.dao.ShipmentHeaderDao">
+
+	<select id="findByMailId" parameterType="java.lang.String" resultType="java.lang.String">
+		select t.ENTITY_ID from acoapp_oms.shipment_header t where t.account_type = '1' and t.mail_id = #{mailId}
+		and
+		<![CDATA[
+			 rownum <= 1
+			]]>
+	</select>
+
+    <resultMap id="ShipmentHeadMap" type="com.chinadrtv.model.oms.ShipmentHeader">
+        <id column="ID" jdbcType="BIGINT" property="id" />
+        <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+        <result column="SHIPMENT_ID" jdbcType="VARCHAR" property="shipmentId" />
+        <result column="ACCOUNT_STATUS_ID" jdbcType="VARCHAR" property="accountStatusId" />
+        <result column="LOGISTICS_STATUS_ID" jdbcType="VARCHAR" property="logisticsStatusId" />
+    </resultMap>
+
+    <select id="findShipments" parameterType="java.util.List" resultMap="ShipmentHeadMap">
+        select ID,ORDER_ID,SHIPMENT_ID,ACCOUNT_STATUS_ID,LOGISTICS_STATUS_ID from acoapp_oms.shipment_header where
+        <![CDATA[
+          ACCOUNT_TYPE='1' and  ACCOUNT_STATUS_ID<>'0' and (
+        ]]>
+         <foreach collection="list" separator="or" item="item">
+             ORDER_ID=#{item}
+         </foreach>
+         )
+    </select>
+
+</mapper>

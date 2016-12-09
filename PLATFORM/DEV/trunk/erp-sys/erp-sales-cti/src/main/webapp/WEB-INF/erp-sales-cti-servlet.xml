@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <context:component-scan base-package="com.chinadrtv.erp.sales.controller" />
+    <context:component-scan base-package="com.chinadrtv.erp.sales.service"/>
+    <bean id="ctrlLogger" class="com.chinadrtv.erp.sales.util.ControllerLogTracer">
+        <property name="prefixInludeTypeList">
+              <list>
+                <value>java.util.ArrayList</value>
+              </list>
+        </property>
+    </bean>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:system.properties</value>
+                <value>classpath:source.properties</value>
+                <value>classpath:schema.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>application/json;charset=UTF-8</value>
+                            <value>application/x-www-form-urlencoded;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+			</list>
+		</property>
+	</bean>
+    <!-- Configures the @Controller programming model -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>application/x-www-form-urlencoded;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <!-- Forwards requests to the "/" resource to the "welcome" view -->
+    <!--<mvc:view-controller path="/" view-name="home"/>-->
+
+    <!-- Configures Handler Interceptors -->
+    <mvc:interceptors>
+        <!-- Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de -->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+    </mvc:interceptors>
+
+
+    <mvc:resources mapping="/static/**" location="/static/"/>
+
+    <!-- Saves a locale change using a cookie -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="zh_CN"/>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="ApplicationResources"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="2097152"/>
+    </bean>
+
+    <bean id="foldersConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" >
+            <value>classpath:system.properties</value>
+        </property>
+    </bean>
+
+    
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+		<!-- 对mvc提交date类型进行转换 -->
+		<property name="webBindingInitializer">
+			<bean
+				class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+				<property name="validator">
+					<bean
+						class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+				</property>
+				<property name="propertyEditorRegistrars">
+					<array>
+						<bean
+							class="com.chinadrtv.erp.sales.common.CustomPropertyEditorRegistrar" />
+					</array>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+		
+</beans>

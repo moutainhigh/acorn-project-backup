@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Wilcom CCDesktop 网络版测试程序</title>
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	width:378px;
+	height:237px;
+	z-index:1;
+	left: 438px;
+	top: 64px;
+}
+#Layer2 {
+	position:absolute;
+	width:352px;
+	height:161px;
+	z-index:2;
+	left: 3px;
+	top: 60px;
+}
+-->
+</style>
+<script type="text/javascript" src="./acornPhone.js"></script>
+<script type="text/javascript" src="./acornPhoneEvents.js"></script>
+</head>
+
+<script type="text/javascript">
+
+function  SendAgentQuest_onclick(){	
+	var con ;
+	con = jxCTI.InitConnection(5001,3434,"192.168.129.95");
+    alert(con);
+	if(document.getElementById("State").value="logon"){
+		var DeviceID=document.getElementById("DeviceID").value;
+		var OperatorID=document.getElementById("OperatorID").value;
+		var PWD=document.getElementById("PWD").value;
+		
+		jxCTI.SendMonitorDevice(DeviceID,49);
+	}
+}
+
+function changeStatus(){
+	var aPhone = new AcornPhone("","",true);
+	aPhone.onTalking = onAgentTalking;
+	aPhone.changeStatus(3,"1233","4566",true);
+}
+</script>
+
+
+
+<body>
+
+<object classid=clsid:2FA7FC61-8B41-44CF-AAF4-D1F2E7DC2BC4 height=34 id=jxCTI style=LEFT:0px;TOP:0px  width=62 visible=false>
+</object>
+
+<SCRIPT type="text/javascript" FOR="jxCTI" EVENT="OnHeartBeatV2Respond(sDeviceID,sState,Reserve1)" >
+
+   <!-- insert script commands -->
+
+   alert('心跳返回'+sState);
+
+</SCRIPT>
+
+<div id="Layer2">
+  <label >分机号码:</label><input type="text" id="DeviceID" value="6831"></input><br><br>
+  
+  <label>操作员号:</label><input type="text" id="OperatorID" value="6931"></input><br><br>
+  
+  <label>密码     :</label>&nbsp;&nbsp;&nbsp;<input type="text" id="PWD" value="6931"></input><br><br>
+  &nbsp;&nbsp;&nbsp;
+  <select id="State">
+  <option value="logon">登录</option>
+  <option value="logoff">退出</option>
+  <option value="pause">暂停</option>
+  <option value="afterwork">话后处理</option>
+  <option value="work">工作</option>
+  </select>&nbsp;&nbsp; 
+  
+  <button id=SendAgentQuest onclick="SendAgentQuest_onclick();">发送请求</button><br><br>
+
+    <label >座席状态信息：</label><br>
+    <textarea id=StateInfo rows="1"  cols="40"style="border-style:none" ></textarea>
+&nbsp;
+	<button id=ChangeStaus onclick="changeStatus();">改变状态</button><br><br>
+</div>
+ 
+ 
+ 
+<div id="Layer1">
+  <label>主叫号码：</label>   <br>
+  <label>被叫号码：</label><br><br>
+  <select name="select" id="Device">
+    <option value="Hold">保持</option>
+    <option value="Retrieve">取消保持</option>
+    <option value="Transfer">转移电话</option>
+    <option value="Consultion">磋商电话</option>
+    <option value="Divert">前转电话</option>
+    <option value="Conference">电话会议</option>
+    <option value="PickUP">电话代接</option>
+    <option value="Answer">电话应答</option>
+    <option value="Disconnect">电话挂断</option>
+    <option value="Reconnect">电话重连</option>
+    <option value="Alternate">电话切换</option>
+    <option value="MakeCall">电话外拨</option>
+    <option value="ListenCall">电话监听</option>
+    <option value="InsertCall">电话插入</option>
+	<option value="SelectiveHold">班长指导</option>
+    <option value="HangupCall">电话强拆</option>
+    <option value="ChangePas">修改密码</option>
+    
+    
+    
+  </select>&nbsp;&nbsp;
+ <label >号码:</label><input type="text" id="PhoneNum" value="6831"></input><br><br>
+  <button id="CallRequest">发送请求</button><br><br>
+  
+   <textarea id=DeviceInfo rows="25"  cols="40"style="border-style:none" ></textarea>
+</div>
+
+</body>
+
+<script LANGUAGE="JavaScript"> 
+
+var i=0;
+
+function scroll() 
+{ 
+
+if(i==0) 
+{ 
+i++;
+
+window.setTimeout("scroll()",2000); 
+
+} 
+else if(i==1)
+{
+	i++;
+	jxCTI.InitConnection(5001,3434,"192.168.129.95")
+	//jxCTI.InitControlServer(5001,3434,3301,"172.16.2.214","172.16.1.112");
+	
+}
+
+
+}
+this.scroll();
+</script> 
+</html>
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd" xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd" xmlns:json="http://www.milyn.org/xsd/smooks/json-1.2.xsd">
+    <params>
+        <param name="stream.filter.type">SAX</param>
+        <param name="inputType">input.json</param>
+        <param name="input.json" type="input.type.actived">Workspace://JDOrder/src/amz.jsn</param>
+    </params>
+    <json:reader keyWhitspaceReplacement="-" rootName="OrderInfo">
+        <json:keyMap>
+            <json:key from="date&amp;time" to="date-and-time"/>
+        </json:keyMap>
+    </json:reader>
+    <jb:bean beanId="orderlist" class="java.util.ArrayList" createOnElement="/OrderInfo/ListOrdersResult/Orders/Order">
+        <jb:wiring beanIdRef="preTrade"/>
+    </jb:bean>
+    <jb:bean beanId="preTrade" class="com.chinadrtv.model.oms.dto.PreTradeDto" createOnElement="/OrderInfo/ListOrdersResult/Orders/Order/element">
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/AmazonOrderId" property="tradeId"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/AmazonOrderId" property="opsTradeId"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/PurchaseDate" property="invoiceComment"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/SellerOrderId" property="customerId"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/SalesChannel" property="tradeFrom"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/PurchaseDate" decoder="Date" property="crdt">
+            <jb:decodeParam name="format">yyyy-MM-dd'T'HH:mm:ss</jb:decodeParam>
+            <jb:decodeParam name="locale">sv_SE</jb:decodeParam>
+        </jb:value>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/LastUpdateDate" decoder="Date" property="outCrdt">
+            <jb:decodeParam name="format">yyyy-MM-dd'T'HH:mm:ss</jb:decodeParam>
+            <jb:decodeParam name="locale">sv_SE</jb:decodeParam>
+        </jb:value>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/BuyerEmail" property="buyerId"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/BuyerName" property="buyerNick"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/FulfillmentChannel" property="tradeType"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/ShippingAddress/Name" property="receiverName"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/ShippingAddress/StateOrRegion" property="receiverProvince"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/ShippingAddress/City" property="receiverCity"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/ShippingAddress/County" property="receiverCounty"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/ShippingAddress/AddressLine1" property="receiverAddress"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/ShippingAddress/Phone" property="receiverMobile"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/ShippingAddress/PostalCode" property="receiverPostCode"/>
+        <jb:value data="/OrderInfo/ListOrdersResult/Orders/Order/element/OrderTotal/Amount" property="payment"/>
+    </jb:bean>
+
+</smooks-resource-list>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Reference Manual http://logback.qos.ch/manual/index.html -->
+ 
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Encoding>UTF-8</Encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/acorn/data/oms/oms_logs/oms_logs.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>300MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+  <logger name="org.springframework">
+        <level value="WARN" />
+    </logger>
+    <logger name="org.hibernate">
+        <level value="WARN" />
+    </logger>
+    <logger name="org.hibernate.SQL">
+        <level value="DEBUG" />
+    </logger>
+        <logger name="org.hibernate.cache">
+        <level value="ERROR" />
+    </logger>
+    	<logger name="com.chinadrtv.erp.oms.controller">
+        <level value="INFO" />
+    </logger>
+
+    <logger name="com.chinadrtv.erp">
+        <level value="WARN" />
+    </logger>
+
+    <logger name="com.chinadrtv.erp.oms.quartz">
+        <level value="DEBUG" />
+    </logger>
+
+    <root>
+        <level value="WARN" />
+        <appender-ref ref="stdout" />
+        <appender-ref ref="rollingFile" />
+    </root> 
+</configuration>

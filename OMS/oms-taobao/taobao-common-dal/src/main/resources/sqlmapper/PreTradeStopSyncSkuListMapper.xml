@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.taobao.common.dal.dao.PreTradeStopSyncSkuListDao">
+
+	<select id="" parameterType="java.lang.String" resultType="PreTradeStopSyncSkuList">
+		select * from pre_trade_stopsync_skulist
+		where pluid = #{itemId}
+		and active = '1'
+	</select>
+</mapper>

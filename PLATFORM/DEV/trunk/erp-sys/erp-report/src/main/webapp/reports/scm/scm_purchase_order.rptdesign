@@ -1,0 +1,2983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.0.v201306041519 Build &lt;4.3.0.v20130611-1045></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">205</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">205</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">205</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="docNo" id="312">
+            <text-property name="helpText">订单号</text-property>
+            <text-property name="promptText">订单号</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="ds" id="204">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">oracle.jdbc.driver.OracleDriver</property>
+            <property name="odaURL">jdbc:oracle:thin:@192.168.4.10:1521/testdb.acorn.sh</property>
+            <property name="odaUser">aco_scm_dev</property>
+            <property name="odaJndiName">java:comp/env/jdbc/ScmDS</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="bf_dataset" id="205">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">DOCNO</property>
+                    <property name="alias">DOCNO</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">CTYP</property>
+                    <property name="alias">CTYP</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">DEPTGRPNAME</property>
+                    <property name="alias">DEPTGRPNAME</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">COMNAME</property>
+                    <property name="alias">COMNAME</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">DOCDAT</property>
+                    <property name="alias">DOCDAT</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ARVDAT</property>
+                    <property name="alias">ARVDAT</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">INVCOM</property>
+                    <property name="alias">INVCOM</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ADDRESS</property>
+                    <property name="alias">ADDRESS</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">CONTPSN1</property>
+                    <property name="alias">CONTPSN1</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">FAX1</property>
+                    <property name="alias">FAX1</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">BUSPSN</property>
+                    <property name="alias">BUSPSN</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">BUSOPT</property>
+                    <property name="alias">BUSOPT</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">RECPSN</property>
+                    <property name="alias">RECPSN</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+                <structure>
+                    <property name="columnName">DSC</property>
+                    <property name="alias">DSC</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">docNO</property>
+                    <property name="paramName">docNo</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">DOCNO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">CTYP</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">DEPTGRPNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">COMNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">DOCDAT</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">ARVDAT</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">INVCOM</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">ADDRESS</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">CONTPSN1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">FAX1</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">BUSPSN</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">BUSOPT</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">RECPSN</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">DSC</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">ds</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">DOCNO</property>
+                    <property name="nativeName">DOCNO</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">CTYP</property>
+                    <property name="nativeName">CTYP</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">DEPTGRPNAME</property>
+                    <property name="nativeName">DEPTGRPNAME</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">COMNAME</property>
+                    <property name="nativeName">COMNAME</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">DOCDAT</property>
+                    <property name="nativeName">DOCDAT</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">ARVDAT</property>
+                    <property name="nativeName">ARVDAT</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">INVCOM</property>
+                    <property name="nativeName">INVCOM</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">ADDRESS</property>
+                    <property name="nativeName">ADDRESS</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">CONTPSN1</property>
+                    <property name="nativeName">CONTPSN1</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">FAX1</property>
+                    <property name="nativeName">FAX1</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">BUSPSN</property>
+                    <property name="nativeName">BUSPSN</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">BUSOPT</property>
+                    <property name="nativeName">BUSOPT</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">RECPSN</property>
+                    <property name="nativeName">RECPSN</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">DSC</property>
+                    <property name="nativeName">DSC</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select  
+       a.docno, 
+       getdatadicvalue('DOC51BF.CTYP',a.ctyp) As ctyp,
+    d.deptgrpname As deptgrpname, 
+        e.comname as comname,  
+        a.docdat, 
+        a.arvdat,
+        f.companyname As invcom, 
+        g.address,
+        g.contpsn1,
+        g.fax1,
+        Table1.username As buspsn, 
+        Table2.deptname As busopt, 
+        i.username as recpsn,
+        a.dsc
+  from doc51bf a
+       Left Join userinfo Table1 On a.buspsn=Table1.loginname
+       Left Join deptinfo Table2 On a.busopt=Table2.deptcode
+       ,doc51ext c,deptgrpinfo d,companyinfo e,companypurorg f,companyext g ,userinfo i
+where a.docno=c.docno and a.optid=d.ruid and a.comid=e.ruid and a.invorg=f.purorgcode and e.comcode=g.comcode-- and d.ruid=h.ruid
+   and c.recpsn=i.loginname and 1=1 and a.DOCNO=?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>DOCNO</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>DOCNO</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>DOCNO</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CTYP</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>4000</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CTYP</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CTYP</design:label>
+            <design:formattingHints>
+              <design:displaySize>4000</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>DEPTGRPNAME</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>60</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>DEPTGRPNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>DEPTGRPNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>60</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>COMNAME</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>60</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>COMNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>COMNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>60</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>DOCDAT</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>DOCDAT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>DOCDAT</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ARVDAT</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ARVDAT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ARVDAT</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>INVCOM</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>60</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>INVCOM</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>INVCOM</design:label>
+            <design:formattingHints>
+              <design:displaySize>60</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ADDRESS</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ADDRESS</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ADDRESS</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CONTPSN1</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>40</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CONTPSN1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CONTPSN1</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>FAX1</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>40</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FAX1</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FAX1</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>BUSPSN</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>BUSPSN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>BUSPSN</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>BUSOPT</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>60</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>BUSOPT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>BUSOPT</design:label>
+            <design:formattingHints>
+              <design:displaySize>60</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>RECPSN</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>RECPSN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>RECPSN</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>DSC</design:name>
+              <design:position>14</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>600</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>DSC</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>DSC</design:label>
+            <design:formattingHints>
+              <design:displaySize>600</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="dt_dataset" id="206">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">docNo</property>
+                    <property name="paramName">docNo</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">0</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">SNO</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">PLUCODE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">PLUNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">NCFREENAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">PKUNIT</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">QTY</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">CSPRC</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">CSAMT</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">ADDTX</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">PMTYP</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">ds</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">SNO</property>
+                    <property name="nativeName">SNO</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">PLUCODE</property>
+                    <property name="nativeName">PLUCODE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">PLUNAME</property>
+                    <property name="nativeName">PLUNAME</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">NCFREENAME</property>
+                    <property name="nativeName">NCFREENAME</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">PKUNIT</property>
+                    <property name="nativeName">PKUNIT</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">QTY</property>
+                    <property name="nativeName">QTY</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">CSPRC</property>
+                    <property name="nativeName">CSPRC</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">CSAMT</property>
+                    <property name="nativeName">CSAMT</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">ADDTX</property>
+                    <property name="nativeName">ADDTX</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">PMTYP</property>
+                    <property name="nativeName">PMTYP</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+     a.sno, 
+     b.plucode, 
+     b.pluname As pluname,  
+     b.ncfreename,     
+     b.pkunit ,
+     a.qty,    
+     a.csprc, 
+     a.csamt, 
+     a.addtx,
+     getdatadicvalue('DOC70BF.PMTYP', a.pmtyp) pmtyp
+  from doc51dt a 
+       Left Join userinfo Table1 On a.stppsn=Table1.loginname
+       ,plubasinfo b,stkbasinfo c
+where a.pluid=b.ruid and a.stkid = c.ruid 
+   and 1=1 and a.docno=?
+   order by b.pluname
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SNO</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>-127</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SNO</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SNO</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PLUCODE</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PLUCODE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PLUCODE</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PLUNAME</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PLUNAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PLUNAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>NCFREENAME</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>NCFREENAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NCFREENAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PKUNIT</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PKUNIT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PKUNIT</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>QTY</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>3</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>QTY</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>QTY</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CSPRC</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CSPRC</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CSPRC</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CSAMT</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CSAMT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CSAMT</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ADDTX</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ADDTX</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ADDTX</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ext_dataset" id="207">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">docNo</property>
+                    <property name="paramName">docNo</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">RUID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">DOCNO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">DSC</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">RECPSN</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">RECDAT</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">VLDPSN</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">VLDDAT</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">SLPSN</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">STPPSN</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">STPDAT</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">PRTPSN</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">PRTDAT</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">ds</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">RUID</property>
+                    <property name="nativeName">RUID</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">DOCNO</property>
+                    <property name="nativeName">DOCNO</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">DSC</property>
+                    <property name="nativeName">DSC</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">RECPSN</property>
+                    <property name="nativeName">RECPSN</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">RECDAT</property>
+                    <property name="nativeName">RECDAT</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">VLDPSN</property>
+                    <property name="nativeName">VLDPSN</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">VLDDAT</property>
+                    <property name="nativeName">VLDDAT</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">SLPSN</property>
+                    <property name="nativeName">SLPSN</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">STPPSN</property>
+                    <property name="nativeName">STPPSN</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">STPDAT</property>
+                    <property name="nativeName">STPDAT</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">PRTPSN</property>
+                    <property name="nativeName">PRTPSN</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">PRTDAT</property>
+                    <property name="nativeName">PRTDAT</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select a.ruid, 
+      a.docno, 
+      a.dsc, 
+      Table1.username As recpsn, 
+      a.recdat, 
+      Table2.username As vldpsn, 
+      a.vlddat, 
+      Table4.username As slpsn, 
+      Table3.username As stppsn, 
+      a.stpdat, 
+      Table5.username As prtpsn, 
+      a.prtdat
+ from doc51ext a
+      Left Join userinfo Table1 On a.recpsn = Table1.loginname
+      Left Join userinfo Table2 On a.vldpsn = Table2.loginname
+      Left Join userinfo Table3 On a.stppsn = Table3.loginname
+      Left Join userinfo Table4 On a.slpsn    = Table4.loginname
+      Left Join userinfo Table5 On a.prtpsn    = Table5.loginname 
+where 1=1 and
+ a.DOCNO=?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>RUID</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>-127</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>RUID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>RUID</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>DOCNO</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>DOCNO</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>DOCNO</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>DSC</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>60</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>DSC</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>DSC</design:label>
+            <design:formattingHints>
+              <design:displaySize>60</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>RECPSN</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>RECPSN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>RECPSN</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>RECDAT</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>RECDAT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>RECDAT</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VLDPSN</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VLDPSN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VLDPSN</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VLDDAT</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VLDDAT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VLDDAT</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SLPSN</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SLPSN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SLPSN</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>STPPSN</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>STPPSN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>STPPSN</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>STPDAT</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>STPDAT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>STPDAT</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PRTPSN</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PRTPSN</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PRTPSN</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PRTDAT</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PRTDAT</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PRTDAT</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="doc70plu_dataset" id="1041">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">docNo</property>
+                    <property name="paramName">docNo</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">0</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">PMCTYP</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">PMTYP</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">ds</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">PMCTYP</property>
+                    <property name="nativeName">PMCTYP</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">PMTYP</property>
+                    <property name="nativeName">PMTYP</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select str_concat(distinct getdatadicvalue('DOC70BF.CTYP', a.pmctyp)) PMCTYP,
+ str_concat(distinct getdatadicvalue('DOC70BF.PMTYP', c.pmtyp)) PMTYP
+ from doc51bf a, doc51DT b, doc70plu c, doc70bf d
+ where c.pluid = b.pluid
+ and a.docno = b.docno and c.docno=d.docno
+ and a.comid = d.COMID 
+ and A.docno = ?
+]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="additional_dataset" id="1230">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">docno</property>
+                    <property name="paramName">docNo</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">PROVISION</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">ds</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">PROVISION</property>
+                    <property name="nativeName">PROVISION</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select provision from doc51bf where docno = ?]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">"宋体"</property>
+            <property name="fontSize">12pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="leftMargin">0.5in</property>
+            <property name="rightMargin">0.3229166666666667in</property>
+            <property name="headerHeight">4.6in</property>
+            <property name="footerHeight">2.5in</property>
+            <page-header>
+                <grid id="295">
+                    <property name="height">4.802083333333333in</property>
+                    <column id="296"/>
+                    <row id="297">
+                        <property name="height">0.4583333333333333in</property>
+                        <cell id="298">
+                            <image id="309">
+                                <property name="height">0.38in</property>
+                                <property name="width">1.9666666666666666in</property>
+                                <property name="source">file</property>
+                                <expression name="uri" type="constant">/static/images/report/xg_logo.jpg</expression>
+                            </image>
+                        </cell>
+                    </row>
+                    <row id="299">
+                        <property name="height">2.0833333333333335in</property>
+                        <cell id="300">
+                            <grid id="27">
+                                <property name="height">2.2604166666666665in</property>
+                                <column id="28"/>
+                                <row id="29">
+                                    <cell id="30">
+                                        <grid id="42">
+                                            <property name="height">0.4791666666666667in</property>
+                                            <column id="43"/>
+                                            <column id="44">
+                                                <property name="width">1.5in</property>
+                                            </column>
+                                            <column id="45"/>
+                                            <row id="46">
+                                                <property name="height">0.4791666666666667in</property>
+                                                <cell id="47"/>
+                                                <cell id="48">
+                                                    <label id="50">
+                                                        <property name="fontSize">24pt</property>
+                                                        <property name="fontWeight">bold</property>
+                                                        <property name="textAlign">center</property>
+                                                        <text-property name="text">采购订单</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="49"/>
+                                            </row>
+                                        </grid>
+                                    </cell>
+                                </row>
+                                <row id="31">
+                                    <property name="height">0.3229166666666667in</property>
+                                    <cell id="32">
+                                        <grid id="51">
+                                            <property name="width">7.375in</property>
+                                            <column id="52">
+                                                <property name="width">2cm</property>
+                                            </column>
+                                            <column id="53">
+                                                <property name="width">1.2708333333333333in</property>
+                                            </column>
+                                            <column id="54">
+                                                <property name="width">0.8541666666666666in</property>
+                                            </column>
+                                            <column id="55">
+                                                <property name="width">0.9583333333333334in</property>
+                                            </column>
+                                            <column id="56">
+                                                <property name="width">0.90625in</property>
+                                            </column>
+                                            <column id="57">
+                                                <property name="width">0.8333333333333334in</property>
+                                            </column>
+                                            <column id="58">
+                                                <property name="width">0.90625in</property>
+                                            </column>
+                                            <column id="59">
+                                                <property name="width">0.8645833333333334in</property>
+                                            </column>
+                                            <row id="60">
+                                                <cell id="61">
+                                                    <label id="69">
+                                                        <property name="textAlign">left</property>
+                                                        <text-property name="text">订单号：</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="62">
+                                                    <data id="266">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">DOCNO</property>
+                                                                <text-property name="displayName">DOCNO</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["DOCNO"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">DOCNO</property>
+                                                    </data>
+                                                </cell>
+                                                <cell id="63">
+                                                    <label id="71">
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">业务类型:</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="64">
+                                                    <data id="267">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">CTYP</property>
+                                                                <text-property name="displayName">CTYP</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["CTYP"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">CTYP</property>
+                                                    </data>
+                                                </cell>
+                                                <cell id="65">
+                                                    <label id="73">
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">业务部门:</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="66">
+                                                    <data id="268">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">BUSOPT</property>
+                                                                <text-property name="displayName">BUSOPT</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["BUSOPT"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">BUSOPT</property>
+                                                    </data>
+                                                </cell>
+                                                <cell id="67">
+                                                    <label id="75">
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">订单日期:</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="68">
+                                                    <data id="269">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <structure name="dateTimeFormat">
+                                                            <property name="category">Medium Date</property>
+                                                            <property name="pattern">Medium Date</property>
+                                                            <property name="locale">zh_Hans_CN</property>
+                                                        </structure>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">DOCDAT</property>
+                                                                <text-property name="displayName">DOCDAT</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["DOCDAT"]</expression>
+                                                                <property name="dataType">date-time</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">DOCDAT</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                    </cell>
+                                </row>
+                                <row id="33">
+                                    <property name="height">1cm</property>
+                                    <cell id="34">
+                                        <grid id="77">
+                                            <property name="height">0.28125in</property>
+                                            <property name="width">7.375in</property>
+                                            <column id="78">
+                                                <property name="width">2cm</property>
+                                            </column>
+                                            <column id="79">
+                                                <property name="width">2.28125in</property>
+                                            </column>
+                                            <column id="80">
+                                                <property name="width">0.7083333333333334in</property>
+                                            </column>
+                                            <column id="81">
+                                                <property name="width">1.7083333333333333in</property>
+                                            </column>
+                                            <column id="82">
+                                                <property name="width">1.0520833333333333in</property>
+                                            </column>
+                                            <column id="83">
+                                                <property name="width">0.84375in</property>
+                                            </column>
+                                            <row id="84">
+                                                <property name="height">0.28125in</property>
+                                                <cell id="85">
+                                                    <label id="92">
+                                                        <property name="textAlign">left</property>
+                                                        <text-property name="text">供应商：</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="86">
+                                                    <data id="270">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">COMNAME</property>
+                                                                <text-property name="displayName">COMNAME</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["COMNAME"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">COMNAME</property>
+                                                    </data>
+                                                </cell>
+                                                <cell id="87">
+                                                    <label id="94">
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">联系人:</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="88">
+                                                    <data id="271">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">CONTPSN1</property>
+                                                                <text-property name="displayName">CONTPSN1</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["CONTPSN1"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">CONTPSN1</property>
+                                                    </data>
+                                                </cell>
+                                                <cell id="89">
+                                                    <label id="95">
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">最晚交货日:</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="90">
+                                                    <data id="272">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <structure name="dateTimeFormat">
+                                                            <property name="category">Medium Date</property>
+                                                            <property name="pattern">Medium Date</property>
+                                                            <property name="locale">zh_Hans_CN</property>
+                                                        </structure>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">ARVDAT</property>
+                                                                <text-property name="displayName">ARVDAT</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["ARVDAT"]</expression>
+                                                                <property name="dataType">date-time</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">ARVDAT</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                    </cell>
+                                </row>
+                                <row id="35">
+                                    <property name="height">0.3229166666666667in</property>
+                                    <cell id="36">
+                                        <grid id="97">
+                                            <property name="width">100%</property>
+                                            <column id="98">
+                                                <property name="width">3cm</property>
+                                            </column>
+                                            <column id="99"/>
+                                            <column id="100">
+                                                <property name="width">2cm</property>
+                                            </column>
+                                            <column id="101">
+                                                <property name="width">4cm</property>
+                                            </column>
+                                            <row id="102">
+                                                <cell id="103">
+                                                    <label id="113">
+                                                        <property name="textAlign">left</property>
+                                                        <text-property name="text">供应商地址：</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="104">
+                                                    <data id="273">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">ADDRESS</property>
+                                                                <text-property name="displayName">ADDRESS</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["ADDRESS"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">ADDRESS</property>
+                                                    </data>
+                                                </cell>
+                                                <cell id="105">
+                                                    <label id="115">
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">传真:</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="106">
+                                                    <data id="274">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">FAX1</property>
+                                                                <text-property name="displayName">FAX1</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["FAX1"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">FAX1</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                    </cell>
+                                </row>
+                                <row id="1044">
+                                    <property name="height">0.3125in</property>
+                                    <cell id="1045">
+                                        <grid id="1029">
+                                            <property name="width">7.447916666666667in</property>
+                                            <column id="1030">
+                                                <property name="width">0.875in</property>
+                                            </column>
+                                            <column id="1031">
+                                                <property name="width">2.5833333333333335in</property>
+                                            </column>
+                                            <column id="1032">
+                                                <property name="width">0.5416666666666666in</property>
+                                            </column>
+                                            <column id="1033">
+                                                <property name="width">3.4479166666666665in</property>
+                                            </column>
+                                            <row id="1034">
+                                                <cell id="1035">
+                                                    <label id="1039">
+                                                        <text-property name="text">经营属性:</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="1036">
+                                                    <data id="1049">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <property name="dataSet">doc70plu_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">PMCTYP</property>
+                                                                <text-property name="displayName">PMCTYP</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["PMCTYP"]</expression>
+                                                                <property name="dataType">string</property>
+                                                                <property name="allowExport">true</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">PMCTYP</property>
+                                                    </data>
+                                                </cell>
+                                                <cell id="1037">
+                                                    <label id="117">
+                                                        <property name="textAlign">left</property>
+                                                        <text-property name="text">备注:</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="1038">
+                                                    <data id="1227">
+                                                        <property name="borderBottomStyle">solid</property>
+                                                        <property name="borderBottomWidth">1px</property>
+                                                        <property name="dataSet">bf_dataset</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">DSC</property>
+                                                                <text-property name="displayName">DSC</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["DSC"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="resultSetColumn">DSC</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                    </cell>
+                                </row>
+                                <row id="37">
+                                    <property name="height">0.3645833333333333in</property>
+                                    <cell id="38">
+                                        <property name="fontSize">9pt</property>
+                                        <property name="height">1px</property>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="301">
+                        <cell id="302">
+                            <text id="286">
+                                <property name="paddingLeft">10pt</property>
+                                <property name="contentType">auto</property>
+                                <text-property name="content"><![CDATA[如对到货日期有疑议，请在24小时内与相关人员联系，否则默认为接受。
+如逾期或超过双方约定时间交货，则按合同条款处理。
+送货时请随附橡果送货单！收货时间：9：00-17:30]]></text-property>
+                            </text>
+                            <text id="285">
+                                <property name="fontSize">14pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="paddingLeft">10pt</property>
+                                <property name="contentType">auto</property>
+                                <text-property name="content"><![CDATA[
+由于业务发展，橡果的收货都需要做条码入库，请检查商品的条码完整性。
+详情可洽合相关开发人员。]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                    <row id="303">
+                        <cell id="304"/>
+                    </row>
+                    <row id="305">
+                        <cell id="306"/>
+                    </row>
+                    <row id="307">
+                        <cell id="308"/>
+                    </row>
+                </grid>
+            </page-header>
+            <page-footer>
+                <grid id="169">
+                    <property name="height">2.3333333333333335in</property>
+                    <list-property name="boundDataColumns">
+                        <structure>
+                            <property name="name">Column Binding</property>
+                            <text-property name="displayName">打印日期</text-property>
+                            <expression name="expression" type="javascript">new Date()</expression>
+                            <property name="dataType">date-time</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                    </list-property>
+                    <column id="170"/>
+                    <row id="171">
+                        <property name="height">0.4166666666666667in</property>
+                        <cell id="172">
+                            <grid id="175">
+                                <property name="height">0.2916666666666667in</property>
+                                <property name="width">7.583333333333333in</property>
+                                <column id="291">
+                                    <property name="width">0.4in</property>
+                                </column>
+                                <column id="176">
+                                    <property name="width">0.8125in</property>
+                                </column>
+                                <column id="177">
+                                    <property name="width">0.8854166666666666in</property>
+                                </column>
+                                <column id="289">
+                                    <property name="width">1.4166666666666667in</property>
+                                </column>
+                                <column id="178">
+                                    <property name="width">0.78125in</property>
+                                </column>
+                                <column id="179">
+                                    <property name="width">1in</property>
+                                </column>
+                                <column id="180">
+                                    <property name="width">0.8645833333333334in</property>
+                                </column>
+                                <column id="181">
+                                    <property name="width">1.4270833333333333in</property>
+                                </column>
+                                <row id="182">
+                                    <property name="height">0.2916666666666667in</property>
+                                    <cell id="290"/>
+                                    <cell id="183">
+                                        <label id="197">
+                                            <property name="textAlign">right</property>
+                                            <text-property name="text">制单人:</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="184">
+                                        <data id="276">
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">1px</property>
+                                            <property name="dataSet">ext_dataset</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">RECPSN</property>
+                                                    <text-property name="displayName">RECPSN</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["RECPSN"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="resultSetColumn">RECPSN</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="288"/>
+                                    <cell id="185">
+                                        <label id="199">
+                                            <property name="textAlign">right</property>
+                                            <text-property name="text">审核人:</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="186">
+                                        <data id="277">
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">1px</property>
+                                            <property name="dataSet">ext_dataset</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">VLDPSN</property>
+                                                    <text-property name="displayName">VLDPSN</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["VLDPSN"]</expression>
+                                                    <property name="dataType">string</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="resultSetColumn">VLDPSN</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="187">
+                                        <label id="201">
+                                            <property name="textAlign">right</property>
+                                            <text-property name="text">审核日期:</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="188">
+                                        <data id="278">
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">1px</property>
+                                            <structure name="dateTimeFormat">
+                                                <property name="category">Long Date</property>
+                                                <property name="pattern">Long Date</property>
+                                                <property name="locale">zh_Hans_CN</property>
+                                            </structure>
+                                            <property name="dataSet">ext_dataset</property>
+                                            <list-property name="boundDataColumns">
+                                                <structure>
+                                                    <property name="name">VLDDAT</property>
+                                                    <text-property name="displayName">VLDDAT</text-property>
+                                                    <expression name="expression" type="javascript">dataSetRow["VLDDAT"]</expression>
+                                                    <property name="dataType">date-time</property>
+                                                </structure>
+                                            </list-property>
+                                            <property name="resultSetColumn">VLDDAT</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="173">
+                        <property name="height">1.6354166666666667in</property>
+                        <cell id="174">
+                            <grid id="189">
+                                <property name="width">100%</property>
+                                <column id="190"/>
+                                <column id="191"/>
+                                <row id="192">
+                                    <cell id="193">
+                                        <text id="195">
+                                            <property name="paddingLeft">1pt</property>
+                                            <property name="contentType">auto</property>
+                                            <text-property name="content"><![CDATA[订货公司：橡果贸易（上海）有限公司
+运输单传真到相应仓库
+1、上海仓库：王林平18930010698
+地址：上海市青浦区华新镇华卫路18号（近嘉松中路口）
+2、广州仓库：王亚虎020-81998335
+3、成都仓库：周瑞峰028-84202390
+4、北京仓库：高海斌010-53011978]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="194">
+                                        <text id="196">
+                                            <property name="contentType">auto</property>
+                                            <text-property name="content"><![CDATA[总机电话：021-51518888	传真：2539
+采购发票寄给结算专员：宗芸	分机：2638
+寄票地址：上海市田林路487号宝石园20号楼18F	
+邮编：200233]]></text-property>
+                                        </text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="1241">
+                        <property name="height">0.28125in</property>
+                        <cell id="1242">
+                            <grid id="632">
+                                <property name="fontFamily">"仿宋"</property>
+                                <property name="width">7.364583333333333in</property>
+                                <column id="633">
+                                    <property name="width">0.8333333333333334in</property>
+                                </column>
+                                <column id="634">
+                                    <property name="width">5.916666666666667in</property>
+                                </column>
+                                <column id="635">
+                                    <property name="width">0.6145833333333334in</property>
+                                </column>
+                                <row id="636">
+                                    <cell id="637">
+                                        <label id="640">
+                                            <text-property name="text">打印日期:</text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="638">
+                                        <data id="1005">
+                                            <structure name="dateTimeFormat">
+                                                <property name="category">Custom</property>
+                                                <property name="pattern">yyyy-MM-dd ahh:mm</property>
+                                                <property name="locale">zh_Hans_CN</property>
+                                            </structure>
+                                            <property name="resultSetColumn">Column Binding</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="639">
+                                        <grid id="642">
+                                            <property name="width">1.0833333333333333in</property>
+                                            <column id="643">
+                                                <property name="width">0.16666666666666666in</property>
+                                            </column>
+                                            <column id="644">
+                                                <property name="width">0.10416666666666667in</property>
+                                            </column>
+                                            <column id="645">
+                                                <property name="width">0.8125in</property>
+                                            </column>
+                                            <row id="646">
+                                                <cell id="647">
+                                                    <auto-text id="648">
+                                                        <property name="type">page-number</property>
+                                                    </auto-text>
+                                                </cell>
+                                                <cell id="649">
+                                                    <text id="650">
+                                                        <property name="contentType">plain</property>
+                                                        <text-property name="content"><![CDATA[/]]></text-property>
+                                                    </text>
+                                                </cell>
+                                                <cell id="651">
+                                                    <auto-text id="652">
+                                                        <property name="type">total-page</property>
+                                                    </auto-text>
+                                                </cell>
+                                            </row>
+                                        </grid>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="17">
+            <property name="height">3.4270833333333335in</property>
+            <column id="18"/>
+            <row id="23">
+                <property name="height">3.4270833333333335in</property>
+                <cell id="24">
+                    <table id="1055">
+                        <property name="width">7.552083333333333in</property>
+                        <property name="dataSet">dt_dataset</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">SNO</property>
+                                <text-property name="displayName">SNO</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["SNO"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">PLUCODE</property>
+                                <text-property name="displayName">PLUCODE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["PLUCODE"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">PLUNAME</property>
+                                <text-property name="displayName">PLUNAME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["PLUNAME"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">NCFREENAME</property>
+                                <text-property name="displayName">NCFREENAME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["NCFREENAME"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">PKUNIT</property>
+                                <text-property name="displayName">PKUNIT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["PKUNIT"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">QTY</property>
+                                <text-property name="displayName">QTY</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["QTY"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">CSPRC</property>
+                                <text-property name="displayName">CSPRC</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["CSPRC"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">CSAMT</property>
+                                <text-property name="displayName">CSAMT</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["CSAMT"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ADDTX</property>
+                                <text-property name="displayName">ADDTX</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ADDTX"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">PMTYP</property>
+                                <text-property name="displayName">PMTYP</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["PMTYP"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">数量</property>
+                                <text-property name="displayName">数量</text-property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["QTY"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">总计</property>
+                                <text-property name="displayName">总计</text-property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["CSAMT"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="1109">
+                            <property name="width">0.22916666666666666in</property>
+                        </column>
+                        <column id="1110">
+                            <property name="width">0.5625in</property>
+                        </column>
+                        <column id="1111">
+                            <property name="width">1.6354166666666667in</property>
+                        </column>
+                        <column id="1112">
+                            <property name="width">0.625in</property>
+                        </column>
+                        <column id="1113">
+                            <property name="width">0.4791666666666667in</property>
+                        </column>
+                        <column id="1114">
+                            <property name="width">1in</property>
+                        </column>
+                        <column id="1115">
+                            <property name="width">0.9895833333333334in</property>
+                        </column>
+                        <column id="1116">
+                            <property name="width">1.1458333333333333in</property>
+                        </column>
+                        <column id="1118">
+                            <property name="width">0.8854166666666666in</property>
+                        </column>
+                        <header>
+                            <row id="1056">
+                                <cell id="1057">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <label id="1058">
+                                        <text-property name="text">行号</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1059">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <label id="1060">
+                                        <text-property name="text">商品编码</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1061">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <label id="1062">
+                                        <text-property name="text">商品名称</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1063">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <label id="1064">
+                                        <text-property name="text">自由项</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1065">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <label id="1066">
+                                        <text-property name="text">单位</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1067">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <label id="1068">
+                                        <text-property name="text">数量</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1069">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <label id="1070">
+                                        <text-property name="text">含税单价</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1071">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <label id="1072">
+                                        <text-property name="text">价税合计</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="1075">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <label id="1076">
+                                        <text-property name="text">结算类型</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="1077">
+                                <cell id="1078">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1079">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">SNO</property>
+                                    </data>
+                                </cell>
+                                <cell id="1080">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1226">
+                                        <property name="textAlign">center</property>
+                                        <structure name="toc"/>
+                                        <method name="onRender"><![CDATA[var v = this.getValue();
+if(v != null &amp;&amp; v != ""){
+ v = v.toString();
+ if(v.length()>6){
+ var v1 = v.substring(0,6);
+ var v2 = v.substring(6,v.length());
+ v = v1 + "\t" + v2;
+ }
+}else{
+ v = "";
+}
+this.setDisplayValue(v);]]></method>
+                                        <property name="resultSetColumn">PLUCODE</property>
+                                    </data>
+                                </cell>
+                                <cell id="1082">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1083">
+                                        <property name="resultSetColumn">PLUNAME</property>
+                                    </data>
+                                </cell>
+                                <cell id="1084">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1085">
+                                        <property name="resultSetColumn">NCFREENAME</property>
+                                    </data>
+                                </cell>
+                                <cell id="1086">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1087">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">PKUNIT</property>
+                                    </data>
+                                </cell>
+                                <cell id="1088">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1089">
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">QTY</property>
+                                    </data>
+                                </cell>
+                                <cell id="1090">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1091">
+                                        <structure name="numberFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">#0.00</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">CSPRC</property>
+                                    </data>
+                                </cell>
+                                <cell id="1092">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1093">
+                                        <structure name="numberFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">#0.00</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">CSAMT</property>
+                                    </data>
+                                </cell>
+                                <cell id="1096">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1097">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">PMTYP</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="1098">
+                                <cell id="1099">
+                                    <property name="colSpan">5</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                </cell>
+                                <cell id="1104">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1130">
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">数量</property>
+                                    </data>
+                                </cell>
+                                <cell id="1105">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                </cell>
+                                <cell id="1106">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                    <data id="1132">
+                                        <structure name="numberFormat">
+                                            <property name="category">Custom</property>
+                                            <property name="pattern">#0.00</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">总计</property>
+                                    </data>
+                                </cell>
+                                <cell id="1108">
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">1px</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">1px</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">1px</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">1px</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                    <label id="546">
+                        <text-property name="text"> </text-property>
+                    </label>
+                    <table id="1231">
+                        <property name="dataSet">additional_dataset</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">PROVISION</property>
+                                <text-property name="displayName">PROVISION</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["PROVISION"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <column id="1240"/>
+                        <header>
+                            <row id="1232">
+                                <property name="height">0.010416666666666666in</property>
+                                <cell id="1233"/>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="1235">
+                                <property name="height">1.8645833333333333in</property>
+                                <cell id="1236">
+                                    <property name="borderBottomStyle">none</property>
+                                    <property name="borderLeftStyle">none</property>
+                                    <property name="borderRightStyle">none</property>
+                                    <property name="borderTopStyle">none</property>
+                                    <data id="1237">
+                                        <property name="fontSize">10pt</property>
+                                        <property name="resultSetColumn">PROVISION</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="1238">
+                                <property name="height">0.10416666666666667in</property>
+                                <cell id="1239"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">xg_logo.jpg</property>
+            <property name="data">
+                /9j/4AAQSkZJRgABAgAAAQABAAD/4QDmRXhpZgAASUkqAAgAAAAFABIBAwABAAAAAQAAADEBAgAcAAAA
+                SgAAADIBAgAUAAAAZgAAABMCAwABAAAAAQAAAGmHBAABAAAAegAAAAAAAABBQ0QgU3lzdGVtcyBEaWdp
+                dGFsIEltYWdpbmcAMjAwODowNzowNSAwODozNDo0MQAFAACQBwAEAAAAMDIyMJCSAgAEAAAAMTI1AAKg
+                BAABAAAAwgEAAAOgBAABAAAA7QAAAAWgBAABAAAAvAAAAAAAAAACAAEAAgAEAAAAUjk4AAIABwAEAAAA
+                MDEwMAAAAAAAAAAA/8AAEQgA7QHCAwEiAAIRAQMRAf/bAIQABwQFBgUEBwYFBgcHBwgKEQsKCQkKFQ8Q
+                DBEZFhoaGBYYGBwfKCIcHSYeGBgjLyMmKSotLS0bITE0MSs0KCwtKwELCwsPDQ8eEREeQCskK0BAQEBA
+                QEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBA/8QAqAABAAIDAQEBAAAA
+                AAAAAAAAAAYHAQUIBAIDEAABAwMBBgIGBAoGBggHAAABAAIDBAURBgcSITFBgRNRCBQiYXGRFTKh0RYX
+                GCNCVpSisdJDUmKCk8EkM1SS4eIlNkZTV2NyozQ3RFVlg7IBAQADAQEBAAAAAAAAAAAAAAABAgMEBQYR
+                AQACAgICAgIDAQEBAAAAAAABAgMREiEEMUFREyIUYXEyQgX/2gAMAwEAAhEDEQA/AOjk6onVAREQEREB
+                ERAREQEREBERAREQEREBERAREQOqJ1RAREQOqJ1RAREQEREBERAREQEREBERAREQEREBERATqidUBERA
+                TqidUBERAREQFlYRATqidUBERAREQEREBERAREQEREBERAREQEREBERA6onVEBERA6onVEBERAREQERE
+                BERAREQEREBERAREQEREBOqJ1QEREBOqJ1QEREBERAWVhZQYTqidUBERAREQEREBERAREQEREBERAREQ
+                EREBERA6onVEBERA6onVEBERAREQEREBERAREQEREBERAREQEREBOqJ1QEREBOqJ1QEREBERAREQO6de
+                aJ1QO6d0RA7p3T5IgE46rz19dTW+mdU1tTDTQM4ulmeGNb8SeC1uuNRQaV0lcr3VFu5RU7pQ0uxvux7L
+                c+Zdgd1xxrTVd+1/cTX6mrXOjP8AqaKIlsMI8g3z954qJmIVteKxuXX9p17pW8Vvqdr1Haaqpzjwoqlp
+                cfgOqkOfeuBTboGlpi3onsILJGPwWnz9y6X9F/aFd9X2q4WzUM/rVVajG1lSR7Ukbsj2z1cC3n1HvSJ2
+                imSL+lyd07r4nlZBC6WV7Y2MaXOe44DQOZJ6BVDrb0kNJ2GpkpLNHU36pYSC6mIZCD5b55/EAj3qV1w9
+                07rnW1+lSfWmi86VfDTlwDpKepLnNHnhzRk+5XbovV9n1nZWXPT1YKmncd13DddG7q1zTxB6+9Bve6d0
+                RA7p3REDundFhxwEDusjrxVfVW2vRFLXzUctxqDNDKYnBtLI4bwOCAcean8T9+MOHIjPFERaJ9PrrzWE
+                JxzIVenbZo/6W+jY6mslqPH9Xb4dM5we/e3eB6jPVRsmYj2sMfFO6/NkmT/xX3vKUs9ead1874z/AMVn
+                e+CB3We6juo9dab0zWx0l+vFNQ1EjPEbHITktyRngPcVrvxuaE/WWh/e+5RuETaI+Uz7p3UM/G5oT9Zq
+                H977k/G5oT9ZqH977k3COVftM+6d1DPxuaE/Wah/e+5PxuaE/Wah/e+5Nwcq/aZ907qGfjc0J+s1D+99
+                yzFtY0PNMyKLUdE973BrWjeySTgDl5lNwcq/aZd07r5zwUPfta0K17mu1LQgtOCPa5/JSmZiPaZd07qG
+                fjc0J+s1D+99yfjc0J+s1D+99yjcI5V+0z7p3UM/G5oT9ZqH977k/G5oT9ZqH977k3Byr9pn3TuoZ+Nv
+                Qn6zUP733IdrmhB/2mof3vuTcHKv2mfTmndR7TeudN6mrX0liu9PWzxx+I5kWctbnGTkeZXvu1/tNmMY
+                u1zoqIy53PWJms38c8Z5qU7jW2xys5481H/w60p+stm/bGfen4d6U/WWzftjPvQ5QkHdM+9ael1XYK2K
+                eSjvdunZTM8Sd0VS1wiZ/Wdx4Bef8O9KY/6y2b9sZ96G4SDKZ4qP/h3pT9ZbN+2M+9Pw70p+stm/bGfe
+                hyhIO6d1H/w70p01LZv2xn3r3We/Wq9GUWe50Vd4OPE9XmEm5nOM45ZwfkhExLZd07oOSIk7p3RZQY7J
+                15IiDSa21PSaQsM13uNNXT00AJk9UgMrmjzIHIe88AqZrPSPuN4dLFozSniOb/TV1QPZzyJY371f00TZ
+                oyyRrXtc0tLXDIIPQ+5UTt32VUdltbtW6Gom0FVQfnK2kpRux1EOcuO7yBHM45jPkoneukW3rr2kewja
+                VcNVyXGzatFPBf6R/jNjiYGNmgPItHXdPD4EKzq+rp6Cjlqq2aOmp4Wl8k0rt1rGjmSTyXKkHgXuipbr
+                QzTUdVuF0FXA8tlhcRggEdPd1Woulk1ZecU141HLWUYP1p5Xv4f+knBKwp5FZ6t1Lmp5VZjVupb3b5tW
+                j1rUC12V7vwfoX+I+YjHrko5ED+oOnnzVO1N3qXuPhO8Np5AL364pG2y4toYauWoayNrnufgDePlhR9b
+                R+3basRb9peyK41bXezMSffxVv7DNfx7NbBcbpd9NXWqbdZG+DXQtDYnhnDcJPAcSTn3qD7HtFTa31dB
+                SFv+hU5E9ZIRkCMH6vxceA+J8l1u+20v0eaD1SH1Pc8P1bcBj3MYDccsLz/O/wDoR4torFdz8/40isfD
+                nPXe1PVWuRPT1s7bdZ5jwt1LgBzccnyfWdnqM49yhsMMULQIWBo8wrs2obILe60zXTSVP6jV0rDK6iiB
+                MdQGjJAbxIf8OapOCZk8TZGZ49DzHxWuDyqeRXlRyZ4vWe/T6eA9uHYIxjBCk+wnU1Xo/arbaWmlf9H3
+                aVtNUQZy1wdwa74tdg5+IUZxxUm2M2GXUO2KwxxNLoqF/rlQ7oxkfHj8Xbo7rprPavjzPLTsofBZ7LAc
+                MZym8Fo7WeydkByiDyV1zobeGmvrKalDyQ3x5QzePuzzWj1Vq+1Uml7pU0N3tr6qGjmkhaKlhJeGEt4Z
+                48cKM7Ztl9y2g3Chkgu1NR0tHE4Nilic877jxdw9wAVGbS9n8Og5qanmvdHXVs/terwQlpjZ0c454Z6e
+                arMzDHJe1fhpdFwiu1jaIqiVjWyV0TpZJnBrcBwc4knh0PzXZFLfbRVTNhpLpQTyvzuxxVDHOd8ADx4L
+                lLZds4rdoM1cylrIaOKjazfklYXBznE4GB7gVOZNmsmyex3jU9Xc6WsqGUL6WjEcJYY5ZSGb2T1wSO5V
+                a7hlimYjeuku22bWKXTdFPZ7DPHUXmZpY5zcObStPAknkXeQ+apnQey7U+r7e642WCGGnieGxzVEro/E
+                I6sODnGOJ81otJ6auWqr021WSJs1W5jpMSSbg3WgZJJ+IUuvmz7aFpawS19dVPpLfSMBcIrq7DQTgYaD
+                5lRvas2m87mOmz/EXtC5et0fD/8AIyfctPq/ZpqvSFofcr7dKKGFpw1rbhIXyO/qtbjiVoNOS6n1Fe6e
+                1Wq53OWrqSRG010jRwBJyc8OAUmv+yXaBHQS1963JoKSJ0jnz3LxCxoGTjKf5B1MbiJRjR9mv2rL5DbL
+                RJWzPe4b8njP3Ym9XOOcAYz8eS650lp6k0zY4LXbWyeDFn25ZC973Hm4kknJ+zkuP9Hm41F/oKC1VNVB
+                JW1MURbDK5m/lw54IzwzzXYuqbg606WutxiGX0lHNO34tYSP4K1GmD1MuU9tl9dfdpN2na8vip5PVYR/
+                Zj4H97KsSw7A7LW2Sjqa/UVTDVTQMkliZ4RDHOAJaM+WcKmLPRT32+0lCx5fUV9S2Lfdk5c93FxHckq2
+                z6NdxJz+EVAT5+rO4/aqx3LOkcpmdbbn8nrTn60Vf/tKDbYdnNl0LbaKS3XmprqmrmLBG/cw1gbku9ns
+                Fv8A8mu49dQ0H7M771WGt9ODSeqKuy+uxVklLutkmiZut3iASMHyUzH9JvGo/wCdJVsc2b0eu2XCa6XK
+                S3wUrmNjdHu5e4gk/W6AAfNT/wDJ603+tFZ/7SiWktg1y1Jpyiu/0vSUgrIhK2CSBznMB5ZPvC2Z9Gu5
+                D/tDb/2Z/wB6RH9JrSdf8vw2j7INPaR0hWXeHUFVVTwgNihIjIe9xAAOOOOOVFdhVhF+2nWyORu/BRl1
+                XIPcz6uf7xavPtO2fybP62ipai509bNVxulxDGW+G0HGTnzP8FaXonWJsVqut8li/OTyilid13WjLvtI
+                +SRG5RFd5IjWluapujLJpu4XOTG7SU0kvHqQ04Hc4C4w05bn3m+0Ftj3t+sqY4fZ4kbzgCR8Bk9l0Z6U
+                F8Nu0BFbonlslzqGxuAPONvtO7cGjuq19GSxNum0CSvmZvRWymMrSRwEjvZb3xvHspt3Olsv7XirbVey
+                3ZxSVk1NV7QfBmheWPje+IFrgcEH3r8/xbbMf/EVh/8A2RKQ1fo509ZWz1U+qap0k8jpXuNI3i4nJ/SU
+                f19sPt+ktJ117l1FUTeqxgsiNM1viOJADc73mUmP6JpMf+WPxa7Mv/ERvv8Abi+5Pxa7Mf8AxFb/AL8S
+                rbRGn36p1Zb7LFJ4Rq5Qx0oGfDaAS52OuAFc35NdHj/rPUfsbf5lHv4VrE2jcVaE7NdmQH/zFb/vxKMb
+                W9GWTR77Uyy3ae5GvhNRvSBu6I8gNIx5nPYKxD6NdFgj8Jqkg8CPU28f3lV+2G4Mr9fVtPRYdS25rLfS
+                sB4BsTQ3A9xdlRMdF66r3C2fRQsQp9PXK+yM/OVc/gROP/dsHH94n5KAeklfHXbaVPSNcHwWyJsDAOQe
+                RvP+0gdl0PoKyx6Y0PbLa1gY6mpWmTAxl5G84nuSuOrlVVV8utRVzF0tXXTOeeP1nvd/xA7K1uo0tkjj
+                SKrZ0VsFbqHSdBeKu9y0UlZD43gimDwwE8OORnhj5qv9pGmqDSeqZrNQ3F9x9XY3xpXRhgbIeJaME5wM
+                d10NtM2g2rZ7pdltoSx1z9XbDSUkbv8AUjdAa53kBwx5qgtm+kq/X2rtyZ8klO14qLjVy8cN3suyernK
+                JiPUK3rXqtfa09luzKa4bG6qNtX9H1eoi2SSYxb5bTg+ywDhzHHuvL+TQ48fwmZ2ov8AmUfuW3vUdNcq
+                mCzMtMdvilcylYYM7sbTho5+QX4/lB6z87R+zn+ZP1Wm2P1MJN+TQ79Z2/sX/Mn5NDv1nb+xf8yjX5QO
+                tvK0/sx/mXz+UHrPGc2f9mP8yfojeH6Sf8mh36zt/Yv+ZWVso2fU+gLJNRx1Iq56iTfmnEe5v890Yz0B
+                wqOPpB6zHHNoOPKnP8y6M0XU3Gs0rbam9+F6/PTsln8Ju60OcM4A9wIVq6+GuOKTP6w2+MDknZOiKzY7
+                J2RZQYTqndOvNAXmudHDcKGejqmeJDURuikaerXAgj5FenuoZtp1ZTaO2fXSuqKgxTTQPp6RrDh7pntI
+                bu/DO97gEHJDNV/QWmxbLe8uqmzSt8XpG0Ow3HmeCjNdfLlXPLqutqJc9HPOPlyXhc4knjn3+a+VWKVj
+                vSkY6x3p9Pe55y4knzKzBG+aRscTXPe8hrWtGSSeQCwwZdxU42bWWKz7StOu1kye0ULqiOpbLUxuYH4O
+                Wccci7d4+XNWmdLumtkWgafQ+jaejMTRcJmtlrpRzfIemfJoOPn5qWupxxx5LYxtbPC2SNwex4DmvYQW
+                n35C+XQ5XiZ/Gm9ptb2tEtYYePDguV9s9kpdNbVa2kt7BFS1sLapsTeTHOB3seQ3gV1rUiOCB80z2xxx
+                tLnvccNa0DJJPQYXJO0q5naNtWr6/TzmOpKSJsMMsmQ17WDGfg4k4V/CwTivM/DPLrhO0bJ4hSXZrr+4
+                7PK26VFrtVFXzXBjGCSoe5pi3c8OHMHOSOHJRefxqSr9UuNO6nnHLJyHfA9V9kcV6UTrtwVm2KU4u22v
+                aJciTHeKS2tPJtHSt/i7JXjotr20ignbM3Uhrg0gmGpgjLX+7kOfxUTPNYblTylaPIu6r2I7WKXaPbqi
+                KanFDeKMA1NNnLXA8N9nXGeYPLgrELsZzyXGuwyqnotuVg9VkcwVLnRShpxvtLHZB+Q+S6q2kXpuntDX
+                a5uJDoaZwjwcHfcN1uD55IWkT07YtuvJFNs21ej0jb57Za5RNfZmFrAw5FLn9Nx5ZHMN69VzHcK2qudf
+                LWXGolqamd29LLK7Lnn3lSDQGjLtri74p2zGjD96uuL+LY283EuP1n444WiNJHXXj1S2b5jnqPCp985c
+                Q5263Pvxg91naZlx5LWt3Pp6tMaovWmap1TYLlUUcj8F4iI3ZAPNp4H/AIq5NotNrnX2zjTDYbZ60+pY
+                a2tdT7sbM/0Qw4/1TvKxrjsx0lcLFDQXCzUbvBhbF6zHGI5RutxnfGD0zxyqH1vS3i7airp6m+2y0Wzx
+                THS0812bushbhrQ2OMuPJoOMdVOtQ04zSNS0T7JqvRMr63xRaZg3cc6OujEhaeOMBxPNa66at1Dd6N9H
+                c7zX1dO8guhmmLmkjlwXqbbtJUJc6rvVwuTwODLdReE13xklOf3V5LncrdW0jqSy2CGkaDvum8d9RUYH
+                m7gAPg3uqsJ/qXp0JatTXK7vk0ZFWProIyXSUzwwsa7hxceWeKmNbpbbFXUktLWR3qenmaWSRvrG4eDz
+                B48lGtlmu5NB3uquDKU1jaimMPg+JuNLsghxOPcfmt5e9smutTTiitkoofGO6yG2REyOJ6BxyflhI1pe
+                nHj3KR7DdmF8tOv47jqa2mkiooHSQiSRri6Q+yCACeQJ+xWRt4nuY2c1dHZaSqqqmue2mLaaMvLWHi4n
+                HTAx3Wv2E6WvlmtlfdNYOqH3Wue0ZqZjNKyFo4NJJOOOeHwVN6iu20et1BcKujk1dBBLUyOjjhdUMYxh
+                ccANHIYxyV/UNuqU1Ee2ktOmtZ2i4w19tsl5p6qB29FK2kcSw4xkZCko1DtjH9Nqf9kH8i0FwvW0O3U/
+                j3C66upIt4NEk9TUMbk8hknnwXij1pq6SRrGan1A57yA1rbhMS4ngABvcTlVhhExXrtLHaj2wsaXPn1M
+                1rQSSaRoAA5/oKvq6pqbrcZqurmkqqqqeXySO4ukc7qcDmfgpFcLttCpaSSW43HVcNOPZe+oqJ2sGeGD
+                k445wo9bKSuq6xjLVT1E9RH+ca2nYXPbgj2hjjw4cVEovMz12ntJetrtJTx09O7UscUTAyNgoxhrQMAD
+                2OgC/X8ItsY/pNTfsY/kUcuWodfW0Rm5XnVVGJCQz1irnj3z1xk9F827UevLo57bZfNUVjmDLxT1k7y0
+                HlnBU7W5fG5ftqG0691FXCtvlpvtdUtjEbZJaU5DRyHAAdT8105stsI0zoK02zw/Dmjpw+cHgfEd7Ts9
+                yuafXNp2Rmq1p/i1P3rorY9T3Gh2bW+a/wA9dPXSxvqJvXZHPkbkkhp3uIw0DgrVa4fcypT0nL4657QG
+                W5ryYLZTtYG9BI/2nH5bo7KZbBbbLY9kF4vlOx/rlb40kLo2b7sRtLYwB19rJVEagusl7vlbdJ3OdJWT
+                umJcckBx4DsMfJdoaUs8Vh01brVABuUlOyLLRjJA4nucnuojuUY453mXNY1tte3W5mv2cDP/AEd/yLQ6
+                y1frW6UTLbqytuHgOcJmwVVOIt4jOHfVBIXYjs44F32rknbzfDfdp1ycJC+CjIpIuOQAz62Pi7eS0dez
+                LWaxvbR6Ol1Jba43TSsNf6xE0x+PTUxm3MjiPqkAkYUtOtdrn/e6g723/kV0ej7YxZtmFuLozHPXb1XL
+                wwTvn2c/3QFz7Q3+/QbQIKV95uu4y7sjdE6rk5CcDBGfJNaV4zWI79rU2Pah1zWi/V+rauvFJRUBkhbV
+                0wiBkwXAj2QTgN+1Uno6gn1FrC10bnF01bWR+I49cu3nH+JXSPpHXx1m2Z1UMcjmzXGVtI3B47py5/7o
+                PzVX+i3Y/pDXFTdJGAst1Md045SSHA7gB3zSY7iFrx+0VXRtkvZsGza81kcjo5nwmGEjnvvO6MfMrnXY
+                VYG3/aXbIZmNkgpSauUdCGcWj/eLVYfpZ30tjs9gicRv71ZMAeg9ln273yWPRboaO2We66huNRT03rM7
+                aOF8zwwYaN5wBOOZP7qme7Jv+2SI+mfSq0vSR0tFqWBrY6p8wpKojgZWlpLCfeMEfAhfn6JdXK+O/wBC
+                7dMDTFKGn+sd4HtgLVekbtDt+ozT2GxVDKqlpZvGqKhgyxzwMNa09QMnJ+HkpF6NNpNg0Nd9T1uI46sF
+                0ZecNMUQPtfAuz2Uf+kR3l3CTah1zs309eZ7VdYqOOrpiGyMbbd8NJAOMhuORWdQ3zS79l1x1TZbbQuh
+                bC8U730TWF0mSxuAW5+sfsXMNwray93iatqXSSVddMXv5kl7zyHzwOyuz0i3waZ2e6c0lRODY8jfa3hv
+                NiaBx+LnZU8iMm4mVebDbFFqDaZbqaqibNTwb1TMxzctcGDgCOo3i35roO4aj2cW6snpa+q07DUU7iyW
+                N8TMscOYPsqA+iVaAIb1eXsG86SOkiceeB7T/wCLfkqWle+t1M8zkyST13tl3HezJxyojqEVt+Osf27I
+                orNYKumiqaW2Wx8UrRJG9lMzDmkZBHBbZjQxga3gByA6LEEbIo2xxNDGMG61oGAAOAAX33Wjq0dETund
+                Eiysd07oCdU7LDkGt1TeqPTtgrLvc5AylooHTScQCcDg0Z6k4AHUkLkXaHdrvr6luGq7y1zGuAZb6IEl
+                tPDvc8efv95Ksr0pbtNWa50vpgSkUhHrlRCOUh38DeHXAY75qO1MQqaSWnI3fFjdHgfo5BC5s+bhMRDl
+                8jP+OYiFH2+1V9ynENtoqmrkccBkETnknsFY2jdgOtL9Ix9wohZaQkb0tacPx7ox7R74Ux9EK/i0aqvG
+                lq93hPqmCWEE4zJHwc0e8tOf7q6RmaOJwrZsk1jdXVGpVhoPY1pfRm5Uspzcri3lV1gDt0/2Wcm/aVJ7
+                5a6G70MlHdKOGrp5Glro5WhwweeOHD4jit3M3gvFM3mvm/LyZJty32vEKF2kaDm0J6heND3y62zxatlN
+                4PrLiyLeBwQeeMjGDnmvmj17tdom7hvVtrQBjM8LD9oaFNfSAmFNs7kmc0uEVdTPLW8yBIOSqGPVF7uL
+                s2rTjzGTwkmccf5Ben4OfPkwRM9+/blz2yUmODZ3s621e4M1fqiSSkJ9qlpfYYR5YaAPnlbG2UFNbKRl
+                PRQNijb0HN3vJ6rVUlRql2DPRWoA82+O4EfxW2FS+CkfPXsjhbE0veWSbwAHvwFfJa9upl52bJkv1aWi
+                2lRx/g14z2jejnYWO6jjxwfgokHB7Q5pyHcQR1Xpv92l1FVtkewx0MWfCiJ4vP8AWK0bop7bIXQuMlOe
+                bTxwuzFSa04z7b0x/pFZnts0AI5/avILpSnGHPJPIBpX1LO+WmlLIZR+bdhx4dFfUn47b1K6/RN0e6uv
+                VfrOthPgwA0lAXDg539I8fAYHc+SvjUum7dqSmhprxAainhmbOIS4hj3N5bwHMDOccl4Nl9TapdA2QWR
+                0BpBRRbgixgeyA7OOu9nPvUmByM4WuunoRERGkR2nzU9m2X390IZStFDKxnhtDQHvG63AHvcFzRscs77
+                ztLsdPE07kVSKl5H6LIzvfxAHdXd6StPerppmgtNhttbWieo8Wo9WjLt1rBwBx5k/YtN6MujLnZbhd7p
+                fbbU0MpYyngFRHukgnecRn4AKsxuXPevLJEfS0tfVVPSaNustZVRUcLqWSN08md2MuaWgnHHm7ouUxa9
+                F26MCfUFyubwB+bt1vELT8XykEfHC6j2laNGuNPttElxmoIDM2SV0TA4yBucN4nzwevJQ6g9HfScIHrd
+                Vdqpw55nawHs1v8AmptG18lLWnpRztR2C3YNk0nS7zeInu1Q6qdnz3Bus+xeG7akv1+pnTVdXNLSxYaR
+                TxCOBmTgAhgDePvXVVj2Y6OsRD6CwUfij+kmaZnfN2VVG2Wz6y1VdW26xaVrKWx0bz4bGNjjFRIeBkLQ
+                eWOA64yVWasrYrRHaKbD9Lt1FU6gfLRR1bKW1SiFsjA4CdwIjxnqMHC1Gx++t03tCtFfOC6Iy+rygcwJ
+                PYyPgSPkumNlOjItFaRp7c3cfVv/ADtZMP05Tz7DgB7goFrbY1NLtIt19sbI/UKitjlr6cEDwSHAl7R1
+                BxxHnlTx9J/FMREwuWaVkMT5JHbrYwXOPkAOKrHU+3vStupXfQ0s93qXMzG2FrmR56bznYwPgCpjtGju
+                tRoq6U2n6d09xqIHQwsDw0gu4E5PkCVSemPR2vlTNG/UFwpKCnyC+Ond4shHkDjdHDqcqZ38Nck39VV9
+                q/Vd713fmzXGV8s0rhHTUcJPhsyeDWN6n38yr12J7JWaXjZetQRRyXh7fzcJw5tI0/xf5np0U00js905
+                pOmbHaLdEJA4ONRMBJK4jqXEcO2FJA0gY/gkV+ZVpi1PK3tSXpY3wx2q02OOQ708rqmVuebW+y37ST2X
+                n9Eyzfm7xfJG8XObSQux0HtPx33V+O13ZhrXWGu6y50lLSOog1kNNv1Yadxo8scMuJKtXZRpiXSWhLda
+                qlkYqo2F9RuHIMjiS7j1547KIjtEVmcm5eDbVo8aw0NVQxtJrqMGppHBuSXtBy3+8MjHnhcvaP1HcNKa
+                gp7ra5DHLC/2oyTuyN/SjcPs9xXbB5clX+0nZFYtYwuniYy23MAltTAwASHye3k4e/mptHzC2THMzyr7
+                NDbY9M6qmpqNtRNQ3KchraOdpJc7ya4cD9nJbbaxfPwe2eXivDwJRTuiiOf03+y37Tnsq22M7Jr3pXaC
+                64X+GB0FNTvNPNDIHsfI47vAcxhuefmtv6Stt1DfLZarTYLVWV0RldPUOgbkDdGGA8f7RPZI3rs5W4TM
+                +1G7MbJ+EGvLNa/DL4n1LXSjGfzbPadnsPtU117SbTbprO61duoNUQ0b6lwp44fEawRt9lpAB6gZ7qMU
+                egdf0U4nodP3ulmAIEkA3HAHmMgr2/g3tV/2TVX+O7+ZUj0569V1qT6E2rjiKbV3+JL961TtnWtnuc+T
+                TF5c5xJcXU7iST5+a2v4NbVf9j1T/jO/mT8G9qv+x6p/xnfzITET7iWI7DtUjY1kVHqxjGjDWtdKAB5A
+                ArWy7P8AXUkzqiTTV7fO52+ZHQuLi7nnPPOeq2f4N7Vf9j1T/jO/mT8G9qv+x6p/x3fzIaj6l+22eorK
+                Sj0zpyvqJ5qq324TVXjvLnePKd4g58hw4q3/AEaLJ9F7NYqx7AJrpK+pJI4ln1WfYM91Rs+zvXdxq/Er
+                rDeZJJXNa+eYbxxyySTngF1bDRNtWmm0NEw7tLSeFG2McTutwMe/KtX7a4ombTaXKG2i+G/bSrxVtd4k
+                UMvq0P8A6Yxu8PiQ491YOrdl2qLpoTSNnslHTyU9FSmepL5gwmeTBPA+QJUBs+y/WNZdaOKusFzgjnmY
+                Jp3sADAXDecTn4rr5o4YA4JWN7mUY6cpmZUBpHYJJbc3XWdbEYaQGc0NF7W+Gjew55HLhyA4qJ7UtrFV
+                rOhjtdqpjbLKwB3gbw35uHDf3eAaM/VHddD7UvpN+hLpDYaWWqr6mL1eGOLnl5DSfcACSqz2b7Ao6SaG
+                v1nLHUvjw5lvhJLAc/0jv0vgOCTHxC1qTH60ar0dtCNErdZag3IKWPPqDKghoe7rKc9BxA9+T5KF7btW
+                w6v13PVUUniUFIwU1M8cntHFzh8ST2CnnpC2PVWo9S0dBZbDcKi12+nDWPhYPDfI/ice4ANHu4rUbP8A
+                YPfLlco59VxfR1va7efAZA6aYf1cDg0eZ5qJ+lLVn/isdLi2I2Y2TZnZqd7AyWWEVMvDjvSHe49iAuU6
+                1ktr1NOyoa5stJWu329QWyZI+K7cbG1jAxjQGgYAHkql237IXamlffNO+HHdAz8/Tng2qxywej/eefVW
+                tHTTLj3WNfCytL6gtmpbUy42Wrhqqd54mN2Sx3MtcOhGeS2iiGxrT0mmdndsoKmAw1RYZqljh7TZHneI
+                PvGQOyl/ZWbV3MdiJ2TsiRZWOydkBYdxGFlD8UFA+lfYp6W9ae1lTwySQ0jvVaxzGk7jN7eaT5Di4Z8y
+                FGqeeGphbLTyMmieAWva7II/yPuK6YudvpLpb6iguELKilqYzHNE/k9hGCCqVvHo6Poqp9RojU9RbWOd
+                kUlYwzRj3bwOfmCufPg/L3HtzeR4/wCXUx7VVqujr7TfKLVthIFbQSMle0je+rydjqOhXSWzTaFZtfWC
+                Krt00UdYI/8ASqEvHiQO68OZbnk7kqp1Dsz1npiyVV7uF8tNdSUMZmnp4oHMdIwc8HGM4UKqNO1NpvEV
+                +0dWG3XGA+IxrBhj+uMeR6g8FlP6VimRXHecMRTI6tlC8U4wfdnCou3bfNX0EQp9QaQZXTAf66lc6Le+
+                Iw4fJfnd9ruttSRPpLJYYbDHK3ddWTPMkjAeBLc4APZefn8O156mNOr8tIje2726ajt3r9l04KyHxpK0
+                VFSzeB3AwHca7yLnEc/L3qPknJ3uPxVX6nihdVtoLMyaurqdxmqa4Ze+R/M8R0GMqb6Rv8V8tjXuc1tX
+                H7M0eeOf6w9x/wCC2/jRhxVivp5/mRN4i8Nz814dQ2/6WstTRB+46Rvsu/tA5APuXu/yRZxMxO4cNZ4z
+                uEDp9F3p7fz9fSRHzALj/BfFZpK+0jDJFNS1gaMkDLXHsean6Lf+Tfe2/wDJtvcwqHw3MqHeFHJTVQ4v
+                gkG7vdivTFUNkHEGN+fqv4HseqmevLRHW2p1wjYBVUbfEa/H1mji5pUOG5PCxzgMOAIyuumSMldujnF6
+                7eqwXa46VvUN60/UyU9TC4OkY12GTtHEscOoPEcfNdkbPdX2/W2mKW8Wpw8OVuJIt7LoHjmxw6EH5jBX
+                F7Rw573vKuD0MamcXfVFI17zSBsUgYPqh+84Z+OP4Lak7dGC82jUujy3KyGjgsorugREQMcV8luV9dUQ
+                YDVgtB5r6WCcdUGNwLOAs8fIp2PyQFghFlBjdGVkISvO+upWP3H1MDXf1TI0FB6DyWCOCwHZAPQ9V9ZC
+                D53RnKzuoT5LyyXWgifuSV1Ixw4brp2g/wAUHqA+KY+K+WSsewPY4OYeTmnIPwK+0DCYQn3ogxhMLKIM
+                EZWN3hgcF9Jnig+Q34rOOCymfegxjmm6EyOKznig+Q3CboX0iDBHBC3PArKdUGAMLKIgIiICIiAnVE6o
+                HD3LBWVgoK+28XuhodFzWapkHrV7PqcETfrYOC9+PJrevvAVRHGeAwPLyXv2w3M3jbrLSl29DZbc2MDy
+                e/2nH94fJa9ed5dt2iHl+dbd4j6BnzWv1HWepWaeRuTK9vhQtB9ovdwAC2C8F0ofX62g8RuYKeQzv97g
+                PZHzJK5qa5duXHMcomXn0nZI7Ha2RAZqJAHzv83eXwC0GorLPp+8sv8AZmPMLXF9TCz9Ec3f3T18ipsO
+                HXK1Wr53RWGeGP2pqrFNEB1c/h9gWuPJab/61x5bTk/16rRc6S70jaigmEjTzH6TT5Eea9ha7H1T8lXd
+                y0PPazBNTTVEtO0D1rwnbr245uaOo+1bqz6bstdTCeC41tbEDxzUFoz5EcwrXxUjuLdLZMOOO4t0kT66
+                kjmbE+pgEjiAGb4JK/c8OfA9V5rfbqO3tLaKmigzzLW4cfiea9PQgYXPPGJ/Vz2iu+ng1K4M09cS4gf6
+                LIMnhx3Sq4omltFEDz3eq3+0O9sqC20Ujg4BwdVuzgNA5N+/stpsU0BFtH1bJFXRVJsdDCfWJoH+H+cP
+                1Gg+fAn4Bd/j45inbuwYpmkRPz2hrpg5zIKYeNUykRxRRjec954AAdTldTejboOo0ToUvusJiutzk9Yq
+                Y3c4gODGH3gcSPM+5bzRWyjR+jpW1Fls0Qq2jHrVQ4zSj4F3LsApk0brcAcl1xGnbjxxSOmURFLQREQO
+                qJ1RAWl1vqOk0tpyruldURQtijd4Yf8A0kmDutA5kk9FuJS1sZc8hrRxJJwAFy7t1183WGo2UtsmLrTQ
+                HELm8BNJ+k/H2D3ZQRWp1fqSpqHzzX65tklcXuDKp7WgnicAHAC/Maq1C0h309duBz/8ZJ968tHbKyto
+                62qpoC6noI2yVMnDEbXO3W/M9AvHJwjd8DzQdwW+TxaCnlz9eJruPvAKh+0jajZNFwyU7pW1t1xhlFC7
+                LmnHAvP6A+3yX633U8OmNlUV2llEcn0fE2nwM70roxuADrxwfgCuVm+vXq7gPdJV11bOAXOOXSyPPX4k
+                /AfAIJBqnaXqzUsjzX3aaGA5/wBGpHGKNvu4cT3KibnNcQ98ncuXSmzzYdZbLBFValjZdrj9YsfkwRHy
+                Df0vi75BWI6xWt9MKd9roDDjHhmnZujthByfoO/6tpL/AEtNpWsr5qp7wG0jZHPjk8w5p4buOZ4Y5rof
+                WW0m36NsjPpyWmkvjoWk26kk3svI8+bWZ6leC62bTGyS1XrUltp209RVMEdNE4bzWSYO6xg5hpdxPuC5
+                4tBrdS6yovXS6vrK+uj8bfPGXLxvZ92M8Ogwg3Ordq2rdSPc2pub6Kld/wDS0ZMTceRI9p3cqGkNfxPt
+                E9Tx4rsiyaH0zZZXy2mx2+me/m9sQJI+JzhQrbVstoLxZai7WC3xQXenb4m5TNDfWmjm0jlnHEH+KCid
+                Laxv+lZ2yWO5zwNBy6Bzi6F/uLDwXUmzfWtBriwtr6E+FOwhtTSueC+B/kcdDzB6hcfjBA3TkdD5q2fR
+                XqpYtbXCkb/qp6Ave33te3B+PtFBPvSQ1TUWHSVNSW2tmpa6uqW7r4JCx7Y28XHI4jjujuqIh1frGckQ
+                X+/ykDJEdVK7HxwVJ/SPvzbvtEkpI3B0NrhFPwPDfPtP/wAh2Vhei1ZTR6SrbvK3dfcKjcjP/lxjHD+8
+                XfJBTX4Ta4/+8al/xp16LPtR1pa52vg1DWzhpAMdU7xmn3He4/aF11nhxPbK5R261lmrdolQ/TwhLGRt
+                ZUSQ4DJJhkOI6HhugkdQgvnZJtDpte2iSR0baa402BU0wdkDPJzf7JwfgQQoT6R+urpZLtbLVp+6VFDM
+                I3T1Jp34JB4NafkStT6KdFU/T94r9x3qjaZkJeeW+X7wHvwFX21S+t1JtAu9xY7egdN4UJ/8tmGj54J7
+                oPv8ZGtsf9aLr/ij7l05swu8l80BZ7jUTGWeamb4sjjkueODiffkLlfUenKix2aw1tQ1zTdaV9RunkMP
+                Ib+7unur+9Gas9a2aNg3smkrJoseQJDh/wD0g0PpHa5ulku1rtWn7pUUMwjdPUup34cQSAwH5ErPo4Xj
+                U+o7rcq693mvrKGlibExkzssMrjk9OYA+1VPtUvg1Hr+8XCN+9A6cxQnp4bButP2Z7roT0e7GbNszoXy
+                xlk9e51XIDzw4+z+6G/NBPwiIgJ1ROqAiIgIiICysLKDCdUTqgLBCyhCDmLbNSyWDb7LVVLHR0l7pWeF
+                IfqueAGkZ9xaPmF8fNXTtn2eU20HSr6QOENypSZaCozjckxyP9k4wex6KhJ9NbSdJtjjvmm57rTYw2eh
+                cJnN9xLM/aFyeTgm88quLyfHteeVWyCYwcdV56IX+tmbDR6N1G+d3BrZKQxtz73O4AL16i2ea4ptNVt+
+                vQpbfT2zcn+jqaXxpJmtcC8ucOAw3p1wuanjXn3GnLXxclvb4Wm1DG6a72ONo9kVbpCfLdblbaCaOqhZ
+                PTva+KVoexw6gpJEySWOR3F0Ti5p+IIP8VjWeFu2NZ427fY88Z+K01XY3QVpuFklNLUnjJF/RT+4joT5
+                rbuc2ONz5DusaN5x8gOa+KOphrKVlRSyNlikHsuHIpW1q9x6RW1q9x6fhDcWFkYrIpKOZ5x4UvEA+5w4
+                H5r24wTnmvlw3mlrgCDzB4hYZGyNu6wbo8hyCidT6ROp9Qj2srNQVD4LtW07p2UkjH1ccbtx08AI3xvd
+                DjOCuptCWix2bTNHDpaliprZLGJ4hGD7YcAd4k8SSMcSuZtZ1MVJpivfMQN+F0TAepcMALo/ZNST0WzT
+                TtNVgtmjt0Ie0niDug/5hel4szNO3qeHaZp2k4REXS6xERAREQOqH4IvFe7pTWez1dxrnFtPSwulkI54
+                aM8Pf0HvQQTb3rqn01piW10z2uutyidHHFzMcTstdIftA9/wXMVNC+eaKCBm++VzWRsHUkgNHz4Laax1
+                DV6q1FV3euz4lQ/LI88ImcmsHwA7nPmrQ9HHZ++srmatusI9Uiz9Htd/SP5GTHkOOPfx6BBv73oeLRfo
+                93iieI310sDZ62QfpS77eA9zQMD/AIrnp/1XA+RXXu1yDx9l+oI2ZyKF7hj+zx/yXIf6XuQXBtwuD59l
+                mhmMe5zJoRI5x5EtiaB/EqK7BWUcm1W0+vFoa0yOhDjwMu4d0fPKneoNOVGq/R207VW+NslTbIBPu5xm
+                NocHgZ64Gce5UhSVElLURVNNI6OSJ4kje08Q4HIKDuNpBHmsF7Wgk8MDJXOFB6QepqekZHUW611UrR7U
+                zmvaXnzIacKOat2qao1S5kdbWtpaNsjXmmowWNODn2jzd8CUE69LC4yGusdrDsRNjlqXN83ZDQew3vmq
+                s0Dd47DrW0XScgQ01Ux0hPIMPBx7A57K5vSK0+7VGmbbqixhtVFSxufI9juLqd2HBw8wDz8snyXP/wAD
+                8kHb9BWU1ZSxT0c0c8MrA+N8bg4OaeRBHRfs4ZHlwXG+idYXXR15ir7XPkMG4+nkcTHKzOd0j48scirP
+                uXpGTyUMkdu06yCpILWyzVW+1h890NB+1BXW1aipLdtJvdJbWtbTsqjutaODXOAc5o+BJVn+jVYn2Wx3
+                XVlxhLIZoMUx6uhZlznD3EjHv3VBdn2zO/a+rm3CsElPbZ5S+or5vrTZOXbjT9Yk8M8gr02vXODSmy64
+                mkY2AOgFFSxsbgAvG6AB7hlByzcq2e8XWorXgyT1s7pcHq57iQPtAXQ2q6zU2zDZtZPwdpKOeloqdsVf
+                48bnmJxwd/g4cN4kFUToGzy33WdpttPkmWqjJI/RY07ziewXYN2oYLlbamiqo2yQVEbo3tcMggjBQct3
+                vaxrbUeaP6SfA2c7ggoIhGXZ4YBGXHPllfFj2S6yu08LPoWoooJCA6epLWCMZ4ktJ3uHlhR/UVluOktQ
+                zWyvJirKOQFr2k+11bI0+R5+7j5Lq/Z3q+j1rpqG50nsyZ8Oph45hkA9pvw8j70Hhp7JatnWzSup6Vxi
+                p6WklklqH/XkkLTl595OMeXALkyjgdUSwU3tOklcyPA6kkD+JK6Q9Jy+C36FjtkbyJbnOGEY4GNntOz3
+                3Qqh2HWI37aZbGOaHw0bjWTZ8mcv3i37UFh+lBZmUmmNOy07MQ0UjqQHyaWDA/cWt9HLU1PZNN6rdVyN
+                a2jjZXBruX1S0/Mho7qf+kTb3V2y2ve0ZdSSRVHwDXgH7HLmaguc9BQ3Cmp3Yjr4GwS+9oeH/wAWhB+d
+                BTiuuNPTEHFTMyM444D3AfwK7aoaaOjpIqWBu7FBG2Ng8g0YH8FylsOsRv20u2MLN+GjcaubyDWcs/3i
+                1dZN96DKIiAnVE6oCIiAiIgIiygwnVE6oCIiDGBxKDA5LKIPkfH7V5Lxb4braqq31W94FVC+CTcODuua
+                Wux2K9qIOTb7ojWOyx7xPRvvOnQ4ubVUoLnQt/tDmw44n9H3rTDaNZMfUrPgWN/mXZTmhwIcAQeBB6rS
+                nRumfWjUfg9aPGJ3vE9Sj3s+ecLG/j0vO5hhfxsd53LmWxWvUe04eoaYt1RSW6X2am51bd1jW9Q3zPuG
+                T8OanOrNi1y005tdoCRlVRxwN9btdQ8h0jmgZdEePtO4ndJHHlnkr5jY2NoYxrWNHJoGAF9/JWjFSK8Y
+                jpaMNIrxiOnHkuuLXTVT6a4Q19DNH9aOpgw5p8iOa/Ko2g2SI4jNTOSOUcWOP94hdbXjT1mvR/6YtNvr
+                8cB6zTtk/iF4rdoXSltmE1v0zZKWVpyHw0MbXA+eQFl/Exsf4WLbnjRGzjVm0O/W25Xq2i16cpahkzo6
+                rea+oYCCQ1uMknGMnA8l1JEA1uBgAdB0X0gXRWsVjUOqtYrGoERFKRERAREQFAtsek9RaztNPabJW0NJ
+                SF/iVXrDngyEfVaN0Hhnj8QFPeqIOdqX0d9QetQmtulpdTeI3xRG6TeLMjeDfZ54zj3roG30dPQ0UVJR
+                xMip4WCONjRgNaBwC9CINZqq3SXjTlytsLo2yVdLJC0yfVBc0gE+5UIPR21QAP8ApWy8uj5f5F0d1RBG
+                tmmnqvS+h6Cy3OaCeemDmvfCSWHLiRjIB5HyUL11sIs97q5a2w1X0RUSO3nxBm/A9x67vAt7cFbKIOc2
+                ejrqMzbsl3szY/6w8QnHw3R/FS/Sno/WO3Ttmv8AWzXdzTkQhvhRZ94ByfmrdRB+DKOmjoxSRQQspwzw
+                xC1gDA3lu7vLHuVRaw9H2219TJUaZuDrYXEu9VlZ4kI9zT9Zo+auREHOkXo7ajdMGzXe0Mj6uZ4jj8t0
+                fxU10lsD0/aZmVF6nmvEzDkRvHhwg+e6OJ6cyrWRB8MjZHG1jGta1gw1rRgADoAoDtr0TetdW+gobRV0
+                VNBBM6aYVLnDfdjDcbrTyy4qwUQVDsf2Q3LRmq33e81lBUBtO6KBtMXktc4jJOQOGAfmrdAGFlEFc7Y9
+                lw15LRVdDVwUNdTgxvlkjLhJGeIacEcQeXuJC8uyLZpfNA3iolkvNDV0FUwNngZC9rt5v1XAk8COXwVo
+                Igq/bLszvOvrxRTUVyoaalpIXMEc4fvF7jxPDhyAX77GNmFToOquNVcqylq56prGRuga4BjQSSDnzOFZ
+                PmiDU6wtH0/pW5WkPa11ZTPha53JpI4E91Rn5OmoOf03af8Ack+5dEogrbYrsxqdBVNxqbjWUtVPVMZH
+                GYGuAYxuSRx8yR8lZPVPNOqAiIgJ1ROqAiIgIiICIsoMJ1ROqAiIgIiICIiAiIgIiICIiAiIgIiICIiA
+                iIgdUTqiAiIgdUTqiAiIgIiICIiAiIgIiICIiAiIgIiICIiAnVE6oCIiAnVE6oCIiAiIgLKwiAnVO6de
+                aAid07oCJ3TugIndO6Aid07oCJ3TugIndO6Aid07oCJ3TugIndO6Aid07oHVE6807oCJ3TugdUTrzTug
+                IndO6Aid07oCJ3TugIndO6Aid07oCJ3TugIndO6Aid07oCJ3TugJ1TunXmgIndO6AnVO6deaAid07oCJ
+                3TugIndO6AnVOydeSAidk7ICJ2TsgInZOyAidk7ICJ2TsgInZOyAidk7ICJ2TsgInZOyAidk7IHVE68k
+                7ICJ2TsgdUTryTsgInZOyAidk7ICJ2TsgInZOyAidk7ICJ2TsgInZOyAidk7ICJ2TsgJ1TsnXkgInZOy
+                AnVOydeSAidk7ICJ2TsgLKx2TsgJ1ROqAiIgIiygwiIgIiICIiAiIgIiICIiAiysICIiB1ROqICIiB1R
+                OqICIiAiysICIiAiIgIiICIiAiIgIiygwiIgJ1ROqAiIgJ1ROqAiIgIiygwiyiD/2Q==
+</property>
+        </structure>
+    </list-property>
+</report>

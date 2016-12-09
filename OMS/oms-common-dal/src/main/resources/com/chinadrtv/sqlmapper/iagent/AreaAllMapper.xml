@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.dal.iagent.dao.AreaAllDao">
+
+	<select id="queryById" parameterType="java.lang.Integer" resultType="AreaAll">
+		select * from iagent.area_all a where a.areaid = #{areaId}
+	</select>
+	
+</mapper>

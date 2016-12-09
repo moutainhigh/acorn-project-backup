@@ -1,0 +1,42 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.dal.oms.dao.ShipmentChangeHisDao">
+    <sql id="Base_Column_List" >
+        ID, SHIPMENT_REF_ID, SHIPMENT_ID, BEFORE_MAIL_ID, AFTER_MAIL_ID, BEFORE_ENTITY_ID,
+        AFTER_ENTITY_ID, BEFORE_WAREHOUSE_ID, AFTER_WAREHOUSE_ID, BEFORE_ACCOUNT_STATUS_ID,
+        AFTER_ACCOUNT_STATUS_ID, BEFORE_ACCOUNT_STATUS_REMARK, AFTER_ACCOUNT_STATUS_REMARK,
+        BEFORE_LOGISTICS_STATUS_ID, AFTER_LOGISTICS_STATUS_ID, BEFORE_LOGISTICS_STATUS_REMARK,
+        AFTER_LOGISTICS_STATUS_REMARK, USER_STAMP, PROCESS_STAMP, DATE_TIME_STAMP
+    </sql>
+
+    <select id="findHisFromShipments" parameterType="java.util.List" resultType="com.chinadrtv.model.oms.ShipmentChangeHis">
+        select <include refid="Base_Column_List" /> from
+        (SELECT ROW_NUMBER() OVER(PARTITION BY shipment_id ORDER BY date_time_stamp DESC) rn,
+        <include refid="Base_Column_List" /> from ACOAPP_OMS.SHIPMENT_CHANGE_HIS where
+        <foreach collection="list" separator="or" item="item">
+            SHIPMENT_ID=#{item}
+        </foreach>
+        ) WHERE rn = 1
+    </select>
+
+    <resultMap id="sequenceMap" type="com.chinadrtv.model.oms.dto.SequenceDto">
+        <id column="seq" jdbcType="BIGINT" property="seq" />
+    </resultMap>
+    <select id="fecthSequence" parameterType="int" resultMap="sequenceMap">
+        <![CDATA[
+          select level,ACOAPP_OMS.SHIPMENT_CHANGE_HIS_SEQ.nextval as seq from dual connect by level<=#{count}
+          ]]>
+    </select>
+
+    <insert id="insertData" parameterType="com.chinadrtv.model.oms.ShipmentChangeHis">
+        insert into ACOAPP_OMS.SHIPMENT_CHANGE_HIS (<include refid="Base_Column_List" />)
+        values (#{id,jdbcType=DECIMAL}, #{shipmentRefId,jdbcType=DECIMAL}, #{shipmentId,jdbcType=VARCHAR},
+        #{beforeMailId,jdbcType=VARCHAR}, #{afterMailId,jdbcType=VARCHAR}, #{beforeEntityId,jdbcType=VARCHAR},
+        #{afterEntityId,jdbcType=VARCHAR}, #{beforeWarehouseId,jdbcType=VARCHAR}, #{afterWarehouseId,jdbcType=VARCHAR},
+        #{beforeAccountStatusId,jdbcType=VARCHAR}, #{afterAccountStatusId,jdbcType=VARCHAR},
+        #{beforeAccountStatusRemark,jdbcType=VARCHAR}, #{afterAccountStatusRemark,jdbcType=VARCHAR},
+        #{beforeLogisticsStatusId,jdbcType=VARCHAR}, #{afterLogisticsStatusId,jdbcType=VARCHAR},
+        #{beforeLogisticsStatusRemark,jdbcType=VARCHAR}, #{afterLogisticsStatusRemark,jdbcType=VARCHAR},
+        #{userStamp,jdbcType=VARCHAR}, #{processStamp,jdbcType=VARCHAR}, #{dateTimeStamp,jdbcType=TIMESTAMP}
+        )
+    </insert>
+</mapper>

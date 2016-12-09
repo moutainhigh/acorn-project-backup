@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.oms.paipai.dal.dao.PreTradePaiPaiDao">
+
+    <select id="queryGroupBuyingTrade" parameterType="java.util.HashMap"  resultType="PreTrade">
+         select * from pre_trade pt
+			where pt.trade_type = #{tradeType}
+			and pt.source_id = #{sourceId}
+			and pt.receiver_province is null
+			and pt.receiver_city is null
+			and pt.receiver_county is null
+	</select>
+
+    <update id="updateGroupBuyingTrade" parameterType="com.chinadrtv.model.oms.PreTrade">
+    	<![CDATA[
+        update pre_trade
+		set receiver_province = #{receiverProvince},
+		    receiver_city = #{receiverCity},
+		    receiver_county = #{receiverCounty}
+		where trade_id = #{tradeId}
+        ]]>
+    </update>
+
+</mapper>

@@ -1,0 +1,239 @@
+/*全局设定=======================================================================================================*/
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #333333;
+	line-height: 150%;
+	overflow: hidden;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	border: 0
+}
+
+.clear {
+	clear: both;
+	height: 0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+a {
+	color: #333333;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #00479d;
+}
+
+ul {
+	padding: 0;
+	margin: 0
+}
+
+li {
+	list-style: none;
+}
+
+.select {
+	width: 100px;
+	font-size: 12px;
+}
+
+.input {
+	width: 200px;
+	height: 20px;
+	border: 1px solid #7f9db9;
+}
+
+.h1 {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.h2 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #e60012;
+}
+
+/*头部设定=======================================================================================================*/
+#header {
+	width: 100%;
+	margin: 0 auto;
+	background: url(../images/header_bg1.gif) repeat-x;
+	height: 52px;
+}
+
+#header .header_top {
+	background: url(../images/header_bg.gif) no-repeat;
+	height: 52px;
+}
+
+#header .nav {
+	float: left;
+	margin-left: 444px;
+	width: 500px;
+	margin-top: 27px;
+}
+
+#header .nav ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#header .nav li {
+	float: left;
+	width: 100px;
+}
+
+#header .nav li a {
+	color: #fff;
+}
+
+#header .nav li a:hover {
+	border-bottom: 1px solid #ff;
+	margin-bottom: 1px;
+}
+
+#header .out {
+	float: right;
+	margin-top: 25px;
+	margin-right: 50px;
+}
+
+#header .out a {
+	padding-left: 20px;
+	color: #fff;
+	padding-top: 4px;
+	padding-right: 15px;
+}
+
+#header .out a:hover {
+	color: #fff100;
+}
+
+#header .out a.xgmm {
+	background: url(../images/l_icon_11.gif) no-repeat;
+}
+
+#header .out a.fh {
+	background: url(../images/header_icon_1.gif) no-repeat;
+}
+
+#header .out a.tc {
+	background: url(../images/header_icon_2.gif) no-repeat;
+}
+
+/*内容设定=======================================================================================================*/
+#center {
+	width: 100%;
+	margin: 0 auto;
+}
+
+/*页脚设定=======================================================================================================*/
+#footer {
+	width: 100%;
+	background: url(../images/footer_bg.gif) repeat-x;
+	height: 26px;
+}
+
+/*seat设定=======================================================================================================*/
+#seat {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	height: 27px;
+	background: url(../images/seat_center.gif) repeat-x;
+}
+
+#seat .yhu {
+	background: url(../images/seat_icon_1.gif) no-repeat;
+	padding-left: 18px;
+	margin-top: 3px;
+	float: left;
+	color: #3b90b7;
+}
+
+#seat .date {
+	background: url(../images/seat_icon_2.gif) no-repeat 0 2px;
+	padding-left: 18px;
+	margin-top: 3px;
+	float: right;
+	margin-right: 15px;
+	color: #3b90b7;
+}
+
+/*登录设定=======================================================================================================*/
+#login {
+	background: #e0e0e0;
+}
+
+.login_left {
+	background: url(../images/login_bg_1.jpg) repeat-x;
+}
+
+.login_right {
+	background: url(../images/login_bg_2.jpg) repeat-x;
+}
+
+.login_bg {
+	background: url(../images/login_bg.jpg) no-repeat;
+	height: 580px;
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.login_box {
+	width: 240px;
+	padding: 40px 0 0 640px;
+	color: #fff;
+	line-height: 20px;
+}
+
+.login_box td {
+	height: 40px;
+}
+
+.login_box td .login_input {
+	background: url(../images/login_button_bg.gif) no-repeat;
+	width: 52px;
+	border: 0;
+	list-style: none;
+	height: 25px;
+	line-height: 25px;
+	color: #666;
+	cursor: pointer;
+}
+
+/*high*/
+.high {
+	color: red;
+}
+
+.formtips {
+	width: 200px;
+	margin: 2px;
+	padding: 2px;
+}
+
+.onError{
+   background:#FFE0E9;
+   padding-left:25px;
+   padding-right:25px;
+}
+.onSuccess{
+   color:#0A4BAF ; 
+   background:#FFE0E9;
+   padding-left:25px;
+   padding-right:25px;
+}

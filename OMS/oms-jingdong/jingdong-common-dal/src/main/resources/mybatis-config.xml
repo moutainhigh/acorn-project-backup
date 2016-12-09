@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <settings>
+        <setting name="lazyLoadingEnabled" value="false" />
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <!-- iagent schema -->
+        <typeAlias alias="AreaAll" type="com.chinadrtv.model.iagent.AreaAll"/>
+        <typeAlias alias="CityAll" type="com.chinadrtv.model.iagent.CityAll"/>
+        <typeAlias alias="CountyAll" type="com.chinadrtv.model.iagent.CountyAll"/>
+        <typeAlias alias="MailOperCustomize" type="com.chinadrtv.model.iagent.MailOperCustomize"/>
+        <typeAlias alias="MailStatusHis" type="com.chinadrtv.model.iagent.MailStatusHis"/>
+        <typeAlias alias="PlubasInfo" type="com.chinadrtv.model.iagent.PlubasInfo"/>
+        <typeAlias alias="Province" type="com.chinadrtv.model.iagent.Province"/>
+        <typeAlias alias="Company" type="com.chinadrtv.model.iagent.Company"/>
+        <!-- acoapp_oms schema -->
+        <typeAlias alias="AreaMapping" type="com.chinadrtv.model.oms.AreaMapping"/>
+        <typeAlias alias="CityMapping" type="com.chinadrtv.model.oms.CityMapping"/>
+        <typeAlias alias="CountyMapping" type="com.chinadrtv.model.oms.CountyMapping"/>
+        <typeAlias alias="PreTrade" type="com.chinadrtv.model.oms.PreTrade"/>
+        <typeAlias alias="PreTradeCard" type="com.chinadrtv.model.oms.PreTradeCard"/>
+        <typeAlias alias="PreTradeCompany" type="com.chinadrtv.model.oms.PreTradeCompany"/>
+        <typeAlias alias="PreTradeDetail" type="com.chinadrtv.model.oms.PreTradeDetail"/>
+        <typeAlias alias="PreTradeInsurance" type="com.chinadrtv.model.oms.PreTradeInsurance"/>
+        <typeAlias alias="PreTradeLot" type="com.chinadrtv.model.oms.PreTradeLot"/>
+        <typeAlias alias="PreTradeLotRequest" type="com.chinadrtv.model.oms.PreTradeLotRequest"/>
+        <typeAlias alias="ProvinceMapping" type="com.chinadrtv.model.oms.ProvinceMapping"/>
+        <typeAlias alias="ShipmentHeader" type="com.chinadrtv.model.oms.ShipmentHeader"/>
+        <typeAlias alias="Promotion" type="com.chinadrtv.model.oms.Promotion"/>
+
+        <typeAlias alias="JD_TradeFeedback" type="com.chinadrtv.jingdong.common.dal.model.TradeFeedback" />
+		<typeAlias alias="dwsjosShopSales" type="com.chinadrtv.jingdong.common.dal.model.DwsjosShopSales"/>
+    </typeAliases>
+
+
+    <mappers>
+        <!-- iagent schema -->
+        <mapper resource="com/chinadrtv/sqlmapper/iagent/AreaAllMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/iagent/CityAllMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/iagent/CountyAllMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/iagent/MailOperCustomizeMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/iagent/MailStatusHisMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/iagent/PlubasInfoMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/iagent/ProvinceMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/iagent/CompanyMapper.xml"/>
+        <!-- acoapp_oms schema -->
+        <mapper resource="com/chinadrtv/sqlmapper/oms/AreaMappingMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/CityMappingMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/CountyMappingMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/PreTradeCardMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/PreTradeCompanyMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/PreTradeDetailMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/PreTradeInsuranceMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/PreTradeLotMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/PreTradeLotRequestMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/PreTradeMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/ProvinceMappingMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/ShipmentHeaderMapper.xml"/>
+        <mapper resource="com/chinadrtv/sqlmapper/oms/PromotionMapper.xml"/>
+
+        <mapper resource="sqlmapper/TraddFeedbackMapper.xml"/>
+        <mapper resource="sqlmapper/DwsjosShopSalesMapper.xml"/>
+    </mappers>
+
+</configuration>

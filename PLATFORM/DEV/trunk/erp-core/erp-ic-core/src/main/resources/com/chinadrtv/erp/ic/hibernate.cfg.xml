@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+     <mapping class="com.chinadrtv.erp.model.Warehouse"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.PlubasInfo"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ItemInventoryCalcLog"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ItemInventoryChannel"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ItemInventoryTransaction"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ItemInventorySnapshot"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.WmsReceiptHeaderHis"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.WmsReceiptDetailHis"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ScmUploadReceiptHeaderHis"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ScmUploadReceiptDetailHis"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ScmUploadShipmentHeaderHis"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ScmUploadShipmentDetailHis"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ScmItemStatusChangeHis"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ScmOnhandAdjustmentHis"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ScmCloseShipment"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.WmsShipmentHeaderHis"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.WmsShipmentDetailHis"/>
+
+     <mapping class="com.chinadrtv.erp.model.inventory.ProductGrpId"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ProductGrpChannel"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.ProductGrpLimit"/>
+ </session-factory>
+</hibernate-configuration>

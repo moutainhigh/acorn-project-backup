@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="cacheEnabled" value="false"/>
+	</settings>
+	 
+	<typeAliases>
+		<typeAlias alias="MailStatusHis" type="com.chinadrtv.erp.orderfeedback.model.MailStatusHis"/>
+		<typeAlias alias="MailOperCustomize" type="com.chinadrtv.erp.orderfeedback.model.MailOperCustomize"/>
+		<typeAlias alias="ShipmentHeaderDO" type="com.chinadrtv.ems.common.dal.model.ShipmentHeaderDO" />
+	</typeAliases>
+	 
+	<mappers>
+		<mapper resource="com/chinadrtv/erp/orderfeedback/sqlmapper/MailOperCustomizeMapper.xml"/>
+		<mapper resource="com/chinadrtv/erp/orderfeedback/sqlmapper/MailStatusHisMapper.xml"/>
+		<mapper resource="com/chinadrtv/ems/sqlmapper/ShipmentHeaderMapper.xml"/>
+	</mappers>
+	 
+</configuration>

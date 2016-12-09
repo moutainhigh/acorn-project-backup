@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.chinadrtv.expeditingmail</groupId>
+        <artifactId>expeditingmail</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.chinadrtv.expeditingmail.service</groupId>
+    <artifactId>expeditingmail-service</artifactId>
+    <packaging>jar</packaging>
+    <name>expeditingmail-service</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.chinadrtv.runtime</groupId>
+            <artifactId>runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chinadrtv.expeditingmail.common.dal</groupId>
+            <artifactId>expeditingmail-common-dal</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chinadrtv.expeditingmail.common.integration</groupId>
+            <artifactId>expeditingmail-common-integration</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chinadrtv.expeditingmail.common.facade</groupId>
+            <artifactId>expeditingmail-common-facade</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.apache.cxf</groupId>-->
+        <!--<artifactId>cxf-rt-transports-http-jetty</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.milyn</groupId>
+            <artifactId>milyn-smooks-all</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.chinadrtv.oms</groupId>
+            <artifactId>oms-common-model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.chinadrtv.oms</groupId>
+            <artifactId>oms-common-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+    </dependencies>
+</project>

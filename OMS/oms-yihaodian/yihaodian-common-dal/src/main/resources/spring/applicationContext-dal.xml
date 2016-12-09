@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Application context definition. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/jdbc
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd"
+       default-autowire="byName">
+
+    <!-- DataSource -->
+  <!--  <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+        <property name="url" value="jdbc:oracle:thin:@192.168.4.10:1521:testdb"></property>
+        <property name="username" value="acoapp_oms"></property>
+        <property name="password" value="oms.2012"></property>
+    </bean>-->
+
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="jdbc/OmsDS" />
+        <property name="resourceRef" value="true"/>
+    </bean>
+
+    <!-- Mybatis session factory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          lazy-init="false">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="plugins">
+            <list>
+                <bean class="com.chinadrtv.common.log.LogInterceptor"/>
+                <bean class="com.chinadrtv.common.pagination.PaginationInterceptor">
+                    <property name="dialect">
+                        <bean class="com.chinadrtv.common.pagination.OracleDialect"/>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!--<bean id="tradFeedbackDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.chinadrtv.yhd.common.dal.dao.TradeFeedbackDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>-->
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.chinadrtv.dal.*.dao;com.chinadrtv.yhd.common.dal" />
+    </bean>
+
+</beans>

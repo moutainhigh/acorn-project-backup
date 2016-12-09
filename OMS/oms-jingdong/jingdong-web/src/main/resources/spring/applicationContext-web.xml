@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Application context definition. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+       default-autowire="byName">
+
+    <context:annotation-config />
+
+    <context:component-scan base-package="com.chinadrtv.jingdong.service;com.chinadrtv.common.context"/>
+
+
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED" rollback-for="Throwable"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <bean id="propertyConfigurerMessage" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:env.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="cfgList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="50bcc8d5-fc65-4428-89e1-b8eaffc6493f"/>
+                    <property name="customerId" value="京东橡果国际SOP"/>
+                    <property name="tradeType" value="111"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+
+                <bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="138125e8-febc-4fe6-ac37-fc0e2558f7b8"/>
+                    <property name="customerId" value="DS橡尚官方旗舰店（京东SOP）"/>
+                    <property name="tradeType" value="213"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+
+                <bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="652f1776-2278-41d9-8c01-32ab202a6d97"/>
+                    <property name="customerId" value="京东maggieq橡果专卖店"/>
+                    <property name="tradeType" value="246"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+             </list>
+        </constructor-arg>
+     </bean>
+                
+
+    <bean id="pvList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="50bcc8d5-fc65-4428-89e1-b8eaffc6493f"/>
+                    <property name="customerId" value="京东橡果国际SOP"/>
+                    <property name="tradeType" value="111"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+
+                <bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="138125e8-febc-4fe6-ac37-fc0e2558f7b8"/>
+                    <property name="customerId" value="DS橡尚官方旗舰店（京东SOP）"/>
+                    <property name="tradeType" value="213"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+
+                <bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="652f1776-2278-41d9-8c01-32ab202a6d97"/>
+                    <property name="customerId" value="京东maggieq橡果专卖店"/>
+                    <property name="tradeType" value="246"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+
+				<bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="25ff232e-672f-4efd-adcc-8d829a32bf7f"/>
+                    <property name="customerId" value="京东橡果国际FBP"/>
+                    <property name="tradeType" value="105"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+                
+                <bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="210b7e61-0b9a-46b1-adfe-b12e3b5806f5"/>
+                    <property name="customerId" value="橡尚优品官方旗舰店"/>
+                    <property name="tradeType" value="212"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="fbpList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+            	<bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="25ff232e-672f-4efd-adcc-8d829a32bf7f"/>
+                    <property name="customerId" value="橡果国际官方旗舰店"/>
+                    <property name="tradeType" value="105"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+                
+                <bean class="com.chinadrtv.jingdong.model.JingdongOrderConfig">
+                    <property name="url" value="http://gw.api.360buy.com/routerjson"/>
+                    <property name="appkey" value="C159FD262FF5D1067796B5F0D99724DC"/>
+                    <property name="appSecret" value="284bc3d62b8a475285b92c502c822c22"/>
+                    <property name="sessionKey" value="210b7e61-0b9a-46b1-adfe-b12e3b5806f5"/>
+                    <property name="customerId" value="橡尚优品官方旗舰店"/>
+                    <property name="tradeType" value="212"/>
+                    <property name="tmsCode" value="110"/>
+                    <property name="tmsName" value="JINGDONG"/>
+                    <property name="orderState" value="WAIT_SELLER_STOCK_OUT"/>
+                    <property name="page" value="1"/>
+                    <property name="pageSize" value="100"/>
+                </bean>
+            </list>
+        </constructor-arg>
+     </bean>       
+    
+</beans>

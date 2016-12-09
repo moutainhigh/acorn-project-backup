@@ -1,0 +1,47 @@
+em {
+    font-style: normal;
+    color: #cc0000;
+}
+.c-default{line-height: 1.6em;}
+.c-default .t{font-size: 16px;font-weight: normal; line-height: 2em;}
+.c-abstract {
+    font-size: 13px;
+    color: #666;
+}
+.searchContent{padding-left:18px;border: none;}
+.result{ margin-bottom: 18px}
+.InFull .searchbox{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.InFull .combo{
+    float: left;
+    border-top-left-radius:3px;
+    border-bottom-left-radius: 3px;
+    border-right: none;
+    border-color: #ddd;
+    background-color: #fafafa;
+}
+.InFull .combo .combo-text{
+    background-color: #fafafa;
+    text-align: center;
+    color: #666;
+    font-weight: bold;
+}
+
+.InFull .combo-arrow{
+    background-color: transparent;
+    background-position: left center;
+}
+h3{margin: 0}
+.pagination{
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #ddd;
+    background-color: #f4f4f4;
+}
+.noResult{
+    padding-top: 20px;
+    font-size: 16px;
+    color: #AFAFAF;
+}

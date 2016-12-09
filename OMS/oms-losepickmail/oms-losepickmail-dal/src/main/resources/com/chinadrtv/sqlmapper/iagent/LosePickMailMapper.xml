@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.oms.dao.LosePickMailDao">
+
+	<select id="queryLosePickOrder" resultType="java.util.HashMap">
+		<![CDATA[	
+		select /*+index(a, IDX_ORDERHIST_CRDT)*/ a.orderid, a.crdt, c.dsc, a.crusr, d.grpname
+		  from iagent.orderhist a
+		  left join iagent.usr b on a.crusr = b.usrid
+		  left join iagent.names c on c.tid = 'ORDERSTATUS' and c.id = a.status
+		  left join iagent.grp d on b.defgrp = d.grpid
+		 where a.paytype = '1'
+		   and a.status = '1'
+		   and a.crdt <= sysdate - 1
+		   and a.crdt >= sysdate - 90
+		   and rownum <= 1000
+		]]>
+	</select>
+	
+</mapper>

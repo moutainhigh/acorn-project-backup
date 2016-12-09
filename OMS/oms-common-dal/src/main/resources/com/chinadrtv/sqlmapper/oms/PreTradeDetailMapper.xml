@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.dal.oms.dao.PreTradeDetailDao">
+
+	<select id="queryDetailByTradeId" parameterType="java.lang.String" resultType="PreTradeDetail">
+		select * from acoapp_oms.pre_trade_detail p where p.trade_id = #{tradeId}
+	</select>
+	
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into acoapp_oms.pre_trade_detail
+		  (id, trade_id, shipping_fee, payment, discount_fee, sku_id, out_sku_id, qty, sku_name, price, up_price, 
+		  pre_trade_id, is_active, source_pre_trade_detail_id, err_msg, is_valid, outitemid, itemid, out_item_id, 
+		  item_id, promotion_result_id, warehouse_type, item_trade_type, item_tms_code, oid)
+		SELECT acoapp_oms.PRE_TRADE_DETAIL_SEQ.nextval, A.* FROM (
+		<foreach collection="list" separator="UNION" item="item">	
+			SELECT 
+			  #{item.tradeId, jdbcType=VARCHAR}, #{item.shippingFee, jdbcType=DOUBLE}, #{item.payment, jdbcType=DOUBLE}, 
+			  #{item.discountFee, jdbcType=DOUBLE}, #{item.skuId, jdbcType=BIGINT}, #{item.outSkuId, jdbcType=VARCHAR}, 
+			  #{item.qty, jdbcType=INTEGER}, #{item.skuName, jdbcType=VARCHAR}, #{item.price, jdbcType=DOUBLE}, 
+			  #{item.upPrice, jdbcType=DOUBLE}, #{item.preTradeId, jdbcType=BIGINT}, #{item.isActive, jdbcType=INTEGER}, 
+			  #{item.sourcePreTradeDetailId, jdbcType=BIGINT}, #{item.errMsg, jdbcType=VARCHAR}, #{item.isValid, jdbcType=INTEGER}, 
+			  #{item.outitemid, jdbcType=VARCHAR}, #{item.itemid, jdbcType=BIGINT}, #{item.outItemId, jdbcType=VARCHAR}, 
+			  #{item.itemId, jdbcType=BIGINT}, #{item.promotionResultId, jdbcType=BIGINT},
+			  #{item.warehouseType, jdbcType=INTEGER},
+			  #{item.itemTradeType, jdbcType=VARCHAR},
+			  #{item.itemTmsCode, jdbcType=VARCHAR},
+			  #{item.oid, jdbcType=BIGINT}
+			FROM DUAL	
+  		</foreach>
+  		) A  
+	</insert>
+</mapper>

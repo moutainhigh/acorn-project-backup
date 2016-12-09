@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory> 
+      <!-- 客户标签 -->
+     <mapping class="com.chinadrtv.erp.model.marketing.CrmUsrFlag"/>
+          <!-- 客户获取产品推荐 -->
+     <mapping class="com.chinadrtv.erp.model.marketing.UsrTaskRecommend"/>
+     <mapping class="com.chinadrtv.erp.model.marketing.RecommendConf"/>
+      <!-- 呼叫中心话术  -->
+      <mapping class="com.chinadrtv.erp.model.marketing.Discourse"/>
+      
+      <!-- 营销计划  -->
+      <mapping class="com.chinadrtv.erp.model.marketing.Campaign"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.CampaignType"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.CampaignTypeParams"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.CampaignTypeValue"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.LeadType"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.CampaignBatch"/>
+      <!-- 销售计划  -->
+      <mapping class="com.chinadrtv.erp.model.marketing.Lead"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.LeadTask"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.UserBpmTask"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.LeadInteraction"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.LeadInteractionOrder"/>
+      <mapping class="com.chinadrtv.erp.marketing.core.dto.ApprovingTaskVO"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.UserBpm"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.LeadTypeParams"/>
+      <mapping class="com.chinadrtv.erp.model.marketing.LeadTypeValue"/>
+     <mapping class="com.chinadrtv.erp.model.marketing.ContactAssignHist" />
+
+     <!--短信发送  -->
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsAnswer"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsSend"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsSendDetail"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsBatch"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsSendVar"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsTemplate"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.SmsBlackList"/>
+      <mapping class="com.chinadrtv.erp.smsapi.model.OrderTypeTemplateRelation"/>
+      
+      <mapping class="com.chinadrtv.erp.model.Phone"/>
+      
+ </session-factory>
+</hibernate-configuration>

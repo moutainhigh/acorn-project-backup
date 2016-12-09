@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+    <!-- For mail settings and future properties files -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:system.properties</value>
+                <value>classpath:source.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- JNDI DataSource for J2EE environments -->
+    <!--<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/promotions"/>-->
+  
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+<!--         <property name="url"><value>jdbc:oracle:thin:@192.168.4.10:1521:TESTDB</value></property>
+        <property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+        <property name="username"><value>acoapp_bpm</value></property>
+        <property name="password"><value>bpm.2013</value></property> -->
+        
+        <property name="url"><value>jdbc:oracle:thin:@192.168.3.180:1521/tsdb3180.develop</value></property>
+        <property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+        <property name="username"><value>acoapp_oms</value></property>
+        <property name="password"><value>acorn.2013</value></property>
+        <!--  
+        <property name="maxActive" value="100"/>
+        <property name="maxWait" value="1000"/>
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="validationQuery" value="SELECT COUNT(*) FROM DUAL"/>
+        <property name="testOnBorrow" value="true"/>
+        -->
+    </bean>
+<!--
+<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="${omsJndiName}" />
+      <property name="resourceRef" value="true"/>
+   </bean>
+-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+
+<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean id="messageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                    <property name="marshaller" ref="xstreamMarshaller" />
+                    <property name="unmarshaller" ref="xstreamMarshaller" />
+                </bean>
+                 <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean id="jsonConverter"
+                      class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                    <property name="supportedMediaTypes" value="application/json" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">              
+        <property name="aliases">
+            <props>
+                <prop key="channle">com.chinadrtv.erp.smsapi.dto.Channel</prop>        
+                <prop key="reply">com.chinadrtv.erp.smsapi.dto.Reply</prop>
+                <prop key="sendResponse">com.chinadrtv.erp.smsapi.dto.SingleSendResponse</prop>
+                <prop key="feedBack">com.chinadrtv.erp.smsapi.dto.FeedBack</prop>
+                <prop key="sla">com.chinadrtv.erp.smsapi.dto.SendSla</prop>
+                <prop key="timeScope">com.chinadrtv.erp.smsapi.dto.TimeScope</prop>
+                <prop key="variable">com.chinadrtv.erp.smsapi.dto.Variables</prop>
+                <prop key="message">com.chinadrtv.erp.smsapi.dto.Message</prop>
+                <prop key="dateScope">com.chinadrtv.erp.smsapi.dto.DateScope</prop>
+                <prop key="content">com.chinadrtv.erp.smsapi.dto.Content</prop>
+                <prop key="reponse">com.chinadrtv.erp.smsapi.dto.Response</prop> 
+                <prop key="sendRequest">com.chinadrtv.erp.smsapi.dto.SendRequest</prop>
+           </props>
+        </property>
+        
+    </bean>
+
+   
+    
+</beans>

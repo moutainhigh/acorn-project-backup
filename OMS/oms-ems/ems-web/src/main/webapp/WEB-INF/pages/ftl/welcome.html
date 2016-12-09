@@ -1,0 +1,48 @@
+<div>This is WebService test result!</div>
+
+<#if type=='type1'>
+<h1>${name}</h1>
+<#elseif type=='type2'>
+<table>
+	<#list name as e>
+	<tr>
+		<td>ID:</td>
+		<td>${e}</td>
+	</tr>
+	<tr>
+		<td>username:</td>
+		<td>${e}</td>
+	</tr>
+	<tr>
+		<td>password:</td>
+		<td>${e}</td>
+	</tr>
+	<tr>
+		<td>address:</td>
+		<td>${e}</td>
+	</tr>
+	</#list>
+</table>
+<#elseif type=='type3'>
+<h1>${name.id}</h1>
+<h1>${name.username}</h1>
+<h1>${name.password}</h1>
+<h1>${name.address}</h1>
+<#elseif type=='type4'>
+<table border="1" bordercolor="red">
+	<tr>
+		<td>id</td>
+		<td>username</td>
+		<td>password</td>
+		<td>address</td>
+	</tr>
+	<#list name as e>
+	<tr>
+		<td>${e.id}</td>
+		<td>${e.username}</td>
+		<td>${e.password}</td>
+		<td>${e.address}</td>
+	</tr>
+	</#list>
+</table>
+</#if>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <settings>
+        <setting name="lazyLoadingEnabled" value="false" />
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+
+        <typeAlias alias="WmsShipmentHeader" type="com.chinadrtv.yuantong.common.dal.model.WmsShipmentHeader" />
+        <typeAlias alias="WmsDetail" type="com.chinadrtv.yuantong.common.dal.model.WmsShipmentDetail" />
+    </typeAliases>
+
+
+    <mappers>
+        <!--<mapper resource="sqlmapper/DetailsMapper.xml"/>-->
+        <mapper resource="sqlmapper/WmsShipmentHeaderMapper.xml"/>
+    </mappers>
+
+</configuration>

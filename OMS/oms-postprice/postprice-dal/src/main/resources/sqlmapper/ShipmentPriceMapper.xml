@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.postprice.dal.iagent.dao.ShipmentPriceDao">
+
+    <!--<resultMap id="OrderExtMap" type="com.chinadrtv.wms2iag.sync.dal.model.OrderExt">
+        <id column="ORDERID" jdbcType="VARCHAR" property="orderId" />
+        <result column="WMSSTATUS" jdbcType="VARCHAR" property="wmsStatus" />
+    </resultMap>-->
+
+    <select id="findPostPriceShipments" parameterType="int" resultType="com.chinadrtv.postprice.dal.iagent.model.PostPriceItem">
+        <![CDATA[
+            SELECT SH.ID as shipmentHeadId, SH.ENTITY_ID as entityId,SH.ACCOUNT_STATUS_ID as accountStatusId,SH.ORDER_REF_HIS_ID as orderRefHisId,SH.ORDER_REF_REVISION as orderRefRevision,SH.ORDER_ID as orderId,
+            SUM(NVL(SH.PROD_PRICE,0)+NVL(SH.MAIL_PRICE,0)+NVL(SH2.PROD_PRICE,0)+NVL(SH2.MAIL_PRICE,0)+NVL(SH3.PROD_PRICE,0)+NVL(SH3.MAIL_PRICE,0)) as totlePrice
+            FROM ACOAPP_OMS.SHIPMENT_HEADER SH
+            LEFT JOIN ACOAPP_OMS.SHIPMENT_HEADER SH2 ON ( SH2.ASSOCIATED_ID=SH.ID AND SH2.ID!=SH.ID AND SH2.ACCOUNT_TYPE='2' )
+            LEFT JOIN ACOAPP_OMS.SHIPMENT_HEADER SH3 ON ( SH3.ASSOCIATED_ID=SH.ID AND SH3.ID!=SH.ID AND SH3.ACCOUNT_TYPE='3' )
+            WHERE ROWNUM<=#{batchSize} AND SH.ACCOUNT='Y' AND SH.RECONCIL_FLAG=1 AND SH.ACCOUNT_TYPE='1' AND ( SH.ACCOUNT_STATUS_ID='5' OR SH.ACCOUNT_STATUS_ID='6' ) AND SH.POST_FEE1 IS NULL AND SH.POST_FEE2 IS NULL AND SH.POST_FEE3 IS NULL AND SH.RECONCIL_DATE>SYSDATE-30
+            GROUP BY SH.ID, SH.ENTITY_ID,SH.ACCOUNT_STATUS_ID,SH.ORDER_REF_HIS_ID,SH.ORDER_REF_REVISION,SH.ORDER_ID
+        ]]>
+    </select>
+
+
+    <update id="updatePostPrice" parameterType="com.chinadrtv.postprice.dal.iagent.model.PostPriceItem">
+        UPDATE ACOAPP_OMS.SHIPMENT_HEADER SET WEIGHT=#{weight},POST_FEE1=#{postFee1},POST_FEE2=#{postFee2},POST_FEE3=#{postFee3} WHERE ID=#{shipmentHeadId}
+    </update>
+
+</mapper>

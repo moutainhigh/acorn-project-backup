@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.jingdong.common.dal.dao.DwsjosShopSalesDao">
+
+	<select id="queryDailyByOrderType" parameterType="dwsjosShopSales" resultType="dwsjosShopSales">
+		select * from dwsjosshopsales where order_type = #{orderType} and datestamp = #{datestamp}
+	</select>
+
+	<insert id="insertData" parameterType="dwsjosShopSales">
+		insert into dwsjosshopsales
+  			(dws_id, order_type, onlpronum, pv, visit, uv, ordqtty, ordpronum, ordamount, ordcustnum, 
+  			avgordprice, avgcustprice, avgcustordnum, custrate, ordrate, datestamp)
+		values
+  			(dwsjosshopsales_seq.nextval, 
+  			#{orderType, jdbcType=VARCHAR}, 
+  			#{onlpronum, jdbcType=INTEGER}, 
+  			#{pv, jdbcType=INTEGER}, 
+  			#{visit, jdbcType=INTEGER}, 
+  			#{uv, jdbcType=INTEGER}, 
+  			#{ordqtty, jdbcType=INTEGER}, 
+  			#{ordpronum, jdbcType=INTEGER}, 
+  			#{ordamount, jdbcType=DOUBLE}, 
+  			#{ordcustnum, jdbcType=INTEGER}, 
+  			#{avgordprice, jdbcType=DOUBLE}, 
+  			#{avgcustprice, jdbcType=DOUBLE}, 
+  			#{avgcustordnum, jdbcType=DOUBLE}, 
+  			#{custrate, jdbcType=DOUBLE}, 
+  			#{ordrate, jdbcType=DOUBLE}, 
+  			#{datestamp, jdbcType=INTEGER})
+	</insert>
+
+</mapper>

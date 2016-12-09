@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+
+    xmlns:context="http://www.springframework.org/schema/context"
+
+    xmlns:util="http://www.springframework.org/schema/util"
+
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+
+    http://www.springframework.org/schema/mvc
+
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+
+    http://www.springframework.org/schema/context 
+
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+
+    http://www.springframework.org/schema/util
+
+    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+       
+      <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean id="messageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                    <property name="marshaller" ref="xstreamMarshaller" />
+                    <property name="unmarshaller" ref="xstreamMarshaller" />
+                </bean>
+                 <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">              
+        <property name="aliases">
+            <props>
+                <prop key="channle">com.chinadrtv.erp.smsapi.dto.Channel</prop>        
+                <prop key="reply">com.chinadrtv.erp.smsapi.dto.Reply</prop>
+                <prop key="sendResponse">com.chinadrtv.erp.smsapi.dto.SingleSendResponse</prop>
+                <prop key="feedBack">com.chinadrtv.erp.smsapi.dto.FeedBack</prop>
+                <prop key="sla">com.chinadrtv.erp.smsapi.dto.SendSla</prop>
+                <prop key="timeScope">com.chinadrtv.erp.smsapi.dto.TimeScope</prop>
+                <prop key="variable">com.chinadrtv.erp.smsapi.dto.Variables</prop>
+                <prop key="message">com.chinadrtv.erp.smsapi.dto.Message</prop>
+                <prop key="dateScope">com.chinadrtv.erp.smsapi.dto.DateScope</prop>
+                <prop key="content">com.chinadrtv.erp.smsapi.dto.Content</prop>
+                <prop key="reponse">com.chinadrtv.erp.smsapi.dto.Response</prop> 
+                <prop key="sendRequest">com.chinadrtv.erp.smsapi.dto.SendRequest</prop>
+           </props>
+        </property>
+        
+    </bean>
+
+
+    
+
+    
+	
+</beans>

@@ -1,0 +1,47 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn"
+	id="definitions" targetNamespace="http://activiti.org/bpmn20">
+	<process id="changeRequest" name="订单/客户修改请求">
+		<startEvent id="request">
+		</startEvent>
+		<sequenceFlow id="flow1" sourceRef="request" targetRef="handleRequest" />
+		<userTask id="handleRequest" name="Handle change request">
+		</userTask>
+		<sequenceFlow id="flow3" sourceRef="handleRequest"
+			targetRef="requestApprovedDecision" />
+		<exclusiveGateway id="requestApprovedDecision" name="Request approved?" />
+		<sequenceFlow id="flow4" sourceRef="requestApprovedDecision"
+			targetRef="adjustChangeRequestTask">
+			<conditionExpression xsi:type="tFormalExpression">${changeApproved
+				== 'true'}</conditionExpression>
+		</sequenceFlow>
+
+		<sequenceFlow id="flow5" sourceRef="requestApprovedDecision"
+			targetRef="theEnd1">
+			<conditionExpression xsi:type="tFormalExpression">${changeApproved
+				== 'false'}</conditionExpression>
+		</sequenceFlow>
+		<endEvent id="theEnd1" />
+		
+		<userTask id="adjustChangeRequestTask" name="If manager apporved the ems process, the process should flow into the assitant.">
+		</userTask>
+		
+		<sequenceFlow id="flow6" sourceRef="adjustChangeRequestTask"
+			targetRef="sendAssistantEmsRequestDecision" />
+		<exclusiveGateway id="sendAssistantEmsRequestDecision" name="isEms?" />
+		<sequenceFlow id="flow7" sourceRef="sendAssistantEmsRequestDecision"
+			targetRef="theEnd2">
+			<conditionExpression xsi:type="tFormalExpression">${changeApproved ==
+				'true'}</conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow id="flow8" sourceRef="sendAssistantEmsRequestDecision"
+			targetRef="theEnd2">
+			<conditionExpression xsi:type="tFormalExpression">${changeApproved !=
+				'false'}</conditionExpression>
+		</sequenceFlow>
+		
+		<endEvent id="theEnd2" />
+		
+		<endEvent id="theEnd3" />
+	</process>
+</definitions>

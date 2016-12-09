@@ -1,0 +1,38 @@
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>Spring Web MVC Application</display-name>
+	
+	<!-- 
+		节点加载顺序	
+		context-param 高于  listener 高于  filter 高于  servlet   -->
+		
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:com/chinadrtv/erp/promotion/applicationContext-resources.xml
+            classpath:com/chinadrtv/erp/promotion/applicationContext-dao.xml
+            classpath:com/chinadrtv/erp/promotion/applicationContext-service.xml
+        </param-value>
+	</context-param>
+
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <servlet>
+		<servlet-name>erp-promotion</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>erp-promotion</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

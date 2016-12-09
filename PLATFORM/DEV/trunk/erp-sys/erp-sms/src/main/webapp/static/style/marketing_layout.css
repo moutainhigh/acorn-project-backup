@@ -1,0 +1,52 @@
+/*-------------------------------------------------------------------------------------
+marketing layout 
+-------------------------------------------------------------------------------------*/
+#condition {
+	padding: 5px;
+}
+
+#condition .btnBar{
+	width: 100%;
+	text-align: center;
+}
+
+#condition label {
+	font-weight:bold;
+	width: 150px;
+	display: inline-block;
+	text-align: right;
+	padding: 5px;
+	color: #336699;
+	vertical-align: middle;	
+}
+
+
+.baseLayout {
+	padding: 0px;
+}
+
+.baseLayout .btnBar{
+	width: 100%;
+	text-align: center;
+}
+
+.baseLayout label {
+	font-weight:bold;
+	width: 120px;
+	display: inline-block;
+	text-align: right;
+	padding: 5px;
+	color: #336699;
+}
+
+.baseLayout .inputSpan {
+	font-weight:bold;
+	width: 150px;
+	display: inline-block;
+	padding: 5px;
+	color: #336699;
+}
+
+.baseLayout fieldset{
+	width: 440px;
+}

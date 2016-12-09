@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+       default-lazy-init="true">
+
+
+
+
+    <!--
+    <bean id="agentDataSource_1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url"><value>jdbc:oracle:thin:@192.168.4.10:1521:TESTDB</value></property>
+        <property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+        <property name="username"><value>acoapp_oms</value></property>
+        <property name="password"><value>oms.2012</value></property>
+    </bean>
+    
+    <bean id="wmsDataSource_1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url"><value>jdbc:oracle:thin:@192.168.5.33:1521:TS2011</value></property>
+        <property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+        <property name="username"><value>Acots_dbtransf</value></property>
+        <property name="password"><value>Dbtransf.2011</value></property>
+    </bean>
+    -->
+
+    <!--
+    <bean id="agentDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="${omsJndiName}"/>
+        <property name="resourceRef" value="true"/>
+    </bean>
+
+    <bean id="wmsDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="${wmsJndiName}"/>
+        <property name="resourceRef" value="true"/>
+    </bean>
+    -->
+
+    <bean id="agentDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
+        <property name="uniqueResourceName" value="dsOMS"/>
+        <property name="xaDataSourceClassName" value="oracle.jdbc.xa.client.OracleXADataSource"/>
+        <property name="xaProperties">
+            <props>
+                <prop key="URL">${OMS_XA_URL}</prop>
+                <prop key="user">${OMS_XA_USER}</prop>
+                <prop key="password">${OMS_XA_PWD}</prop>
+            </props>
+        </property>
+        <property name="minPoolSize" value="1" />
+        <property name="maxPoolSize" value="10" />
+        <property name="borrowConnectionTimeout" value="30" />
+        <property name="maintenanceInterval" value="60" />
+    </bean>
+
+    <bean id="wmsDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
+        <property name="uniqueResourceName" value="dsWMS"/>
+        <property name="xaDataSourceClassName" value="oracle.jdbc.xa.client.OracleXADataSource" />
+        <property name="xaProperties">
+            <props>
+                <prop key="URL">${WMS_XA_URL}</prop>
+                <prop key="user">${WMS_XA_USER}</prop>
+                <prop key="password">${WMS_XA_PWD}</prop>
+            </props>
+        </property>
+        <property name="minPoolSize" value="1" />
+        <property name="maxPoolSize" value="10" />
+        <property name="borrowConnectionTimeout" value="30" />
+        <property name="maintenanceInterval" value="60" />
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="agentDataSource" />
+        <property name="configLocation" value="classpath:com/chinadrtv/erp/ic/hibernate.cfg.xml"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+   </bean>
+   
+   <bean id="wmsSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+     <property name="dataSource" ref="wmsDataSource" />
+     <property name="configLocation" value="classpath:com/chinadrtv/erp/ic/hibernate.cfg.xml"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+   </bean>
+
+    <!--
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="transactionManager2" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="wmsSessionFactory"/>
+    </bean>
+    -->
+</beans>

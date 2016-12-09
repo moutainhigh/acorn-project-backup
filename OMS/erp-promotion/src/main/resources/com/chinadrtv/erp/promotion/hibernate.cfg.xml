@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <mapping class="com.chinadrtv.erp.model.PreTradeLot"/>
+        <mapping class="com.chinadrtv.erp.model.PreTrade"/>
+        <mapping class="com.chinadrtv.erp.model.PreTradeDetail"/>
+        <mapping class="com.chinadrtv.erp.model.PreTradeCard"/>
+        <mapping class="com.chinadrtv.erp.model.PreTradeLotRequest"/>
+        <mapping class="com.chinadrtv.erp.model.agent.AreaAll"/>
+        <mapping class="com.chinadrtv.erp.model.agent.CityAll"/>
+        <mapping class="com.chinadrtv.erp.model.agent.CountyAll"/>
+        <mapping class="com.chinadrtv.erp.model.agent.Province"/>
+        <mapping class="com.chinadrtv.erp.model.AreaMapping"/>
+        <mapping class="com.chinadrtv.erp.model.CountryMapping"/>
+        <mapping class="com.chinadrtv.erp.model.CityMapping"/>
+        <mapping class="com.chinadrtv.erp.model.ProvinceMapping"/>
+        <mapping class="com.chinadrtv.erp.model.PreTradeCompany"/>
+
+        <mapping class="com.chinadrtv.erp.model.ChannelType"/>
+        <mapping class="com.chinadrtv.erp.model.Promotion"/>
+        <mapping class="com.chinadrtv.erp.model.PromotionRule"/>
+        <mapping class="com.chinadrtv.erp.model.PromotionRuleResult_FreeProduct"/>
+        <mapping class="com.chinadrtv.erp.model.PromotionRuleResult_MatchProduct"/>
+        <mapping class="com.chinadrtv.erp.model.PromotionRuleResult_OrderTotal"/>
+        <mapping class="com.chinadrtv.erp.model.PromotionRuleResult_RewardPoint"/>
+        <mapping class="com.chinadrtv.erp.model.PromotionRuleResult_Shipping"/>
+        <mapping class="com.chinadrtv.erp.model.PromotionRuleOption"/>
+        <mapping class="com.chinadrtv.erp.model.PromotionOption"/>
+        <mapping class="com.chinadrtv.erp.model.inventory.PlubasInfo"/>
+        <mapping class="com.chinadrtv.erp.model.PreTradeInsurance"/>
+    </session-factory>
+</hibernate-configuration>

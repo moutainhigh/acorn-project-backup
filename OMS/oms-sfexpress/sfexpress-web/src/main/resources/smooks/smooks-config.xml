@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smooks-resource-list
+        xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+        xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd">
+        
+	<resource-config selector="global-parameters">
+		<param name="stream.filter.type">SAX</param>
+	</resource-config>
+	
+	<jb:bean beanId="responseHeaderDto" class="com.chinadrtv.oms.sfexpress.dto.ResponseHeaderDto" createOnElement="Response">
+		<jb:value data="Response/Head" property="head"/>
+		<jb:value data="Response/ERROR" property="error"/>
+	</jb:bean>
+	
+	<jb:bean beanId="responseOrderDto" class="com.chinadrtv.oms.sfexpress.dto.ResponseOrderDto" createOnElement="Response/Body">
+		<jb:value data="Response/Body/OrderResponse/@orderid" property="orderId"/>
+		<jb:value data="Response/Body/OrderResponse/@mailno" property="mailNo"/>
+		<jb:value data="Response/Body/OrderResponse/@origincode" property="originCode"/>
+		<jb:value data="Response/Body/OrderResponse/@destcode" property="destCode"/>
+		<jb:value data="Response/Body/OrderResponse/@filter_result" property="filterResult"/>
+		<jb:value data="Response/Body/OrderResponse/@remark" property="remark"/>
+		<jb:value data="Response/Body/OrderResponse/@return_tracking_no" property="returnTrackingNo"/>
+	</jb:bean>
+	
+</smooks-resource-list>

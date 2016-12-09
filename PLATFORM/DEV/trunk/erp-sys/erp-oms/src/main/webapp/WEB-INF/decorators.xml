@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2012 Acorn International.
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~      http:www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or  implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  -->
+
+<decorators defaultdir="/decorators">
+    <excludes>
+        <pattern>/40*.jsp</pattern>
+        <pattern>/*ajax=true*</pattern>
+        <pattern>/resources/*</pattern>
+        <pattern>*/json/*</pattern>
+        <pattern>/static/*</pattern>
+    </excludes>
+    <decorator name="default" page="default.jsp">
+        <pattern>/wel</pattern>
+        <pattern>/admin/*</pattern>
+        <pattern>/company/*</pattern>
+        <pattern>/order/*</pattern>
+        <pattern>/orderPreprocessing/*</pattern>
+        <pattern>/orderFreeback/*</pattern>        
+        <pattern>/taobao/*</pattern>
+        <pattern>/jingdong/*</pattern>
+        <pattern>/chama/*</pattern>
+        <pattern>/amazon/*</pattern>
+        <pattern>/shipment/*</pattern>
+        <pattern>/orderhist/*</pattern>
+        <pattern>/orderhistNew/*</pattern>
+        <pattern>/addreMaintain/*</pattern>
+        <pattern>/carrier/*</pattern>
+        <pattern>/freight/*</pattern>
+        <pattern>/report/*</pattern>
+        <pattern>/logisticsStatus/*</pattern>
+        <pattern>/lower/*</pattern>
+
+    </decorator>
+    <decorator name="default_body" page="default_body.jsp">
+        <pattern>*/selector</pattern>
+        <pattern>*/selector/*</pattern>
+    </decorator>
+    <!-- 
+	<decorator name="default_outside" page="default_outside.jsp">
+         <pattern>/orderhist/*</pattern>
+    </decorator>
+ -->
+</decorators>

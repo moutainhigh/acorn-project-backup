@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--genes-->
+    <bean id="sessionFactoryCall" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceCall"/>
+        <property name="configLocations">
+            <list>
+                <value>classpath*:hibernate.call.cfg.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=${hibernate.dialect}
+                hibernate.query.substitutions=true 'Y', false 'N'
+                hibernate.show_sql=true
+                hibernate.format_sql=false
+                hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+                hibernate.cache.use_second_level_cache=true
+                hibernate.cache.use_query_cache=true
+            </value>
+        </property>
+
+        <property name="schemaUpdate">
+            <value>false</value>
+        </property>
+    </bean>
+
+    <bean id="dataSourceCall" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="${callJndiName}" />
+        <property name="resourceRef" value="true"/>
+    </bean>
+
+    <bean id="transactionManagerCall" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <property name="dataSource" ref="dataSourceCall" />
+    </bean>
+
+
+
+</beans>

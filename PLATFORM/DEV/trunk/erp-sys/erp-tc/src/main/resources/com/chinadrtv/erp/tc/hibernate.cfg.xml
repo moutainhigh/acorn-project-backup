@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+        <mapping class="com.chinadrtv.erp.model.agent.OrderDetail" />
+		<mapping class="com.chinadrtv.erp.model.agent.Order" />
+		<mapping class="com.chinadrtv.erp.model.agent.OrderhistHist" />
+		<mapping class="com.chinadrtv.erp.model.agent.OrderdetHist" />
+		<mapping class="com.chinadrtv.erp.model.agent.OrderdetHistory" />
+		<mapping class="com.chinadrtv.erp.model.agent.OrderHistory" />
+		<mapping class="com.chinadrtv.erp.model.agent.Product" />
+
+		<mapping class="com.chinadrtv.erp.model.AddressExt" />
+		<mapping class="com.chinadrtv.erp.model.agent.AreaAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.CityAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.CountyAll" />
+		<mapping class="com.chinadrtv.erp.model.agent.Province" />
+
+		<mapping class="com.chinadrtv.erp.model.Address" />
+		<mapping class="com.chinadrtv.erp.model.Contact" />
+		<mapping class="com.chinadrtv.erp.model.Phone" />
+		<mapping class="com.chinadrtv.erp.model.PreTrade" />
+		<mapping class="com.chinadrtv.erp.model.PreTradeDetail" />
+		<mapping class="com.chinadrtv.erp.model.PreTradeLot" />
+		<mapping class="com.chinadrtv.erp.model.Producttype" />
+        <mapping class="com.chinadrtv.erp.model.agent.Parameters"/>
+     <!-- 
+     <mapping class="com.chinadrtv.erp.tc.model.Doc80bf"/>
+     <mapping class="com.chinadrtv.erp.tc.model.Doc80dt"/>
+     <mapping class="com.chinadrtv.erp.tc.model.Plubasinfo"/>
+ 		-->
+		<mapping class="com.chinadrtv.erp.model.ModifyOrderhist" />
+		<mapping class="com.chinadrtv.erp.model.ModifyOrderhistExt" />
+		<mapping class="com.chinadrtv.erp.model.Acorderlist" />
+		<mapping class="com.chinadrtv.erp.model.SmppSend" />
+	
+		<mapping class="com.chinadrtv.erp.model.Ordermangerlog" />
+		<mapping class="com.chinadrtv.erp.model.RfError" />
+		<mapping class="com.chinadrtv.erp.model.Names" />
+		<mapping class="com.chinadrtv.erp.user.model.AgentUser" />
+	
+		<mapping class="com.chinadrtv.erp.model.trade.WmsShipmentHeader" />
+	
+		<mapping class="com.chinadrtv.erp.model.OrderExt" />
+	
+		<mapping class="com.chinadrtv.erp.model.trade.ShipmentDelivery" />
+		<mapping class="com.chinadrtv.erp.model.Warehouse" />
+		<mapping class="com.chinadrtv.erp.model.trade.ShipmentHeader" />
+		<mapping class="com.chinadrtv.erp.model.trade.ShipmentChangeHis" />
+		<mapping class="com.chinadrtv.erp.model.trade.ShipmentDetail" />
+		<mapping class="com.chinadrtv.erp.model.inventory.ProductType" />
+		<mapping class="com.chinadrtv.erp.model.inventory.ProductSuiteType" />
+		<mapping class="com.chinadrtv.erp.model.inventory.PlubasInfo" />
+		
+		<mapping class="com.chinadrtv.erp.model.AreaGroupDetail" />
+		<mapping class="com.chinadrtv.erp.model.AreaGroup" />
+		<mapping class="com.chinadrtv.erp.model.OrderAssignRule" />
+		<mapping class="com.chinadrtv.erp.model.OrderPayType" />
+		<mapping class="com.chinadrtv.erp.model.OrderType" />
+		<mapping class="com.chinadrtv.erp.model.PayType" />
+		<mapping class="com.chinadrtv.erp.model.OrderChannel" />
+		<mapping class="com.chinadrtv.erp.model.Company" />
+        <mapping class="com.chinadrtv.erp.model.EdiClear" />
+        <mapping class="com.chinadrtv.erp.model.PreTradeCard"/>
+
+        <!--<mapping class="com.chinadrtv.erp.model.inventory.PlubasInfo"/>
+      <mapping class="com.chinadrtv.erp.model.inventory.ItemInventoryTransaction"/>
+      <mapping class="com.chinadrtv.erp.model.inventory.ItemInventoryChannel"/> -->
+
+     <!--<mapping class="com.chinadrtv.erp.model.agent.ShipmentHeader"/>
+     <mapping class="com.chinadrtv.erp.model.agent.ShipmentChangeHis"/>
+     <mapping class="com.chinadrtv.erp.model.agent.ShipmentDetail"/>-->
+
+ </session-factory>
+
+</hibernate-configuration>

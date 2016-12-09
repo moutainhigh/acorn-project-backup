@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smooks-resource-list
+        xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+        xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd">
+
+    <jb:bean beanId="tradeList" class="java.util.ArrayList" createOnElement="/trade_fullinfo_get_response">
+        <jb:wiring beanIdRef="preTrade"/>
+    </jb:bean>
+
+    <jb:bean beanId="preTrade" class="com.chinadrtv.model.oms.dto.PreTradeDto" createOnElement="/trade_fullinfo_get_response/trade">
+        <jb:value data="/trade_fullinfo_get_response/trade/alipay_no" property="alipayTradeId"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/buyer_alipay_no" property="buyerAlipayId"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/buyer_message" property="buyerMessage"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/seller_memo" property="sellerMessage"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/seller_nick" property="customerId"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/buyer_nick" property="buyerNick"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/discount_fee" decoder="Double" property="discountFee"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/commission_fee" decoder="Double" property="comisssionFee"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/pay_time" decoder="Date" property="outCrdt">
+            <jb:decodeParam name="format">yyyy-MM-dd HH:mm:ss</jb:decodeParam>
+            <jb:decodeParam name="locale">sv_SE</jb:decodeParam>
+        </jb:value>
+        <jb:value data="/trade_fullinfo_get_response/trade/payment" decoder="Double" property="payment"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/receiver_address" property="receiverAddress"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/receiver_city" property="receiverCity"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/receiver_district" property="receiverCounty"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/receiver_mobile" property="receiverMobile"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/receiver_name" property="receiverName"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/receiver_phone" property="receiverPhone"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/receiver_zip" property="receiverPostCode"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/receiver_state" property="receiverProvince"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/post_fee" decoder="Double" property="shippingFee"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/shipping_type" property="shippingType"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/trade_from" property="tradeFrom"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/invoice_name" property="invoiceTitle"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/tid" property="tradeId"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/tid" property="opsTradeId"/>
+        <!--
+        <jb:expression property="payment" execOnElement="/trade_fullinfo_get_response/trade" >
+            preTrade.totalFee - preTrade.shippingFee;
+        </jb:expression>
+        -->
+        <jb:wiring beanIdRef="preTradeDatils" property="preTradeDetails"/>
+    </jb:bean>
+
+    <jb:bean beanId="preTradeDatils" class="java.util.ArrayList" createOnElement="/trade_fullinfo_get_response/trade/orders">
+        <jb:wiring beanIdRef="preTradeDatil"/>
+    </jb:bean>
+
+    <jb:bean beanId="preTradeDatil" class="com.chinadrtv.model.oms.PreTradeDetail" createOnElement="/trade_fullinfo_get_response/trade/orders/order">
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/discount_fee" decoder="Double" property="discountFee"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/outer_sku_id" property="outSkuId"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/total_fee" decoder="Double" property="payment"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/price" decoder="Double" property="price"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/price" decoder="Double" property="upPrice"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/num" decoder="Integer" property="qty"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/sku_id" decoder="Long" property="skuId"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/num_iid" decoder="Long" property="itemId"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/outer_iid" property="outItemId"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/title" property="skuName"/>
+        <jb:value data="/trade_fullinfo_get_response/trade/orders/order/oid" property="oid"/>
+    </jb:bean>
+
+</smooks-resource-list>

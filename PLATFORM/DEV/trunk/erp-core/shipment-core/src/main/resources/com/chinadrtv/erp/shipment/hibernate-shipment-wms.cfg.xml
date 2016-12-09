@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="com.chinadrtv.erp.model.trade.WmsCancelShipment" />
+		<mapping class="com.chinadrtv.erp.model.trade.WmsShipmentDetail1" />
+		<mapping class="com.chinadrtv.erp.model.trade.WmsShipmentDetail2" />
+		<mapping class="com.chinadrtv.erp.model.trade.WmsShipmentHeader" />
+	</session-factory>
+</hibernate-configuration>

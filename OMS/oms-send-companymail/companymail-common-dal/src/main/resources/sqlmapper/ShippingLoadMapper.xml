@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.companymail.common.dal.daowms.WmsDataInfoDao">
+
+    <select id="findShippingLoad" resultType="ShippingLoad">
+        select a.INTERNAL_LOAD_NUM as internalLoadNum,
+        a.CARRIER as carrier,
+        ISNULL(b.USER_DEF8, 0) as orderMoney
+        from SHIPPING_LOAD a, CARRIER b
+        where a.CARRIER = b.CARRIER
+        and a.LEADING_STS = 900
+        and a.USER_DEF6 is null
+        and a.CARRIER not in (N'一般货运公司', N'信用卡分期EMS', N'上海邮购EMS')
+    </select>
+
+    <select id="findZMMRPTReceivableslist" parameterType="java.lang.Integer" resultType="ZMMRPTReceivableslist">
+        select a.CUSTOMER_CITY as proname,
+               a.CUSTOMER_NAME as toPerson,
+               LEFT(a.CUSTOMER_ADDRESS1, 12) as address,
+               a2.SCM_SHIPMENT_ID as orderNum,
+               convert(char(10), a.SCHEDULED_SHIP_DATE, 120) as orderDate,
+               replace(a2.item_code, char(13) + char(10), '/') as productName,
+               C.CONTAINER_ID as emialNum,
+               a.TOTAL_VALUE as incomeMoney,
+               CASE
+                 WHEN C.WEIGHT > 999 THEN
+                  0.00
+                 ELSE
+                  C.WEIGHT
+               END AS weight
+          from shipment_header2     a2,
+               SHIPMENT_HEADER_VIEW a,
+               SHIPPING_CONTAINER   c,
+               SHIPPING_LOAD        d
+         where a.SHIPMENT_ID = a2.WMS_SHIPMENT_ID
+           and d.INTERNAL_LOAD_NUM = #{loadNum,jdbcType=INTEGER}
+           and a.SHIPPING_LOAD_NUM = d.INTERNAL_LOAD_NUM
+           and a.INTERNAL_SHIPMENT_NUM = c.INTERNAL_SHIPMENT_NUM
+           and isnull(c.CONTAINER_ID, '') != ''
+           and a.SHIPPING_LOAD_NUM = #{loadNum,jdbcType=INTEGER}
+    </select>
+
+    <select id="findZMMRPTEMSMailList" parameterType="java.lang.Integer" resultType="ZMMRPTEMSMailList">
+        select 'EC0062' as companyId,
+               sh.ACTUAL_SHIP_DATE_TIME AS orderDate,
+               UPPER(sc.CONTAINER_ID) as email,
+               sh.TOTAL_VALUE as orderMoney,
+               '' as baoliu,
+               33333 as baoliu1,
+               sh.SHIP_TO_ADDRESS2 AS cityId,
+               sh.CUSTOMER as name,
+               sh.SHIP_TO_ADDRESS1 AS address,
+               sh.USER_DEF4 as orderId,
+               replace(sh2.item_code, char(13) + char(10), '/') as proName,
+               substring(CUSTOMER_phone_num, 1, 8) + 'XXX' as telephone,
+               CUSTOMER_POSTAL_CODE as postcode,
+               sc.weight as weight
+          from SHIPMENT_HEADER_VIEW sh, SHIPPING_CONTAINER sc, SHIPMENT_HEADER2 sh2
+         where sh.INTERNAL_SHIPMENT_NUM = sc.INTERNAL_SHIPMENT_NUM
+           and sh2.WMS_SHIPMENT_ID = sh.SHIPMENT_ID
+           and sc.CONTAINER_ID is not null
+           and sh.SHIPPING_LOAD_NUM = #{loadNum,jdbcType=INTEGER}
+         order by UPPER(sc.CONTAINER_ID)
+    </select>
+
+    <update id="updateShippingLoad" parameterType="java.lang.Integer">
+        update SHIPPING_LOAD set USER_DEF6 ='yes' where INTERNAL_LOAD_NUM = #{loadNum,jdbcType=INTEGER}
+    </update>
+
+</mapper>

@@ -1,0 +1,602 @@
+<!--suppress MavenModelInspection -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>com.chinadrtv.erp</artifactId>
+        <groupId>acorn.erp</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>com.chinadrtv.erp.sales.cti</artifactId>
+    <packaging>war</packaging>
+    <name>com.chinadrtv.erp.sales.cti</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+          <logback.version>1.0.7</logback.version>
+        <slf4j.version>1.7.2</slf4j.version>
+        <druid.version>1.0.5</druid.version>
+        <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
+        <sales.build.timestamp>${maven.build.timestamp}</sales.build.timestamp>
+    </properties>
+    <profiles>
+        <profile>
+            <id>product</id>
+            <properties>
+                <package.environment>product</package.environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <package.environment>uat</package.environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <package.environment>dev</package.environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <package.environment>test</package.environment>
+            </properties>
+        </profile>
+    </profiles>
+    
+    <scm>
+    	<developerConnection>scm:svn:http://192.168.4.123/svn/PLATFORM/DEV/trunk/erp-sys/erp-sales</developerConnection>
+    	<connection>scm:svn:http://192.168.4.123/svn/PLATFORM/DEV/trunk/erp-sys/erp-sales</connection>
+    	<!--<url>http://192.168.4.123/svn/PLATFORM/DEV/trunk/erp-sys/erp-sales</url> -->
+    </scm>
+    
+    <build>
+        <finalName>erp-sales-cti</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                    <webResources>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>src/main/resources/${package.environment}</directory>
+                            <targetPath>WEB-INF/classes</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                        <resource>
+                            <directory>src/main/resources/${package.environment}</directory>
+                            <includes>
+                                <include>**/web.xml</include>
+                            </includes>
+                            <targetPath>WEB-INF</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                        <resource>
+                            <directory>src/main/resources/${package.environment}</directory>
+                            <includes>
+                                <include>**/header.jsp</include>
+                                <include>**/default_jscss.jsp</include>
+                                <include>**/inbound_jscss.jsp</include>
+                            </includes>
+                            <targetPath>common</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                        <resource>
+                            <directory>src/main/resources/${package.environment}</directory>
+                            <includes>
+                                <include>**/taglibs.jsp</include>
+                            </includes>
+                            <targetPath>common</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+
+                         <!-- -->
+                        <resource>
+                            <directory>${basedir}/src/main/webapp/static/images</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <targetPath>static/mergejscss/images</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+                        <resource>
+                            <directory>${basedir}/src/main/webapp/static/style/themes</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <targetPath>static/mergejscss/style/themes</targetPath>
+                            <filtering>true</filtering>
+                        </resource>
+
+                    </webResources>
+                </configuration>
+            </plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+	               <target>1.6</target>
+	               <source>1.6</source>
+	               <encoding>UTF-8</encoding>
+	           </configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.4.2</version>
+				<configuration>
+		          <tagBase>http://192.168.4.123/svn/PLATFORM/DEV/tags</tagBase>
+		        </configuration>
+			</plugin>
+            <plugin>
+                <!-- YUI Compressor Maven压缩插件 -->
+
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>yuicompressor-maven-plugin</artifactId>
+                <version>1.3.2</version>
+
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compress</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <!-- 读取js,css文件采用UTF-8编码 -->
+                    <encoding>UTF-8</encoding>
+                    <!-- 不显示js可能的错误 -->
+                    <jswarn>false</jswarn>
+                    <!-- 若存在已压缩的文件，会先对比源文件是否有改动。有改动便压缩，无改动就不压缩 -->
+                    <force>false</force>
+                    <!-- 在指定的列号后插入新行 -->
+                    <linebreakpos>-1</linebreakpos>
+                    <!-- 压缩之前先执行聚合文件操作 -->
+                    <preProcessAggregates>true</preProcessAggregates>
+                    <!-- 压缩后保存文件后缀 -->
+                    <suffix>.min</suffix>
+                    <!-- 源目录，即需压缩的根目录 -->
+                    <sourceDirectory>${basedir}/src/main/webapp/static</sourceDirectory>
+                    <!-- 压缩js和css文件 -->
+                    <includes>
+                        <include>js/*.js</include>
+                        <include>js/cti/*.js</include>
+                        <include>style/*.css</include>
+                    </includes>
+                    <!-- 以下目录和文件不会被压缩 -->
+                    <excludes>
+                        <exclude>cart/*.js</exclude>
+                        <exclude>**/*.png</exclude>
+                        <exclude>**/*.gif</exclude>
+                        <exclude>style/themes/**</exclude>
+                    </excludes>
+                    <!-- 压缩后输出文件目录 -->
+                    <outputDirectory>${basedir}/src/main/webapp/static/mergejscss</outputDirectory>
+                    <!-- 聚合文件 -->
+                    <aggregations>
+                        <aggregation>
+                            <!-- 合并每一个文件后插入一新行 -->
+                            <insertNewLine>true</insertNewLine>
+                            <!-- 最终合并的输出文件 -->
+                            <output>${basedir}/src/main/webapp/static/js/sales_core.js</output>
+                            <!-- 把以下js文件合并成一个js文件，是按顺序合并的 -->
+                            <includes>
+                                <include>${basedir}/src/main/webapp/static/js/easyui-lang-zh_CN.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/easyui-validatabox-extend.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/jquery.marquee.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/plugins/jquery.autocomplete.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/plugins/jquery.tablegroup.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/plugins/jquery.countup.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/json.min.js</include>
+
+                                <include>${basedir}/src/main/webapp/static/js/cti/acornPhone.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/cti/cti-api.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/cti/cti-event.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/cti/cti-callback.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/cti/acornPhoneEvents.js</include>
+
+                                <include>${basedir}/src/main/webapp/static/js/scrollFloat.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/common.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/browser.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/itemsearch.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/itemrecommend.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/utils.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/customer/findCustomer.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/myorder/orderpop.js</include>
+                            </includes>
+
+
+                        </aggregation>
+
+                        <aggregation>
+                        <!-- 合并每一个文件后插入一新行 -->
+                        <insertNewLine>true</insertNewLine>
+                        <!-- 需合并文件的根文件夹 -->
+                        <inputDir>${basedir}/src/main/webapp/static/style</inputDir>
+                        <!-- 最终合并的输出文件 -->
+                        <output>${basedir}/src/main/webapp/static/style/sales_core.css</output>
+                        <!-- 把以下js文件合并成一个js文件，是按顺序合并的 -->
+                        <includes>
+                            <include>${basedir}/src/main/webapp/static/style/style.css</include>
+                            <include>${basedir}/src/main/webapp/static/style/easyui.css</include>
+                            <include>${basedir}/src/main/webapp/static/style/plugins/jquery.autocomplete.css</include>
+                            <include>${basedir}/src/main/webapp/static/style/jquery.marquee.css</include>
+
+                        </includes>
+                        </aggregation>
+
+                        <aggregation>
+                            <!-- 合并每一个文件后插入一新行 -->
+                            <insertNewLine>true</insertNewLine>
+
+                            <!-- 最终合并的输出文件 -->
+                            <output>${basedir}/src/main/webapp/static/js/inbound_js.js</output>
+                            <!-- 把以下js文件合并成一个js文件，是按顺序合并的 -->
+                            <includes>
+                                <include>${basedir}/src/main/webapp/static/js/inbound.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/datagrid-detailview.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/cart/link.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/cart/cc.js</include>
+
+                                <include>${basedir}/src/main/webapp/static/js/sms/sms.js</include>
+                                <include>${basedir}/src/main/webapp/static/js/easyui-validatabox-extend.js</include>
+                            </includes>
+
+
+                        </aggregation>
+
+                        <aggregation>
+                            <!-- 合并每一个文件后插入一新行 -->
+                            <insertNewLine>true</insertNewLine>
+                            <!-- 需合并文件的根文件夹 -->
+                            <inputDir>${basedir}/src/main/webapp/static/style</inputDir>
+                            <!-- 最终合并的输出文件 -->
+                            <output>${basedir}/src/main/webapp/static/style/inbound_css.css</output>
+                            <!-- 把以下js文件合并成一个js文件，是按顺序合并的 -->
+                            <includes>
+                                <include>${basedir}/src/main/webapp/static/style/inboundCall.css</include>
+                                <include>${basedir}/src/main/webapp/static/style/cart.css</include>
+                                <include>${basedir}/src/main/webapp/static/style/cc.css</include>
+                            </includes>
+                        </aggregation>
+
+
+                    </aggregations>
+                </configuration>
+
+            </plugin>
+
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>1.8.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.1</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+        <!--<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.15</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <optional>false</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.jms</groupId>
+                    <artifactId>jms</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jdmk</groupId>
+                    <artifactId>jmxtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jmx</groupId>
+                    <artifactId>jmxri</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.compass-project</groupId>
+            <artifactId>compass</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>jsr311-api</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.simple-spring-memcached</groupId>
+            <artifactId>spring-cache</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.simple-spring-memcached</groupId>
+            <artifactId>spymemcached-provider</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.9</version>
+            <type>jar</type>
+            <!--<scope>provided</scope> -->
+        </dependency>
+
+
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>sitemesh</artifactId>
+            <version>2.4.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.jms</groupId>
+            <artifactId>jms</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-parent</artifactId>
+            <version>2.2.12-patch-03</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>jackson-module-hibernate</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>quartz</groupId>
+            <artifactId>quartz</artifactId>
+            <version>1.5.2</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>jackson-module-hibernate</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>com.chinadrtv.erp.core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>com.chinadrtv.erp.security</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>erp-ic-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>erp-uc-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>com.chinadrtv.erp.pay.core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+         <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>${druid.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>com.chinadrtv.erp.sales.core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>acorn.erp</groupId>
+            <artifactId>com.chinadrtv.erp.bpm</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+			<groupId>acorn.erp</groupId>
+			<artifactId>erp-marketing-core</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+
+        <dependency>
+            <groupId>com.yahoo.platform.yui</groupId>
+            <artifactId>yuicompressor</artifactId>
+            <version>2.4.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.6</version>
+        </dependency>
+
+    </dependencies>
+</project>

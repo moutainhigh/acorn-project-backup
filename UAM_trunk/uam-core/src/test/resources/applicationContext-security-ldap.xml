@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:system.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="ldapServer"
+            class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+        <constructor-arg index="0">
+        	<list>
+        		<value>${ldap.server1}</value>
+        		<!--<value>${ldap.server2}</value>-->
+        	</list>
+        </constructor-arg>
+        <constructor-arg index="1">
+        	<value>${ldap.baseDn}</value>
+        </constructor-arg>
+        <property name="userDn" value="${ldap.user}"/>
+        <property name="password" value="${ldap.password}"/>
+    </bean>
+
+     <bean id="springSecurityLdapTemplate" class="org.springframework.security.ldap.SpringSecurityLdapTemplate">
+		<constructor-arg ref="ldapServer" /> 
+		</bean>
+</beans>

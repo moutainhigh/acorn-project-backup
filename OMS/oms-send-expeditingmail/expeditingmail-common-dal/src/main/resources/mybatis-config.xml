@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="false" />
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias alias="CompanyContract" type="com.chinadrtv.expeditingmail.common.dal.model.CompanyContract" />
+        <typeAlias alias="DeliveryMailDetail" type="com.chinadrtv.expeditingmail.common.dal.model.DeliveryMailDetail" />
+        <!--<typeAlias alias="Inventory" type="com.chinadrtv.expeditingmail.common.dal.model.Inventory" />-->
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="sqlmapper/CompanyContractMapper.xml"/>
+        <mapper resource="sqlmapper/DeliveryMailDetailMapper.xml"/>
+
+    </mappers>
+
+</configuration>

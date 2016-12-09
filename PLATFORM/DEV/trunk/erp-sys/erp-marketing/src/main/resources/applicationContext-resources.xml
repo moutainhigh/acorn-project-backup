@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+    <!-- For mail settings and future properties files -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list> 
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:system.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- JNDI DataSource for J2EE environments -->
+    <!--<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/promotions"/>-->
+	<!-- 
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="100"/>
+        <property name="maxWait" value="1000"/>
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="validationQuery" value="SELECT COUNT(*) FROM DUAL"/>
+        <property name="testOnBorrow" value="true"/>
+    </bean>
+     -->
+         
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="${marketingJndiName}" />
+      <property name="resourceRef" value="true"/>
+   </bean>
+   <!--   
+     <bean id="dataSourceOms" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="${omsJndiName}" />
+      <property name="resourceRef" value="true"/>
+   </bean>
+   -->
+   <bean id="dataSourceBI" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="${biJndiName}" />
+      <property name="resourceRef" value="true"/>
+   </bean>
+   
+     <bean id="dataSourceSms" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="${smsJndiName}" />
+      <property name="resourceRef" value="true"/>
+   </bean>
+   
+     
+   <bean id="dataSourceMarketingBak" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="${marketingBakJndiName}" />
+      <property name="resourceRef" value="true"/>
+   </bean>
+    
+     <bean id="dataSourceCti" class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" value="${ctiJndiName}" />
+      <property name="resourceRef" value="true"/>
+   </bean>
+   
+<!-- 
+	    <bean id="dataSourceBI" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	        <property name="driverClassName" value="${jdbc.driverClassName_bi}"/>
+	        <property name="url" value="${jdbc.url_bi}"/>
+	        <property name="username" value="${jdbc.username_bi}"/>
+	        <property name="password" value="${jdbc.password_bi}"/>
+	        <property name="maxActive" value="100"/>
+	        <property name="maxWait" value="1000"/>
+	        <property name="poolPreparedStatements" value="true"/>
+	        <property name="defaultAutoCommit" value="true"/>
+	        <property name="validationQuery" value="SELECT COUNT(*) FROM DUAL"/>
+	        <property name="testOnBorrow" value="true"/>
+	    </bean>
+	    
+	    -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+     <bean id="jdbcTemplateCti" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSourceCti"/>
+    </bean>
+
+	<bean id="jdbcTemplateBI" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSourceBI"/>
+    </bean>
+     
+    <bean id="jdbcTemplateAgent" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="jdbcTemplateSms" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSourceSms"/>
+    </bean>
+    
+       <bean id="jdbcTemplateMarketingBak" class="org.springframework.jdbc.core.JdbcTemplate">
+    	<property name="dataSource" ref="dataSourceMarketingBak"/>
+    </bean>
+   
+
+    <bean id="appValidationResource" class="com.chinadrtv.erp.util.AppValidationResource" lazy-init="false">
+    	<property name="validationQuery" value="SELECT COUNT(*) FROM DUAL"/>
+    	<property name="dbs"><!--配置需要检查的数据源 -->
+    		<list>
+    			<value>dataSource</value>
+    			<value>dataSourceSms</value>
+    			<value>dataSourceMarketingBak</value>
+    			
+    		</list>
+    	</property>
+    	<property name="files"><!--配置需要检查的文件或目录 -->
+    		<list>
+    		</list>
+    	</property>
+    	<property name="https"><!-- 配置需要检查的http连接 -->
+    		<list>
+    		</list>
+    	</property>
+	</bean>
+
+
+</beans>

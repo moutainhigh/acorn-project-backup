@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smooks-resource-list
+        xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
+        xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd">
+
+    <jb:bean beanId="tradeResultList" class="com.chinadrtv.amazon.model.TradeResultList" createOnElement="/AmazonEnvelope/Message/ProcessingReport">
+        <jb:value data="/AmazonEnvelope/Message/ProcessingReport/StatusCode" property="processStatus"/>
+        <jb:wiring beanIdRef="tradeResultInfos" property="tradeResultInfos"/>
+    </jb:bean>
+
+    <jb:bean beanId="tradeResultInfos" class="java.util.ArrayList" createOnElement="/AmazonEnvelope/Message/ProcessingReport">
+        <jb:wiring beanIdRef="tradeResultInfo"/>
+    </jb:bean>
+
+    <jb:bean beanId="tradeResultInfo" class="com.chinadrtv.amazon.model.TradeResultInfo" createOnElement="/AmazonEnvelope/Message/ProcessingReport/Result">
+        <jb:value data="/AmazonEnvelope/Message/ProcessingReport/Result/MessageID" property="messageId"/>
+        <jb:value data="/AmazonEnvelope/Message/ProcessingReport/Result/ResultCode" property="resultStatus"/>
+        <jb:value data="/AmazonEnvelope/Message/ProcessingReport/Result/ResultMessageCode" property="errorCode"/>
+        <jb:value data="/AmazonEnvelope/Message/ProcessingReport/Result/ResultDescription" property="errorDescription"/>
+    </jb:bean>
+</smooks-resource-list>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinadrtv.logistics.dal.bak.dao.OrderLogisticsDao">
+
+    <select id="findLogistics"  parameterType="java.lang.String" resultType="com.chinadrtv.logistics.dal.model.OrderLogistics">
+        <![CDATA[
+        select orderid,
+                   begdate as opDate,
+                   optdsc as opDsc,
+                   optpsn as opUser,
+                   mailid as mailId,
+                   company
+              from (select a.orderid,
+                           a.crdt as begdate,
+                           '您的订单已提交，等待审核' as optdsc,
+                           b.usrid || b.name as optpsn,
+                           '' mailid,
+                           '' company
+                      from Iagent.orderhist a
+                      join iagent.usr b on a.crusr = b.usrid
+                     where a.orderid = #{orderId}
+                    union all
+                    select min(a.order_id) orderid,
+                        min(a.crdt) begdate,
+                        '您的订单被分配 [' ||
+                        case when min(oh.ordertype)='49' and left(min(a.mail_id),1)='V' then '圆通快递'
+                        when min(oh.ordertype)='49' and isNumber(min(a.mail_id))=0 then '中通快递'
+                        when left(min(a.mail_id),1) in('D','E') Then 'EMS'
+                        when a.entity_id='102' then '顺丰快递'
+                        when a.entity_id='104' then '微特派快递'
+                        when left(min(a.mail_id),1) ='B' then '广东邮政YCC'
+                        else min(c.name) end ||'] 送货' optdsc,
+                        a.crusr||min(u.name) optpsn,
+                        a.mail_id mailid,
+                        case when min(a.account_status_id) = 0 then ''
+                        else min(c.name) end company
+                        from acoapp_oms.shipment_header a
+                        join iagent.orderhist oh on oh.orderid = a.order_id
+                        join iagent.company c on a.entity_id = c.companyid
+                        left join iagent.usr u on u.usrid = a.crusr
+                        where order_id = #{orderId}
+                        and oh.senddt is not null
+                        group by a.crusr,a.entity_id, a.mail_id
+                    union all
+                    select a.orderid,
+                           a.mddt as begdate,
+                           '您的订单[' || decode(a.status,
+                                             '0',
+                                             '取消',
+                                             '3',
+                                             '退货',
+                                             '4',
+                                             '换货',
+                                             '5',
+                                             '完成',
+                                             '6',
+                                             '拒收',
+                                             '7',
+                                             '压单',
+                                             '8',
+                                             '物流取消') || ']' as optdsc,
+                           b.usrid || b.name as optpsn,
+                           '' as mailid,
+                           '' as company
+                      from iagent.orderhist a
+                      left join iagent.usr b on a.mdusr = b.usrid
+                     where a.orderid = #{orderId}
+                       and decode(a.status, '1', 0, '2', 0, '5', 0, '6', 0, 1) = 1
+                    union all
+                    select a.orderid,
+                           a.fbdt as begdate,
+                           '您的订单[' || decode(a.status,
+                                             '0',
+                                             '取消',
+                                             '3',
+                                             '退货',
+                                             '4',
+                                             '换货',
+                                             '5',
+                                             '完成',
+                                             '6',
+                                             '拒收',
+                                             '7',
+                                             '压单',
+                                             '8',
+                                             '物流取消') || ']' as optdsc,
+                           b.usrid || b.name as optpsn,
+                           '' as mailid,
+                           '' as company
+                      from Iagent.orderhist a
+                      left join iagent.usr b on a.mdusr = b.usrid
+                     where a.orderid = #{orderId}
+                       and decode(a.status, '5', 1, '6', 1, 0) = 1
+                    union all
+                    select a.orderid,
+                           a.OPTDAT as begdate,
+                           '您的订单[' || decode(a.opttyp,
+                                             1,
+                                             '取消订单',
+                                             2,
+                                             '仓库扫描完成,等待出库',
+                                             3,
+                                             '拣货确认',
+                                             4,
+                                             '送货公司签收',
+                                             5,
+                                             '投递完成',
+                                             6,
+                                             '拒收在途',
+                                             7,
+                                             '问题单',
+                                             8,
+                                             '结算完成',
+                                             9,
+                                             '拒收入库',
+                                             '') || ']' as optdsc,
+                           nvl(b.usrid, c.usrid) || nvl(b.name, c.name) as optpsn,
+                           '' as mailid,
+                           '' as company
+                      from acoapp_moniagt.ordermangerlog a
+                      left join acoapp_moniagt.usr b on a.optpsn = b.usrid
+                      left join iagent.usr c on a.optpsn = c.usrid
+                      left join iagent.company d on a.optcom = d.companyid
+                     where a.orderid = #{orderId}
+                    union all
+                    select a.orderid,
+                           a.optdate as begdate,
+                           '您的订单[' || a.whname || '-' || a.statusname || ']' as optdsc,
+                           a.optpsn as optpsn,
+                           '' as mailid,
+                           '' as company
+                      from whorderstatus a
+                     where a.orderid = #{orderId}
+                    union all
+                    select a.orderid,
+                           a.log_date as begdate,
+                           '您的订单[送货公司配送状态：' || case
+                             when b.id is null then
+                              substr(a.after_update_filed1_values,
+                                     INSTR(a.after_update_filed1_values, 1, 1) + 1)
+                             else
+                              b.dsc
+                           end || decode(a.remark, '', '', ' (' || a.remark || ')') || ']' optdsc,
+                           '' as optpsn,
+                           '' as mailid,
+                           '' as company
+                      from acoapp_translog.delivery_log a
+                      left join (select id, dsc
+                                   from iagent.names a
+                                  where a.tid = 'CUSTOMIZESTATUS') b on a.after_update_filed1_values = b.id
+                     where a.log_type = 2
+                       and a.orderid = #{orderId}
+                    union all
+                    select a.orderid,
+                           sysdate as begdate,
+                           '压单原因：' || fun_getabnormalorder(#{orderId}) as optdsc,
+                           'system' as optpsn,
+                           '' mailid,
+                           '' company
+                      from Iagent.orderhist a
+                     where a.orderid = #{orderId}
+                       and fun_getabnormalorder(#{orderId}) is not null)
+             order by begdate
+             ]]>
+    </select>
+
+
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+     <mapping class="com.chinadrtv.erp.model.Promotion"/>
+     <mapping class="com.chinadrtv.erp.model.PromotionRule"/>
+     <mapping class="com.chinadrtv.erp.model.PromotionRuleResult"/>
+     <mapping class="com.chinadrtv.erp.model.PromotionRuleResult_FreeProduct"/>
+     <mapping class="com.chinadrtv.erp.model.PromotionRuleResult_MatchProduct"/>
+     <mapping class="com.chinadrtv.erp.model.PromotionRuleOption"/>
+     <mapping class="com.chinadrtv.erp.model.PromotionOption"/>
+     <mapping class="com.chinadrtv.erp.model.ChannelType"/>
+     <mapping class="com.chinadrtv.erp.model.inventory.PlubasInfo"/>
+
+
+     <mapping class="com.chinadrtv.erp.core.model.client.EntityFieldView"/>
+     <mapping class="com.chinadrtv.erp.core.model.client.EntityView"/>
+     <mapping class="com.chinadrtv.erp.core.model.client.EntityGridView"/>
+     <mapping class="com.chinadrtv.erp.core.model.client.Search"/>
+     <mapping class="com.chinadrtv.erp.core.model.client.SearchField"/>
+     <mapping class="com.chinadrtv.erp.core.model.AuditLog"/>
+
+     <mapping class="com.chinadrtv.erp.user.model.AgentUser"/>
+     <mapping class="com.chinadrtv.erp.user.model.AgentRole"/>
+
+
+     <mapping class="com.chinadrtv.erp.admin.model.MediaNum"/>
+
+     
+     <mapping class="com.chinadrtv.erp.model.BaseType"/>
+     <mapping class="com.chinadrtv.erp.admin.model.Province"/>
+     <mapping class="com.chinadrtv.erp.admin.model.City"/>
+     <mapping class="com.chinadrtv.erp.admin.model.MailType"/>
+     <mapping class="com.chinadrtv.erp.admin.model.CompanyType"/>
+     <mapping class="com.chinadrtv.erp.admin.model.Company"/>
+
+     <mapping class="com.chinadrtv.erp.admin.model.OrderType"/>
+     <mapping class="com.chinadrtv.erp.admin.model.OrderTypeSmsSend"/>
+     <mapping class="com.chinadrtv.erp.admin.model.OnlieShop"/>
+     <mapping class="com.chinadrtv.erp.admin.model.PayType"/>
+     <mapping class="com.chinadrtv.erp.admin.model.User"/>
+     <mapping class="com.chinadrtv.erp.admin.model.FreightQuota"/>
+     <mapping class="com.chinadrtv.erp.admin.model.FreightLeg"/>
+     <mapping class="com.chinadrtv.erp.admin.model.FreightVersion"/>
+     <mapping class="com.chinadrtv.erp.admin.model.FreightLine"/>
+     <mapping class="com.chinadrtv.erp.model.PreTrade"/>
+     <mapping class="com.chinadrtv.erp.model.PreTradeDetail"/>
+     <mapping class="com.chinadrtv.erp.model.PreTradeLot"/>
+     <mapping class="com.chinadrtv.erp.model.PreTradeCard"/>
+ </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory> 
+
+      
+  
+     <!-- 部门model -->
+     <mapping class="com.chinadrtv.erp.model.Names"/>
+     <mapping class="com.chinadrtv.erp.model.agent.Product"/>
+      <mapping class="com.chinadrtv.erp.model.agent.Grp"/>
+     <!-- 知识库model -->
+     <mapping class="com.chinadrtv.erp.knowledge.model.KnowledgeArticle"/>
+     <mapping class="com.chinadrtv.erp.knowledge.model.KnowledgeCategory"/>
+     <mapping class="com.chinadrtv.erp.knowledge.model.KnowledgePicture"/>
+     <mapping class="com.chinadrtv.erp.knowledge.model.KnowledgeFavoriteArticle"/>
+     <mapping class="com.chinadrtv.erp.knowledge.model.KnowledgeAttachment"/>
+     <mapping class="com.chinadrtv.erp.knowledge.model.KnowledgeRelationship"/>
+     <mapping class="com.chinadrtv.erp.knowledge.model.KnowledgetTag"/>
+     
+          
+      <!-- security  -->
+      <mapping class="com.chinadrtv.erp.model.security.RolePermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.DataView"/>
+      <mapping class="com.chinadrtv.erp.model.security.DataViewPermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.Domain"/>
+      <mapping class="com.chinadrtv.erp.model.security.Filter"/>
+      <mapping class="com.chinadrtv.erp.model.security.FilterPermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.FilterValue"/>
+      <mapping class="com.chinadrtv.erp.model.security.FieldPermission"/>
+      <mapping class="com.chinadrtv.erp.model.security.ViewField"/>
+      
+
+   
+ </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,74 @@
+import com.chinadrtv.erp.util.*;
+import com.chinadrtv.erp.model.*;
+import java.util.*;
+    List rList = new ArrayList();
+    int group =1;
+    PromotionRuleResult freeProdResult = new PromotionRuleResult_FreeProduct(PROMOTION_NAME,"","","",0);
+	List fList = new ArrayList();
+    String optionProds = "";
+    boolean isMatched = false;
+    if ((amount5 != null) && (SUM_AMOUNT  >= amount5)){
+	   
+	   	fList.addAll(MvelUtil.getProductList(group,prod5,sku5,sku5Name,qty5,PROMOTION_NAME,freeProdResult));
+         if(amount5==amount4){
+		    group = 5;
+		 	fList.addAll(MvelUtil.getProductList(group,prod4,sku4,sku4Name,qty4,PROMOTION_NAME,freeProdResult));
+		 }
+	       if(amount5==amount3){
+		    group = 4;
+		 	fList.addAll(MvelUtil.getProductList(group,prod3,sku3,sku3Name,qty3,PROMOTION_NAME,freeProdResult));
+		 }	
+
+        if(amount5==amount2){
+		    group = 3;
+		 	fList.addAll(MvelUtil.getProductList(group,prod2,sku2,sku2Name,qty2,PROMOTION_NAME,freeProdResult));
+		 }	 		 
+		 if(amount5==amount1){
+		    group = 2;
+		 	fList.addAll(MvelUtil.getProductList(group,prod1,sku1,sku1Name,qty1,PROMOTION_NAME,freeProdResult));
+		 }	 
+        isMatched = true;
+    }else if ((amount4 != null) && (SUM_AMOUNT  >= amount4)){
+	   	fList.addAll(MvelUtil.getProductList(group,prod4,sku4,sku4Name,qty4,PROMOTION_NAME,freeProdResult));
+	    if(amount4==amount3){
+		    group = 4;
+		 	fList.addAll(MvelUtil.getProductList(group,prod3,sku3,sku3Name,qty3,PROMOTION_NAME,freeProdResult));
+		 }	
+        if(amount4==amount2){
+		    group = 3;
+		 	fList.addAll(MvelUtil.getProductList(group,prod2,sku2,sku2Name,qty2,PROMOTION_NAME,freeProdResult));
+		 }	 		 
+		 if(amount4==amount1){
+		    group = 2;
+		 	fList.addAll(MvelUtil.getProductList(group,prod1,sku1,sku1Name,qty1,PROMOTION_NAME,freeProdResult));
+		 }	 
+        isMatched = true;
+    }else if ((amount3 != null) && (SUM_AMOUNT  >= amount3)){
+	    fList.addAll(MvelUtil.getProductList(group,prod3,sku3,sku3Name,qty3,PROMOTION_NAME,freeProdResult));
+        if(amount3==amount2){
+		    group = 3;
+		 	fList.addAll(MvelUtil.getProductList(group,prod2,sku2,sku2Name,qty2,PROMOTION_NAME,freeProdResult));
+		 }	 		 
+		 if(amount3==amount1){
+		    group = 2;
+		 	fList.addAll(MvelUtil.getProductList(group,prod1,sku1,sku1Name,qty1,PROMOTION_NAME,freeProdResult));
+		 }
+        isMatched = true;
+    }else if ((amount2 != null) && (SUM_AMOUNT  >= amount2)){
+	   	fList.addAll(MvelUtil.getProductList(group,prod2,sku2,sku2Name,qty2,PROMOTION_NAME,freeProdResult));
+
+        if(amount2==amount1){
+		    group = 2;
+		 	fList.addAll(MvelUtil.getProductList(group,prod1,sku1,sku1Name,qty1,PROMOTION_NAME,freeProdResult));
+		 }	 
+        isMatched = true;
+    }else if ((amount1 != null) && (SUM_AMOUNT  >= amount1)){
+		fList.addAll(MvelUtil.getProductList(group,prod1,sku1,sku1Name,qty1,PROMOTION_NAME,freeProdResult));
+        isMatched = true;
+    }
+    if (isMatched) {
+		freeProdResult.setChildResult(fList);
+        rList.add(freeProdResult);
+    }
+    return rList;
+	

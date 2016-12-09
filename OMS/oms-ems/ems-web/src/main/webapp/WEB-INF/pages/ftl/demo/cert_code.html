@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>demo certCenter</title>
+<script type="text/javascript">
+	$().ready(function() {
+		$('#submitBut').click(function() {
+			if ($("#adminForm").validator().data("validator").checkValidity()) {
+				$("#adminForm").submit();
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="widget">
+			<form class="form-horizontal" id="adminForm" method="post"
+				name="adminForm" action="${rc.contextPath}/certCenter/check_certCode">
+				<div class="widget-header">
+					<h5>验证码</h5>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="form-row">
+							<label class="field-name" for="code"><span
+								class="required">*</span>验证码:</label>
+							<div class="field">
+								<input type="hidden" name="certCodeId" id="certCodeId" value="${certCodeId}" maxlength="30">
+								<input type="text" name="code" id="code"
+									required="required" value="" maxlength="30"><img alt="" src="${rc.contextPath}/certCenter/get_certCode/${certCodeId}" width="120"/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+		<div class="row-fluid">
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary" id="submitBut">保存</button>
+			</div>
+		</div>
+		</form>
+	</div>
+</body>
+</html>

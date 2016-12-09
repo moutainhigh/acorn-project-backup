@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+       default-lazy-init="true">
+
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url"><value>jdbc:oracle:thin:@//192.168.3.180:1521/tsdb3180.develop</value></property>
+        <property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+        <property name="username"><value>acoapp_oms</value></property>
+        <property name="password"><value>acorn.2013</value></property>
+
+        <!--
+        <property name="url"><value>jdbc:oracle:thin:@192.168.4.10:1521:TESTDB</value></property>
+        <property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+        <property name="username"><value>iagent</value></property>
+        <property name="password"><value>iagent2011</value></property>
+        -->
+    </bean>
+
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <!-- Hibernate SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:/hibernate/hibernate.cfg.xml"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+
+
+    <!-- Transaction manager f f or a single Hibernate SessionFactory (alternative to JTA) -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+    
+    <!-- Activates scanning of @Autowired -->
+    <context:annotation-config/>
+
+    <!-- Activates scanning of @Repository -->
+    <context:component-scan base-package="com.chinadrtv.order.choose.dal.dao;com.chinadrtv.erp.tc.core.dao"/>
+
+
+</beans>

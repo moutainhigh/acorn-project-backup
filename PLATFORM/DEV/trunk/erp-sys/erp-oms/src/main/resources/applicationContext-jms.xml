@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+       default-lazy-init="true">
+<!-- JNDI上下文(它是取得JMS资源的起始位置) -->
+    <bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate">
+    <property name="environment">
+     <props>
+      <prop key="java.naming.factory.initial">
+       org.jnp.interfaces.NamingContextFactory
+      </prop>
+      <prop key="java.naming.provider.url">jnp://127.0.0.1:1099</prop>
+      <prop key="java.naming.factory.url.pkgs">
+       org.jnp.interfaces:org.jboss.naming
+      </prop>
+     </props>
+    </property>
+   </bean>
+   
+    <!-- JMS连接工厂 -->
+   <bean id="jmsConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiTemplate">
+     <ref bean="jndiTemplate" />
+    </property>
+    <property name="jndiName">
+     <value>XAConnectionFactory</value>
+    </property>
+   </bean>
+   
+   <!-- JMS模板配置 -->
+  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate102">
+   <property name="connectionFactory" ref="jmsConnectionFactory" />
+   <property name="defaultDestination" ref="destination" />
+   <property name="pubSubDomain">
+    <value>true</value>
+   </property>
+   <!-- 等待消息的时间(ms) -->
+   <property name="receiveTimeout">
+         <value>30000</value>
+      </property>
+  </bean>
+   
+   <!-- JMS目标来发送和接收消息 -->
+   <bean id="destination" class="org.springframework.jndi.JndiObjectFactoryBean">
+   <property name="jndiTemplate">
+    <ref bean="jndiTemplate" />
+   </property>
+   <property name="jndiName">
+    <value>queue/quickstart_helloworld_Request_gw</value>
+   </property>
+  </bean>
+   
+    <!-- 消息发布者 -->
+  <bean id="msgProducer" class="com.chinadrtv.erp.oms.jms.MessageProducer">
+   <property name="jmsTemplate" ref="jmsTemplate" />
+  </bean>
+  <!-- 消息接收者 -->
+  <bean id="msgConsumer" class="com.chinadrtv.erp.oms.jms.MessageConsumer">
+   <property name="jmsTemplate" ref="jmsTemplate" />
+  </bean>
+   
+  
+    
+</beans>

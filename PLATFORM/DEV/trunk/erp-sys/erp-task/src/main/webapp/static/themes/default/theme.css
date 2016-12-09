@@ -1,0 +1,177 @@
+/**
+ * 全局基本样式
+ */
+@media all {
+	
+	* { margin:0; padding:0;}
+	option { padding-left:0.4em; } /* LTR */
+	select { padding:2px; }
+	* html body * { overflow:visible; }
+
+	body {
+		background:#fff;
+		color:#000;
+		text-align:left;
+	}
+
+	div:target { outline:0 none; }
+
+	article,aside,details,figcaption,figure,footer,header,hgroup,nav,section {
+		display:block;margin:0;padding:0;border:none;
+	}
+
+	audio,canvas,video {
+		display: inline-block;
+	}
+
+	audio:not([controls]) {
+		display: none;
+	}
+	
+	[hidden] {
+		display: none;
+	}
+
+	input[type="search"] {
+		-webkit-appearance: textfield;
+	}
+	input[type="search"]::-webkit-search-decoration {
+		-webkit-appearance: none;
+	}
+
+	img { border:0 solid; }
+
+	/* (en) new standard values for lists, blockquote, cite and tables */
+	ul, ol, dl { margin:0 0 1em 1em; } /* LTR */
+	li {
+		line-height:1.5em;
+		margin-left:0.8em; /* LTR */
+	}
+
+	dt { font-weight:bold; }
+	dd { margin:0 0 1em 0.8em; } /* LTR */
+
+	blockquote { margin:0 0 1em 0.8em; } /* LTR */
+	q { quotes: none; }
+
+	blockquote:before, blockquote:after,
+	q:before, q:after { content: ''; content:none }
+
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	/* Clearfix method for clearing floats */
+	.clearfix:before {
+		content:"";
+		display:table;
+	}
+	.clearfix:after {
+		clear:both;
+		content:".";
+		display:block;
+		font-size:0;
+		height:0;
+		visibility:hidden;
+	}
+	* html .clearfix{height:1%;}
+	
+	.hideme{
+		display: none;
+	}
+	
+	.l{float:left;}
+	.r{float:right;}
+	.cl{clear:both;}
+	.n{font-weight:normal; font-style:normal;}
+	.b{font-weight:bold;}
+	.i{font-style:italic;}
+	.tc{text-align:center;}
+	.tr{text-align:right;}
+	.tl{text-align:left;}
+	.rel{position:relative;}.abs{position:absolute;}
+	.dn{display:none;}
+	.db{display:block;}
+	.dib{-moz-inline-stack:inline-block; display:inline-block;}
+	.di{display:inline;}
+	.ovh{overflow:hidden;}
+	.ovs{overflow:scroll;}
+	.vh{visibility:hidden;}
+	.vv{visibility:visible;}
+	.vm{vertical-align: middle;}
+	.divl{float: left;width: 220px;}
+	.messageDiv,.loading{
+		z-index: 1001;
+		position: absolute;  
+		left:50%;  
+		top:50%;  
+		width:40px;  
+		height:40px;  
+		margin-left:-20px;  
+		margin-top:-20px;
+		filter:Alpha(opacity=90);
+		-moz-opacity:0.9;
+		opacity:0.9;
+	}
+	
+	.teams-layer-box{
+		z-index: 1001;
+		position: absolute;  
+		left:20%;  
+		top:20%;  
+		margin-left:-20px;  
+		margin-top:-20px;
+		filter:Alpha(opacity=90);
+		-moz-opacity:0.9;
+		opacity:0.9;	
+	}
+	
+	.messageDiv span,.loading span{
+		position:relative;
+	}
+	.errorDiv span{
+		color: red;
+	}
+	
+	.loading{
+		background: url("/static/images/loading.gif") no-repeat 8px 8px;
+	}
+	.loading-message{
+		width:180px;  
+		padding:0px 20px;
+		background-color: #ffffe1;
+		border: solid 1px #d6d6d6;
+		line-height: 40px;
+		vertical-align: middle;
+		text-align:center;
+		color: #333;font-size: 12px;
+	}
+	.mask{
+		z-index: 1000;
+		height: 100%;width: 100%;
+		position: absolute;
+		top: 0px;left: 0px;
+		background-color: #fff;
+		filter:alpha(opacity=30);opacity: 0.3;
+	}
+	.line-dashed{
+		height: 1px;
+		border-bottom: 1px dashed #ccc;
+	}
+	.line-solid{
+		height: 1px;
+		border-bottom: 1px solid #ccc;
+	}
+	.entity{
+		float: left;margin-right: 5px;
+	}
+	.entity-eraser{
+		display: inline-block;
+		width:16px; height:16px;
+		background: url("/static/images/icon-16/eraser_small.png") no-repeat;
+		vertical-align: middle;
+		cursor: pointer;
+	}
+	
+}

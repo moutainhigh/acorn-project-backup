@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.2.v201301221637 Build &lt;4.2.2.v20130206-1509></property>
+    <property name="units">in</property>
+    <method name="initialize"><![CDATA[params['cName']=decodeURI(params['cName']);
+params['warehouse']=decodeURI(params['warehouse']);]]></method>
+    <property name="iconFile">/templates/first_report.gif</property>
+    <property name="cheatSheet">org.eclipse.birt.report.designer.ui.cheatsheet.firstreport</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <template-parameter-definitions>
+        <template-parameter-definition name="NewTemplateParameterDefinition" id="28">
+            <property name="allowedType">Table</property>
+            <text-property name="description">Customer Listing</text-property>
+            <default>
+                <table id="29">
+                    <property name="width">100%</property>
+                    <property name="pageBreakInterval">50</property>
+                    <column id="49"/>
+                    <column id="50"/>
+                    <column id="51"/>
+                    <column id="52"/>
+                    <header>
+                        <row id="30">
+                            <cell id="31">
+                                <label id="32">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Contact</text-property>
+                                </label>
+                            </cell>
+                            <cell id="33">
+                                <label id="34">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">First</text-property>
+                                </label>
+                            </cell>
+                            <cell id="35">
+                                <label id="36">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Last</text-property>
+                                </label>
+                            </cell>
+                            <cell id="37">
+                                <label id="38">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Phone</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </header>
+                    <detail>
+                        <row id="39">
+                            <cell id="40"/>
+                            <cell id="41"/>
+                            <cell id="42"/>
+                            <cell id="43"/>
+                        </row>
+                    </detail>
+                    <footer>
+                        <row id="44">
+                            <cell id="45"/>
+                            <cell id="46"/>
+                            <cell id="47"/>
+                            <cell id="48"/>
+                        </row>
+                    </footer>
+                </table>
+            </default>
+        </template-parameter-definition>
+        <template-parameter-definition name="NewTemplateParameterDefinition1" id="78">
+            <property name="allowedType">Table</property>
+            <text-property name="description">Customer Listing Table</text-property>
+            <default>
+                <table id="79">
+                    <property name="width">100%</property>
+                    <property name="refTemplateParameter">NewTemplateParameterDefinition</property>
+                    <property name="pageBreakInterval">50</property>
+                    <column id="99"/>
+                    <column id="100"/>
+                    <column id="101"/>
+                    <column id="102"/>
+                    <header>
+                        <row id="80">
+                            <cell id="81">
+                                <label id="82">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Contact</text-property>
+                                </label>
+                            </cell>
+                            <cell id="83">
+                                <label id="84">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">First</text-property>
+                                </label>
+                            </cell>
+                            <cell id="85">
+                                <label id="86">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Last</text-property>
+                                </label>
+                            </cell>
+                            <cell id="87">
+                                <label id="88">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Phone</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </header>
+                    <detail>
+                        <row id="89">
+                            <cell id="90"/>
+                            <cell id="91"/>
+                            <cell id="92"/>
+                            <cell id="93"/>
+                        </row>
+                    </detail>
+                    <footer>
+                        <row id="94">
+                            <cell id="95"/>
+                            <cell id="96"/>
+                            <cell id="97"/>
+                            <cell id="98"/>
+                        </row>
+                    </footer>
+                </table>
+            </default>
+        </template-parameter-definition>
+        <template-parameter-definition name="NewTemplateParameterDefinition2" id="132">
+            <property name="allowedType">Table</property>
+            <text-property name="description">Customer Listing Table</text-property>
+            <default>
+                <table id="133">
+                    <property name="width">100%</property>
+                    <property name="refTemplateParameter">NewTemplateParameterDefinition1</property>
+                    <property name="pageBreakInterval">50</property>
+                    <column id="157"/>
+                    <column id="158"/>
+                    <column id="159"/>
+                    <column id="160"/>
+                    <header>
+                        <row id="134">
+                            <cell id="135">
+                                <label id="136">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Contact</text-property>
+                                </label>
+                            </cell>
+                            <cell id="137">
+                                <label id="138">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">First</text-property>
+                                </label>
+                            </cell>
+                            <cell id="139">
+                                <label id="140">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Last</text-property>
+                                </label>
+                            </cell>
+                            <cell id="141">
+                                <label id="142">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Phone</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </header>
+                    <detail>
+                        <row id="143">
+                            <cell id="144">
+                                <data id="145"/>
+                            </cell>
+                            <cell id="146">
+                                <data id="147"/>
+                            </cell>
+                            <cell id="148">
+                                <data id="149"/>
+                            </cell>
+                            <cell id="150">
+                                <data id="151"/>
+                            </cell>
+                        </row>
+                    </detail>
+                    <footer>
+                        <row id="152">
+                            <cell id="153"/>
+                            <cell id="154"/>
+                            <cell id="155"/>
+                            <cell id="156"/>
+                        </row>
+                    </footer>
+                </table>
+            </default>
+        </template-parameter-definition>
+    </template-parameter-definitions>
+    <parameters>
+        <scalar-parameter name="sID" id="250">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="strDate" id="251">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="endDate" id="252">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="cName" id="253">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="warehouse" id="254">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="数据源" id="248">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">oracle.jdbc.driver.OracleDriver</property>
+            <property name="odaURL">jdbc:oracle:thin:@192.168.4.10:1521:testdb</property>
+            <property name="odaUser">acoapp_oms</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">b21zLjIwMTI=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="数据集" id="249">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">DISHONOUR_ID</property>
+                    <property name="paramName">sID</property>
+                    <property name="nativeName">DISHONOUR_ID</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">SENDSDATE</property>
+                    <property name="paramName">strDate</property>
+                    <property name="nativeName">SENDSDATE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">SENDEDATE</property>
+                    <property name="paramName">endDate</property>
+                    <property name="nativeName">SENDEDATE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">COMPANYNAME</property>
+                    <property name="paramName">cName</property>
+                    <property name="nativeName">COMPANYNAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">4</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">WAREHOUSE</property>
+                    <property name="paramName">warehouse</property>
+                    <property name="nativeName">WAREHOUSE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">5</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">V_RECORDSET</property>
+                    <property name="nativeName">V_RECORDSET</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-10</property>
+                    <property name="position">6</property>
+                    <property name="allowNull">true</property>
+                    <property name="isOutput">true</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">CRDT</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">CRUSER</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">IS_ACTIVE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">REGULATION_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">PRIORITY</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">REGULATION_DSC</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">WAREHOUSE_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">AREA_GROUP_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">数据源</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">CRDT</property>
+                    <property name="nativeName">CRDT</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">CRUSER</property>
+                    <property name="nativeName">CRUSER</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">IS_ACTIVE</property>
+                    <property name="nativeName">IS_ACTIVE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">REGULATION_ID</property>
+                    <property name="nativeName">REGULATION_ID</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">PRIORITY</property>
+                    <property name="nativeName">PRIORITY</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">REGULATION_DSC</property>
+                    <property name="nativeName">REGULATION_DSC</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">WAREHOUSE_NAME</property>
+                    <property name="nativeName">WAREHOUSE_NAME</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">AREA_GROUP_ID</property>
+                    <property name="nativeName">AREA_GROUP_ID</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call ACOAPP_OMS.P_Test_SendInventory(?,?,?,?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>DISHONOUR_ID</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>SENDSDATE</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>SENDEDATE</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>COMPANYNAME</design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>WAREHOUSE</design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>Out</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>V_RECORDSET</design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-10</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="110">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="246">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="247">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="245">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">x-large</property>
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">发包清单</text-property>
+        </label>
+        <table id="163">
+            <property name="width">100%</property>
+            <property name="dataSet">数据集</property>
+            <property name="refTemplateParameter">NewTemplateParameterDefinition2</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">CRDT</property>
+                    <text-property name="displayName">CRDT</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CRDT"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">CRUSER</property>
+                    <text-property name="displayName">CRUSER</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CRUSER"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">IS_ACTIVE</property>
+                    <text-property name="displayName">IS_ACTIVE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["IS_ACTIVE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">REGULATION_ID</property>
+                    <text-property name="displayName">REGULATION_ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["REGULATION_ID"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">PRIORITY</property>
+                    <text-property name="displayName">PRIORITY</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PRIORITY"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">REGULATION_DSC</property>
+                    <text-property name="displayName">REGULATION_DSC</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["REGULATION_DSC"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">WAREHOUSE_NAME</property>
+                    <text-property name="displayName">WAREHOUSE_NAME</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["WAREHOUSE_NAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">AREA_GROUP_ID</property>
+                    <text-property name="displayName">AREA_GROUP_ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["AREA_GROUP_ID"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">聚合</property>
+                    <text-property name="displayName">统计</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["CRUSER"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">50</property>
+            <column id="187"/>
+            <column id="188"/>
+            <column id="189"/>
+            <column id="190"/>
+            <column id="259"/>
+            <column id="263"/>
+            <column id="267"/>
+            <column id="271"/>
+            <column id="275"/>
+            <column id="279"/>
+            <header>
+                <row id="164">
+                    <cell id="165">
+                        <label id="166">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">出库日期</text-property>
+                        </label>
+                    </cell>
+                    <cell id="167">
+                        <label id="168">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">发运单号</text-property>
+                        </label>
+                    </cell>
+                    <cell id="169">
+                        <label id="170">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">邮件号</text-property>
+                        </label>
+                    </cell>
+                    <cell id="171">
+                        <label id="172">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">订单类型</text-property>
+                        </label>
+                    </cell>
+                    <cell id="256">
+                        <label id="280">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">订单金额</text-property>
+                        </label>
+                    </cell>
+                    <cell id="260">
+                        <label id="281">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">省-市-区</text-property>
+                        </label>
+                    </cell>
+                    <cell id="264">
+                        <label id="282">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">姓名</text-property>
+                        </label>
+                    </cell>
+                    <cell id="268">
+                        <label id="283">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">地址</text-property>
+                        </label>
+                    </cell>
+                    <cell id="272">
+                        <label id="284">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">产品简称</text-property>
+                        </label>
+                    </cell>
+                    <cell id="276">
+                        <label id="285">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">邮编</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="173">
+                    <cell id="174">
+                        <data id="255">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Medium Date</property>
+                                <property name="pattern">Medium Date</property>
+                            </structure>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">CRDT</property>
+                        </data>
+                    </cell>
+                    <cell id="176">
+                        <data id="286">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">CRUSER</property>
+                        </data>
+                    </cell>
+                    <cell id="178">
+                        <data id="287">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">IS_ACTIVE</property>
+                        </data>
+                    </cell>
+                    <cell id="180">
+                        <data id="288">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">REGULATION_ID</property>
+                        </data>
+                    </cell>
+                    <cell id="257">
+                        <data id="289">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">PRIORITY</property>
+                        </data>
+                    </cell>
+                    <cell id="261">
+                        <data id="290">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">REGULATION_DSC</property>
+                        </data>
+                    </cell>
+                    <cell id="265">
+                        <data id="291">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">WAREHOUSE_NAME</property>
+                        </data>
+                    </cell>
+                    <cell id="269">
+                        <data id="292">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">WAREHOUSE_NAME</property>
+                        </data>
+                    </cell>
+                    <cell id="273">
+                        <data id="293">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">AREA_GROUP_ID</property>
+                        </data>
+                    </cell>
+                    <cell id="277">
+                        <data id="294">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">AREA_GROUP_ID</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="182">
+                    <cell id="183">
+                        <label id="295">
+                            <property name="textAlign">right</property>
+                            <text-property name="text">统计单号：</text-property>
+                        </label>
+                    </cell>
+                    <cell id="184">
+                        <data id="296">
+                            <property name="resultSetColumn">聚合</property>
+                        </data>
+                    </cell>
+                    <cell id="185"/>
+                    <cell id="186"/>
+                    <cell id="258"/>
+                    <cell id="262"/>
+                    <cell id="266"/>
+                    <cell id="270"/>
+                    <cell id="274"/>
+                    <cell id="278"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>任务调度TOPIC监控</title>
+<script type="text/javascript">
+	$().ready(function(){
+		$('#backBut').click(function() {
+			window.location.href = '${rc.contextPath}/console/mainConsole';
+		});
+		
+		$common.initResultMsg();
+
+		 var cols = [
+		 	{ title:'系统名称', name:'jobSystem' ,width:100, align:'center'},
+	        { title:'任务名称', name:'jobName' ,width:100, align:'center'},
+	        { title:'Cron表达式', name:'jobCronExpression' ,width:100, align:'center'},
+	        { title:'任务Topic', name:'jobTopic' ,width:80, align:'center'},
+	        { title:'运行状态', name:'jobStatus' ,width:80, align:'center',
+	        	renderer:function(val){if(val==1) return "运行"; else return "停止";}},
+	        { title:'查看日志', name:'id',width:80,align:'center',renderer:function(val){
+        			return '<button id="playAdd" class="btn btn-success"><i class="icon-search icon-white"></i>查看</button>'; 
+	    		}
+	        }
+	     ];
+		 var mmg = $('.mmg').mmGrid({
+		    indexCol: true,
+	        cols: cols,
+	        height: 550,
+	        root:'list',
+	       	multiSelect: true,
+	       	nowrap: true,
+            fullWidthRows: true,
+            autoLoad: false,
+            url: '${rc.contextPath}/console/searchSchedulerData?hostName=${hostName}',
+            method: 'post'
+	    });
+		 
+		 mmg.on('cellSelected', function(e, item, rowIndex, colIndex){
+             //查看
+             if($(e.target).is('.btn-success')){
+                 e.stopPropagation();  //阻止事件冒泡
+                 window.location.href = "${rc.contextPath}/console/historyConsole?id="+item.id;
+             }
+         }).load();
+	});
+</script>
+</head>
+<body>
+	<div class="container" id="iframe">
+		<div class="alert alert-success" id="msg_success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<span class="success"></span><br />
+		</div>
+		<input type="hidden" id="action_msg" value="${success!''}" />
+
+		<table id="mmg" class="mmg">
+			<tr>
+				<th rowspan="" colspan=""></th>
+			</tr>
+		</table>
+		<div id="pg" style="text-align: right;"></div>
+		<div style="margin-top: 5px; text-align: center;">
+			<button id="backBut" class="btn">返回</button>
+		</div>
+	</div>
+</body>
+</html>
